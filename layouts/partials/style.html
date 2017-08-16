@@ -1,0 +1,17 @@
+<link rel="shortcut icon" href="{{ "img/favicon.ico" | absURL }}">
+<link rel="stylesheet" href="{{ "css/main.css" | absURL }}" type="text/css">
+<link rel="stylesheet" href="{{ "css/normalize.min.css" | absURL }}" type="text/css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
+<link rel="stylesheet" href="{{ "css/academicons.min.css" | absURL }}" type="text/css">
+{{ $text := or .Site.Params.font.text "Lato" }} <!--Open Sans, Ubuntu, Lato, Raleway-->
+{{ $code := or .Site.Params.font.code "Menlo" }}
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family={{ replace $text " " "+" | safeURL }}|{{ replace $code " " "+" | safeURL }}">
+<link href="//fonts.googleapis.com/css?family=Eczar|Work+Sans" rel="stylesheet">
+<style>
+  html, button, input, select, textarea {
+    font-family: "{{ $text }}", Arial, sans-serif;
+  }
+  pre, code {
+    font-family: "{{ $code }}", "Courier New", monospace;
+  }
+</style>

@@ -1,0 +1,6 @@
+{{ define "main" }}
+  {{ .Content }}
+
+  <h2><a href="{{ "publications/" | absURL }}">Publications</a></h2>
+  {{ partial "publications" .}}
+{{ end }}

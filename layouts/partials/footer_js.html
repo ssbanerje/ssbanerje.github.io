@@ -1,0 +1,8 @@
+<script type="text/javascript">
+var email_div = document.getElementById("email");
+if (email_div) {
+  email_div.onclick = function () {
+    window.location.href = "mailto:{{ .Site.Params.email }}";
+  };
+}
+</script>

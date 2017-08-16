@@ -1,0 +1,26 @@
+<h3 style="margin-top: 0.2em;">Papers</h3>
+<ul class="paper-list">
+{{ range where .Data.Pages "Section" "==" "publications"}}
+{{ if eq .Params.pubtype "paper" }}
+  <li>{{ partial "paper-listing" .}}</li>
+{{ end }}
+{{ end }}
+</ul>
+
+<h3>Technical Reports</h3>
+<ul class="paper-list">
+{{ range where .Data.Pages "Section" "==" "publications"}}
+{{ if eq .Params.pubtype "techreport" }}
+  <li>{{ partial "paper-listing" .}}</li>
+{{ end }}
+{{ end }}
+</ul>
+
+<h3>Extended Abstracts/Posters</h3>
+<ul class="paper-list">
+{{ range where .Data.Pages "Section" "==" "publications"}}
+{{ if eq .Params.pubtype "poster" }}
+  <li>{{ partial "paper-listing" .}}</li>
+{{ end }}
+{{ end }}
+</ul>
