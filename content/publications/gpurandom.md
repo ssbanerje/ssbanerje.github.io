@@ -2,7 +2,7 @@
 pubtype: poster
 title: "An Efficient Pseudo-Random Number Generator for Monte-Carlo Simulations using GPUs"
 authors: "Siddharth Mohanty and Subho S. Banerjee and Dushyant Goyal and Ajit K. Mohanty and Federico Carminati"
-venue: "International Workshop for Future Challenges in Tracking and Trigger Concepts"
+venue: "International Workshop for Future Challenges in Tracking and Trigger Concepts 2011"
 date: 2011
 links:
   - name: Web

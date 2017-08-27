@@ -160,8 +160,11 @@ ul.paper-list p {
 .paper-title {
     font-weight: 600;
 }
-.paper-authors, .paper-venue, .paper-extra, .paper-links {
+.paper-authors, .paper-venue, .paper-extra, .paper-links, .paper-award {
     font-size: 15px;
+}
+.paper-award {
+  color: #812717;-
 }
 ul.paper-list {
     padding: 0;

@@ -4,6 +4,7 @@ title: "Data-Driven Longitudinal Modeling and Prediction of Symptom Dynamics in 
 authors: "Arjun Athreya, Subho Sankar Banerjee, Drew Neavin, Rima Kaddurah-Daouk, A. John Rush, Mark Frye, Liewei Wang, Richard Weinshilboum, William Bobo and Ravishankar Iyer"
 venue: "CIBCB 2017"
 date: 2017-08-23
+award: ["Best Paper Award"]
 links:
   - name: To Appear
     icon: ai ai-ieee

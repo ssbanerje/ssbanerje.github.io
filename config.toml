@@ -3,7 +3,7 @@ title = "Subho Sankar Banerjee"
 googleAnalytics = "UA-48086103-1"
 
 # URLs
-baseURL = "http://web.engr.illinois.edu/~ssbaner2/"
+baseURL = "http://web.engr.illinois.edu/~ssbaner2"
 languageCode = "en-us"
 
 # Render settings

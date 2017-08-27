@@ -5,8 +5,9 @@ weight: 1
 ---
 
 I am a PhD candidate in [Computer Science at UIUC][cs@uiuc] advised by [Ravishankar Iyer][rkiyer] and [Zbigniew
-Kalbarczyk][kalbarcz] in the [DEPEND][] research group at the [Coordinated Science Laboratory][csl]. I work on
-architecting heterogeneous computer systems for data analytics workloads.
+Kalbarczyk][kalbarcz] in the [DEPEND][] research group at the [Coordinated Science Laboratory][csl].
+My research focuses on hardware-software co-design for architecting application specific processors and accelerators as
+well as programming models and runtime systems that can integrate these accelerators in modern data analytics workloads.
 
 I hold a Bachelor's degree (B.Tech.) in Computer Science and Engineering from [LNMIIT][], India. I have previously
 held positions at [CERN][], [Microsoft Research][msr] and [IBM STG][ibmstg].
