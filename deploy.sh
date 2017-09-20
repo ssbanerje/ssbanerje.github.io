@@ -1,13 +1,14 @@
 #!/bin/bash
 
 USER=ssbaner2
-HOST=web.engr.illinois.edu
+HOST=webhost.engr.illinois.edu
 DIR=public_html/
 
 # BUILD
 rm -rf ${DIR}
 hugo
 mkdir -p public/cgi-bin
+find public/ -name ".DS_Store" -delete
 
 # MINIFY
 html-minifier --input-dir ${DIR} --output-dir ${DIR} --collapse-whitespace --html5 --minify-css --minify-js --file-ext html

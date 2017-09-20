@@ -7,7 +7,10 @@ date: 2016-05-31
 links:
   - name: ACM-DL
     icon: ai ai-acm
-    url: "http://doi.acm.org/10.1145/3020078.3021796"
+    url: "http://dl.acm.org/citation.cfm?id=2912156"
+  - name: Presentation
+    icon: fa fa-file-pdf-o
+    url: "files/DIDC_2016_Presentation.pdf"
 ---
 
 Recent growth in the volume of DNA sequence data and associated computational costs of extracting meaningful information

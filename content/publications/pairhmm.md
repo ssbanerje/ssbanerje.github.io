@@ -8,6 +8,9 @@ links:
   - name: To Appear
     icon: ai ai-ieee
     url: ""
+  - name: Presentation
+    icon: fa fa-file-pdf-o
+    url: "files/FPL2017_Presentation.pdf"
 ---
 
 This paper explores hardware acceleration to significantly improve the runtime of computing the forward algorithm on

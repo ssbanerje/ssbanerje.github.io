@@ -3,7 +3,7 @@ title = "Subho Sankar Banerjee"
 googleAnalytics = "UA-48086103-1"
 
 # URLs
-baseURL = "http://web.engr.illinois.edu/~ssbaner2"
+baseURL = "http://ssbaner2.web.engr.illinois.edu"
 languageCode = "en-us"
 
 # Render settings
@@ -25,7 +25,7 @@ disableKinds = ["taxonomy","taxonomyTerm"]
   univeristy = "University of Illinois at Urbana-Champaign"
   affiliation = "CS@Illinois"
   email = "ssbaner2@illinois.edu"
-  address = "CSL 244"
+  address = "CSL 240"
   address_url = "http://illinois.edu/map/view?buildingId=148"
   cv_url = "files/cv.pdf"
   avatar = "img/me_sq.png"
