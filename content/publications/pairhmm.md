@@ -5,9 +5,9 @@ authors: "Subho S. Banerjee, Mohamed el-Hadedy, Ching Y. Tan, Zbigniew T. Kalbar
 venue: "FPL 2017"
 date: 2017-09-04
 links:
-  - name: To Appear
+  - name: IEEEXplore
     icon: ai ai-ieee
-    url: ""
+    url: "http://ieeexplore.ieee.org/document/8056837/"
   - name: Presentation
     icon: fa fa-file-pdf-o
     url: "files/FPL2017_Presentation.pdf"

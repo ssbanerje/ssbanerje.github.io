@@ -2,7 +2,7 @@
 pubtype: poster
 title: "IGen: The Illinois Genomics Execution Environment"
 authors: "Subho S. Banerjee and Ravishankar K. Iyer"
-venue: "SC 2015"
+venue: "Supercomputing 2015"
 date: 2015
 links:
   - name: Web

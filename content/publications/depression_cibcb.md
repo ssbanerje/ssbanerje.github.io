@@ -1,14 +1,14 @@
 ---
 pubtype: paper
 title: "Data-Driven Longitudinal Modeling and Prediction of Symptom Dynamics in Major Depressive Disorder: Integrating Factor Graphs and Learning Methods"
-authors: "Arjun Athreya, Subho Sankar Banerjee, Drew Neavin, Rima Kaddurah-Daouk, A. John Rush, Mark Frye, Liewei Wang, Richard Weinshilboum, William Bobo and Ravishankar Iyer"
+authors: "Arjun Athreya, Subho S. Banerjee, Drew Neavin, Rima Kaddurah-Daouk, A. John Rush, Mark A. Frye, Liewei Wang, Richard M. Weinshilboum, William V. Bobo and Ravishankar K. Iyer"
 venue: "CIBCB 2017"
 date: 2017-08-23
 award: ["Best Paper Award"]
 links:
-  - name: To Appear
+  - name: IEEEXplore
     icon: ai ai-ieee
-    url: ""
+    url: "http://ieeexplore.ieee.org/document/8058559/"
 ---
 
 This paper proposes a data-driven longitudinal model that brings together factor graphs and learning methods to
