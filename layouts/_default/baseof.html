@@ -21,11 +21,10 @@
       <div id="sidebar-img"><img src="{{ .Site.Params.avatar | absURL }}" alt="Me" /></div>
       <div id="sidebar-content">
         <h1><a href="{{ "" | absURL }}">{{ .Site.Params.name }}</a></h1>
-        <p>{{ .Site.Params.position }}<br />{{ .Site.Params.department }}<br />{{ .Site.Params.university }}</p>
+        <p>{{ .Site.Params.position }}<br />{{ .Site.Params.department }}<br />{{ .Site.Params.univeristy }}</p>
         <table>
           <tr><td><i class="fa fa-envelope" aria-hidden="true"></i></td><td><a id="email">{{ .Site.Params.email }}</a></td></tr>
           <tr><td><i class="fa fa-building-o" aria-hidden="true"></i></td><td><a href="{{ .Site.Params.address_url }}">{{ .Site.Params.address }}</a></td></tr>
-          <tr><td><i class="fa fa-file-pdf-o" aria-hidden="true"></i></td><td><a href="{{ .Site.Params.cv_url | absURL }}">CV</a></td></tr>
           <tr><td><i class="ai ai-orcid" aria-hidden="true"></i></td><td><a href="https://orcid.org/{{ .Site.Params.orcid }}/">ORCiD</a></td></tr>
         </table>
       </div>

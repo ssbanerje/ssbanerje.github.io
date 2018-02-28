@@ -4,13 +4,13 @@ title: Home
 weight: 1
 ---
 
-I am a PhD candidate in [Computer Science at UIUC][cs@uiuc] advised by [Ravishankar Iyer][rkiyer] and [Zbigniew
-Kalbarczyk][kalbarcz] in the [DEPEND][] research group at the [Coordinated Science Laboratory][csl].
-My research focuses on hardware-software co-design for building application specific processors and accelerators as
-well as programming models and runtime systems that can integrate these accelerators in modern data analytics workloads.
+I am a PhD candidate in [Computer Science at UIUC][cs@uiuc] advised by [Ravishankar K. Iyer][rkiyer] in the [DEPEND][]
+research group at the [Coordinated Science Laboratory][csl]. My research focuses on the design of application specific
+computing systems for data analytics workloads (particularly in computational genomics and precision medicine), with
+emphasis on the hardware-software codesign at an architectural and OS level. I received a B.Tech. in Computer Science
+and Engineering from [LNMIIT][], India.
 
-I hold a Bachelor's degree (B.Tech.) in Computer Science and Engineering from [LNMIIT][], India. I have previously
-held positions at [CERN][], [Microsoft Research][msr] and [IBM STG][ibmstg].
+In past summers I have interned at [IBM STG][ibmstg], [Microsoft Research][msr], [Intel Labs][intel], and [CERN][].
 
 [cs@uiuc]: https://cs.illinois.edu
 [rkiyer]: http://www.ece.illinois.edu/directory/profile.asp?rkiyer
@@ -21,3 +21,4 @@ held positions at [CERN][], [Microsoft Research][msr] and [IBM STG][ibmstg].
 [cern]: https://cern.ch
 [msr]: http://research.microsoft.com
 [ibmstg]: http://ibm.com
+[intel]: https://www.intel.me/content/www/xr/en/research/intel-research.html

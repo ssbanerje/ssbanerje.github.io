@@ -5,9 +5,9 @@ authors: "Subho S. Banerjee, Steve Lumetta, Zbigniew T. Kalbarczyk and Ravishank
 venue: "AISys 2017 (Colocated with SOSP 2017)"
 date: 2017-10-28
 links:
-  - name: To Appear
-    icon: fa fa-globe
-    url: "http://learningsys.org/sosp17/acceptedposters.html"
+  - name: Abstract
+    icon: fa fa-file-pdf-o
+    url: "https://github.com/LearningSys/sosp17/blob/master/papers/18%5CCameraReadySubmission%5Csymphony.pdf"
 ---
 
 The diminishing returns from Moore's law and technology scaling have significantly driven the deployment of a plethora

@@ -5,11 +5,10 @@
 <link rel="stylesheet" href="{{ "css/academicons.min.css" | absURL }}" type="text/css">
 {{ $text := or .Site.Params.font.text "Lato" }} <!--Open Sans, Ubuntu, Lato, Raleway-->
 {{ $code := or .Site.Params.font.code "Menlo" }}
-<link rel="stylesheet" href="//fonts.googleapis.com/css?family={{ replace $text " " "+" | safeURL }}|{{ replace $code " " "+" | safeURL }}">
-<link href="//fonts.googleapis.com/css?family=Eczar|Work+Sans" rel="stylesheet">
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family={{ replace $text " " "+" | safeURL }}:200,300,400,500,550,600,700,200italic,300italic,400italic,500italic,600italic,700italic|{{ replace $code " " "+" | safeURL }}">
 <style>
   html, button, input, select, textarea {
-    font-family: "{{ $text }}", Arial, sans-serif;
+    font-family: "{{ $text }}", sans-serif;
   }
   pre, code {
     font-family: "{{ $code }}", "Courier New", monospace;

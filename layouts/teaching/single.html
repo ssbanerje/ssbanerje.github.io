@@ -1,0 +1,13 @@
+{{ define "main" }}
+  <a href="{{ "/" | absURL }}" style="font-size: 0.75em;"><i class="fa fa-caret-left"></i> Home</a>
+  <h1>{{ .Title }}</h1>
+  <h3>{{ .Params.authors }}</h3>
+  <h4>{{ .Params.venue }}</h4>
+  <hr style="height:1px; border:none; background-color:#d3d3d3; text-align:center; margin: 0.5em">
+  <ul class="single-paper-links">
+  {{ range .Params.links }}
+    <li><a href="{{ .url | absURL }}"><i class="{{ .icon }}" aria-hidden="true"></i> {{ .name }}</a></li>
+  {{ end }}
+  </ul>
+  {{ .Content }}
+{{ end }}

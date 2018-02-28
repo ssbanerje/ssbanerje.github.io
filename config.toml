@@ -20,13 +20,12 @@ disableKinds = ["taxonomy","taxonomyTerm"]
 
 [params]
   name = "Subho Sankar Banerjee"
-  position = "PhD Student"
+  position = "PhD Candidate"
   department = "Computer Science"
   univeristy = "University of Illinois at Urbana-Champaign"
   affiliation = "CS@Illinois"
   email = "ssbaner2@illinois.edu"
   address = "CSL 240"
   address_url = "http://illinois.edu/map/view?buildingId=148"
-  cv_url = "files/cv.pdf"
   avatar = "img/me_sq.png"
   orcid = "0000-0001-7187-6569"

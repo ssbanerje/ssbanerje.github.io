@@ -1,0 +1,15 @@
+<p><a class="paper-title" href="{{ .Permalink }}">{{ .Title }}.</a></p>
+<p class="paper-authors">{{ .Params.authors }}.</p>
+<p class="paper-venue">{{ .Params.venue }}.</p>
+<p class="paper-award">
+  {{ range .Params.award }}
+  <i class="fa fa-certificate" aria-hidden="true"></i> {{ . }}
+  {{ end }}
+ </p>
+<!--
+<ul class="paper-links">
+{{ range .Params.links }}
+  <li><a href="{{ .url | absURL }}"><i class="{{ .icon }}" aria-hidden="true"></i> {{ .name }}</a></li>
+{{ end }}
+</ul>
+-->

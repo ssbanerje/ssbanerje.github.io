@@ -1,0 +1,7 @@
+<ul class="paper-list">
+{{ range where .Data.Pages "Section" "==" "teaching" }}
+{{ if eq .Params.pubtype "class" }}
+  <li>{{ partial "paper-listing" .}}</li>
+{{ end }}
+{{ end }}
+</ul>
