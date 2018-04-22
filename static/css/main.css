@@ -54,11 +54,18 @@ a:hover {
     max-width: 40%;
     min-width: 350px;
 }
+code, pre {
+  font-size: 0.9em;
+  max-width: 30em;
+  overflow-x: scroll;
+}
+.highlight > pre { padding-right: 10px; }
 @media screen and (min-width: 48em) {
     #content {
         padding: 1.5em 1.5em 0 1.5em;
         flex: 3 0px;
     }
+    code, pre { max-width: 60em; }
 }
 
 /* Sidebar */
@@ -68,8 +75,8 @@ a:hover {
     color: #ffffff;
     width: 100%;
 }
-#sidebar a { color: #cccccc; }
-#sidebar a:hover { color: #999; }
+#sidebar a { color: #fff; }
+#sidebar a:hover { color: #777; }
 #sidebar h1 {
     line-height: 1.0;
     margin: 0 0 0.3em 0;

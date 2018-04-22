@@ -8,11 +8,13 @@
     <i class="fas fa-trophy" aria-hidden="true"></i> {{ . }}
     {{ end }}
   </h4>
-  <hr style="height:1px; border:none; background-color:#d3d3d3; text-align:center; margin: 0.5em">
+  <hr style="height:1px; border:none; background-color:#d3d3d3; text-align:center; margin: 0.5em; margin-bottom: .5em;">
+  {{ if (isset .Params "links") }}
   <ul class="single-paper-links">
   {{ range .Params.links }}
     <li><a href="{{ .url | absURL }}"><i class="{{ .icon }}" aria-hidden="true"></i> {{ .name }}</a></li>
   {{ end }}
   </ul>
+  {{ end }}
   {{ .Content }}
 {{ end }}

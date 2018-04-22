@@ -8,7 +8,9 @@ languageCode = "en-us"
 
 # Render settings
 pygmentsCodeFences = true
-pygmentsStyle = "colorful"
+pygmentsUseClassic=true
+pygmentsStyle = "manni"
+pygmentsOptions = "linenos=true,nowrap=false"
 disableKinds = ["taxonomy","taxonomyTerm"]
 
 [blackfriday]
@@ -23,11 +25,10 @@ disableKinds = ["taxonomy","taxonomyTerm"]
   position = "PhD Candidate"
   department = "Computer Science"
   univeristy = "University of Illinois at Urbana-Champaign"
-  affiliation = "CS@Illinois"
+  avatar = "img/me_sq.png"
   email = "ssbaner2@illinois.edu"
   address = "CSL 240"
   address_url = "http://illinois.edu/map/view?buildingId=148"
-  avatar = "img/me_sq.png"
   linkedin = "https://www.linkedin.com/in/ssbanerjee/"
   github = "https://github.com/ssbanerje"
   dblp = "https://dblp.uni-trier.de/pers/hd/b/Banerjee:Subho_S="
