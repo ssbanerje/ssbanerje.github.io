@@ -6,16 +6,16 @@ body {
     color: #333;
     text-rendering: optimizeLegibility;
     display: flex;
+    height: 100%;
 }
 
 /* Text layout */
 p { margin: 0.8em 0; }
 b, strong, h1, h2, h3, h4 { font-weight: 700; }
 h1 > a { font-size: 1.5em; }
-h2 {
-    border-bottom: 1px solid #d3d3d3;
-    margin: 0.4em 0;
-    padding: 0.5em 0;
+h1, h2 {
+    margin: 0.2em 0;
+    padding: 0.2em 0;
 }
 h3 { margin: 1.2em 0 0.2em 0 ; }
 h2 > a { color: #333; }
@@ -56,7 +56,7 @@ a:hover {
 }
 @media screen and (min-width: 48em) {
     #content {
-        padding: 1.5em;
+        padding: 1.5em 1.5em 0 1.5em;
         flex: 3 0px;
     }
 }
@@ -66,6 +66,7 @@ a:hover {
     padding: 1em;
     background-color: #141f33;
     color: #ffffff;
+    width: 100%;
 }
 #sidebar a { color: #cccccc; }
 #sidebar a:hover { color: #999; }
@@ -89,6 +90,20 @@ a:hover {
     display: inline-block;
     vertical-align: top;
 }
+#sidebar-content ul.icon-list {
+  padding: 0;
+  margin:0;
+  overflow: hidden;
+}
+#sidebar-content ul.icon-list li {
+  list-style: none;
+  float: left;
+}
+#sidebar-content ul.icon-list li i {
+  padding: 0 5px 0 5px;
+  font-size: 2em;
+}
+#sidebar-content ul.icon-list li span { display: none; }
 @media screen and (min-width: 48em) {
     #sidebar { flex: 1 0px; }
     #sidebar-img {
@@ -96,6 +111,9 @@ a:hover {
         max-width: none;
         margin-right: 0;
     }
+    #sidebar-content ul.icon-list li { float: none; }
+    #sidebar-content ul.icon-list li span { display: inline; }
+    #sidebar-content ul.icon-list li i { font-size: 1em; }
 }
 
 /* Paper lists */
@@ -132,27 +150,22 @@ footer {
   right: 0;
   bottom: 0;
   left: 0;
+  margin-bottom: 1em;
   padding-top: 3em;
   font-size: 12px;
+  text-align: center;
 }
 
 /* Blocks */
 blockquote {
   padding: 1em;
-  margin-bottom: 1em;
-}
-
-blockquote.warning {
-    border-left: 5px solid #ff1d55;
-    background-color: #ffe9ee;
-}
-
-blockquote.info {
-  border-left: 5px solid #6bb1e0;
+  margin: 0 0 1em 0;
+  display: flex;
+  border-left: 5px solid #274798;
   background-color: #e6f3fb;
 }
-
-blockquote.note {
-  border-left: 5px solid #84c578;
-  background-color: #e8f7e6;
+blockquote > .text {
+  padding-left: 2em;
+  flex: 1;
 }
+blockquote.info > .icon { color: #274798; }

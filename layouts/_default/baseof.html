@@ -27,10 +27,10 @@
     gtag('config', '{{ .Site.GoogleAnalytics }}');
   </script>
   <link rel="shortcut icon" href="{{ "img/favicon.ico" | absURL }}">
-  <link rel="stylesheet" href="{{ "css/main.css" | absURL }}" type="text/css">
   <link rel="stylesheet" href="{{ "css/normalize.min.css" | absURL }}" type="text/css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" type="text/css">
   <link rel="stylesheet" href="https://cdn.rawgit.com/jpswalsh/academicons/master/css/academicons.min.css" type="text/css">
+  <link rel="stylesheet" href="{{ "css/main.css" | absURL }}" type="text/css">
   {{ $text := or .Site.Params.font.text "Lato" }} <!--Open Sans, Ubuntu, Lato, Raleway-->
   {{ $code := or .Site.Params.font.code "Menlo" }}
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family={{ replace $text " " "+" | safeURL }}:200,300,400,500,550,600,700,200italic,300italic,400italic,500italic,600italic,700italic|{{ replace $code " " "+" | safeURL }}">
@@ -52,11 +52,26 @@
       <div id="sidebar-content">
         <h1><a href="{{ "" | absURL }}">{{ .Site.Params.name }}</a></h1>
         <p>{{ .Site.Params.position }}<br />{{ .Site.Params.department }}<br />{{ .Site.Params.univeristy }}</p>
-        <table>
-          <tr><td><i class="fa fa-envelope" aria-hidden="true"></i></td><td><a id="email" href="mailto:{{ .Site.Params.email }}">{{ .Site.Params.email }}</a></td></tr>
-          <tr><td><i class="fa fa-building-o" aria-hidden="true"></i></td><td><a href="{{ .Site.Params.address_url }}">{{ .Site.Params.address }}</a></td></tr>
-          <tr><td><i class="ai ai-orcid" aria-hidden="true"></i></td><td><a href="https://orcid.org/{{ .Site.Params.orcid }}/">ORCiD</a></td></tr>
-        </table>
+        <ul class="icon-list">
+          <li><a id="email" href="mailto:{{ .Site.Params.email }}">
+            <i class="fas fa-envelope-open fa-fw" aria-hidden="true"></i><span> {{ .Site.Params.email }}</span>
+          </a></li>
+          <li><a href="{{ .Site.Params.address_url }}">
+            <i class="fas fa-map-marker-alt fa-fw" aria-hidden="true"></i><span> {{ .Site.Params.address }}</span>
+          </a></li>
+          <li><a href="{{ .Site.Params.linkedin }}">
+            <i class="fab fa-linkedin fa-fw" aria-hidden="true"></i><span> LinkedIn</span>
+          </a></li>
+          <li><a href="{{ .Site.Params.github }}">
+            <i class="fab fa-github fa-fw" aria-hidden="true"></i><span> Github</span>
+          </a></li>
+          <li><a href="https://orcid.org/{{ .Site.Params.orcid }}/">
+            <i class="ai ai-orcid fa-fw" aria-hidden="true"></i><span> ORCiD</span></a>
+          </a></li>
+          <li><a href="{{ .Site.Params.dblp }}">
+            <i class="ai ai-dblp fa-fw" aria-hidden="true"></i><span> DBLP</span></a>
+          </a></li>
+        </ul>
       </div>
       <div id="sidebar-content">
         {{ block "sidebar" .}}
@@ -68,7 +83,15 @@
     {{ block "main" . }}
       <!-- Main Block content -->
     {{ end }}
-    <footer>Built with <a href="https://www.gohugo.io">Hugo</a>. Last updated {{ now.Format "2006-01-02" }}</footer>
+    <footer>
+      Built with <a href="https://www.gohugo.io">Hugo</a>
+      &nbsp;&bull;&nbsp;
+      Last updated {{ now.Format "2006-01-02" }}.
+      &nbsp;&bull;&nbsp;
+      <a href="{{ .Site.RSSLink }}"><i class="fas fa-rss-square"></i></a>
+      &nbsp;&bull;&nbsp;
+      <a href="{{ "sitemap.xml" | absURL }}"><i class="fas fa-sitemap"></i></a>
+    </footer>
     </div>
   </div>
   <div id="right" class="padding"></div>

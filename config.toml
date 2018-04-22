@@ -28,4 +28,7 @@ disableKinds = ["taxonomy","taxonomyTerm"]
   address = "CSL 240"
   address_url = "http://illinois.edu/map/view?buildingId=148"
   avatar = "img/me_sq.png"
+  linkedin = "https://www.linkedin.com/in/ssbanerjee/"
+  github = "https://github.com/ssbanerje"
+  dblp = "https://dblp.uni-trier.de/pers/hd/b/Banerjee:Subho_S="
   orcid = "0000-0001-7187-6569"

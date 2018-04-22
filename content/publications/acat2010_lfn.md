@@ -5,7 +5,7 @@ authors: "Steffen Schreiner, Stefano Bagnasco, Subho S. Banerjee, Latchezar Bete
 venue: "Journal of Physics: Conference Series vol 331 no 6 p. 62044"
 date: 2010-10-22
 links:
-  - name: PDF
+  - name: Article
     icon: ai ai-open-access
     url: "http://stacks.iop.org/1742-6596/331/i=6/a=062044"
 ---

@@ -1,4 +1,4 @@
-<h3 style="margin-top: 0.2em;">Publications</h3>
+<h2 style="margin-top: 0.2em;">Publications</h2>
 <ul class="paper-list">
 {{ range where .Data.Pages "Section" "==" "publications"}}
 {{ if eq .Params.pubtype "paper" }}
@@ -7,7 +7,7 @@
 {{ end }}
 </ul>
 
-<h3>Extended Abstracts/Posters</h3>
+<h2>Extended Abstracts/Posters</h2>
 <ul class="paper-list">
 {{ range where .Data.Pages "Section" "==" "publications"}}
 {{ if eq .Params.pubtype "poster" }}
@@ -16,7 +16,7 @@
 {{ end }}
 </ul>
 
-<h3>Technical Reports</h3>
+<h2>Technical Reports</h2>
 <ul class="paper-list">
 {{ range where .Data.Pages "Section" "==" "publications"}}
 {{ if eq .Params.pubtype "techreport" }}
