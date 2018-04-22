@@ -1,9 +1,6 @@
 {{ define "main" }}
-  <h1>{{ .Title }}</h1>
+  <a href="{{ "/" | absURL }}"><i class="fa fa-caret-left"></i> Home</a>
+  <h2>{{ .Title }}</h2>
   {{ .Content }}
   {{ partial "publications" .}}
-{{ end }}
-
-{{ define "sidebar" }}
-  <a href="{{ "/" | absURL }}"><i class="fa fa-caret-left"></i> Home</a>
 {{ end }}

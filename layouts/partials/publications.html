@@ -15,3 +15,12 @@
 {{ end }}
 {{ end }}
 </ul>
+
+<h3>Technical Reports</h3>
+<ul class="paper-list">
+{{ range where .Data.Pages "Section" "==" "publications"}}
+{{ if eq .Params.pubtype "techreport" }}
+  <li>{{ partial "paper-listing" .}}</li>
+{{ end }}
+{{ end }}
+</ul>

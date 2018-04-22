@@ -2,16 +2,16 @@
 pubtype: paper
 title: "ASAP: Accelerated Short Read Alignment on Programmable Hardware"
 authors: "Subho S. Banerjee, Mohamed el-Hadedy, Jong B. Lim, Steve Lumetta, Zbigniew T. Kalbarczyk, Deming Chen and Ravishankar K. Iyer"
-venue: "In submission; CoRR:abs/1803.02657"
+venue: "In submission"
 date: 2017-12-13
-links:
-  - name: arXiv
-    icon: ai ai-arxiv
-    url: "https://arxiv.org/abs/1803.02657"
+#links:
+#  - name: arXiv
+#    icon: ai ai-arxiv
+#    url: "https://arxiv.org/abs/1803.02657"
 ---
 
 {{% block info %}}
-Currently in submission. Pre-print available on [CoRR](https://arxiv.org/abs/1803.02657).
+Currently in submission. Pre-print available on [<i class="ai ai-arxiv"></i> arXiv (CoRR:abs/1803.02657)](https://arxiv.org/abs/1803.02657).
 {{% /block %}}
 
 The proliferation of high-throughput sequencing machines ensures rapid generation of up to billions of short nucleotide
