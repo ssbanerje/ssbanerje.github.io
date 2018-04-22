@@ -135,3 +135,24 @@ footer {
   padding-top: 3em;
   font-size: 12px;
 }
+
+/* Blocks */
+blockquote {
+  padding: 1em;
+  margin-bottom: 1em;
+}
+
+blockquote.warning {
+    border-left: 5px solid #ff1d55;
+    background-color: #ffe9ee;
+}
+
+blockquote.info {
+  border-left: 5px solid #6bb1e0;
+  background-color: #e6f3fb;
+}
+
+blockquote.note {
+  border-left: 5px solid #84c578;
+  background-color: #e8f7e6;
+}

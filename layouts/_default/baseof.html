@@ -1,17 +1,47 @@
 <!doctype html>
 <html lang="{{ with .Site.LanguageCode }}{{ . }}{{ else }}en-US{{ end }}">
 <head>
-  {{ partial "metadata" . }}
-  <!-- Global Site Tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id={{ .Site.GoogleAnalytics }}"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', '{{ .Site.GoogleAnalytics }}');
-</script>
-  {{ partial "style" . }}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ .Title }} - {{ .Site.Title }}</title>
+  {{ .Hugo.Generator }}
+  <meta name="description" content="{{ .Site.Params.description }}">
+  <meta name="author" content="{{ .Site.Params.author }}">
+  <meta name="twitter:card" content="summary" />
+  <meta property="og:url" content="{{ .Permalink }}">
+  <meta property="og:title" content="{{ .Site.Title }}">
+  <meta property="og:description" content="{{ .Site.Params.description }}" />
+  <meta name="apple-mobile-web-app-title" content="{{ .Site.Title }}">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="canonical" href="{{ .Permalink }}">
+  <link href="{{ .RSSLink }}" rel="alternate" type="application/rss+xml" title="{{ .Site.Title }}" />
+  <link href="{{ .RSSLink }}" rel="feed" type="application/rss+xml" title="{{ .Site.Title }}" />
+  <meta name="twitter:card" content="summary" />
+  <meta property="og:title" content="{{ .Title }} - {{ .Site.Title }}" />
+  <script async src="https://www.googletagmanager.com/gtag/js?id={{ .Site.GoogleAnalytics }}"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', '{{ .Site.GoogleAnalytics }}');
+  </script>
+  <link rel="shortcut icon" href="{{ "img/favicon.ico" | absURL }}">
+  <link rel="stylesheet" href="{{ "css/main.css" | absURL }}" type="text/css">
+  <link rel="stylesheet" href="{{ "css/normalize.min.css" | absURL }}" type="text/css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
+  <link rel="stylesheet" href="https://cdn.rawgit.com/jpswalsh/academicons/master/css/academicons.min.css" type="text/css">
+  {{ $text := or .Site.Params.font.text "Lato" }} <!--Open Sans, Ubuntu, Lato, Raleway-->
+  {{ $code := or .Site.Params.font.code "Menlo" }}
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family={{ replace $text " " "+" | safeURL }}:200,300,400,500,550,600,700,200italic,300italic,400italic,500italic,600italic,700italic|{{ replace $code " " "+" | safeURL }}">
+  <style>
+    html, button, input, select, textarea {
+      font-family: "{{ $text }}", sans-serif;
+    }
+    pre, code {
+      font-family: "{{ $code }}", "Courier New", monospace;
+    }
+  </style>
 </head>
 
 <body>
@@ -23,14 +53,16 @@
         <h1><a href="{{ "" | absURL }}">{{ .Site.Params.name }}</a></h1>
         <p>{{ .Site.Params.position }}<br />{{ .Site.Params.department }}<br />{{ .Site.Params.univeristy }}</p>
         <table>
-          <tr><td><i class="fa fa-envelope" aria-hidden="true"></i></td><td><a id="email">{{ .Site.Params.email }}</a></td></tr>
+          <tr><td><i class="fa fa-envelope" aria-hidden="true"></i></td><td><a id="email" href="mailto:{{ .Site.Params.email }}">{{ .Site.Params.email }}</a></td></tr>
           <tr><td><i class="fa fa-building-o" aria-hidden="true"></i></td><td><a href="{{ .Site.Params.address_url }}">{{ .Site.Params.address }}</a></td></tr>
           <tr><td><i class="ai ai-orcid" aria-hidden="true"></i></td><td><a href="https://orcid.org/{{ .Site.Params.orcid }}/">ORCiD</a></td></tr>
         </table>
       </div>
-      {{ block "sidebar" .}}
-        <!-- Sidebar Content -->
-      {{ end }}
+      <div id="sidebar-content">
+        {{ block "sidebar" .}}
+          <!-- Sidebar Content -->
+        {{ end }}
+      </div>
     </div>
     <div id="content">
     {{ block "main" . }}
@@ -40,7 +72,6 @@
     </div>
   </div>
   <div id="right" class="padding"></div>
-  {{ partial "footer_js" . }}
 </body>
 
 </html>

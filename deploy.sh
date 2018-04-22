@@ -8,7 +8,7 @@ DIR=public_html/
 rm -rf ${DIR}
 hugo
 mkdir -p public/cgi-bin
-find public/ -name ".DS_Store" -delete
+find . -name ".DS_Store" -delete
 
 # MINIFY
 html-minifier --input-dir public/ --output-dir public/ --collapse-whitespace --html5 --minify-css --minify-js --file-ext html

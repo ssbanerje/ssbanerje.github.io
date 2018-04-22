@@ -1,9 +1,9 @@
 {{ define "main" }}
   {{ .Content }}
 
-  <h2>Research</h2>
+  <h2><a href="{{ "publications/" | absURL }}">Research</a></h2>
   {{ partial "publications" .}}
 
-  <h2>Teaching</h2>
+  <h2><a href="{{ "teaching/" | absURL }}">Teaching</a></h2>
   {{ partial "teaching" .}}
 {{ end }}

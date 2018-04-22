@@ -1,9 +1,9 @@
 ---
-pubtype: techreport
+pubtype: paper
 title: "Decomposing Genomics Algorithms: Core Computations for Accelerating Genomics Analyses"
 authors: "Arjun P. Athreya, Subho S. Banerjee, C. Victor Jongeneel, Zbigniew T. Kalbarczyk and Ravishankar K. Iyer"
 venue: "Coordinated Science Laboratory Technical Report UILU-ENG-14-2201"
-date: 2014
+date: 2014-02-01
 links:
   - name: PDF
     icon: fa fa-file-pdf-o
