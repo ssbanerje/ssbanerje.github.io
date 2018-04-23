@@ -6,13 +6,17 @@ googleAnalytics = "UA-48086103-1"
 baseURL = "http://ssbaner2.web.engr.illinois.edu"
 languageCode = "en-us"
 
+# Taxonomies
+disableKinds = ["taxonomy", "taxonomyTerm"]
+[taxonomies]
+  pubtype = "pubtypes"
+  project = "projects"
+
 # Render settings
 pygmentsCodeFences = true
 pygmentsUseClassic=true
 pygmentsStyle = "manni"
 pygmentsOptions = "linenos=true,nowrap=false"
-disableKinds = ["taxonomy","taxonomyTerm"]
-
 [blackfriday]
   smartypants	= true
   fractions = true
@@ -20,6 +24,7 @@ disableKinds = ["taxonomy","taxonomyTerm"]
   plainIDAnchors = true
   latexDashes = true
 
+# Site parameters
 [params]
   name = "Subho Sankar Banerjee"
   position = "PhD Candidate"

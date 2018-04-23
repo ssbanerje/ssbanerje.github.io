@@ -1,26 +1,11 @@
-<h2 style="margin-top: 0.2em;">Publications</h2>
-<ul class="paper-list">
-{{ range where .Data.Pages "Section" "==" "publications"}}
-{{ if eq .Params.pubtype "paper" }}
-  <li>{{ partial "paper-listing" .}}</li>
-{{ end }}
-{{ end }}
-</ul>
+<h2> {{ .title }}
+  {{ if (isset . "subtitle") }}
+  <span style="font-size: 60%">{{ .subtitle | markdownify}}<span>
+  {{ end }}
+</h2>
 
-<h2>Extended Abstracts/Posters</h2>
 <ul class="paper-list">
-{{ range where .Data.Pages "Section" "==" "publications"}}
-{{ if eq .Params.pubtype "poster" }}
-  <li>{{ partial "paper-listing" .}}</li>
-{{ end }}
-{{ end }}
-</ul>
-
-<h2>Technical Reports</h2>
-<ul class="paper-list">
-{{ range where .Data.Pages "Section" "==" "publications"}}
-{{ if eq .Params.pubtype "techreport" }}
-  <li>{{ partial "paper-listing" .}}</li>
-{{ end }}
-{{ end }}
+  {{ range .papers }}
+    <li>{{ partial "paper-listing" . }}</li>
+  {{ end }}
 </ul>

@@ -1,5 +1,5 @@
 ---
-pubtype: paper
+pubtypes: ["paper"]
 title: "Two dimensional correlated sampling using alias technique"
 authors: "Siddharth Mohanty, Subho S. Banerjee, Johny Jose, Dushyant Goyal, Ajit K. Mohanty and Federico Carminati"
 link: "http://iopscience.iop.org/article/10.1088/1742-6596/331/6/062048"

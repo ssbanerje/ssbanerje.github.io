@@ -1,5 +1,5 @@
 ---
 date: 2017-07-19
-title: Research
+title: Publications
 weight: 1
 ---

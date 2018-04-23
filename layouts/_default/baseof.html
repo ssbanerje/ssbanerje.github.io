@@ -19,12 +19,17 @@
   <link href="{{ .RSSLink }}" rel="feed" type="application/rss+xml" title="{{ .Site.Title }}" />
   <meta name="twitter:card" content="summary" />
   <meta property="og:title" content="{{ .Title }} - {{ .Site.Title }}" />
+  <script async src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
   <script async src="https://www.googletagmanager.com/gtag/js?id={{ .Site.GoogleAnalytics }}"></script>
   <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){ dataLayer.push(arguments); }
-    gtag('js', new Date());
-    gtag('config', '{{ .Site.GoogleAnalytics }}');
+    if (window.location.hostname === "localhost") {
+      console.log("Analytics not running on local dev.");
+    } else {
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){ dataLayer.push(arguments); }
+      gtag('js', new Date());
+      gtag('config', '{{ .Site.GoogleAnalytics }}');
+    }
   </script>
   <link rel="shortcut icon" href="{{ "img/favicon.ico" | absURL }}">
   <link rel="stylesheet" href="{{ "css/normalize.min.css" | absURL }}" type="text/css">
@@ -54,22 +59,22 @@
         <p>{{ .Site.Params.position }}<br />{{ .Site.Params.department }}<br />{{ .Site.Params.univeristy }}</p>
         <ul class="icon-list">
           <li><a id="email" href="mailto:{{ .Site.Params.email }}">
-            <i class="fas fa-envelope-open fa-fw" aria-hidden="true"></i><span> {{ .Site.Params.email }}</span>
+            <i class="fas fa-envelope-open fa-fw" aria-hidden="true"></i>
           </a></li>
           <li><a href="{{ .Site.Params.address_url }}">
-            <i class="fas fa-map-marker-alt fa-fw" aria-hidden="true"></i><span> {{ .Site.Params.address }}</span>
+            <i class="fas fa-map-marker-alt fa-fw" aria-hidden="true"></i>
           </a></li>
           <li><a href="{{ .Site.Params.linkedin }}">
-            <i class="fab fa-linkedin fa-fw" aria-hidden="true"></i><span> LinkedIn</span>
+            <i class="fab fa-linkedin fa-fw" aria-hidden="true"></i>
           </a></li>
           <li><a href="{{ .Site.Params.github }}">
-            <i class="fab fa-github fa-fw" aria-hidden="true"></i><span> Github</span>
+            <i class="fab fa-github fa-fw" aria-hidden="true"></i>
           </a></li>
           <li><a href="https://orcid.org/{{ .Site.Params.orcid }}">
-            <i class="ai ai-orcid fa-fw" aria-hidden="true"></i><span> ORCiD</span></a>
+            <i class="ai ai-orcid fa-fw" aria-hidden="true"></i>
           </a></li>
           <li><a href="{{ .Site.Params.dblp }}">
-            <i class="ai ai-dblp fa-fw" aria-hidden="true"></i><span> DBLP</span></a>
+            <i class="ai ai-dblp fa-fw" aria-hidden="true"></i>
           </a></li>
         </ul>
       </div>
@@ -80,18 +85,23 @@
       </div>
     </div>
     <div id="content">
-    {{ block "main" . }}
-      <!-- Main Block content -->
-    {{ end }}
-    <footer>
-      Built with <a href="https://www.gohugo.io">Hugo</a>
-      &nbsp;&bull;&nbsp;
-      Last updated {{ now.Format "2006-01-02" }}.
-      &nbsp;&bull;&nbsp;
-      <a href="{{ .Site.RSSLink }}"><i class="fas fa-rss-square"></i> Feed</a>
-      &nbsp;&bull;&nbsp;
-      <a href="{{ "sitemap.xml" | absURL }}"><i class="fas fa-sitemap"></i> Sitemap</a>
-    </footer>
+      {{ if (not .IsHome) }}
+        {{ partial "breadcrumbs" . }}
+      {{ end }}
+
+      {{ block "main" . }}
+        <!-- Main Block content -->
+      {{ end }}
+
+      <footer>
+        Built with <a href="https://www.gohugo.io">Hugo</a>
+        &nbsp;&bull;&nbsp;
+        Last updated {{ now.Format "2006-01-02" }}.
+        &nbsp;&bull;&nbsp;
+        <a href="{{ .Site.RSSLink }}"><i class="fas fa-rss-square"></i> Feed</a>
+        &nbsp;&bull;&nbsp;
+        <a href="{{ "sitemap.xml" | absURL }}"><i class="fas fa-sitemap"></i> Sitemap</a>
+      </footer>
     </div>
   </div>
   <div id="right" class="padding"></div>

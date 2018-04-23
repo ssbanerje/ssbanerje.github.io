@@ -1,5 +1,5 @@
 ---
-pubtype: paper
+pubtypes: ["paper"]
 title: "Enhancing the AliEn Web Service Authentication"
 authors: "Jianlin Zhu, Pablo Saiz, Federico Carminati, Latchezar Betev, Daicui Zhou, Patricia M. Lorenzo, Alina G. Grigoras, Costin Grigoras, Fabrizio Furano, Steffen Schreiner, Olga V. Datskova, Subho S. Banerjee and Guoping Zhang"
 venue: "Journal of Physics: Conference Series vol. 331 num. 6 p. 62048"
