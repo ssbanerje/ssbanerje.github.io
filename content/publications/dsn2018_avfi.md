@@ -1,5 +1,6 @@
 ---
 pubtypes: ["poster"]
+projects: ["av"]
 title: "AVFI: Fault Injection for Autonomous Vehicles"
 authors: "Saurabh Jha, Subho S. Banerjee, James Cyriac, Zbigniew T. Kalbarczyk and Ravishankar K. Iyer"
 venue: "DSN 2018 (Fast Abstract)"

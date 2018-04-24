@@ -152,6 +152,13 @@ ul.single-paper-links li:after {
     content: "";
     padding: 10px;
 }
+ul.comma-seperated {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+ul.comma-seperated li { display: inline; }
+ul.comma-seperated li+li:before { content: ", "; }
 
 /* Footer */
 footer {

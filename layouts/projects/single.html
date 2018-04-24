@@ -1,0 +1,8 @@
+{{ define "main" }}
+  <h1>{{ .Title }}</h1>
+
+  {{ .Content }}
+
+  {{ $papers := (where .Site.RegularPages ".Params.projects" "intersect" (slice .Params.project)) }}
+  {{ partial "publications" (dict "title" "Related Publications" "papers" $papers)}}
+{{ end }}

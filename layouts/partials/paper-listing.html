@@ -2,9 +2,9 @@
 {{ if (isset .Params "authors") }}<p class="paper-authors">{{ .Params.authors }}.</p>{{ end }}
 {{ if (isset .Params "venue") }}<p class="paper-venue">{{ .Params.venue }}.</p>{{ end }}
 {{ if (isset .Params "award") }}
-<p class="paper-award">
+<ul class="paper-award comma-seperated">
   {{ range .Params.award }}
-    <i class="fas fa-trophy" aria-hidden="true"></i> {{ . }}
+    <li><i class="fas fa-trophy" aria-hidden="true"></i> {{ . }}</li>
   {{ end }}
-</p>
+</ul>
 {{ end }}

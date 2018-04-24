@@ -3,11 +3,15 @@
   <h3>{{ .Params.authors }}</h3>
   <h4><i>{{ .Params.venue }}</i></h4>
   <h4 class="paper-award">
-    {{ range .Params.award }}
-    <i class="fas fa-trophy" aria-hidden="true"></i> {{ . }}
-    {{ end }}
+    <ul class="comma-seperated">
+      {{ range .Params.award }}
+        <li><i class="fas fa-trophy" aria-hidden="true"></i> {{ . }}</li>
+      {{ end }}
+    </ul>
   </h4>
-  <hr style="height:1px; border:none; background-color:#d3d3d3; text-align:center; margin: 0.5em; margin-bottom: .5em;">
+
+  <hr style="height:1px; border:none; background-color:#d3d3d3; margin: 0 0 1em 0;">
+
   {{ if (isset .Params "links") }}
   <ul class="single-paper-links">
   {{ range .Params.links }}
@@ -15,5 +19,16 @@
   {{ end }}
   </ul>
   {{ end }}
+
   {{ .Content }}
+
+  {{ if (isset .Params "projects") }}
+    <h3>Related Projects</h3>
+    <ul style="margin-top: 0;">
+    {{ range .Params.projects }}
+      {{ $project := $.Site.GetPage "page" "projects" . }}
+      <li><a href="{{ $project.Permalink }}">{{ $project.Title }}</a></li>
+    {{ end }}
+    </ul>
+  {{ end }}
 {{ end }}

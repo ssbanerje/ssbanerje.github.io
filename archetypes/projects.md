@@ -1,7 +1,5 @@
 ---
-pubtype: paper
+project: "project_taxonomy"
 title: "{{ replace .Name "-" " " | title }}"
-authors: "Subho S. Banerjee"
-venue: "TBD"
 date: {{ .Date }}
 ---
