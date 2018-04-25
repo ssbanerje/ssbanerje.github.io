@@ -1,0 +1,7 @@
+<div class="grid-item" id="grid-item-{{ .File.LogicalName }}">
+  {{ if (isset .Params "thumbnail" )}}
+  <a href="{{ .Permalink }}"><img src="{{ .Params.thumbnail }}" alt=""></a>
+  {{ end }}
+  <h4><a href="{{ .Permalink }}">{{ .Title }}</a></h4>
+  <p>{{ .Description }}</p>
+</div>
