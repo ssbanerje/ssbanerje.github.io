@@ -1,3 +1,4 @@
+/* Publications */
 paper {
     .title {
         font-weight: 500;
@@ -44,19 +45,23 @@ paper {
     }
 }
 
+/* Projects */
 .grid-item {
-  width: 260px;
-  float: left;
+  background: #fff;
   margin-bottom: 10px;
   padding: 10px;
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,0.08);
+  border: 1px solid rgba(0,0,0,.1);
   border-radius: 3px;
   font-size: 90%;
-  box-shadow: 0 0 2px rgba(0, 0, 0, 0.2), 0 2px 4px 0 rgba(0, 0, 0, 0.19);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: all 0.2s ease-out;
 
   img {
-    margin: 0 auto;
-    width: 100%;
-    height: auto;
+    display: block;
+    position: relative;
+    min-height: 100px;
   }
 
   h4 {
@@ -67,5 +72,9 @@ paper {
   p {
     margin: 0;
     padding: 0;
+  }
+
+  &:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
   }
 }
