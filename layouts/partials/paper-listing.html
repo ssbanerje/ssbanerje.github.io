@@ -1,10 +1,12 @@
-<p><a class="paper-title" href="{{ .Permalink }}">{{ .Title }}.</a></p>
-{{ if (isset .Params "authors") }}<p class="paper-authors">{{ .Params.authors }}.</p>{{ end }}
-{{ if (isset .Params "venue") }}<p class="paper-venue">{{ .Params.venue }}.</p>{{ end }}
+<paper>
+<p><a class="title" href="{{ .Permalink }}">{{ .Title }}.</a></p>
+{{ if (isset .Params "authors") }}<p class="authors">{{ .Params.authors }}.</p>{{ end }}
+{{ if (isset .Params "venue") }}<p class="venue">{{ .Params.venue }}.</p>{{ end }}
 {{ if (isset .Params "award") }}
-<ul class="paper-award comma-seperated">
+<ul class="award comma-seperated">
   {{ range .Params.award }}
     <li><i class="fas fa-trophy" aria-hidden="true"></i> {{ . }}</li>
   {{ end }}
 </ul>
 {{ end }}
+</paper>

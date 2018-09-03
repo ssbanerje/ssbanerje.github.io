@@ -5,10 +5,6 @@ title: "ASAP: Accelerated Short Read Alignment on Programmable Hardware"
 authors: "Subho S. Banerjee, Mohamed el-Hadedy, Jong B. Lim, Steve Lumetta, Zbigniew T. Kalbarczyk, Deming Chen and Ravishankar K. Iyer"
 venue: "In submission"
 date: 2017-12-13
-#links:
-#  - name: arXiv
-#    icon: ai ai-arxiv
-#    url: "https://arxiv.org/abs/1803.02657"
 ---
 
 {{% block info %}}

@@ -1,0 +1,25 @@
+/* Color Scheme */
+$sidebar_color: #141f33;
+$sidebar_link_color: #fff;
+$sidebar_linkhover_color: #fff2e5;
+$text_color: #333;
+$text_link_color: #274798;
+$text_linkhover_color: #f16421;
+
+@import 'fonts';
+@import 'layout';
+@import 'research';
+
+.comma-seperated {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  li {
+    display: inline;
+  }
+
+  li+li:before {
+    content: ", ";
+  }
+}

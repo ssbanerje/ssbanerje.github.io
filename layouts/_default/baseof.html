@@ -1,24 +1,15 @@
 <!doctype html>
 <html lang="{{ with .Site.LanguageCode }}{{ . }}{{ else }}en-US{{ end }}">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{{ .Title }} - {{ .Site.Title }}</title>
   {{ .Hugo.Generator }}
-  <meta name="description" content="{{ .Site.Params.description }}">
-  <meta name="author" content="{{ .Site.Params.author }}">
-  <meta name="twitter:card" content="summary" />
-  <meta property="og:url" content="{{ .Permalink }}">
-  <meta property="og:title" content="{{ .Site.Title }}">
-  <meta property="og:description" content="{{ .Site.Params.description }}" />
-  <meta name="apple-mobile-web-app-title" content="{{ .Site.Title }}">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <link rel="canonical" href="{{ .Permalink }}">
-  <link href="{{ .RSSLink }}" rel="alternate" type="application/rss+xml" title="{{ .Site.Title }}" />
+  <meta name="author" content="{{ .Site.Params.author }}" />
+  <meta name="description" content="{{ .Site.Params.description }}" />
   <link href="{{ .RSSLink }}" rel="feed" type="application/rss+xml" title="{{ .Site.Title }}" />
-  <meta name="twitter:card" content="summary" />
-  <meta property="og:title" content="{{ .Title }} - {{ .Site.Title }}" />
+  <link rel="shortcut icon" href="{{ "img/favicon.ico" | absURL }}">
   <script async src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
   <script async src="https://www.googletagmanager.com/gtag/js?id={{ .Site.GoogleAnalytics }}"></script>
   <script>
@@ -31,26 +22,17 @@
       gtag('config', '{{ .Site.GoogleAnalytics }}');
     }
   </script>
-  <link rel="shortcut icon" href="{{ "img/favicon.ico" | absURL }}">
-  <link rel="stylesheet" href="{{ "css/normalize.min.css" | absURL }}" type="text/css">
+  {{ $normalize := resources.Get "css/normalize.css" | minify | fingerprint }}
+  {{ $main := resources.Get "css/main.scss" | toCSS | minify | fingerprint }}
+  {{ $css := slice $normalize $main | resources.Concat "css/bundle.css" }}
+  <link rel="stylesheet" href="{{ $css.Permalink }}">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" type="text/css">
   <link rel="stylesheet" href="https://cdn.rawgit.com/jpswalsh/academicons/master/css/academicons.min.css" type="text/css">
-  <link rel="stylesheet" href="{{ "css/main.css" | absURL }}" type="text/css">
-  {{ $text := or .Site.Params.font.text "Lato" }} <!--Open Sans, Ubuntu, Lato, Raleway-->
-  {{ $code := or .Site.Params.font.code "Menlo" }}
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family={{ replace $text " " "+" | safeURL }}:200,300,400,500,550,600,700,200italic,300italic,400italic,500italic,600italic,700italic|{{ replace $code " " "+" | safeURL }}">
-  <style>
-    html, button, input, select, textarea {
-      font-family: "{{ $text }}", sans-serif;
-    }
-    pre, code {
-      font-family: "{{ $code }}", "Courier New", monospace;
-    }
-  </style>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,500,700,400italic,500italic,700italic|Menlo">
 </head>
 
 <body>
-  <div id="left" class="padding"></div>
+  <div class="padding" id="left"></div>
   <div id="container">
     <div id="sidebar">
       <div id="sidebar-img"><img src="{{ .Site.Params.avatar | absURL }}" alt="Me" /></div>
@@ -96,7 +78,7 @@
       <footer>
         Built with <a href="https://www.gohugo.io">Hugo</a>
         &nbsp;&bull;&nbsp;
-        Last updated {{ now.Format "2006-01-02" }}.
+        Last updated {{ now.Format "2006-01-02" }}
         &nbsp;&bull;&nbsp;
         <a href="{{ .Site.RSSLink }}"><i class="fas fa-rss-square"></i> Feed</a>
         &nbsp;&bull;&nbsp;
@@ -104,7 +86,7 @@
       </footer>
     </div>
   </div>
-  <div id="right" class="padding"></div>
+  <div class="padding" id="right"></div>
 </body>
 
 </html>

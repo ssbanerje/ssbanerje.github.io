@@ -7,7 +7,7 @@ venue: "CIBCB 2017"
 date: 2017-08-23
 award: ["Best Paper Award"]
 links:
-  - name: IEEEXplore
+  - name: Paper
     icon: ai ai-ieee
     url: "http://ieeexplore.ieee.org/document/8058559/"
 ---

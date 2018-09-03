@@ -1,8 +1,9 @@
 {{ define "main" }}
+  <paper>
   <h1>{{ .Title }}</h1>
   <h3>{{ .Params.authors }}</h3>
   <h4><i>{{ .Params.venue }}</i></h4>
-  <h4 class="paper-award">
+  <h4 class="award">
     <ul class="comma-seperated">
       {{ range .Params.award }}
         <li><i class="fas fa-trophy" aria-hidden="true"></i> {{ . }}</li>
@@ -13,12 +14,13 @@
   <hr style="height:1px; border:none; background-color:#d3d3d3; margin: 0 0 1em 0;">
 
   {{ if (isset .Params "links") }}
-  <ul class="single-paper-links">
+  <ul class="links">
   {{ range .Params.links }}
     <li><a href="{{ .url | absURL }}"><i class="{{ .icon }}" aria-hidden="true"></i> {{ .name }}</a></li>
   {{ end }}
   </ul>
   {{ end }}
+  </paper>
 
   {{ .Content }}
 
@@ -26,7 +28,7 @@
     <h3>Related Projects</h3>
     <ul style="margin-top: 0;">
     {{ range .Params.projects }}
-      {{ $project := $.Site.GetPage "page" "projects" . }}
+      {{ $project := $.Site.GetPage "/projects" . }}
       <li><a href="{{ $project.Permalink }}">{{ $project.Title }}</a></li>
     {{ end }}
     </ul>

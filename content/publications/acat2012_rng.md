@@ -7,7 +7,7 @@ link: "http://iopscience.iop.org/article/10.1088/1742-6596/331/6/062048"
 venue: "Journal of Physics: Conference Series vol. 368 n. 1 p. 12045"
 date: 2012
 links:
-  - name: Article
+  - name: Paper
     icon: ai ai-open-access
     url: "http://stacks.iop.org/1742-6596/368/i=1/a=012045"
 ---
