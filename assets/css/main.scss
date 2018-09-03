@@ -1,10 +1,10 @@
 /* Color Scheme */
-$sidebar_color: #141f33;
-$sidebar_link_color: #fff;
-$sidebar_linkhover_color: #fff2e5;
-$text_color: #333;
-$text_link_color: #274798;
-$text_linkhover_color: #f16421;
+$sidebar_color: {{ .Site.Params.sidebar_color }};
+$sidebar_link_color: {{ .Site.Params.sidebar_link_color }};
+$sidebar_linkhover_color: {{ .Site.Params.sidebar_linkhover_color }};
+$text_color: {{ .Site.Params.text_color }};
+$text_link_color: {{ .Site.Params.text_link_color }};
+$text_linkhover_color: {{ .Site.Params.text_linkhover_color }};
 
 @import 'fonts';
 @import 'layout';

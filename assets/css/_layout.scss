@@ -86,8 +86,8 @@ body {
     vertical-align: top;
 
     ul.icon-list {
+      margin: 0;
       padding: 0;
-      margin: 2em 0 0 0;
       overflow: hidden;
 
       li {
@@ -95,8 +95,7 @@ body {
         float: left;
 
         i {
-          padding: 0 5px 0 5px;
-          font-size: 2em;
+          padding: 0;
         }
 
         span {
@@ -119,7 +118,6 @@ body {
 
 
     #sidebar-content ul.icon-list li {
-      padding: 5px 0;
       span {
         display: inline;
       }

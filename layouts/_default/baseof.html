@@ -22,9 +22,9 @@
       gtag('config', '{{ .Site.GoogleAnalytics }}');
     }
   </script>
-  {{ $normalize := resources.Get "css/normalize.css" | minify | fingerprint }}
-  {{ $main := resources.Get "css/main.scss" | toCSS | minify | fingerprint }}
-  {{ $css := slice $normalize $main | resources.Concat "css/bundle.css" }}
+  {{ $normalize := resources.Get "css/normalize.css" }}
+  {{ $main := resources.Get "css/main.scss" | resources.ExecuteAsTemplate "main.scss" . | toCSS }}
+  {{ $css := slice $normalize $main | resources.Concat "css/main.css" | minify | fingerprint }}
   <link rel="stylesheet" href="{{ $css.Permalink }}">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" type="text/css">
   <link rel="stylesheet" href="https://cdn.rawgit.com/jpswalsh/academicons/master/css/academicons.min.css" type="text/css">
