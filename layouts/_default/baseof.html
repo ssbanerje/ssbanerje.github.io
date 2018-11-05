@@ -10,7 +10,6 @@
   <meta name="description" content="{{ .Site.Params.description }}" />
   <link href="{{ .RSSLink }}" rel="feed" type="application/rss+xml" title="{{ .Site.Title }}" />
   <link rel="shortcut icon" href="{{ "img/favicon.ico" | absURL }}">
-  <script async src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
   <script async src="https://www.googletagmanager.com/gtag/js?id={{ .Site.GoogleAnalytics }}"></script>
   <script>
     if (window.location.hostname === "localhost") {
@@ -22,11 +21,9 @@
       gtag('config', '{{ .Site.GoogleAnalytics }}');
     }
   </script>
-  {{ $normalize := resources.Get "css/normalize.css" }}
-  {{ $main := resources.Get "css/main.scss" | resources.ExecuteAsTemplate "main.scss" . | toCSS }}
-  {{ $css := slice $normalize $main | resources.Concat "css/main.css" | minify | fingerprint }}
+  {{ $css := resources.Get "css/main.scss" | resources.ExecuteAsTemplate "main.scss" . | toCSS | minify | fingerprint }}
   <link rel="stylesheet" href="{{ $css.Permalink }}">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" type="text/css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.rawgit.com/jpswalsh/academicons/master/css/academicons.min.css" type="text/css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,500,700,400italic,500italic,700italic|Menlo">
 </head>

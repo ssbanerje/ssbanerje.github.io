@@ -2,6 +2,7 @@
   {{ .Content }}
 
   <h1 style="border-bottom: 1px solid #d3d3d3;">Research</h1>
-  {{ partial "projects" (dict "title" "Projects" "subtitle" "[[Full List](projects/)]" "projects" (where .Site.RegularPages "Section" "projects")) }}
-  {{ partial "publications" (dict "title" "Selected Papers" "subtitle" "[[Full List](publications/)]" "papers" .Site.Taxonomies.pubtypes.featured) }}
+  {{ partial "publications" (dict "title" "Papers" "papers" .Site.Taxonomies.pubtypes.paper ) }}
+  {{ partial "publications" (dict "title" "Extended Abstracts" "papers" .Site.Taxonomies.pubtypes.poster ) }}
+  {{ partial "publications" (dict "title" "Technical Reports" "papers" .Site.Taxonomies.pubtypes.techreport ) }}
 {{ end }}

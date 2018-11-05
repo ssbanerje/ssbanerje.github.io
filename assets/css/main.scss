@@ -6,6 +6,7 @@ $text_color: {{ .Site.Params.text_color }};
 $text_link_color: {{ .Site.Params.text_link_color }};
 $text_linkhover_color: {{ .Site.Params.text_linkhover_color }};
 
+@import 'normalize';
 @import 'fonts';
 @import 'layout';
 @import 'research';

@@ -5,7 +5,7 @@ HOST=webhost.engr.illinois.edu
 DIR=public_html/
 
 # BUILD
-rm -rf public/ resources
+rm -rf public/ resources/
 hugo --minify
 mkdir -p public/cgi-bin
 find . -name ".DS_Store" -delete

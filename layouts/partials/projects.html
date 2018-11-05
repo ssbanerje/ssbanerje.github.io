@@ -1,11 +1,13 @@
+{{ if (isset . "title") }}
 <h2> {{ .title }}
   {{ if (isset . "subtitle") }}
-  <span style="font-size: 60%">{{ .subtitle | markdownify}}<span>
+  <span style="font-size: 60%">{{ .subtitle | markdownify }}<span>
   {{ end }}
 </h2>
+{{ end }}
 
-<div class="grid" data-masonry='{ "itemSelector": ".grid-item", "gutter": 10}'>
+<ul class="project-list">
   {{ range .projects}}
-    {{ partial "project-listing" . }}
+    <li>{{ partial "project-listing" . }}</li>
   {{ end }}
-</div>
+</ul>

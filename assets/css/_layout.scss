@@ -168,10 +168,10 @@ blockquote {
 
         &+li:before {
             padding: 8px;
-            color: black;
-            font-family: Fontawesome;
             content: "\f0da";
+            font-family: 'Font Awesome\ 5 Free';
             color: #999;
+            font-weight: 900;
         }
     }
 }
