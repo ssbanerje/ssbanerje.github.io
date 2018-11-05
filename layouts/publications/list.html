@@ -4,8 +4,6 @@
   {{ .Content }}
 
   {{ partial "publications" (dict "title" "Papers" "papers" .Site.Taxonomies.pubtypes.paper ) }}
-
-  {{ partial "publications" (dict "title" "Extended Abstracts/Posters" "papers" .Site.Taxonomies.pubtypes.poster ) }}
-
+  {{ partial "publications" (dict "title" "Extended Abstracts/Posters" "papers" .Site.Taxonomies.pubtypes.abstract ) }}
   {{ partial "publications" (dict "title" "Technical Reports" "papers" .Site.Taxonomies.pubtypes.techreport ) }}
 {{ end }}

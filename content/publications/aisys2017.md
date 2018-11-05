@@ -1,5 +1,5 @@
 ---
-pubtypes: ["poster"]
+pubtypes: ["abstract"]
 projects: ["compgen"]
 title: "Symphony: Leveraging Probabilistic Graphical Models to Schedule Tasks to Clusters of Heterogeneous Processors"
 authors: "Subho S. Banerjee, Steve Lumetta, Zbigniew T. Kalbarczyk and Ravishankar K. Iyer"

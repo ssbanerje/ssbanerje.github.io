@@ -7,6 +7,7 @@ DIR=public_html/
 # BUILD
 rm -rf public/ resources/
 hugo --minify
+rm -rf resources/
 mkdir -p public/cgi-bin
 find . -name ".DS_Store" -delete
 

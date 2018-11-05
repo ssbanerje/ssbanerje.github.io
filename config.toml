@@ -8,15 +8,19 @@ languageCode = "en-us"
 
 # Taxonomies
 disableKinds = ["taxonomy", "taxonomyTerm"]
-[taxonomies]
-  pubtype = "pubtypes"
-  project = "projects"
 
 # Render settings
 pygmentsCodeFences = true
 pygmentsUseClassic=true
 pygmentsStyle = "manni"
 pygmentsOptions = "linenos=true,nowrap=false"
+
+# Custom taxonomies
+[taxonomies]
+  pubtype = "pubtypes"
+  project = "projects"
+
+# Markdown Rendering
 [blackfriday]
   smartypants	= true
   fractions = true
