@@ -6,7 +6,7 @@
   <h4 class="award">
     <ul class="comma-seperated">
       {{ range .Params.award }}
-        <li><i class="fas fa-trophy" aria-hidden="true"></i> {{ . }}</li>
+        <li><i class="fas fa-trophy" aria-hidden="true"></i>&nbsp;{{ . }}</li>
       {{ end }}
     </ul>
   </h4>
@@ -16,7 +16,7 @@
   {{ if (isset .Params "links") }}
   <ul class="links">
   {{ range .Params.links }}
-    <li><a href="{{ .url | absURL }}"><i class="{{ .icon }}" aria-hidden="true"></i> {{ .name }}</a></li>
+    <li><a href="{{ .url | absURL }}"><i class="{{ .icon }}" aria-hidden="true"></i>&nbsp;{{ .name }}</a></li>
   {{ end }}
   </ul>
   {{ end }}

@@ -5,7 +5,7 @@
   {{ if (isset .Params "award") }}
   <ul class="award comma-seperated">
     {{ range .Params.award }}
-      <li><i class="fas fa-trophy" aria-hidden="true"></i> {{ . }}</li>
+      <li><i class="fas fa-trophy" aria-hidden="true"></i>&nbsp;{{ . }}</li>
     {{ end }}
   </ul>
   {{ end }}
