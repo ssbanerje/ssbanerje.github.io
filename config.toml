@@ -3,7 +3,7 @@ title = "Subho Sankar Banerjee"
 googleAnalytics = "UA-48086103-1"
 
 # URLs
-baseURL = "http://ssbaner2.web.engr.illinois.edu"
+baseURL = "http://ssbaner2.cs.illinois.edu"
 languageCode = "en-us"
 
 # Taxonomies

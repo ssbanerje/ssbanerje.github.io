@@ -1,7 +1,7 @@
 #!/bin/bash
 
 USER=ssbaner2
-HOST=webhost.engr.illinois.edu
+HOST=web.illinois.edu
 DIR=public_html/
 
 # BUILD
