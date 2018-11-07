@@ -1,4 +1,4 @@
 <blockquote class="{{ .Get 0 }}">
     <div class="icon"><i class="fas fa-info-circle fa-2x"></i></div>
-    <div class="text">{{ .Inner }}</div>
+    <div class="text">{{ .Inner | markdownify }}</div>
 </blockquote>
