@@ -1,6 +1,6 @@
 /* Spacing between text elements */
 p {
-  margin: 0.8em 0;
+    margin: 0.8em 0;
 }
 
 h1, h2 {
@@ -9,20 +9,20 @@ h1, h2 {
 
 /* Grid layout */
 body {
-  display: flex;
-  height: 100%;
+    display: flex;
+    height: 100%;
 }
 
 .padding {
-  flex-grow: 1;
+    flex-grow: 1;
 }
 
 #left {
-  background-color: $sidebar_color;
+    background-color: $sidebar_color;
 }
 
 #right {
-  background-color: #fff;
+    background-color: #fff;
 }
 
 #container {
@@ -35,11 +35,11 @@ body {
 
 /* Page content */
 #content {
-  padding: 1em;
+    padding: 1em;
 
-  p {
-      margin-top: 0;
-  }
+    p {
+        margin-top: 0;
+    }
 
   /*img {
       display: block;
@@ -86,22 +86,22 @@ body {
     vertical-align: top;
 
     ul.icon-list {
-      margin: 0;
-      padding: 0;
-      overflow: hidden;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
 
-      li {
-        list-style: none;
-        float: left;
+        li {
+            list-style: none;
+            float: left;
 
-        i {
-          padding: 0;
+            i {
+                padding: 0;
+            }
+
+            span {
+                display: none;
+            }
         }
-
-        span {
-          display: none;
-        }
-      }
     }
 }
 
@@ -126,32 +126,32 @@ body {
 
 /* Footer */
 footer {
-  right: 0;
-  bottom: 0;
-  left: 0;
-  margin-bottom: 1em;
-  padding-top: 3em;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin-bottom: 1em;
+    padding-top: 3em;
 }
 
 /* Blocks */
 blockquote {
-  padding: 1em;
-  margin: 0 0 1em 0;
-  display: flex;
+    padding: 1em;
+    margin: 0 0 1em 0;
+    display: flex;
 
-  .text {
-    padding-left: 2em;
-    flex: 1;
-  }
-
-  &.info {
-    border-left: 5px solid #274798;
-    background-color: #e6f3fb;
-
-    .icon {
-      color: #274798;
+    .text {
+        padding-left: 2em;
+        flex: 1;
     }
-  }
+
+    &.info {
+        border-left: 5px solid #274798;
+        background-color: #e6f3fb;
+
+        .icon {
+            color: #274798;
+        }
+    }
 }
 
 /* Breadcrumb Navigation */

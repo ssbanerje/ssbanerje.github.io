@@ -10,12 +10,10 @@ computing systems for data analytics applications (particularly in computational
 using cross-layer optimizations across the computing stack: application, runtime, OS and architecture layers. I received
 a B.Tech. in Computer Science and Engineering from [LNMIIT][], India.
 
-In past summers I have interned at [IBM][ibm], [Microsoft Research][msr], and [CERN][].
-
+In past summers I have interned at [IBM Research][ibm], [Microsoft Research][msr], and [CERN][].
 
 [cs@uiuc]: https://cs.illinois.edu
 [rkiyer]: http://www.ece.illinois.edu/directory/profile.asp?rkiyer
-[kalbarcz]: http://users.crhc.illinois.edu/kalbar/
 [depend]: http://publish.illinois.edu/csldepend/
 [csl]: http://csl.illinois.edu/
 [lnmiit]: https://lnmiit.ac.in

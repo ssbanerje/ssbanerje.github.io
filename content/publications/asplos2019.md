@@ -5,10 +5,6 @@ title: "AcMC²: Accelerated Markov Chain Monte Carlo for Probabilistic Models"
 authors: "Subho S. Banerjee, Zbigniew T. Kalbarczyk and Ravishankar K. Iyer"
 venue: "ASPLOS 2019"
 date: 2018-11-07
-#links:
-#  - name: Paper
-#    icon: ai ai-acmdl
-#    url: "To Appear"
 ---
 
 {{% block info %}}

@@ -6,7 +6,7 @@ authors: "Jianlin Zhu, Pablo Saiz, Federico Carminati, Latchezar Betev, Daicui Z
 venue: "Journal of Physics: Conference Series vol. 331 num. 6 p. 62048"
 date: 2010-10-22
 links:
-  - name: Paper
+  - name: DOI
     icon: ai ai-open-access
     url: "http://stacks.iop.org/1742-6596/331/i=6/a=062048"
 ---

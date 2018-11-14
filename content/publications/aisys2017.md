@@ -6,7 +6,7 @@ authors: "Subho S. Banerjee, Steve Lumetta, Zbigniew T. Kalbarczyk and Ravishank
 venue: "AISys 2017 (Colocated with SOSP 2017)"
 date: 2017-10-28
 links:
-  - name: Abstract
+  - name: PDF
     icon: far fa-file-pdf
     url: "https://github.com/LearningSys/sosp17/blob/master/papers/18%5CCameraReadySubmission%5Csymphony.pdf"
 ---

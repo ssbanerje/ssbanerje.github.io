@@ -1,12 +1,12 @@
 html, button, input, select, textarea {
-  font-family: Lato, sans-serif
+    font-family: Lato, sans-serif
 }
 
 code, pre {
-  font-family: Menlo, monospace;
-  font-size: 0.9em;
-  max-width: 30em;
-  overflow-x: scroll;
+    font-family: Menlo, monospace;
+    font-size: 0.9em;
+    max-width: 30em;
+    overflow-x: scroll;
 }
 
 body {
@@ -18,31 +18,31 @@ body {
 }
 
 b, strong, h1, h2, h3, h4 {
-  font-weight: 700;
+    font-weight: 700;
 }
 
 a {
-  color: $text_link_color;
-  text-decoration: none;
-  transition: .5s;
+    color: $text_link_color;
+    text-decoration: none;
+    transition: .5s;
 
-  &:hover {
-    color: $text_linkhover_color;
-  }
+    &:hover {
+        color: $text_linkhover_color;
+    }
 }
 
 #content p {
-  hyphens: auto;
-  -webkit-hyphens: auto;
+    hyphens: auto;
+    -webkit-hyphens: auto;
 }
 
 .highlight > pre {
-  padding-right: 10px;
+    padding-right: 10px;
 }
 
 @media screen and (min-width: 48em) {
     code, pre {
-      max-width: 60em;
+        max-width: 60em;
     }
 }
 
@@ -50,24 +50,28 @@ a {
     color: $sidebar_link_color;
 
     a {
-      color: $sidebar_link_color;
+        color: $sidebar_link_color;
 
-      &:hover {
-        color: $sidebar_linkhover_color;
-      }
+        &:hover {
+            color: $sidebar_linkhover_color;
+        }
+    }
+
+    h1 {
+        font-weight: 900;
     }
 }
 
 #sidebar-content {
     ul.icon-list {
-      li {
-        i {
-          font-size: 1.5em;
+        li {
+            i {
+                font-size: 1.5em;
+            }
         }
-      }
     }
 }
 
 footer {
-  font-size: 12px;
+    font-size: 12px;
 }

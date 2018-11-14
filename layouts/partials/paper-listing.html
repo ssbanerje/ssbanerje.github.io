@@ -9,4 +9,11 @@
     {{ end }}
   </ul>
   {{ end }}
+  {{ if (isset .Params "links") }}
+  <ul class="listing-links">
+    {{ range .Params.links }}
+    <li class="hollow-button"><a href="{{ .url | absURL }}"><i class="{{ .icon }}" aria-hidden="true"></i>&nbsp;{{ .name }}</a></li>
+    {{ end }}
+  </ul>
+  {{ end }}
 </paper>

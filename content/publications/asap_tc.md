@@ -6,10 +6,10 @@ authors: "Subho S. Banerjee, Mohamed el-Hadedy, Jong B. Lim, Steve Lumetta, Zbig
 venue: "IEEE Transactions on Computers"
 date: 2018-08-10
 links:
-  - name: Paper
+  - name: DOI
     icon: ai ai-ieee
     url: "https://ieeexplore.ieee.org/document/8490591"
-  - name: Preprint
+  - name: CoRR
     icon: ai ai-arxiv
     url: "https://arxiv.org/abs/1803.02657"
 ---

@@ -6,7 +6,7 @@ authors: "Subho S. Banerjee, Steve Lumetta, Zbigniew T. Kalbarczyk and Ravishank
 venue: "SoCC 2018"
 date: 2018-10-11
 links:
-  - name: Paper
+  - name: DOI
     icon: ai ai-acmdl
     url: "https://dl.acm.org/citation.cfm?id=3275474"
 ---
