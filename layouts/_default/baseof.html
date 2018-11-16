@@ -3,14 +3,19 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>{{ .Title }} - {{ .Site.Title }}</title>
+  <title>{{ title .Title }} - {{ .Site.Title }}</title>
   {{ .Hugo.Generator }}
   <link rel="canonical" href="{{ .Permalink }}">
   <meta name="author" content="{{ .Site.Params.author }}" />
-  <meta name="description" content="{{ .Site.Params.description }}" />
-  <link href="{{ .RSSLink }}" rel="feed" type="application/rss+xml" title="{{ .Site.Title }}" />
-  <link rel="shortcut icon" href="{{ "img/favicon.ico" | absURL }}">
-  <script async src="https://www.googletagmanager.com/gtag/js?id={{ .Site.GoogleAnalytics }}"></script>
+  <meta name="Description" content="{{ .Site.Params.description }}" />
+  {{ range .AlternativeOutputFormats -}}
+    {{ printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
+  {{ end -}}
+  <link rel="shortcut icon" href="{{ "img/favicon.ico" | relURL }}">
+  <link rel="apple-touch-icon" href="{{ "img/favicon.ico" | relURL }}">
+  <meta name="msapplication-square310x310logo" content="{{ "img/favicon.ico" | relURL }}">
+  <meta name="theme-color" content="{{ .Site.Params.sidebar_color }}"/>
+  <script async defer src="https://www.googletagmanager.com/gtag/js?id={{ .Site.GoogleAnalytics }}"></script>
   <script>
     if (window.location.hostname === "localhost") {
       console.log("Analytics not running on local dev.");
@@ -23,48 +28,48 @@
   </script>
   {{ $css := resources.Get "css/main.scss" | resources.ExecuteAsTemplate "main.scss" . | toCSS | minify | fingerprint }}
   <link rel="stylesheet" href="{{ $css.Permalink }}">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdn.rawgit.com/jpswalsh/academicons/master/css/academicons.min.css" type="text/css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,500,700,400italic,500italic,700italic,900|Menlo">
+  <link rel="preload" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" crossorigin="anonymous" as="style" onload="this.rel='stylesheet'">
+  <link rel="preload" href="https://cdn.rawgit.com/jpswalsh/academicons/master/css/academicons.min.css" type="text/css" as="style" onload="this.rel='stylesheet'">
+  <link rel="preload" href="https://fonts.googleapis.com/css?family=Lato:400,500,700,400italic,500italic,700italic,900|Menlo" as="style" onload="this.rel='stylesheet'">
 </head>
 
 <body>
   <div class="padding" id="left"></div>
   <div id="container">
     <div id="sidebar">
-      <div id="sidebar-img"><img src="{{ .Site.Params.avatar | absURL }}" alt="Me" /></div>
-      <div id="sidebar-content">
-        <h1><a href="{{ "" | absURL }}">{{ .Site.Params.name }}</a></h1>
+      <div id="sidebar-img"><img src="{{ .Site.Params.avatar | relURL }}" alt="Me" /></div>
+      <div class="sidebar-content">
+        <h1><a href="{{ "" | relURL }}">{{ .Site.Params.name }}</a></h1>
         <p>{{ .Site.Params.position }}<br />{{ .Site.Params.department }}<br />{{ .Site.Params.univeristy }}</p>
         <ul class="icon-list">
           <li><a id="email" href="mailto:{{ .Site.Params.email }}">
-            <i class="fas fa-envelope-open fa-fw" aria-hidden="true"></i>
+            <i class="fas fa-envelope-open fa-fw"></i>
           </a></li>
           <li><a href="{{ .Site.Params.address_url }}">
-            <i class="fas fa-map-marker-alt fa-fw" aria-hidden="true"></i>
+            <i class="fas fa-map-marker-alt fa-fw"></i>
           </a></li>
           <li><a href="{{ .Site.Params.linkedin }}">
-            <i class="fab fa-linkedin fa-fw" aria-hidden="true"></i>
+            <i class="fab fa-linkedin fa-fw"></i>
           </a></li>
           <li><a href="{{ .Site.Params.github }}">
-            <i class="fab fa-github fa-fw" aria-hidden="true"></i>
+            <i class="fab fa-github fa-fw"></i>
           </a></li>
           <li><a href="https://orcid.org/{{ .Site.Params.orcid }}">
-            <i class="ai ai-orcid fa-fw" aria-hidden="true"></i>
+            <i class="ai ai-orcid fa-fw"></i>
           </a></li>
           <li><a href="{{ .Site.Params.dblp }}">
-            <i class="ai ai-dblp fa-fw" aria-hidden="true"></i>
+            <i class="ai ai-dblp fa-fw"></i>
           </a></li>
         </ul>
       </div>
-      <div id="sidebar-content">
+      <div class="sidebar-content">
         {{ block "sidebar" .}}
           <!-- Sidebar Content -->
         {{ end }}
       </div>
     </div>
     <div id="content">
-      {{ if (not .IsHome) }}
+      {{ if (and (not .IsHome) (ne .Kind "404")) }}
         {{ partial "breadcrumbs" . }}
       {{ end }}
 

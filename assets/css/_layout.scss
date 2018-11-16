@@ -36,22 +36,28 @@ body {
 /* Page content */
 #content {
     padding: 1em;
+    padding-bottom: 1.5em;
+    position: relative;
 
     p {
         margin-top: 0;
     }
-
-  /*img {
-      display: block;
-      margin: auto;
-      max-width: 40%;
-      min-width: 350px;
-  }*/
 }
 
-@media screen and (min-width: 48em) {
+footer {
+    bottom: 0;
+    margin-bottom: 10px;
+    position: absolute;
+}
+
+@media screen and (min-height: 700px) {
     #content {
-        padding: 1.5em 1.5em 0 1.5em;
+      min-height: 70%;
+    }
+}
+
+@media screen and (min-width: 50em) {
+    #content {
         flex: 3 0px;
     }
 }
@@ -65,30 +71,12 @@ body {
     h1 {
         margin: 0 0 0.3em 0;
     }
-}
-
-#sidebar-img {
-    max-width: 8em;
-    display: inline-block;
-    padding: 0;
-    vertical-align: top;
-    margin: 0.5em;
-
-    img {
-        max-width: 75%;
-        height: auto;
-        display: block;
-    }
-}
-
-#sidebar-content {
-    display: inline-block;
-    vertical-align: top;
 
     ul.icon-list {
         margin: 0;
         padding: 0;
         overflow: hidden;
+        font-size: 140%;
 
         li {
             list-style: none;
@@ -105,32 +93,48 @@ body {
     }
 }
 
-@media screen and (min-width: 48em) {
+#sidebar-img {
+    max-width: 8em;
+    display: inline-block;
+    padding: 0;
+    vertical-align: top;
+    margin: 0.5em;
+    margin-top: 2em;
+
+    img {
+        max-width: 75%;
+        height: auto;
+        display: block;
+    }
+}
+
+.sidebar-content {
+    display: inline-block;
+    vertical-align: top;
+}
+
+@media screen and (max-width: 30em) {
+    #sidebar-img {
+        margin-top: 0;
+    }
+}
+
+@media screen and (min-width: 50em) {
     #sidebar {
-      flex: 1 0px;
+        flex: 1 0px;
+
+        ul.icon-list li {
+            span {
+                display: inline;
+            }
+        }
     }
 
     #sidebar-img {
         display: block;
         max-width: none;
-        margin-right: 0;
+        margin-top: 0;
     }
-
-
-    #sidebar-content ul.icon-list li {
-      span {
-        display: inline;
-      }
-    }
-}
-
-/* Footer */
-footer {
-    right: 0;
-    bottom: 0;
-    left: 0;
-    margin-bottom: 1em;
-    padding-top: 3em;
 }
 
 /* Blocks */
