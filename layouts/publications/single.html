@@ -1,25 +1,20 @@
 {{ define "main" }}
   <paper>
-  <h1>{{ .Title }}</h1>
-  <h3>{{ .Params.authors }}</h3>
-  <h4><i>{{ .Params.venue }}</i></h4>
-  <h4 class="award">
-    <ul class="comma-seperated">
-      {{ range .Params.award }}
-        <li><i class="fas fa-trophy" aria-hidden="true"></i>&nbsp;{{ . }}</li>
-      {{ end }}
+    <h1>{{ .Title }}</h1>
+    <h3>{{ .Params.authors }}</h3>
+    <h4><i>{{ .Params.venue }}</i></h4>
+    <h4 class="award">
+      <ul class="comma-seperated">
+        {{ range .Params.award }}
+          <li><i class="fas fa-trophy" aria-hidden="true"></i>&nbsp;{{ . }}</li>
+        {{ end }}
+      </ul>
+    </h4>
+    <hr style="height:1px; border:none; background-color:#d3d3d3; margin: 0 0 1em 0;">
+    <ul class="links">
+      {{ partial "link_resources" . }}
+      {{ partial "pdf_resources" . }}
     </ul>
-  </h4>
-
-  <hr style="height:1px; border:none; background-color:#d3d3d3; margin: 0 0 1em 0;">
-
-  {{ if (isset .Params "links") }}
-  <ul class="links">
-  {{ range .Params.links }}
-    <li><a href="{{ .url | absURL }}"><i class="{{ .icon }}" aria-hidden="true"></i>&nbsp;{{ .name }}</a></li>
-  {{ end }}
-  </ul>
-  {{ end }}
   </paper>
 
   {{ .Content }}

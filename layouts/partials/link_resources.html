@@ -1,0 +1,9 @@
+{{ if (isset .Params "links") }}
+{{ range .Params.links }}
+  <li>
+    <a href="{{ .url | absURL }}">
+      <i class="{{ .icon }}" aria-hidden="true"></i>&nbsp;{{ .name }}
+    </a>
+  </li>
+{{ end }}
+{{ end }}

@@ -3,8 +3,8 @@
 
   <h1 style="border-bottom: 1px solid #d3d3d3;">Publications</h1>
 
-  {{ partial "publications" (dict "title" "" "papers" (where .Data.Pages "Section" "publications")) }}
-  <!--{{ partial "publications" (dict "title" "Papers" "papers" .Site.Taxonomies.pubtypes.paper ) }}
+  <!--{{ partial "publications" (dict "title" "" "papers" (where .Data.Pages "Section" "publications")) }}-->
+  {{ partial "publications" (dict "title" "Papers" "papers" .Site.Taxonomies.pubtypes.paper ) }}
   {{ partial "publications" (dict "title" "Extended Abstracts" "papers" .Site.Taxonomies.pubtypes.abstract ) }}
-  {{ partial "publications" (dict "title" "Technical Reports" "papers" .Site.Taxonomies.pubtypes.techreport ) }}-->
+  {{ partial "publications" (dict "title" "Technical Reports" "papers" .Site.Taxonomies.pubtypes.techreport ) }}
 {{ end }}
