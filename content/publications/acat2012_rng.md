@@ -4,7 +4,7 @@ projects: ["nudy"]
 title: "Two dimensional correlated sampling using alias technique"
 authors: "Siddharth Mohanty, Subho S. Banerjee, Johny Jose, Dushyant Goyal, Ajit K. Mohanty and Federico Carminati"
 link: "http://iopscience.iop.org/article/10.1088/1742-6596/331/6/062048"
-venue: "Journal of Physics: Conference Series vol. 368 n. 1 p. 12045"
+venue: "Journal of Physics: Conference Series"
 date: 2012
 links:
   - name: DOI

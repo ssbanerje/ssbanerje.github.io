@@ -11,9 +11,9 @@
   {{ range .AlternativeOutputFormats -}}
     {{ printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
   {{ end -}}
-  <link rel="shortcut icon" href="{{ "img/favicon.ico" | relURL }}">
-  <link rel="apple-touch-icon" href="{{ "img/favicon.ico" | relURL }}">
-  <meta name="msapplication-square310x310logo" content="{{ "img/favicon.ico" | relURL }}">
+  <link rel="shortcut icon" href="{{ "img/favicon.ico" | absURL }}">
+  <link rel="apple-touch-icon" href="{{ "img/favicon.ico" | absURL }}">
+  <meta name="msapplication-square310x310logo" content="{{ "img/favicon.ico" | absURL }}">
   <meta name="theme-color" content="{{ .Site.Params.sidebar_color }}"/>
   <script async defer src="https://www.googletagmanager.com/gtag/js?id={{ .Site.GoogleAnalytics }}"></script>
   <script>
@@ -37,9 +37,9 @@
   <div class="padding" id="left"></div>
   <div id="container">
     <div id="sidebar">
-      <div id="sidebar-img"><img src="{{ .Site.Params.avatar | relURL }}" alt="Me" /></div>
+      <div id="sidebar-img"><img src="{{ .Site.Params.avatar | absURL }}" alt="Me" /></div>
       <div class="sidebar-content">
-        <h1><a href="{{ "" | relURL }}">{{ .Site.Params.name }}</a></h1>
+        <h1><a href="{{ "" | absURL }}">{{ .Site.Params.name }}</a></h1>
         <p>{{ .Site.Params.position }}<br />{{ .Site.Params.department }}<br />{{ .Site.Params.univeristy }}</p>
         <ul class="icon-list">
           <li><a id="email" href="mailto:{{ .Site.Params.email }}">
