@@ -1,15 +1,16 @@
----
-pubtypes: ["paper"]
-projects: ["av"]
-title: "AVFI: Fault Injection for Autonomous Vehicles"
-authors: "Saurabh Jha, Subho S. Banerjee, James Cyriac, Zbigniew T. Kalbarczyk and Ravishankar K. Iyer"
-venue: "DSN 2018"
-date: 2018-06-27
-links:
-  - name: DOI
-    icon: ai ai-ieee
-    url: "https://ieeexplore.ieee.org/document/8416212/"
----
++++
+pubtypes = ["paper"]
+projects = ["av"]
+title = "AVFI: Fault Injection for Autonomous Vehicles"
+authors = "Saurabh Jha, Subho S. Banerjee, James Cyriac, Zbigniew T. Kalbarczyk and Ravishankar K. Iyer"
+venue = "DSN 2018"
+date = 2018-06-27
+
+[[links]]
+  name = "DOI"
+  icon = "ai ai-ieee"
+  url = "https://ieeexplore.ieee.org/document/8416212/"
++++
 
 Autonomous vehicle (AV) technology is rapidly becoming a reality on U.S. roads, offering the promise
 of improvements in traffic management, safety, and the comfort and efficiency of vehicular travel.

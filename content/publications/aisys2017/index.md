@@ -1,15 +1,16 @@
----
-pubtypes: ["abstract"]
-projects: ["compgen"]
-title: "Symphony: Leveraging Probabilistic Graphical Models to Schedule Tasks to Clusters of Heterogeneous Processors"
-authors: "Subho S. Banerjee, Steve Lumetta, Zbigniew T. Kalbarczyk and Ravishankar K. Iyer"
-venue: "AISys 2017 (Colocated with SOSP 2017)"
-date: 2017-10-28
-links:
-  - name: Paper
-    icon: fa fa-globe
-    url: "https://github.com/LearningSys/sosp17/blob/master/papers/18%5CCameraReadySubmission%5Csymphony.pdf"
----
++++
+pubtypes = ["abstract"]
+projects = ["compgen"]
+title = "Symphony: Leveraging Probabilistic Graphical Models to Schedule Tasks to Clusters of Heterogeneous Processors"
+authors = "Subho S. Banerjee, Steve Lumetta, Zbigniew T. Kalbarczyk and Ravishankar K. Iyer"
+venue = "AISys 2017 (Colocated with SOSP 2017)"
+date = 2017-10-28
+
+[[links]]
+  name = "Paper"
+  icon = "fa fa-globe"
+  url = "https://github.com/LearningSys/sosp17/blob/master/papers/18%5CCameraReadySubmission%5Csymphony.pdf"
++++
 
 The diminishing returns from Moore's law and technology scaling have significantly driven the
 deployment of a plethora of accelerators in large scale computing infrastructures. While the design

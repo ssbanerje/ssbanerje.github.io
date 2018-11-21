@@ -1,18 +1,20 @@
----
-pubtypes: ["paper", "featured"]
-projects: ["compgen"]
-title: "ASAP: Accelerated Short Read Alignment on Programmable Hardware"
-authors: "Subho S. Banerjee, Mohamed el-Hadedy, Jong B. Lim, Steve Lumetta, Zbigniew T. Kalbarczyk, Deming Chen and Ravishankar K. Iyer"
-venue: "IEEE Transactions on Computers"
-date: 2018-08-10
-links:
-  - name: DOI
-    icon: ai ai-ieee
-    url: "https://ieeexplore.ieee.org/document/8490591"
-  - name: CoRR
-    icon: ai ai-arxiv
-    url: "https://arxiv.org/abs/1803.02657"
----
++++
+pubtypes = ["paper", "featured"]
+projects = ["compgen"]
+title = "ASAP: Accelerated Short Read Alignment on Programmable Hardware"
+authors = "Subho S. Banerjee, Mohamed el-Hadedy, Jong B. Lim, Steve Lumetta, Zbigniew T. Kalbarczyk, Deming Chen and Ravishankar K. Iyer"
+venue = "IEEE Transactions on Computers"
+date = 2018-08-10
+
+[[links]]
+  name = "DOI"
+  icon = "ai ai-ieee"
+  url = "https://ieeexplore.ieee.org/document/8490591"
+[[links]]
+  name = "CoRR"
+  icon = "ai ai-arxiv"
+  url = "https://arxiv.org/abs/1803.02657"
++++
 
 The proliferation of high-throughput sequencing machines ensures rapid generation of up to billions
 of short nucleotide fragments in a short period of time. This massive amount of sequence data can

@@ -1,15 +1,16 @@
----
-pubtypes: ["paper"]
-projects: ["alien"]
-title: "Enhancing the AliEn Web Service Authentication"
-authors: "Jianlin Zhu, Pablo Saiz, Federico Carminati, Latchezar Betev, Daicui Zhou, Patricia M. Lorenzo, Alina G. Grigoras, Costin Grigoras, Fabrizio Furano, Steffen Schreiner, Olga V. Datskova, Subho S. Banerjee and Guoping Zhang"
-venue: "Journal of Physics: Conference Series"
-date: 2010-10-22
-links:
-  - name: DOI
-    icon: ai ai-open-access
-    url: "http://stacks.iop.org/1742-6596/331/i=6/a=062048"
----
++++
+pubtypes = ["paper"]
+projects = ["alien"]
+title = "Enhancing the AliEn Web Service Authentication"
+authors = "Jianlin Zhu, Pablo Saiz, Federico Carminati, Latchezar Betev, Daicui Zhou, Patricia M. Lorenzo, Alina G. Grigoras, Costin Grigoras, Fabrizio Furano, Steffen Schreiner, Olga V. Datskova, Subho S. Banerjee and Guoping Zhang"
+venue = "Journal of Physics: Conference Series"
+date = 2010-10-22
+
+[[links]]
+  name = "DOI"
+  icon = "ai ai-open-access"
+  url = "http://stacks.iop.org/1742-6596/331/i=6/a=062048"
++++
 
 Web Services are an XML based technology that allow applications to communicate with each other
 across disparate systems. Web Services are becoming the de facto standard that enable inter

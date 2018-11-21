@@ -1,15 +1,16 @@
----
-pubtypes: ["paper", "featured"]
-projects: ["compgen"]
-title: "On Accelerating Pair-HMM Computations in Programmable Hardware"
-authors: "Subho S. Banerjee, Mohamed el-Hadedy, Ching Y. Tan, Zbigniew T. Kalbarczyk, Steve Lumetta and Ravishankar K. Iyer"
-venue: "FPL 2017"
-date: 2017-09-04
-links:
-  - name: DOI
-    icon: ai ai-ieee
-    url: "http://ieeexplore.ieee.org/document/8056837/"
----
++++
+pubtypes = ["paper", "featured"]
+projects = ["compgen"]
+title = "On Accelerating Pair-HMM Computations in Programmable Hardware"
+authors = "Subho S. Banerjee, Mohamed el-Hadedy, Ching Y. Tan, Zbigniew T. Kalbarczyk, Steve Lumetta and Ravishankar K. Iyer"
+venue = "FPL 2017"
+date = 2017-09-04
+
+[[links]]
+  name = "DOI"
+  icon = "ai ai-ieee"
+  url = "http://ieeexplore.ieee.org/document/8056837/"
++++
 
 This paper explores hardware acceleration to significantly improve the runtime of computing the
 forward algorithm on Pair-HMM models, a crucial step in analyzing mutations in sequenced genomes. We

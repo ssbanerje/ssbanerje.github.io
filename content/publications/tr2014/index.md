@@ -1,11 +1,11 @@
----
-pubtypes: ["techreport"]
-projects: ["compgen"]
-title: "Decomposing Genomics Algorithms: Core Computations for Accelerating Genomics Analyses"
-authors: "Arjun P. Athreya, Subho S. Banerjee, C. Victor Jongeneel, Zbigniew T. Kalbarczyk and Ravishankar K. Iyer"
-venue: "Coordinated Science Laboratory Technical Report UILU-ENG-14-2201"
-date: 2014-02-01
----
++++
+pubtypes = ["techreport"]
+projects = ["compgen"]
+title = "Decomposing Genomics Algorithms: Core Computations for Accelerating Genomics Analyses"
+authors = "Arjun P. Athreya, Subho S. Banerjee, C. Victor Jongeneel, Zbigniew T. Kalbarczyk and Ravishankar K. Iyer"
+venue = "Coordinated Science Laboratory Technical Report UILU-ENG-14-2201"
+date = 2014-02-01
++++
 
 Technological advances in genomic analyses and computing sciences has led to a burst in genomics
 data. With these advances, there has also been parallel growth in dedicated accelerators for

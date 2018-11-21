@@ -1,15 +1,16 @@
----
-pubtypes: ["paper"]
-projects: ["alien"]
-title: "Securing the AliEn File Catalogue - Enforcing authorization with accountable file operations"
-authors: "Steffen Schreiner, Stefano Bagnasco, Subho S. Banerjee, Latchezar Betev, Federico Carminati, Olga V. Datskova, Fabrizio Furano, Alina Grigoras, Costin Grigoras, Patricia M. Lorenzo, Andreas J. Peters, Pablo Saiz and Jianlin Zhu"
-venue: "Journal of Physics: Conference Series"
-date: 2010-10-22
-links:
-  - name: DOI
-    icon: ai ai-open-access
-    url: "http://stacks.iop.org/1742-6596/331/i=6/a=062044"
----
++++
+pubtypes = ["paper"]
+projects = ["alien"]
+title = "Securing the AliEn File Catalogue - Enforcing authorization with accountable file operations"
+authors = "Steffen Schreiner, Stefano Bagnasco, Subho S. Banerjee, Latchezar Betev, Federico Carminati, Olga V. Datskova, Fabrizio Furano, Alina Grigoras, Costin Grigoras, Patricia M. Lorenzo, Andreas J. Peters, Pablo Saiz and Jianlin Zhu"
+venue = "Journal of Physics: Conference Series"
+date = 2010-10-22
+
+[[links]]
+  name = "DOI"
+  icon = "ai ai-open-access"
+  url = "http://stacks.iop.org/1742-6596/331/i=6/a=062044"
++++
 
 The AliEn Grid Services, as operated by the ALICE Collaboration in its global physics analysis grid
 framework, is based on a central File Catalogue together with a distributed set of storage systems

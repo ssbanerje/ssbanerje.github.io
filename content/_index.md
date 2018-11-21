@@ -1,10 +1,11 @@
----
-date: 2017-07-19
-title: Home
-weight: 1
-sitemap:
-  priority: 1.0
----
++++
+title = "Home"
+date = 2017-07-19
+weight = 1
+
+[sitemap]
+  priority = 1.0
++++
 
 I am a PhD candidate in [Computer Science at UIUC][cs@uiuc] advised by [Ravishankar K. Iyer][rkiyer] in the [DEPEND][]
 research group at the [Coordinated Science Laboratory][csl]. My research focuses on the design of workload optimized

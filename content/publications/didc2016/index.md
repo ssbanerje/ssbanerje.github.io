@@ -1,15 +1,16 @@
----
-pubtypes: ["paper"]
-projects: ["compgen"]
-title: "Efficient and Scalable Workflows for Genomic Analyses"
-authors: "Subho S. Banerjee, Arjun P. Athreya, Liudmila S. Mainzer, C. Victor Jongeneel, and Wen-Mei Hwu, Zbigniew T. Kalbarczyk and Ravishankar K. Iyer"
-venue: "DIDC 2016 (Colocated with HPDC 2016)"
-date: 2016-05-31
-links:
-  - name: DOI
-    icon: ai ai-acmdl
-    url: "http://dl.acm.org/citation.cfm?id=2912156"
----
++++
+pubtypes = ["paper"]
+projects = ["compgen"]
+title = "Efficient and Scalable Workflows for Genomic Analyses"
+authors = "Subho S. Banerjee, Arjun P. Athreya, Liudmila S. Mainzer, C. Victor Jongeneel, and Wen-Mei Hwu, Zbigniew T. Kalbarczyk and Ravishankar K. Iyer"
+venue = "DIDC 2016 (Colocated with HPDC 2016)"
+date = 2016-05-31
+
+[[links]]
+  name = "DOI"
+  icon = "ai ai-acmdl"
+  url = "http://dl.acm.org/citation.cfm?id=2912156"
++++
 
 Recent growth in the volume of DNA sequence data and associated computational costs of extracting
 meaningful information warrants the need for efficient computational systems at-scale. In this work,

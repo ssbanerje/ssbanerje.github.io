@@ -1,15 +1,16 @@
----
-pubtypes: ["paper", "featured"]
-projects: ["av"]
-title: "Hands Off the Wheel in Autonomous Vehicles? A Systems Perspective on over a Million Miles of Field Data"
-authors: "Subho S. Banerjee, Saurabh Jha, James Cyriac, Zbigniew T. Kalbarczyk, and Ravishankar K. Iyer"
-venue: "DSN 2018"
-date: 2018-06-28
-links:
-  - name: DOI
-    icon: ai ai-ieee
-    url: "https://ieeexplore.ieee.org/document/8416518/"
----
++++
+pubtypes = ["paper", "featured"]
+projects = ["av"]
+title = "Hands Off the Wheel in Autonomous Vehicles? A Systems Perspective on over a Million Miles of Field Data"
+authors = "Subho S. Banerjee, Saurabh Jha, James Cyriac, Zbigniew T. Kalbarczyk, and Ravishankar K. Iyer"
+venue = "DSN 2018"
+date = 2018-06-28
+
+[[links]]
+  name = "DOI"
+  icon = "ai ai-ieee"
+  url = "https://ieeexplore.ieee.org/document/8416518/"
++++
 
 Autonomous vehicle (AV) technology is rapidly becoming a reality on U.S. roads, offering the promise
 of improvements in traffic management, safety, and the comfort and efficiency of vehicular travel.

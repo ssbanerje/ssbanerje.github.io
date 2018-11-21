@@ -1,11 +1,11 @@
----
-pubtypes: ["paper", "featured"]
-projects: ["compgen"]
-title: "AcMC²: Accelerated Markov Chain Monte Carlo for Probabilistic Models"
-authors: "Subho S. Banerjee, Zbigniew T. Kalbarczyk and Ravishankar K. Iyer"
-venue: "ASPLOS 2019"
-date: 2018-11-07
----
++++
+pubtypes = ["paper", "featured"]
+projects = ["compgen"]
+title = "AcMC²: Accelerated Markov Chain Monte Carlo for Probabilistic Models"
+authors = "Subho S. Banerjee, Zbigniew T. Kalbarczyk and Ravishankar K. Iyer"
+venue = "ASPLOS 2019"
+date = 2018-11-07
++++
 
 {{% block info %}}
 To appear in [ASPLOS 2019](https://asplos-conference.org/) (13-17 April 2019).

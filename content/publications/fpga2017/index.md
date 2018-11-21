@@ -1,15 +1,16 @@
----
-pubtypes: ["abstract"]
-projects: ["compgen"]
-title: "ASAP: Accelerated Short Read Alignment on Programmable Hardware"
-authors: "Subho S. Banerjee, Mohamed el-Hadedy, Jong B. Lim, Daniel Chen, Zbigniew T. Kalbarczyk, Deming Chen and Ravishankar K. Iyer"
-venue: "FPGA 2017"
-date: 2017-02-25
-links:
-  - name: DOI
-    icon: ai ai-acmdl
-    url: "http://doi.acm.org/10.1145/3020078.3021796"
----
++++
+pubtypes = ["abstract"]
+projects = ["compgen"]
+title = "ASAP: Accelerated Short Read Alignment on Programmable Hardware"
+authors = "Subho S. Banerjee, Mohamed el-Hadedy, Jong B. Lim, Daniel Chen, Zbigniew T. Kalbarczyk, Deming Chen and Ravishankar K. Iyer"
+venue = "FPGA 2017"
+date = 2017-02-25
+
+[[links]]
+  name = "DOI"
+  icon = "ai ai-acmdl"
+  url = "http://doi.acm.org/10.1145/3020078.3021796"
++++
 
 The proliferation of high-throughput sequencing machines allows for the rapid generation of billions
 of short nucleotide fragments in a short period. This massive amount of sequence data can quickly

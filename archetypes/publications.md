@@ -1,7 +1,13 @@
----
-pubtype: paper
-title: "{{ replace .Name "-" " " | title }}"
-authors: "Subho S. Banerjee"
-venue: "TBD"
-date: {{ .Date }}
----
++++
+pubtypes = ["paper", "featured"]
+projects = ["Default"]
+title = "{{ replace .Name "-" " " | title }}"
+authors = "Subho S. Banerjee"
+venue = "Conference"
+date = {{ .Date }}
+
+[[link]]
+  name = DOI
+  icon = ai ai-ieee
+  url = "https://ieeexplore.ieee.org/document/XXX"
++++
