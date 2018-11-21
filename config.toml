@@ -49,3 +49,9 @@ pygmentsOptions = "linenos=true,nowrap=false"
   text_color = "#333"
   text_link_color = "#274798"
   text_linkhover_color = "#f16421"
+
+# SEO Stuff
+[sitemap]
+  changefreq = "weekly"
+  filename = "sitemap.xml"
+  priority = 0.5
