@@ -22,14 +22,14 @@
   {{ range .AlternativeOutputFormats -}}
     {{ printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
   {{ end -}}
-  <link rel="icon" href="{{ "img/favicon.ico" | absURL }}">
-  <link rel="shortcut icon" href="{{ "img/favicon.ico" | absURL }}">
-  <link rel="apple-touch-icon" href="{{ "img/favicon.ico" | absURL }}">
+  <link rel="icon" href="{{ "img/favicon.ico" | relURL }}">
+  <link rel="shortcut icon" href="{{ "img/favicon.ico" | relURL }}">
+  <link rel="apple-touch-icon" href="{{ "img/favicon.ico" | relURL }}">
 
   {{ $css := resources.Get "css/main.scss" | resources.ExecuteAsTemplate "main.scss" . | toCSS | minify | fingerprint }}
-  <link rel="stylesheet" href="{{ $css.Permalink }}">
-  <link rel="preload" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" crossorigin="anonymous" as="style" onload="this.rel='stylesheet'">
-  <link rel="preload" href="https://cdn.rawgit.com/jpswalsh/academicons/master/css/academicons.min.css" type="text/css" as="style" onload="this.rel='stylesheet'">
+  <link rel="stylesheet" href="{{ $css.RelPermalink }}">
+  <link rel="preload" href="//use.fontawesome.com/releases/v5.3.1/css/all.css" crossorigin="anonymous" as="style" onload="this.rel='stylesheet'">
+  <link rel="preload" href="//cdn.rawgit.com/jpswalsh/academicons/master/css/academicons.min.css" type="text/css" as="style" onload="this.rel='stylesheet'">
   {{ $fonts := "" }}
   {{ range .Site.Data.theme.fonts }}
     {{ $font := "" }}

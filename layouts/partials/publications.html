@@ -1,7 +1,7 @@
 {{ if (isset . "title") }}
 <h2> {{ .title }}
   {{ if (isset . "subtitle") }}
-  <span style="font-size: 60%">{{ .subtitle | markdownify }}<span>
+  <span class="subtitle">{{ .subtitle | markdownify }}<span>
   {{ end }}
 </h2>
 {{ end }}

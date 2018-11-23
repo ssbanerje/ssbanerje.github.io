@@ -1,5 +1,5 @@
 <paper>
-  <p><a class="title" href="{{ .Permalink }}">{{ .Title }}.</a></p>
+  <p><a class="title" href="{{ .RelPermalink }}">{{ .Title }}.</a></p>
   {{ if (isset .Params "authors") }}<p class="authors">{{ .Params.authors }}.</p>{{ end }}
   {{ if (isset .Params "venue") }}<p class="venue">{{ .Params.venue }}.</p>{{ end }}
   {{ if (isset .Params "award") }}
