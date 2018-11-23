@@ -12,31 +12,10 @@
   {{ end }}
   <meta name="description" content="{{ $description }}" />
   <title>{{ if not .IsHome }}{{ title .Title }} | {{ end }}{{ .Site.Title }}</title>
-  <meta property="twitter:card" content="summary_large_image">
-  {{ with .Site.Params.twitter }}
-  <meta property="twitter:site" content="@{{ . }}">
-  <meta property="twitter:creator" content="@{{ . }}">
-  {{ end }}
-  <meta property="og:site_name" content="{{ .Site.Title }}">
-  <meta property="og:url" content="{{ .Permalink }}">
-  <meta property="og:title" content="{{ if not .IsHome }}{{ title .Title }} | {{ end }}{{ .Site.Title }}">
-  <meta property="og:description" content="{{ $description }}">
-  <meta property="og:image" content="{{ "img/favicon.ico" | absURL }}">
-  <meta property="og:locale" content="{{ .Site.LanguageCode | default "en-us" }}">
-  {{ if .IsPage }}
-    {{ if not .PublishDate.IsZero }}
-  <meta property="article:published_time" content="{{ .PublishDate.Format "2006-01-02T15:04:05-07:00" | safeHTML }}">
-    {{ else if not .Date.IsZero }}
-  <meta property="article:published_time" content="{{ .Date.Format "2006-01-02T15:04:05-07:00" | safeHTML }}">
-    {{ end }}
-    {{ if not .Lastmod.IsZero }}
-  <meta property="article:modified_time" content="{{ .Lastmod.Format "2006-01-02T15:04:05-07:00" | safeHTML }}">
-    {{ end }}
-  {{ else }}
-    {{ if not .Date.IsZero }}
-  <meta property="og:updated_time" content="{{ .Date.Format "2006-01-02T15:04:05-07:00" | safeHTML }}">
-    {{ end }}
-  {{ end }}
+  {{ template "_internal/opengraph.html" . }}
+  {{ template "_internal/google_news.html" . }}
+  {{ template "_internal/schema.html" . }}
+  {{ template "_internal/twitter_cards.html" . }}
 
   <link rel="canonical" href="{{ .Permalink }}">
   {{ range .AlternativeOutputFormats -}}
@@ -46,12 +25,10 @@
   <link rel="shortcut icon" href="{{ "img/favicon.ico" | absURL }}">
   <link rel="apple-touch-icon" href="{{ "img/favicon.ico" | absURL }}">
 
-
   {{ $css := resources.Get "css/main.scss" | resources.ExecuteAsTemplate "main.scss" . | toCSS | minify | fingerprint }}
   <link rel="stylesheet" href="{{ $css.Permalink }}">
   <link rel="preload" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" crossorigin="anonymous" as="style" onload="this.rel='stylesheet'">
   <link rel="preload" href="https://cdn.rawgit.com/jpswalsh/academicons/master/css/academicons.min.css" type="text/css" as="style" onload="this.rel='stylesheet'">
-
   {{ $fonts := "" }}
   {{ range .Site.Data.theme.fonts }}
     {{ $font := "" }}
@@ -66,17 +43,6 @@
   <link rel="preload" {{ printf "href=\"//fonts.googleapis.com/css?family=%s\"" $fonts | safeHTMLAttr }} as="style" onload="this.rel='stylesheet'">
 
   {{ if not .Site.IsServer }}
-    {{ if .Site.GoogleAnalytics }}
-      <script async defer src="https://www.googletagmanager.com/gtag/js?id={{ .Site.GoogleAnalytics }}"></script>
-      <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-
-        gtag('js', new Date());
-        gtag('config', '{{ .Site.GoogleAnalytics }}', {
-          {{ if .Site.Params.privacy_pack }} 'anonymize_ip': true, {{ end }}
-        });
-      </script>
-    {{ end }}
+    {{ template "_internal/google_analytics_async.html" . }}
   {{ end }}
 </head>
