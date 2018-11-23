@@ -8,6 +8,14 @@ code, pre {
     font-size: 0.9em;
     max-width: 30em;
     overflow-x: scroll;
+
+    .has-jax {
+      font: inherit;
+      font-size: 100%;
+      background: inherit;
+      border: inherit;
+      color: #515151;
+    }
 }
 
 body {

@@ -11,11 +11,12 @@
     {{ $description = .Params.title }}
   {{ end }}
   <meta name="description" content="{{ $description }}" />
-  <title>{{ if not .IsHome }}{{ title .Title }} | {{ end }}{{ .Site.Title }}</title>
   {{ template "_internal/opengraph.html" . }}
   {{ template "_internal/google_news.html" . }}
   {{ template "_internal/schema.html" . }}
   {{ template "_internal/twitter_cards.html" . }}
+
+  <title>{{ if not .IsHome }}{{ title .Title }} | {{ end }}{{ .Site.Title }}</title>
 
   <link rel="canonical" href="{{ .Permalink }}">
   {{ range .AlternativeOutputFormats -}}
