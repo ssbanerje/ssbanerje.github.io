@@ -302,9 +302,10 @@ paper {
         min-height: 100px;
         transition: all 0.2s ease-out;
 
-        img {            
+        img {
             width: 180px;
             height: 100px;
+            border: 1px solid rgba(0,0,0,.225);
         }
 
         &.hover-overlay:before {
