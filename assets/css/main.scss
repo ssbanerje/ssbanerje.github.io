@@ -1,26 +1,29 @@
 /* Color Scheme */
-$sidebar_color: {{ .Site.Params.sidebar_color }};
-$sidebar_link_color: {{ .Site.Params.sidebar_link_color }};
-$sidebar_linkhover_color: {{ .Site.Params.sidebar_linkhover_color }};
-$text_color: {{ .Site.Params.text_color }};
-$text_link_color: {{ .Site.Params.text_link_color }};
-$text_linkhover_color: {{ .Site.Params.text_linkhover_color }};
+{{ $colors := .Site.Data.theme.colors }}
+$sidebar: (
+  background: {{ $colors.sidebar.background }},
+  text: {{ $colors.sidebar.text }},
+  link: {{ $colors.sidebar.link }},
+  hover: {{ $colors.sidebar.linkhover }}
+);
+$content: (
+  background: {{ $colors.content.background }},
+  text: {{ $colors.content.text }},
+  link: {{ $colors.content.link }},
+  hover: {{ $colors.content.linkhover }},
+  award: {{ $colors.content.award }}
+);
 
+/* Fonts */
+{{ $fonts := .Site.Data.theme.fonts }}
+$font: (
+  {{ range $ftype := (slice "mono" "body") }}
+    {{ $ftype }}: {{ (index (where $fonts $ftype true) 0).name }},
+  {{ end }}
+);
+
+/* Import subfiles */
 @import 'normalize';
-@import 'fonts';
 @import 'layout';
+@import 'fonts';
 @import 'research';
-
-.comma-seperated {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-
-    li {
-        display: inline;
-    }
-
-    li+li:before {
-        content: ", ";
-    }
-}

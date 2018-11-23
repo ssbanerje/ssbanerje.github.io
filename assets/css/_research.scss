@@ -5,7 +5,7 @@ paper {
     }
 
     .award {
-        color: #812717;
+        color: #{map-get($content, award)};
     }
 
     .venue {
@@ -20,17 +20,17 @@ paper {
         li {
             list-style: none;
             display: inline;
-            border: 1px dotted $text_color;
+            border: 1px dotted #{map-get($content, text)};
             padding: 0.35em;
             margin: 0 0 0 0.2em;
             border-radius: 8px;
             transition: .5s;
 
             &:hover {
-                border-color: $text_linkhover_color;
+                border-color: #{map-get($content, hover)};
 
                 a {
-                    color: $text_linkhover_color;
+                    color: #{map-get($content, hover)};
                 }
             }
         }

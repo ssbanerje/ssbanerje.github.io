@@ -18,11 +18,11 @@ body {
 }
 
 #left {
-    background-color: $sidebar_color;
+    background-color: #{map-get($sidebar, background)};
 }
 
 #right {
-    background-color: #fff;
+    background-color: #{map-get($content, background)};
 }
 
 #container {
@@ -65,7 +65,7 @@ footer {
 /* Sidebar */
 #sidebar {
     padding: 1em;
-    background-color: $sidebar_color;
+    background-color: #{map-get($sidebar, background)};
     width: 100%;
 
     h1 {
@@ -177,5 +177,20 @@ blockquote {
             color: #999;
             font-weight: 900;
         }
+    }
+}
+
+/* Comma seperated lists */
+.comma-seperated {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    li {
+        display: inline;
+    }
+
+    li+li:before {
+        content: ", ";
     }
 }

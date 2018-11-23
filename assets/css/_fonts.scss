@@ -1,10 +1,10 @@
 html, button, input, select, textarea {
-    font-family: Lato, sans-serif;
+    font-family: #{map-get($font, body)}, sans-serif;
     font-display: auto;
 }
 
 code, pre {
-    font-family: Menlo, monospace;
+    font-family: #{map-get($font, mono)}, monospace;
     font-size: 0.9em;
     max-width: 30em;
     overflow-x: scroll;
@@ -14,7 +14,8 @@ body {
     font-size: 1rem;
     font-weight: 400;
     line-height: 1.6;
-    color: $text_color;
+    background: #{map-get($content, background)};
+    color: #{map-get($content, text)};
     text-rendering: optimizeLegibility;
 }
 
@@ -23,12 +24,12 @@ b, strong, h1, h2, h3, h4 {
 }
 
 a {
-    color: $text_link_color;
+    color: #{map-get($content, link)};
     text-decoration: none;
     transition: .5s;
 
     &:hover {
-        color: $text_linkhover_color;
+        color: #{map-get($content, hover)};
     }
 }
 
@@ -48,13 +49,13 @@ a {
 }
 
 #sidebar {
-    color: $sidebar_link_color;
+    color: #{map-get($sidebar, text)};
 
     a {
-        color: $sidebar_link_color;
+        color: #{map-get($sidebar, link)};
 
         &:hover {
-            color: $sidebar_linkhover_color;
+            color: #{map-get($sidebar, hover)};
         }
     }
 

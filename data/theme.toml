@@ -1,0 +1,23 @@
+# Color scheme
+[colors.sidebar]
+  background = "#141f33"
+  text = "#fff"
+  link = "#fff"
+  linkhover = "#feb24c"
+
+[colors.content]
+  background = "#fff"
+  text = "#333"
+  link = "#274798"
+  linkhover = "#f16421"
+  award = "#812717"
+
+# Fonts
+[[fonts]]
+  name = "Lato"
+  weights = ["400", "500", "700", "900", "400italic", "500italic", "700italic"]
+  body = true
+
+[[fonts]]
+  name = "Menlo"
+  mono = true
