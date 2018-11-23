@@ -6,8 +6,8 @@
 </h2>
 {{ end }}
 
-<ul class="project-list">
-  {{ range .projects}}
-    <li>{{ partial "project-listing" . }}</li>
-  {{ end }}
-</ul>
+<div class="grid" data-masonry='{ "itemSelector": ".card", "columnWidth": ".card-sizer", percentPosition: true }'>
+    {{ range first 4 .projects}}
+      {{ partial "project-listing" . }}
+    {{ end }}
+</div>
