@@ -1,13 +1,13 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>{{ .Site.Title }}</title>
+    <title>{{ with .Title }}{{.}} on {{ end }}{{ .Site.Title }}</title>
     <link>{{ .Permalink }}</link>
-    <description>Recent content in {{ .Site.Title }}</description>
+    <description>Recent content {{ with .Title }}in {{ title . }} {{ end }}on {{ .Site.Title }}</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>{{ .Site.LanguageCode }}</language>
+    {{ with .Site.LanguageCode }}<language>{{ . }}</language>{{ end }}
     <managingEditor>{{ .Site.Params.name }} ({{ .Site.Params.email }})</managingEditor>
     <webMaster>{{ .Site.Params.name }} ({{ .Site.Params.email }})</webMaster>
-    <lastBuildDate>{{ .Date.Format "Mon, 02 Jan 2006 15:04:05 -0700" | safeHTML }}</lastBuildDate>
+    {{ if not .Date.IsZero }}<lastBuildDate>{{ .Date.Format "Mon, 02 Jan 2006 15:04:05 -0700" | safeHTML }}</lastBuildDate>{{ end }}
     <atom:link href="{{ .URL }}" rel="self" type="application/rss+xml" />
     {{ range first 15 .Data.Pages }}
     <item>

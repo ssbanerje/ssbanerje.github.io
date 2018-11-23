@@ -1,6 +1,5 @@
 # Basic Stuff
 title = "Subho Sankar Banerjee"
-description = "Subho Banerjee's Homepage"
 googleAnalytics = "UA-48086103-1"
 
 # URLs
@@ -28,10 +27,12 @@ pygmentsOptions = "linenos=true,nowrap=false"
   smartDashes = true
   plainIDAnchors = true
   latexDashes = true
+  hrefTargetBlank = true
 
 # Site parameters
 [params]
   name = "Subho Sankar Banerjee"
+  description = "Subho Banerjee's Homepage"
   position = "PhD Candidate"
   department = "Computer Science"
   univeristy = "University of Illinois at Urbana-Champaign"

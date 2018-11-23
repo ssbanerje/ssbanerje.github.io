@@ -1,91 +1,26 @@
-<!doctype html>
-<html lang="{{ with .Site.LanguageCode }}{{ . }}{{ else }}en-US{{ end }}">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>{{ title .Title }} - {{ .Site.Title }}</title>
-  {{ .Hugo.Generator }}
-  <link rel="canonical" href="{{ .Permalink }}">
-  <meta name="author" content="{{ .Site.Params.author }}" />
-  <meta name="Description" content="{{ .Site.Params.description }}" />
-  {{ range .AlternativeOutputFormats -}}
-    {{ printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
-  {{ end -}}
-  <link rel="shortcut icon" href="{{ "img/favicon.ico" | absURL }}">
-  <link rel="apple-touch-icon" href="{{ "img/favicon.ico" | absURL }}">
-  <meta name="msapplication-square310x310logo" content="{{ "img/favicon.ico" | absURL }}">
-  <meta name="theme-color" content="{{ .Site.Params.sidebar_color }}"/>
-  <script async defer src="https://www.googletagmanager.com/gtag/js?id={{ .Site.GoogleAnalytics }}"></script>
-  <script>
-    if (window.location.hostname === "localhost") {
-      console.log("Analytics not running on local dev.");
-    } else {
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){ dataLayer.push(arguments); }
-      gtag('js', new Date());
-      gtag('config', '{{ .Site.GoogleAnalytics }}');
-    }
-  </script>
-  {{ $css := resources.Get "css/main.scss" | resources.ExecuteAsTemplate "main.scss" . | toCSS | minify | fingerprint }}
-  <link rel="stylesheet" href="{{ $css.Permalink }}">
-  <link rel="preload" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" crossorigin="anonymous" as="style" onload="this.rel='stylesheet'">
-  <link rel="preload" href="https://cdn.rawgit.com/jpswalsh/academicons/master/css/academicons.min.css" type="text/css" as="style" onload="this.rel='stylesheet'">
-  <link rel="preload" href="https://fonts.googleapis.com/css?family=Lato:400,500,700,400italic,500italic,700italic,900|Menlo" as="style" onload="this.rel='stylesheet'">
-</head>
+<!DOCTYPE html>
+<html lang="{{ .Site.LanguageCode | default "en-us" }}">
+
+{{ partial "header.html" . }}
 
 <body>
   <div class="padding" id="left"></div>
+
   <div id="container">
     <div id="sidebar">
-      <div id="sidebar-img"><img src="{{ .Site.Params.avatar | absURL }}" alt="Me" /></div>
-      <div class="sidebar-content">
-        <h1><a href="{{ "" | absURL }}">{{ .Site.Params.name }}</a></h1>
-        <p>{{ .Site.Params.position }}<br />{{ .Site.Params.department }}<br />{{ .Site.Params.univeristy }}</p>
-        <ul class="icon-list">
-          <li><a id="email" href="mailto:{{ .Site.Params.email }}">
-            <i class="fas fa-envelope-open fa-fw"></i>
-          </a></li>
-          <li><a href="{{ .Site.Params.address_url }}">
-            <i class="fas fa-map-marker-alt fa-fw"></i>
-          </a></li>
-          <li><a href="{{ .Site.Params.linkedin }}">
-            <i class="fab fa-linkedin fa-fw"></i>
-          </a></li>
-          <li><a href="{{ .Site.Params.github }}">
-            <i class="fab fa-github fa-fw"></i>
-          </a></li>
-          <li><a href="https://orcid.org/{{ .Site.Params.orcid }}">
-            <i class="ai ai-orcid fa-fw"></i>
-          </a></li>
-          <li><a href="{{ .Site.Params.dblp }}">
-            <i class="ai ai-dblp fa-fw"></i>
-          </a></li>
-        </ul>
-      </div>
-      <div class="sidebar-content">
-        {{ block "sidebar" .}}
-          <!-- Sidebar Content -->
-        {{ end }}
-      </div>
+      {{ partial "sidebar.html" . }}
     </div>
     <div id="content">
       {{ if (and (not .IsHome) (ne .Kind "404")) }}
         {{ partial "breadcrumbs" . }}
       {{ end }}
 
-      {{ block "main" . }}
-        <!-- Main Block content -->
-      {{ end }}
+      {{ block "main" . }}<!-- Main Block content -->{{ end }}
 
-      <footer>
-        Built with <a href="https://www.gohugo.io">Hugo</a>
-        &nbsp;&bull;&nbsp;
-        Last updated {{ now.Format "2006-01-02" }}
-        &nbsp;&bull;&nbsp;
-        <a href="{{ .Site.RSSLink }}"><i class="fas fa-rss-square"></i>&nbsp;Feed</a>
-      </footer>
+      {{ partial "footer.html" . }}
     </div>
   </div>
+
   <div class="padding" id="right"></div>
 </body>
 
