@@ -11,9 +11,7 @@ disableKinds = ["taxonomy", "taxonomyTerm"]
 
 # Render settings
 pygmentsCodeFences = true
-pygmentsUseClassic=true
 pygmentsStyle = "manni"
-pygmentsOptions = "linenos=true,nowrap=false"
 
 # Custom taxonomies
 [taxonomies]

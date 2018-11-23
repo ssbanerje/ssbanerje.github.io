@@ -17,13 +17,18 @@ $content: (
 /* Fonts */
 {{ $fonts := .Site.Data.theme.fonts }}
 $font: (
-  {{ range $ftype := (slice "mono" "body") }}
+  {{ range $ftype := (slice "mono" "body" "title") }}
     {{ $ftype }}: {{ (index (where $fonts $ftype true) 0).name }},
+  {{ end }}
+);
+$font_weight: (
+  {{ range $ftype := (slice "mono" "body" "title") }}
+    {{ with (index (where $fonts $ftype true) 0).textw }}{{ $ftype }}_tw: {{ . }},{{ end }}
+    {{ with (index (where $fonts $ftype true) 0).boldw }}{{ $ftype }}_bw: {{ . }},{{ end }}
   {{ end }}
 );
 
 /* Import subfiles */
 @import 'normalize';
-@import 'layout';
 @import 'fonts';
-@import 'research';
+@import 'layout';

@@ -33,8 +33,15 @@
   {{ $fonts := "" }}
   {{ range .Site.Data.theme.fonts }}
     {{ $font := "" }}
-    {{ if .weights }}
-      {{ $font = printf `%s:%s` .name (delimit .weights "," "") }}
+    {{ $weights := ""}}
+    {{ with .textw }}
+      {{ $weights = printf `%d,%d%s` . . "italic"}}
+    {{ end }}
+    {{ with .boldw }}
+      {{ $weights = printf `%s,%d,%d%s` $weights . . "italic"}}
+    {{ end }}
+    {{ if gt (len $weights) 0 }}
+      {{ $font = printf `%s:%s` .name $weights }}
     {{ else }}
       {{ $font = printf `%s` .name}}
     {{ end }}

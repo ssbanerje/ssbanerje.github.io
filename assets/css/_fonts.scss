@@ -1,34 +1,18 @@
-html, button, input, select, textarea {
+html {
     font-family: #{map-get($font, body)}, sans-serif;
     font-display: auto;
-}
-
-code, pre {
-    font-family: #{map-get($font, mono)}, monospace;
-    font-size: 0.9em;
-    max-width: 30em;
-    overflow-x: scroll;
-
-    .has-jax {
-      font: inherit;
-      font-size: 100%;
-      background: inherit;
-      border: inherit;
-      color: #515151;
-    }
-}
-
-body {
     font-size: 1rem;
-    font-weight: 400;
-    line-height: 1.6;
-    background: #{map-get($content, background)};
-    color: #{map-get($content, text)};
     text-rendering: optimizeLegibility;
 }
 
+body {
+    color: #{map-get($content, text)};
+    font-weight: #{map-get($font_weight, body_tw)};
+    line-height: 1.6;
+}
+
 b, strong, h1, h2, h3, h4 {
-    font-weight: 700;
+    font-weight: #{map-get($font_weight, body_bw)};
 }
 
 a {
@@ -38,21 +22,6 @@ a {
 
     &:hover {
         color: #{map-get($content, hover)};
-    }
-}
-
-#content p {
-    hyphens: auto;
-    -webkit-hyphens: auto;
-}
-
-.highlight > pre {
-    padding-right: 10px;
-}
-
-@media screen and (min-width: 48em) {
-    code, pre {
-        max-width: 60em;
     }
 }
 
@@ -68,20 +37,65 @@ a {
     }
 
     h1 {
-        font-weight: 900;
+        font-family: #{map-get($font, title)}, sans-serif;
+        font-weight: #{map-get($font_weight, title_tw)};
+
+        b {
+            font-weight: #{map-get($font_weight, title_bw)};
+        }
+    }
+
+    ul.icon-list {
+        font-size: 140%;
     }
 }
 
-#sidebar-content {
-    ul.icon-list {
-        li {
-            i {
-                font-size: 1.5em;
-            }
-        }
+#content {
+    p {
+        hyphens: auto;
+        -webkit-hyphens: auto;
     }
 }
 
 footer {
-    font-size: 12px;
+    font-size: 80%;
+}
+
+code, pre {
+    font-family: #{map-get($font, mono)}, Consolas, monospace, sans-serif;
+    font-size: 90%;
+    white-space: pre-wrap;
+
+    .has-jax {
+        font: inherit;
+        font-size: 100%;
+        color: #{map-get($content, text)};
+    }
+}
+
+/* Publications */
+paper {
+    .award {
+        color: #{map-get($content, award)};
+    }
+
+    .venue {
+        font-style: italic;
+    }
+
+    .listing-links {
+        font-size: 80%;
+
+        li {
+            transition: .5s;
+
+            &:hover {
+                border-color: #{map-get($content, hover)};
+
+                a {
+                    color: #{map-get($content, hover)};
+                }
+            }
+        }
+    }
 }

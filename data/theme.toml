@@ -14,9 +14,15 @@
 
 # Fonts
 [[fonts]]
+  name = "Raleway"
+  title = true
+  textw = 800
+
+[[fonts]]
   name = "Lato"
-  weights = ["400", "500", "700", "900", "400italic", "500italic", "700italic"]
   body = true
+  textw = 400
+  boldw = 700
 
 [[fonts]]
   name = "Menlo"
