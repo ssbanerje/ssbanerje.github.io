@@ -5,7 +5,7 @@
 {{ end}}
 
 <div class="grid" data-masonry='{ "itemSelector": ".card", "columnWidth": ".card-sizer", percentPosition: true }'>
-  {{ range first $num_projects $projects }}
+  {{ range first $num_projects $projects.ByWeight.Reverse }}
     {{ partial "project-listing.html" . }}
   {{ end }}
 </div>
