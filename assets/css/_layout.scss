@@ -244,7 +244,7 @@ paper {
 
 .paper-list {
     padding: 0;
-    margin: 0;
+    margin: 0 0 2.5rem 0;
 
     p {
         margin: 0;
@@ -253,7 +253,12 @@ paper {
 
     li {
         list-style: none;
-        margin-bottom: 1.5em;
+        margin-bottom: 1.5rem;
+    }
+
+    h3 {
+        margin-top: 0.25rem;
+        margin-bottom: 0.25rem;
     }
 }
 
@@ -275,9 +280,6 @@ paper {
     max-width: 180px;
     max-height: 325px;
     min-width: 0;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    word-wrap: break-word;
     //box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
     transition: all 0.2s ease-out;
     background-clip: border-box;
@@ -285,7 +287,9 @@ paper {
     border-radius: .25rem;
 
     &:hover {
-        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        border: 1px solid #{map-get($content, hover)};
+
 
         .card-image.hover-overlay:before {
             opacity: 0.8;
@@ -340,14 +344,12 @@ paper {
     .card-text {
         margin-top: 0;
         padding: 0.25rem 1rem 0.75rem;
-        font-size: 80%;
 
         &:last-child {
             margin-bottom: 0;
         }
 
         h4 {
-            font-size: 110%;
             margin-top: 0;
         }
     }

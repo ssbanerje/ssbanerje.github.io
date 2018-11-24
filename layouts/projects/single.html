@@ -4,5 +4,7 @@
   {{ .Content }}
 
   {{ $papers := (where .Site.RegularPages ".Params.projects" "intersect" (slice .Params.project)) }}
-  {{ partial "publications" (dict "title" "Related Publications" "papers" $papers)}}
+
+  <h2>Related Publications</h2>
+  {{ partial "publications.html" . }}
 {{ end }}

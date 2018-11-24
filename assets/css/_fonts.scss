@@ -105,3 +105,27 @@ paper {
         }
     }
 }
+
+/* Projects */
+.card {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+
+    .card-text {
+        font-size: 80%;
+        transition: all 0.2s ease-out;
+
+        h4 {
+            font-size: 110%;
+        }
+
+        &:hover {
+            border-color: #{map-get($content, hover)};
+
+            a {
+                color: #{map-get($content, hover)};
+            }
+        }
+    }
+}

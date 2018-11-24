@@ -12,7 +12,7 @@
     </div>
     <div id="content">
       {{ if (and (not .IsHome) (ne .Kind "404")) }}
-        {{ partial "breadcrumbs" . }}
+        {{ partial "breadcrumbs.html" . }}
       {{ end }}
 
       {{ block "main" . }}<!-- Main Block content -->{{ end }}

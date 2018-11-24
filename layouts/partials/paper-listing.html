@@ -1,13 +1,13 @@
 <paper>
   <p><a class="title" href="{{ .RelPermalink }}">{{ .Title }}.</a></p>
-  {{ if (isset .Params "authors") }}<p class="authors">{{ .Params.authors }}.</p>{{ end }}
-  {{ if (isset .Params "venue") }}<p class="venue">{{ .Params.venue }}.</p>{{ end }}
-  {{ if (isset .Params "award") }}
   <ul class="award comma-seperated">
     {{ range .Params.award }}
       <li><i class="fas fa-trophy" aria-hidden="true"></i>&nbsp;{{ . }}</li>
     {{ end }}
   </ul>
+  {{ if (isset .Params "authors") }}<p class="authors">{{ .Params.authors }}.</p>{{ end }}
+  {{ if (isset .Params "venue") }}<p class="venue">{{ .Params.venue }}.</p>{{ end }}
+  {{ if (isset .Params "award") }}
   {{ end }}
   <ul class="listing-links">
     {{ partial "link_resources" . }}

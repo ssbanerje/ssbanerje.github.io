@@ -4,7 +4,7 @@ projects = ["nudy"]
 title = "Two dimensional correlated sampling using alias technique"
 authors = "Siddharth Mohanty, Subho S. Banerjee, Johny Jose, Dushyant Goyal, Ajit K. Mohanty and Federico Carminati"
 venue = "Journal of Physics: Conference Series"
-date = 2012
+date = 2012-02-22
 
 [[links]]
   name = "DOI"

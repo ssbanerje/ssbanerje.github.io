@@ -1,13 +1,31 @@
-{{ if (isset . "title") }}
-<h2> {{ .title }}
-  {{ if (isset . "subtitle") }}
-  <span class="subtitle">{{ .subtitle | markdownify }}<span>
-  {{ end }}
-</h2>
+<!-- Generate list of papers -->
+{{ $ptypes := $.Site.Taxonomies.pubtypes }}
+{{ $papers := ($ptypes.paper | union $ptypes.abstract | union $ptypes.techreport).Pages }}
+{{ if eq $.Kind "home" }}
+  <!-- Homepage -->
+  {{ $papers = $ptypes.paper.Pages }}
+{{ else if eq $.Kind "page" }}
+  <!-- Project Page -->
+  {{ $papers = where $papers "Params.projects" "intersect" (slice .Params.Project) }}
+{{ else }}
+  <!-- Publications List Page -->
 {{ end }}
 
-<ul class="paper-list">
-  {{ range .papers }}
-    <li>{{ partial "paper-listing" . }}</li>
+<!-- Render list -->
+{{ $is_grouped := eq $.Kind "section" }}
+{{ if $is_grouped }}
+  {{ range $papers.GroupByDate "2006" }}
+    <ul class="paper-list">
+      <h3>{{ .Key }}</h3>
+      {{ range sort .Pages "Params.date" "desc" }}
+        <li>{{ partial "paper-listing.html" . }}</li>
+      {{ end }}
+    </ul>
   {{ end }}
-</ul>
+{{ else }}
+  {{ range sort $papers "Params.date" "desc" }}
+    <ul class="paper-list">
+      <li>{{ partial "paper-listing.html" . }}</li>
+    </ul>
+  {{ end }}
+{{ end }}
