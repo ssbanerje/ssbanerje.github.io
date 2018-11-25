@@ -1,16 +1,18 @@
-<div class="card">
-  <a href="{{ .RelPermalink }}" class="card-image hover-overlay">
-    {{ $image := (.Resources.ByType "image").GetMatch "*featured*" }}
-    {{ $image_src := printf `https://dummyimage.com/360x200/141f33/fff&text=%s` (title .Title | urlize) }}
-    {{ if $image }}
-      {{ $image_src = $image.RelPermalink }}
-    {{ end }}
-    <img src="{{ $image_src }}" alt="" class="img-responsive">
-  </a>
-  <div class="card-text">
-    <h4><a href="{{ .RelPermalink }}">{{ title .Title }}</a></h4>
-    <div class="card-desription">
-      {{ with .Description }}<p>{{ . | markdownify }}</p>{{ end }}
+<project>
+  <div class="project">
+    <a href="{{ .RelPermalink }}" class="image hover-overlay">
+      {{ $image := (.Resources.ByType "image").GetMatch "*featured*" }}
+      {{ $image_src := printf `https://dummyimage.com/360x200/141f33/fff&text=%s` (title .Title | urlize) }}
+      {{ if $image }}
+        {{ $image_src = $image.RelPermalink }}
+      {{ end }}
+      <img src="{{ $image_src }}" alt="">
+    </a>
+    <div class="text">
+      <h4><a href="{{ .RelPermalink }}">{{ title .Title }}</a></h4>
+      <div class="desription">
+        {{ with .Description }}<p>{{ . | markdownify }}</p>{{ end }}
+      </div>
     </div>
   </div>
-</div>
+</project>

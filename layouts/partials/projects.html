@@ -4,7 +4,7 @@
   {{ $num_projects = 4 }}
 {{ end}}
 
-<div class="grid" data-masonry='{ "itemSelector": ".card", "columnWidth": ".card-sizer", percentPosition: true }'>
+<div class="projects">
   {{ range first $num_projects $projects.ByWeight.Reverse }}
     {{ partial "project-listing.html" . }}
   {{ end }}

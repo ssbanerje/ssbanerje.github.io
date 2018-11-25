@@ -1,0 +1,80 @@
+// Basic font configuration
+@mixin font_config($size: false, $color: false, $weight: false,  $lh: false) {
+  // Basic Configuration
+  @if $size { font-size: $size; }
+  @if $color { color: $color; }
+  @if $weight { font-weight: $weight; }
+  @if $lh { line-height: $lh; }
+
+  // Fallback
+  font-display: auto;
+
+  // Antialias
+  text-rendering: optimizeLegibility;
+  font-smoothing: antialiased;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// Transitions
+@mixin transition($args...) {
+  -webkit-transition: $args;
+  -moz-transition: $args;
+  -ms-transition: $args;
+  -o-transition: $args;
+  transition: $args;
+}
+
+// Configure link colors and hover behavior
+@mixin link_style($color, $hover, $decoration: none) {
+  color: $color;
+  text-decoration: $decoration;
+  @include transition(all 0.2s ease-out);
+
+  &:hover { color: $hover; }
+}
+
+// Media queries
+$breakpoints: (
+  "phone":        400px,
+  "phone-wide":   480px,
+  "phablet":      560px,
+  "tablet-small": 640px,
+  "tablet":       768px,
+  "tablet-wide":  1024px,
+  "desktop":      1248px,
+  "desktop-wide": 1440px
+);
+@mixin mq($width, $type: min) {
+  @if map_has_key($breakpoints, $width) {
+    $width: map_get($breakpoints, $width);
+    @if $type == max {
+      $width: $width - 1px;
+    }
+    @media only screen and (#{$type}-width: $width) {
+      @content;
+    }
+  }
+}
+
+// Use Font Awesome Icons in divs
+@mixin fontawesome_icon($content, $size: false, $color: false, $lh: false) {
+  font-family: 'Font Awesome\ 5 Free';
+  content: $content;
+  font-weight: 900;
+  @if $size { font-size: $size; }
+  @if $color { color: $color; }
+  @if $lh { line-height: $lh; }
+}
+
+// Clearfix
+%clearfix {
+  *zoom: 1;
+  &:before, &:after {
+    content: " ";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}

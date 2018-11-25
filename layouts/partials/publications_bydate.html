@@ -1,0 +1,25 @@
+<!-- Generate list of papers -->
+{{ $ptypes := $.Site.Taxonomies.pubtypes }}
+{{ $papers := ($ptypes.paper | union $ptypes.abstract | union $ptypes.techreport).Pages }}
+
+<!-- Filter by project -->
+{{ if eq $.Kind "page" }}
+  <!-- Project Page -->
+  {{ $papers = where $papers "Params.projects" "intersect" (slice .Params.Project) }}
+{{ end }}
+
+<!-- Filter 4 years on homepage -->
+{{ $num_years := len ($papers.GroupByDate "2006") }}
+{{ if $.IsHome }}
+  {{ $num_years = 4 }}
+{{ end}}
+
+<!-- Render -->
+{{ range first $num_years ($papers.GroupByDate "2006") }}
+  <ul class="paper-list">
+    <h3>{{ .Key }}</h3>
+    {{ range sort .Pages "Params.date" "desc" }}
+      <li>{{ partial "paper-listing.html" . }}</li>
+    {{ end }}
+  </ul>
+{{ end }}

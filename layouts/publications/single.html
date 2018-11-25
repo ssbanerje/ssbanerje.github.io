@@ -1,21 +1,19 @@
 {{ define "main" }}
-  <paper>
-    <h1>{{ .Title }}</h1>
-    <h3>{{ .Params.authors }}</h3>
-    <h4><i>{{ .Params.venue }}</i></h4>
-    <h4 class="award">
-      <ul class="comma-seperated">
-        {{ range .Params.award }}
-          <li><i class="fas fa-trophy" aria-hidden="true"></i>&nbsp;{{ . }}</li>
-        {{ end }}
-      </ul>
-    </h4>
-    <hr style="height:1px; border:none; background-color:#d3d3d3; margin: 0 0 1em 0;">
-    <ul class="links">
-      {{ partial "link_resources.html" . }}
-      {{ partial "pdf_resources.html" . }}
+  <h1 class="no-border">{{ .Title }}</h1>
+  <h3>{{ .Params.authors }}</h3>
+  <h4><i>{{ .Params.venue }}</i></h4>
+  <h4 class="award">
+    <ul class="comma-seperated">
+      {{ range .Params.award }}
+        <li><i class="fas fa-trophy" aria-hidden="true"></i>&nbsp;{{ . }}</li>
+      {{ end }}
     </ul>
-  </paper>
+  </h4>
+  <hr style="height:1px; border:none; background-color:#d3d3d3; margin: 0 0 1em 0;">
+  <ul class="single-paper-links">
+    {{ partial "link_resources.html" . }}
+    {{ partial "pdf_resources.html" . }}
+  </ul>
 
   {{ .Content }}
 

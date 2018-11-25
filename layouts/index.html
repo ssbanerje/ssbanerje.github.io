@@ -1,11 +1,11 @@
 {{ define "main" }}
   {{ .Content }}
 
-  <h1 style="border-bottom: 1px solid #d3d3d3;">Research</h1>
+  <h1>Research</h1>
 
-  <h2>Projects <span class="subtitle">{{ "[[Full List](/projects/)]" | markdownify }}</span></h2>
-  {{ partial "projects.html" . }}
+  <!--<h2>Projects <span class="subtitle">{{ "[[Full List](/projects/)]" | markdownify }}</span></h2>
+  {{ partial "projects.html" . }}-->
 
   <h2>Publications <span class="subtitle">{{ "[[Full List](/publications/)]" | markdownify }}</span></h2>
-  {{ partial "publications.html" . }}
+  {{ partial "publications_bydate.html" . }}
 {{ end }}

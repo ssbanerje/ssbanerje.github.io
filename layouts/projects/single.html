@@ -3,8 +3,6 @@
 
   {{ .Content }}
 
-  {{ $papers := (where .Site.RegularPages ".Params.projects" "intersect" (slice .Params.project)) }}
-
-  <h2>Related Publications</h2>
+  <h3>Related Publications</h3>
   {{ partial "publications.html" . }}
 {{ end }}

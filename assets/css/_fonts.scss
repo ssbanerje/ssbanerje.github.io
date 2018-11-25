@@ -1,131 +1,90 @@
+/**
+ * Configure text appearence for the document: Fonts and font colors
+ */
+
+/* Document fonts */
 html {
-    font-family: #{map-get($font, body)}, sans-serif;
-    font-display: auto;
-    font-size: 1rem;
-    text-rendering: optimizeLegibility;
+  font-family: #{map-get($font, body)}, sans-serif;
+  @include font_config(1rem, #{map-get($content, text)}, #{map-get($font_weight, body_tw)}, 1.6);
 }
 
-body {
-    color: #{map-get($content, text)};
-    font-weight: #{map-get($font_weight, body_tw)};
-    line-height: 1.6;
+b, strong, h1, h2, h3, h4 { font-weight: #{map-get($font_weight, body_bw)}; }
+
+p {
+  hyphens: auto;
+  -webkit-hyphens: auto;
 }
 
-b, strong, h1, h2, h3, h4 {
-    font-weight: #{map-get($font_weight, body_bw)};
-}
-
-h2 {
-    .subtitle {
-        font-size: 60%;
-    }
-}
-
-a {
-    color: #{map-get($content, link)};
-    text-decoration: none;
-    transition: .5s;
-
-    &:hover {
-        color: #{map-get($content, hover)};
-    }
-}
-
-#sidebar {
-    color: #{map-get($sidebar, text)};
-
-    a {
-        color: #{map-get($sidebar, link)};
-
-        &:hover {
-            color: #{map-get($sidebar, hover)};
-        }
-    }
-
-    h1 {
-        font-family: #{map-get($font, title)}, sans-serif;
-        font-weight: #{map-get($font_weight, title_tw)};
-
-        b {
-            font-weight: #{map-get($font_weight, title_bw)};
-        }
-    }
-
-    ul.icon-list {
-        font-size: 140%;
-    }
-}
-
-#content {
-    p {
-        hyphens: auto;
-        -webkit-hyphens: auto;
-    }
-}
-
-footer {
-    font-size: 80%;
-}
+footer { font-size: 80%; }
 
 code, pre {
-    font-family: #{map-get($font, mono)}, Consolas, monospace, sans-serif;
-    font-size: 90%;
-    white-space: pre-wrap;
+  font-family: #{map-get($font, mono)}, Consolas, monospace, sans-serif;
+  @include font_config(90%);
+  white-space: pre-wrap;
 
-    .has-jax {
-        font: inherit;
-        font-size: 100%;
-        color: #{map-get($content, text)};
-    }
+  .has-jax {
+    font: inherit;
+    font-size: 100%;
+    color: #{map-get($content, text)};
+  }
+}
+
+/* Sidebar */
+[id="sidebar"] {
+  color: #{map-get($sidebar, text)};
+
+  a { @include link_style(#{map-get($sidebar, link)}, #{map-get($sidebar, hover)}); }
+
+  h1 {
+    font-family: #{map-get($font, title)}, sans-serif;
+    @include font_config(false, false, #{map-get($font_weight, title_tw)}, false);
+
+    b { font-weight: #{map-get($font_weight, title_bw)}; }
+  }
+
+  ul.icon-list {
+    font-size: 150%;
+
+    @include mq('tablet') { font-size: 140%; }
+
+    @include mq('tablet-wide') { font-size: 150%; }
+  }
+}
+
+/* Main Content */
+[id="content"] {
+  a { @include link_style(#{map-get($content, link)}, #{map-get($content, hover)}); }
+
+  .subtitle { font-size: 60%; }
 }
 
 /* Publications */
-paper {
-    .award {
-        color: #{map-get($content, award)};
+.award { color: #{map-get($content, award)}; }
+
+.venue { font-style: italic; }
+
+.inline-paper-links {
+  font-size: 80%;
+  li {
+    &:hover {
+      border-color: #{map-get($content, hover)};
+
+      a { color: #{map-get($content, hover)}; }
     }
-
-    .venue {
-        font-style: italic;
-    }
-
-    .listing-links {
-        font-size: 80%;
-
-        li {
-            transition: .5s;
-
-            &:hover {
-                border-color: #{map-get($content, hover)};
-
-                a {
-                    color: #{map-get($content, hover)};
-                }
-            }
-        }
-    }
+  }
 }
 
+.single-paper-links { font-size: 120%; }
+
 /* Projects */
-.card {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    word-wrap: break-word;
+.project {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
 
-    .card-text {
-        font-size: 80%;
-        transition: all 0.2s ease-out;
+  .text {
+    font-size: 90%;
 
-        h4 {
-            font-size: 110%;
-        }
-
-        &:hover {
-            border-color: #{map-get($content, hover)};
-
-            a {
-                color: #{map-get($content, hover)};
-            }
-        }
-    }
+    h4 { font-size: 110%; }
+  }
 }

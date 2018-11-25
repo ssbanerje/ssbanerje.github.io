@@ -30,5 +30,6 @@ $font_weight: (
 
 /* Import subfiles */
 @import 'normalize';
+@import 'mixins';
 @import 'fonts';
 @import 'layout';
