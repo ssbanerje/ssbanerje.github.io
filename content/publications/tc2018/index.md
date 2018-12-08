@@ -11,7 +11,7 @@ date = 2018-11-10
   icon = "ai ai-ieee"
   url = "https://ieeexplore.ieee.org/document/8490591"
 [[links]]
-  name = "CoRR"
+  name = "arXiv"
   icon = "ai ai-arxiv"
   url = "https://arxiv.org/abs/1803.02657"
 +++

@@ -9,15 +9,17 @@
     <webMaster>{{ .Site.Params.name }} ({{ .Site.Params.email }})</webMaster>
     {{ if not .Date.IsZero }}<lastBuildDate>{{ .Date.Format "Mon, 02 Jan 2006 15:04:05 -0700" | safeHTML }}</lastBuildDate>{{ end }}
     <atom:link href="{{ .URL }}" rel="self" type="application/rss+xml" />
-    {{ range first 15 .Data.Pages }}
-    <item>
-      <title>{{ .Title }}</title>
-      <link>{{ .Permalink }}</link>
-      <pubDate>{{ .Date.Format "Mon, 02 Jan 2006 15:04:05 -0700" | safeHTML }}</pubDate>
-      <author>{{ .Site.Params.name }} ({{ .Site.Params.email }})</author>
-      <guid>{{ .Permalink }}</guid>
-      <description>{{ .Content | html }}</description>
-    </item>
+    {{ $ptypes := $.Site.Taxonomies.pubtypes }}
+    {{ $papers := ($ptypes.paper | union $ptypes.abstract | union $ptypes.techreport).Pages }}
+    {{ range first 15 (sort $papers "Params.date" "desc") }}
+      <item>
+        <title>{{ .Title }}</title>
+        <link>{{ .Permalink }}</link>
+        <pubDate>{{ .Date.Format "Mon, 02 Jan 2006 15:04:05 -0700" | safeHTML }}</pubDate>
+        <author>{{ .Site.Params.name }} ({{ .Site.Params.email }})</author>
+        <guid>{{ .Permalink }}</guid>
+        <description>{{ .Content | html }}</description>
+      </item>
     {{ end }}
   </channel>
 </rss>

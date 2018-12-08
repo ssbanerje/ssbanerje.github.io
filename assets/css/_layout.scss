@@ -63,6 +63,7 @@ footer {
 
   img {
     max-width: 8rem;
+    border-radius: 0.15rem;
 
     @include mq('tablet') { max-width: 75%; }
   }
@@ -258,6 +259,17 @@ pre, code {
     vertical-align: middle;
     padding-left: 1.5rem;
 
-    h4 { margin-top: 0; }
+    h4 {
+      margin-top: 0;
+
+      .label {
+        font-size: 80%;
+        font-weight: #{map-get($font_weight, body_tw)};
+        color: #555;
+        background-color: #e7e7e7;
+        padding: 0.1rem 0.3rem;
+        border-radius: 0.3rem;
+      }
+    }
   }
 }

@@ -9,7 +9,10 @@
       <img src="{{ $image_src }}" alt="">
     </a>
     <div class="text">
-      <h4><a href="{{ .RelPermalink }}">{{ title .Title }}</a></h4>
+      <h4>
+        <a href="{{ .RelPermalink }}">{{ title .Title }}</a>
+        {{ with .Params.concluded }}<span class="label">Concluded in {{ . }}</span>{{ end }}
+      </h4>
       <div class="desription">
         {{ with .Description }}<p>{{ . | markdownify }}</p>{{ end }}
       </div>

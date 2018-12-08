@@ -5,15 +5,8 @@
   @if $color { color: $color; }
   @if $weight { font-weight: $weight; }
   @if $lh { line-height: $lh; }
-
-  // Fallback
-  font-display: auto;
-
-  // Antialias
   text-rendering: optimizeLegibility;
-  font-smoothing: antialiased;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-display: auto;
 }
 
 // Transitions
