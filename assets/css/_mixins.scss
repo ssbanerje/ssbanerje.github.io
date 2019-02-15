@@ -6,7 +6,7 @@
   @if $weight { font-weight: $weight; }
   @if $lh { line-height: $lh; }
   text-rendering: optimizeLegibility;
-  font-display: auto;
+  font-display: swap;
 }
 
 // Transitions

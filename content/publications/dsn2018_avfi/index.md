@@ -3,7 +3,7 @@ pubtypes = ["paper"]
 projects = ["av"]
 title = "AVFI: Fault Injection for Autonomous Vehicles"
 authors = "Saurabh Jha, Subho S. Banerjee, James Cyriac, Zbigniew T. Kalbarczyk and Ravishankar K. Iyer"
-venue = "DSN 2018"
+venue = "DSN 2018 (Fast Abstract)"
 date = 2018-06-27
 
 [[links]]
