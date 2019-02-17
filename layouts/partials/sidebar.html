@@ -1,5 +1,5 @@
 <div id="avatar">
-  <img src="{{ .Site.Params.avatar | absURL }}" alt="Me" />
+  <img src="{{ .Site.Params.avatar | absURL }}" alt="Avatar" />
 </div>
 
 <div class="sidebar-content">
@@ -16,17 +16,17 @@
     {{ with .Site.Params.address_url }}
     <li><a href="{{ . }}" target="_blank"><i class="fas fa-map-marker-alt fa-fw"></i></a></li>
     {{ end }}
-    {{ with .Site.Params.linkedin }}
-    <li><a href="{{ . }}" target="_blank"><i class="fab fa-linkedin fa-fw"></i></a></li>
-    {{ end }}
-    {{ with .Site.Params.github }}
-    <li><a href="{{ . }}" target="_blank"><i class="fab fa-github fa-fw"></i></a></li>
-    {{ end }}
-    {{ with .Site.Params.orcid }}
-    <li><a href="https://orcid.org/{{ . }}" target="_blank"><i class="ai ai-orcid fa-fw"></i></a></li>
+    {{ with .Site.Params.scholar }}
+    <li><a href="https://scholar.google.com/citations?user={{ . }}" target="_blank"><i class="ai ai-google-scholar fa-fw"></i></a></li>
     {{ end }}
     {{ with .Site.Params.dblp }}
     <li><a href="{{ . }}" target="_blank"><i class="ai ai-dblp fa-fw"></i></a></li>
+    {{ end }}
+    {{ with .Site.Params.linkedin }}
+    <li><a href="https://www.linkedin.com/in/{{ . }}/" target="_blank"><i class="fab fa-linkedin fa-fw"></i></a></li>
+    {{ end }}
+    {{ with .Site.Params.github }}
+    <li><a href="https://github.com/{{ . }}" target="_blank"><i class="fab fa-github fa-fw"></i></a></li>
     {{ end }}
   </ul>
 </div>

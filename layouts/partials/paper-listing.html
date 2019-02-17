@@ -1,13 +1,13 @@
 <p><a class="title" href="{{ .RelPermalink }}">{{ .Title }}.</a></p>
 
-{{ with .Params.authors }}<p class="authors">{{ . }}.</p>{{ end }}
+{{ with .Params.authors }}<p class="authors">{{ . | markdownify }}.</p>{{ end }}
 
-{{ with .Params.venue }}<p class="venue">{{ . }}.</p>{{ end }}
+{{ with .Params.venue }}<p class="venue">{{ . | markdownify }}.</p>{{ end }}
 
 {{ with .Params.award }}
   <ul class="award comma-seperated">
     {{ range . }}
-      <li><i class="fas fa-trophy" aria-hidden="true"></i>&nbsp;{{ . }}</li>
+      <li><i class="fas fa-trophy" aria-hidden="true"></i>&nbsp;{{ . | markdownify }}</li>
     {{ end }}
   </ul>
 {{ end }}

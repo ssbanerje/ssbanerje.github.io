@@ -39,10 +39,10 @@ buildFuture = true
   email = "ssbaner2@illinois.edu"
   address = "CSL 240"
   address_url = "http://illinois.edu/map/view?buildingId=148"
-  linkedin = "https://www.linkedin.com/in/ssbanerjee/"
-  github = "https://github.com/ssbanerje"
+  linkedin = "ssbanerjee"
+  github = "ssbanerje"
+  scholar = "jvV04p3aXgMC"
   dblp = "https://dblp.uni-trier.de/pers/hd/b/Banerjee:Subho_S="
-  orcid = "0000-0001-7187-6569"
 
 # SEO Stuff
 [sitemap]

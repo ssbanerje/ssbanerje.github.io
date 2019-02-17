@@ -2,7 +2,7 @@
 pubtypes = ["paper", "featured"]
 projects = ["tds"]
 title = "CAUDIT: Continuous Auditing of SSH-Servers To Mitigate Brute-Force Attacks"
-authors = "Phuong Cao, Yuming Wu, and Subho Banerjee, Alex Withers and Justin Azoff, Zbigniew Kalbarczyk and Ravishankar Iyer"
+authors = "Phuong M. Cao, Yuming Wu, and Subho S. Banerjee, Justin Azoff, Alex Withers, Zbigniew T. Kalbarczyk and Ravishankar K. Iyer"
 venue = "NSDI 2019"
 date = 2019-02-26
 
@@ -10,6 +10,10 @@ date = 2019-02-26
   name = "DOI"
   icon = "ai ai-doi"
   url = "https://www.usenix.org/conference/nsdi19/presentation/cao"
+[[links]]
+  name = "Data"
+  icon = "fas fa-database"
+  url = "https://pmcao.github.io/caudit/"
 +++
 
 This paper describes CAUDIT, an operational system deployed at the National Center for

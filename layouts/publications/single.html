@@ -18,7 +18,7 @@
   {{ .Content }}
 
   {{ if (isset .Params "projects") }}
-    <h3>Related Projects</h3>
+    <h3 style="margin-top: 3rem;">Related Projects</h3>
     <ul style="margin-top: 0;">
     {{ range .Params.projects }}
       {{ $project := $.Site.GetPage "/projects" . }}
