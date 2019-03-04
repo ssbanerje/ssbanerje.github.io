@@ -5,11 +5,12 @@ title = "AcMC²: Accelerated Markov Chain Monte Carlo for Probabilistic Models"
 authors = "Subho S. Banerjee, Zbigniew T. Kalbarczyk and Ravishankar K. Iyer"
 venue = "ASPLOS 2019"
 date = 2019-04-13
-+++
 
-{{% block info %}}
-To appear in [ASPLOS 2019](https://asplos-conference.org/) (13-17 April 2019).
-{{% /block %}}
+[[links]]
+name = "Lightning Talk"
+icon = "fab fa-youtube"
+url = "https://youtu.be/3l_ZuBkZjJk"
++++
 
 Probabilistic models (PMs) are ubiquitously used across a variety of machine learning applications.
 They have been shown to successfully integrate structural prior information about data and effectively
