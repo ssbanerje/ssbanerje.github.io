@@ -11,6 +11,9 @@
 <!-- Filter 4 years on homepage -->
 {{ $num_years := len ($papers.GroupByDate "2006") }}
 {{ if $.IsHome }}
+  {{ if .Site.Params.showFeatured }}
+    {{ $papers = where $papers ".Params.pubtypes" "intersect" (slice "featured") }}
+  {{ end }}
   {{ $num_years = 4 }}
 {{ end}}
 
@@ -18,8 +21,11 @@
 {{ range first $num_years ($papers.GroupByDate "2006") }}
   <ul class="paper-list">
     <h3>{{ .Key }}</h3>
-    {{ range sort .Pages "Params.date" "desc" }}
-      <li>{{ partial "paper-listing.html" . }}</li>
+    {{ $year := .Key}}
+    {{ range sort $papers ".Params.date" "desc" }}
+      {{ if eq (dateFormat "2006" .Params.Date) $year }}
+        <li>{{ partial "paper-listing.html" . }}</li>
+      {{ end }}
     {{ end }}
   </ul>
 {{ end }}

@@ -90,6 +90,7 @@ footer {
   margin: 0;
   padding: 0;
   overflow: hidden;
+  @include mq('tablet') { max-width: 16rem; }
 
   li {
     float: left;

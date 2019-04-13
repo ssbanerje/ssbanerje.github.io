@@ -7,9 +7,14 @@ venue = "ASPLOS 2019"
 date = 2019-04-13
 
 [[links]]
-name = "Lightning Talk"
-icon = "fab fa-youtube"
-url = "https://youtu.be/3l_ZuBkZjJk"
+  name = "DOI"
+  icon = "ai ai-acmdl"
+  url = "https://dl.acm.org/citation.cfm?id=3304019"
+
+[[links]]
+  name = "Lightning Talk"
+  icon = "fab fa-youtube"
+  url = "https://youtu.be/3l_ZuBkZjJk"
 +++
 
 Probabilistic models (PMs) are ubiquitously used across a variety of machine learning applications.

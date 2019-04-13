@@ -2,7 +2,7 @@
 pubtypes = ["paper", "featured"]
 projects = ["tds"]
 title = "CAUDIT: Continuous Auditing of SSH-Servers To Mitigate Brute-Force Attacks"
-authors = "Phuong M. Cao, Yuming Wu, and Subho S. Banerjee, Justin Azoff, Alex Withers, Zbigniew T. Kalbarczyk and Ravishankar K. Iyer"
+authors = "Phuong M. Cao, Yuming Wu, Subho S. Banerjee, Justin Azoff, Alex Withers, Zbigniew T. Kalbarczyk and Ravishankar K. Iyer"
 venue = "NSDI 2019"
 date = 2019-02-26
 

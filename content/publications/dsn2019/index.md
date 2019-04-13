@@ -2,7 +2,7 @@
 pubtypes = ["paper", "featured"]
 projects = ["av"]
 title = "ML-based Fault Injection for Autonomous Vehicles: A Case for Bayesian Fault Injection"
-authors = "Saurabh Jha, Subho S. Banerjee, Timothy Tsai, Siva Kumar Sastry Hari, Michael B. Sullivan, Zbigniew Kalbarczyk, Stephen W. Keckler, Ravishankar K. Iyer"
+authors = "Saurabh Jha, Subho S. Banerjee, Timothy Tsai, Siva Kumar Sastry Hari, Michael B. Sullivan, Zbigniew Kalbarczyk, Stephen W. Keckler and Ravishankar K. Iyer"
 venue = "DSN 2019"
 date = 2019-06-25
 +++
