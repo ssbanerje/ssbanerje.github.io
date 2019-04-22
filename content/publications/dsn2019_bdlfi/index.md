@@ -1,15 +1,11 @@
 +++
-pubtypes = ["paper"]
+pubtypes = ["paper", "featured"]
 projects = ["av"]
 title = "Towards a Bayesian Approach for Assessing Fault Tolerance of Deep Neural Networks"
 authors = "Subho S. Banerjee, James Cyriac, Saurabh Jha, Zbigniew T. Kalbarczyk and Ravishankar K. Iyer"
-venue = "DSN 2019 (Fast Abstract)"
+venue = "DSN 2019"
 date = 2019-06-24
 +++
-
-{{% block info %}}
-To appear in [DSN 2019](http://dsn.org/) (24-27 June 2019).
-{{% /block %}}
 
 This paper presents *Bayesian Deep Learning based Fault Injection* (BDLFI), a
 novel methodology for fault injection in neural networks (NNs) or more generally

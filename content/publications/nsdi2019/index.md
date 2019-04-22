@@ -14,6 +14,10 @@ date = 2019-02-26
   name = "Data"
   icon = "fas fa-database"
   url = "https://pmcao.github.io/caudit/"
+[[links]]
+  name = "CSL News"
+  icon = "far fa-newspaper"
+  url = "https://csl.illinois.edu/news/illinois-researchers-sweeten-“honeypot”-catch-blacklist-hackers"
 +++
 
 This paper describes CAUDIT, an operational system deployed at the National Center for

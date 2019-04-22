@@ -3,7 +3,7 @@ pubtypes = ["abstract"]
 projects = ["compgen"]
 title = "A ML-based Runtime System for Executing Dataflow Graphs on Heterogeneous Processors"
 authors = "Subho S. Banerjee, Steve Lumetta, Zbigniew T. Kalbarczyk and Ravishankar K. Iyer"
-venue = "SoCC 2018 (Extended Abstract)"
+venue = "SoCC 2018"
 date = 2018-10-11
 
 [[links]]

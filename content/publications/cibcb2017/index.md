@@ -11,6 +11,11 @@ award = ["Best Paper Award"]
   name = "DOI"
   icon = "ai ai-ieee"
   url = "http://ieeexplore.ieee.org/document/8058559/"
+
+[[links]]
+  name = "Forbes"
+  icon = "far fa-newspaper"
+  url = "https://www.forbes.com/sites/insights-intelai/2019/02/11/how-machine-learning-is-crafting-precision-medicine"
 +++
 
 This paper proposes a data-driven longitudinal model that brings together factor graphs and learning
