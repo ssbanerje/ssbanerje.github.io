@@ -3,8 +3,8 @@ pubtypes = ["paper"]
 projects = ["alien"]
 title = "Securing the AliEn File Catalogue - Enforcing authorization with accountable file operations"
 authors = "Steffen Schreiner, Stefano Bagnasco, Subho S. Banerjee, Latchezar Betev, Federico Carminati, Olga V. Datskova, Fabrizio Furano, Alina Grigoras, Costin Grigoras, Patricia M. Lorenzo, Andreas J. Peters, Pablo Saiz and Jianlin Zhu"
-venue = "Journal of Physics: Conference Series"
-date = 2010-10-22
+venue = "ACAT 2011"
+date = 2011-10-22
 
 [[links]]
   name = "DOI"

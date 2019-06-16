@@ -5,6 +5,11 @@ title = "ML-based Fault Injection for Autonomous Vehicles: A Case for Bayesian F
 authors = "Saurabh Jha, Subho S. Banerjee, Timothy Tsai, Siva K. S. Hari, Michael B. Sullivan, Zbigniew T. Kalbarczyk, Stephen W. Keckler and Ravishankar K. Iyer"
 venue = "DSN 2019"
 date = 2019-06-25
+
+# [[links]]
+#   name = "DOI"
+#   icon = "ai ai-ieee"
+#   url = "https://ieeexplore.ieee.org/document/8416518/"
 +++
 
 The safety and resilience of fully autonomous vehicles (AVs) is of significant concern, as exemplified by

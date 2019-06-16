@@ -1,5 +1,5 @@
 +++
-pubtypes = ["paper", "featured"]
+pubtypes = ["paper"]
 projects = ["av"]
 title = "AVFI: Fault Injection for Autonomous Vehicles"
 authors = "Saurabh Jha, Subho S. Banerjee, James Cyriac, Zbigniew T. Kalbarczyk and Ravishankar K. Iyer"
