@@ -1,0 +1,10 @@
+User-agent: *
+{{ range where .Pages "Kind" "ne" "home" }}
+Allow: {{ .RelPermalink }}index.html
+Disallow: {{ .RelPermalink }}
+{{ end }}
+Disallow: /cgi-bin/
+
+Disallow: /img/
+
+Sitemap: {{ "sitemap.xml" | absURL }}

@@ -1,14 +1,14 @@
 {{ define "main" }}
   <h1 class="no-border">{{ .Title }}</h1>
-  <h3>{{ .Params.authors }}</h3>
-  <h4><i>{{ .Params.venue }}</i></h4>
+  {{ with .Params.authors}}<h3>{{ . }}</h3>{{ end }}
+  {{ with .Params.venue }}<h4><i>{{ . }}</i></h4>{{ end }}
+  {{ with .Params.award }}
   <h4 class="award">
     <ul class="comma-seperated">
-      {{ range .Params.award }}
-        <li><i class="fas fa-trophy" aria-hidden="true"></i>&nbsp;{{ . }}</li>
-      {{ end }}
+      {{ range . }} <li><i class="fas fa-trophy" aria-hidden="true"></i>&nbsp;{{ . }}</li> {{ end }}
     </ul>
   </h4>
+  {{ end }}
   <hr style="height:1px; border:none; background-color:#d3d3d3; margin: 0 0 1em 0;">
   <ul class="single-paper-links">
     {{ partial "link_resources.html" . }}
