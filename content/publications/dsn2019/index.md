@@ -6,10 +6,14 @@ authors = "Saurabh Jha, Subho S. Banerjee, Timothy Tsai, Siva K. S. Hari, Michae
 venue = "DSN 2019"
 date = 2019-06-25
 
-# [[links]]
-#   name = "DOI"
-#   icon = "ai ai-ieee"
-#   url = "https://ieeexplore.ieee.org/document/8416518/"
+[[links]]
+  name = "DOI"
+  icon = "ai ai-ieee"
+  url = "https://ieeexplore.ieee.org/document/8809495"
+[[links]]
+  name = "arXiv"
+  icon = "ai ai-arxiv"
+  url = "https://arxiv.org/abs/1907.01051"
 +++
 
 The safety and resilience of fully autonomous vehicles (AVs) is of significant concern, as exemplified by

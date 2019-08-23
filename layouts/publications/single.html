@@ -27,7 +27,7 @@
     <h3 style="margin-top: 2rem;">Related Projects</h3>
     <ul style="margin-top: 0;">
     {{ range .Params.projects }}
-      {{ $project := $.Site.GetPage "/projects" . }}
+      {{ $project := $.Site.GetPage (printf "/projects/%s" .) }}
       <li><a href="{{ $project.Permalink }}">{{ $project.Title }}</a></li>
     {{ end }}
     </ul>

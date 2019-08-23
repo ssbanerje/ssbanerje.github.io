@@ -20,4 +20,4 @@ watch:
 	$(HUGO) server --disableFastRender --buildDrafts
 
 sync: public
-	rsync -avz --delete public/ $(USER)$(HOST):$(DIR)
+	rsync -avz --delete public/ $(USER)@$(HOST):$(DIR)

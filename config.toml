@@ -15,7 +15,7 @@ buildFuture = true
 disableKinds = ["taxonomy", "taxonomyTerm"]
 [taxonomies]
   pubtype = "pubtypes"
-  project = "projects"
+  #project = "projects" # TODO: < This doesnt seem to work?
 
 # Markdown Rendering
 [blackfriday]

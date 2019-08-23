@@ -3,7 +3,6 @@
 {{ if $.IsHome }}
   {{ $num_projects = 3 }}
 {{ end}}
-
 <div class="projects">
   {{ range first $num_projects $projects.ByWeight.Reverse }}
     {{ partial "project-listing.html" . }}

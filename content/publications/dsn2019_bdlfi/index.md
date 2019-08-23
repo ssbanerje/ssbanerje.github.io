@@ -6,10 +6,10 @@ authors = "Subho S. Banerjee, James Cyriac, Saurabh Jha, Zbigniew T. Kalbarczyk 
 venue = "DSN 2019"
 date = 2019-06-24
 
-# [[links]]
-#   name = "DOI"
-#   icon = "ai ai-ieee"
-#   url = "https://ieeexplore.ieee.org/document/8416518/"
+[[links]]
+  name = "DOI"
+  icon = "ai ai-ieee"
+  url = "https://ieeexplore.ieee.org/document/8805761"
 +++
 
 This paper presents *Bayesian Deep Learning based Fault Injection* (BDLFI), a
