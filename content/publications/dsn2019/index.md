@@ -14,6 +14,10 @@ date = 2019-06-25
   name = "arXiv"
   icon = "ai ai-arxiv"
   url = "https://arxiv.org/abs/1907.01051"
+[[links]]
+  name = "CSL News"
+  icon = "far fa-newspaper"
+  url = "https://csl.illinois.edu/news/csl-researchers-develop-platform-scalable-testing-autonomous-vehicle-safety"
 +++
 
 The safety and resilience of fully autonomous vehicles (AVs) is of significant concern, as exemplified by
