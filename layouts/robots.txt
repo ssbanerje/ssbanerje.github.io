@@ -8,3 +8,5 @@ Disallow: /cgi-bin/
 Disallow: /img/
 
 Sitemap: {{ "sitemap.xml" | absURL }}
+Request-rate: 1/1
+Crawl-delay: 5
