@@ -12,10 +12,7 @@ pygmentsStyle = "manni"
 buildFuture = true
 
 # Taxonomies
-disableKinds = ["taxonomy", "taxonomyTerm"]
-[taxonomies]
-  pubtype = "pubtypes"
-  #project = "projects" # TODO: < This doesnt seem to work?
+disableKinds = ["taxonomy","taxonomyTerm"]
 
 # Markdown Rendering
 [blackfriday]

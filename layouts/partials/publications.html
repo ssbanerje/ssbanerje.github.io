@@ -1,6 +1,5 @@
 <!-- Generate list of papers -->
-{{ $ptypes := $.Site.Taxonomies.pubtypes }}
-{{ $papers := ($ptypes.paper | union $ptypes.abstract | union $ptypes.techreport).Pages }}
+{{ $papers := where $.Site.RegularPages "Section" "publications" }}
 {{ if eq $.Kind "page" }}
   <!-- Project Page -->
   {{ $papers = where $papers "Params.projects" "intersect" (slice .Params.Project) }}
