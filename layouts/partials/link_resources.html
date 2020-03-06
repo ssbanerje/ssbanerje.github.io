@@ -1,9 +1,7 @@
-{{ with .Params.links }}
-  {{ range . }}
-    <li>
-      <a href="{{ .url | absURL }}" target="_blank">
-        <i class="{{ .icon }}" aria-hidden="true"></i>&nbsp;{{ .name }}
-      </a>
-    </li>
-  {{ end }}
+{{ range . }}
+  <li>
+    <a href="{{ .url | absURL }}" target="_blank">
+      <i class="{{ .icon }}" aria-hidden="true"></i>&nbsp;{{ .name }}
+    </a>
+  </li>
 {{ end }}
