@@ -38,8 +38,8 @@ disableKinds = ["taxonomy","taxonomyTerm"]
   github = "ssbanerje"
   scholar = "jvV04p3aXgMC"
   dblp = "https://dblp.uni-trier.de/pers/hd/b/Banerjee:Subho_S="
-  orcid = "0000-0001-7187-6569"
-  keybase = "ssbanerje"
+#  orcid = "0000-0001-7187-6569"
+#  keybase = "ssbanerje"
   showFeatured = false # Show only featured papers on homepage
 
 # SEO Stuff

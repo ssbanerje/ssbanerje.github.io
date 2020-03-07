@@ -13,19 +13,25 @@
   <ul class="single-paper-links">
     {{ partial "link_resources" .Params.links }}
     {{ partial "pdf_resources" . }}
-    {{ partial "link_resources" .Params.news }}
   </ul>
 
   {{ .Content }}
 
+  {{ with .Params.news }}
+    <h3>In the News</h3>
+    <ul style="margin-top: 0;">
+      {{ partial "link_resources" . }}
+    </ul>
+  {{ end }}
+
   {{ if .Resources.Match "ref.bib" }}
-    <h3 style="margin: 2rem 0 0 0;">Citation</h3>
+    <h3>Citation</h3>
     {{ $bibstring := printf "```bibtex \n%s \n ```" (trim (.Resources.GetMatch "ref.bib").Content "\n") }}
     {{ $bibstring | markdownify }}
   {{ end }}
 
   {{ if (isset .Params "projects") }}
-    <h3 style="margin-top: 2rem;">Related Projects</h3>
+    <h3>Related Projects</h3>
     <ul style="margin-top: 0;">
     {{ range .Params.projects }}
       {{ $project := $.Site.GetPage (printf "/projects/%s" .) }}

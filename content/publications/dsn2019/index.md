@@ -26,6 +26,18 @@ date = 2019-06-25
   name = "Daily Illini"
   icon = "far fa-newspaper"
   url = "https://dailyillini.com/news/2019/11/07/researchers-look-to-increase-safety-in-self-driving-cars/"
+[[news]]
+  name = "EurekAlert"
+  icon = "far fa-newspaper"
+  url = "https://eurekalert.org/pub_releases/2019-10/uoic-rdp102519.php"
+[[news]]
+  name = "Sina"
+  icon = "far fa-newspaper"
+  url = "http://finance.sina.com.cn/stock/relnews/us/2019-11-01/doc-iicezuev6468108.shtml"
+[[news]]
+  name = "Guancha.cn"
+  icon = "far fa-newspaper"
+  url = "https://www.guancha.cn/industry-science/2019_11_01_523593.shtml"
 +++
 
 The safety and resilience of fully autonomous vehicles (AVs) is of significant concern, as exemplified by
