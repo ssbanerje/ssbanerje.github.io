@@ -32,25 +32,6 @@
   <link rel="stylesheet" href="{{ $css.RelPermalink }}">
   <link rel="preload" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" crossorigin="anonymous" as="style" onload="this.rel='stylesheet'">
   <link rel="preload" href="https://cdn.rawgit.com/jpswalsh/academicons/master/css/academicons.min.css" type="text/css" as="style" onload="this.rel='stylesheet'">
-  {{ $fonts := "" }}
-  {{ range .Site.Data.theme.fonts }}
-    {{ $font := "" }}
-    {{ $weights := ""}}
-    {{ with .textw }}
-      {{ $weights = printf `%d,%d%s` . . "italic"}}
-    {{ end }}
-    {{ with .boldw }}
-      {{ $weights = printf `%s,%d,%d%s` $weights . . "italic"}}
-    {{ end }}
-    {{ if gt (len $weights) 0 }}
-      {{ $font = printf `%s:%s` .name $weights }}
-    {{ else }}
-      {{ $font = printf `%s` .name}}
-    {{ end }}
-    {{ $fonts = printf `%s|%s` $fonts $font}}
-  {{ end }}
-  {{ $fonts = trim $fonts "|" }}
-  <link rel="preload" {{ printf "href=\"//fonts.googleapis.com/css?family=%s\"" $fonts | safeHTMLAttr }} as="style" onload="this.rel='stylesheet'">
 
   {{ if not .Site.IsServer }}
     {{ template "_internal/google_analytics_async.html" . }}

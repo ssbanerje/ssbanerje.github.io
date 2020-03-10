@@ -25,5 +25,5 @@
   boldw = 700
 
 [[fonts]]
-  name = "Menlo"
+  name = "Roboto Mono"
   mono = true

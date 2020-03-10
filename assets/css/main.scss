@@ -1,3 +1,5 @@
+
+
 /* Color Scheme */
 {{ $colors := .Site.Data.theme.colors }}
 $sidebar: (
@@ -27,6 +29,26 @@ $font_weight: (
     {{ with (index (where $fonts $ftype true) 0).boldw }}{{ $ftype }}_bw: {{ . }},{{ end }}
   {{ end }}
 );
+
+{{ $font_string := "" }}
+{{ range $ty := (slice "mono" "body" "title") }}
+  {{ $f := (index (where $fonts $ty true) 0).name }}
+  {{ $w := "" }}
+  {{ with (index (where $fonts $ty true) 0).textw }}
+    {{ $w = printf `%d,%d%s` . . "italic"}}
+  {{ end }}
+  {{ with (index (where $fonts $ty true) 0).boldw }}
+    {{ $w = printf `%s,%d,%d%s` $w . . "italic"}}
+  {{ end }}
+  {{ if gt (len $w) 0 }}
+    {{ $f = printf `%s:%s` $f $w }}
+  {{ end }}
+  {{ $font_string = printf `%s|%s` $font_string $f }}
+{{ end }}
+{{ $font_string = trim $font_string "|" }}
+@import url('https://fonts.googleapis.com/css?family={{ $font_string }}');
+@import url('https://use.fontawesome.com/releases/v5.3.1/css/all.css');
+@import url('https://cdn.rawgit.com/jpswalsh/academicons/master/css/academicons.min.css');
 
 /* Import subfiles */
 @import 'normalize';
