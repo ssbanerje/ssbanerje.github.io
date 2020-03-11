@@ -1,7 +1,7 @@
 # Basic Stuff
 title = "Subho Sankar Banerjee"
 googleAnalytics = "UA-48086103-1"
-baseURL = "http://ssbaner2.cs.illinois.edu"
+baseURL = "https://ssbaner2.cs.illinois.edu"
 languageCode = "en-us"
 enableRobotsTXT = true
 
@@ -33,7 +33,7 @@ disableKinds = ["taxonomy","taxonomyTerm"]
   avatar = "img/me_sq.png"
   email = "ssbaner2@illinois.edu"
   address = "CSL 240"
-  address_url = "http://illinois.edu/map/view?buildingId=148"
+  address_url = "https://illinois.edu/map/view?buildingId=148"
   linkedin = "ssbanerjee"
   github = "ssbanerje"
   scholar = "jvV04p3aXgMC"
