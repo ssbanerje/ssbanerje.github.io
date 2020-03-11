@@ -47,7 +47,7 @@ $font_weight: (
 {{ end }}
 {{ $font_string = trim $font_string "|" }}
 @import url('https://fonts.googleapis.com/css?family={{ $font_string }}');
-@import url('https://use.fontawesome.com/releases/v5.3.1/css/all.css');
+@import url('https://use.fontawesome.com/releases/v5.12.1/css/all.css');
 @import url('https://cdn.rawgit.com/jpswalsh/academicons/master/css/academicons.min.css');
 
 /* Import subfiles */
