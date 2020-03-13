@@ -24,9 +24,9 @@
   {{ range .AlternativeOutputFormats -}}
     {{ printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
   {{ end -}}
-  <link rel="icon" href="{{ "img/favicon.ico" | relURL }}">
-  <link rel="shortcut icon" href="{{ "img/favicon.ico" | relURL }}">
-  <link rel="apple-touch-icon" href="{{ "img/favicon.ico" | relURL }}">
+  <link rel="icon" href="{{ "img/favicon.ico" | absURL }}">
+  <link rel="shortcut icon" href="{{ "img/favicon.ico" | absURL }}">
+  <link rel="apple-touch-icon" href="{{ "img/favicon.ico" | absURL }}">
 
   {{ $css := resources.Get "css/main.scss" | resources.ExecuteAsTemplate "main.scss" . | toCSS | minify }}
   <link rel="stylesheet" href="{{ $css.RelPermalink }}">
