@@ -10,6 +10,10 @@ date = 2018-06-28
   name = "DOI"
   icon = "ai ai-ieee"
   url = "https://ieeexplore.ieee.org/document/8416518/"
+[[links]]
+  name = "Code"
+  icon = "fas fa-code"
+  url = "https://gitlab.engr.illinois.edu/DEPEND/autonomouscars"
 +++
 
 Autonomous vehicle (AV) technology is rapidly becoming a reality on U.S. roads, offering the promise

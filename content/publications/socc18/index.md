@@ -16,4 +16,4 @@ This paper briefly describes the design a system that addresses the challenge of
 distributed data-analytics workloads on heterogeneous processing fabrics (which include CPUs, GPUs,
 FPGAs and ASICs) in cloud-based, dynamic, multi-tenant environments. To demonstrate the capabilities
 of the proposed system, we use a computational genomics workflow that addresses the growing need for
-rapid genomic analyses in hospital environments
+rapid genomic analyses in hospital environments.

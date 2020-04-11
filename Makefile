@@ -2,7 +2,7 @@ HUGO=hugo
 USER=ssbaner2
 HOST=web.illinois.edu
 DIR=public_html/
-FILES=$(shell find assets content data layouts static -type f)
+FILES=$(shell find archetypes assets content data layouts static -type f)
 
 .PHONY: all clean watch sync
 

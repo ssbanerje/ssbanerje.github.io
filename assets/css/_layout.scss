@@ -8,13 +8,6 @@ body {
   height: 100%;
 }
 
-hr {
-  height:1px;
-  border:none;
-  background-color:#d3d3d3;
-  margin: 0 0 1em 0;
-}
-
 .padding { flex-grow: 1; }
 
 #left { background-color: #{map-get($sidebar, background)}; }
@@ -35,12 +28,31 @@ hr {
   padding: 1rem 1rem 4rem 1rem;
   position: relative;
 
-  p { margin-top: 0; }
+  p {
+    margin-top: 0;
+  }
 
   h1 {
     border-bottom: 1px solid #d3d3d3;
 
     &.no-border { border: 0; }
+  }
+
+  .news {
+    list-style: none;
+    padding-left: 1rem;
+    margin-top: 0.4rem;
+
+    li {
+      margin-bottom: 0.75rem;
+
+      &:last-child { margin-bottom: 0; }
+
+      .news-date {
+        display: block;
+        margin-left: -0.75rem;
+      }
+    }
   }
 
   @include mq('phone') { min-height: 70%; }
@@ -70,8 +82,6 @@ footer {
 
     &:last-child { &:after { content: ""; } }
   }
-
-
 }
 
 /* Sidebar */
@@ -127,7 +137,7 @@ footer {
 
 /* Setup text elements */
 p {
-  margin: 0.8rem 0;
+  margin: 0 0 1rem 0;
 
   code {
     background-color: #eaeaea;
@@ -137,10 +147,25 @@ p {
 
 h1, h2 { margin: 0.1rem 0; }
 
-h3, h4 { margin: 2rem 0 0 0; }
+h3, h4 { margin: 1rem 0 0 0; }
 
-.titlesec {
-  h3, h4 { margin: 0.75rem 0 0 0; }
+h3 {
+  h1+& { margin-top: 0; }
+
+  h2+& { margin-top: 0; }
+
+  h3+& { margin-top: 0.5rem; }
+
+  #content { p+& { margin-top: 0; } }
+
+  #content { ul+& { margin-top: 1rem; } }
+}
+
+hr {
+  height:1px;
+  border:none;
+  background-color:#d3d3d3;
+  margin: 0 0 1em 0;
 }
 
 /* Breadcrumb Navigation */
@@ -225,7 +250,7 @@ pre, code {
 /* Publications */
 .paper-list {
   padding: 0;
-  margin-bottom: 3rem;
+  margin: 0 0 2rem 0;
 
   p { margin: 0; }
 
@@ -239,7 +264,6 @@ pre, code {
 
 .inline-paper-links {
   padding: 0;
-  margin-top: 0.25rem;
 
   li {
     list-style: none;
@@ -273,28 +297,25 @@ pre, code {
 
 .project {
   margin: 0.5rem 0;
-  padding: 0.5rem;
-  background-clip: border-box;
-  border: 1px solid rgba(100, 100, 100, .125);
-  border-radius: .25rem;
+  padding: 0.1rem;
   display: flex;
   align-items: center;
   align-content: center;
 
   .image {
-    display: inline-block;
-    vertical-align: middle;
-    position: relative;
+    &:hover { transform: scale(1.01); }
 
     img {
-      width: 180px;
+      width: 10rem;
+      height: 5rem;
       border: 1px solid rgba(100, 100, 100, .225);
+      border-radius: 0.5rem;
     }
   }
 
   .text {
-    vertical-align: middle;
-    padding-left: 1.5rem;
+    padding-left: 1rem;
+    text-align: left;
 
     h4 {
       margin-top: 0;
@@ -309,6 +330,10 @@ pre, code {
       }
     }
   }
+}
+
+.project-content {
+  p+ul { margin-top: -0.9rem; }
 }
 
 .flushtop { margin-top: 0; }

@@ -1,12 +1,14 @@
 {{ define "main" }}
   <div class="titlesec">
     <h1 class="no-border">{{ .Title }}</h1>
-    {{ with .Params.authors}}<h3>{{ . }}</h3>{{ end }}
-    {{ with .Params.venue }}<h3 style="color: #555;"><b><i>{{ . }}</i></b></h3>{{ end }}
+    {{ with .Params.authors}}<h3>{{ . | markdownify }}</h3>{{ end }}
+    {{ with .Params.venue }}<h3 style="color: #7f7f7f;"><i>{{ . | markdownify }}</i></h3>{{ end }}
     {{ with .Params.award }}
     <h4 class="award">
       <ul class="comma-seperated">
-        {{ range . }} <li><i class="fas fa-trophy" aria-hidden="true"></i>&nbsp;{{ . }}</li> {{ end }}
+        {{ range . }}
+          <li><i class="fas fa-trophy" aria-hidden="true"></i>&nbsp;{{ . | markdownify }}</li>
+        {{ end }}
       </ul>
     </h4>
     {{ end }}
@@ -33,7 +35,7 @@
     {{ $bib := .Resources.GetMatch "ref.bib" }}
     <h3>
       Citation
-      <a href="{{ $bib.Permalink }}" style="font-size: 80%"><i class="fas fa-arrow-circle-down"></i></a>
+      <a href="{{ $bib.RelPermalink }}" style="font-size: 80%"><i class="far fa-arrow-alt-circle-down"></i></a>
     </h3>
     {{ $bibstring := printf "```bibtex \n%s \n ```" (trim $bib.Content "\n") }}
     {{ $bibstring | markdownify }}
@@ -44,7 +46,7 @@
     <ul class="flushtop">
     {{ range .Params.projects }}
       {{ $project := $.Site.GetPage (printf "/projects/%s" .) }}
-      <li><a href="{{ $project.Permalink }}">{{ $project.Title }}</a></li>
+      <li><a href="{{ $project.RelPermalink }}">{{ $project.Title }}</a></li>
     {{ end }}
     </ul>
   {{ end }}

@@ -1,20 +1,18 @@
-<div>
-  <p><a class="title" href="{{ .Permalink }}">{{ .Title }}.</a></p>
-  {{ with .Params.authors }}<p class="authors">{{ . | markdownify }}.</p>{{ end }}
+<p><a class="title" href="{{ .Permalink }}">{{ .Title }}.</a></p>
+{{ with .Params.authors }}<p class="authors">{{ . | markdownify }}.</p>{{ end }}
 
-  {{ with .Params.venue }}<p class="venue">{{ . | markdownify }}.</p>{{ end }}
+{{ with .Params.venue }}<p class="venue">{{ . | markdownify }}.</p>{{ end }}
 
-  {{ with .Params.award }}
-    <ul class="award comma-seperated">
-      {{ range . }}
-        <li><i class="fas fa-trophy" aria-hidden="true"></i>&nbsp;{{ . | markdownify }}</li>
-      {{ end }}
-    </ul>
-  {{ end }}
-
-  <ul class="inline-paper-links">
-    {{ partial "link_resources" .Params.links }}
-    {{ partial "pdf_resources" . }}
-    {{ partial "link_resources" .Params.news }}
+{{ with .Params.award }}
+  <ul class="award comma-seperated">
+    {{ range . }}
+      <li><i class="fas fa-trophy" aria-hidden="true"></i>&nbsp;{{ . | markdownify }}</li>
+    {{ end }}
   </ul>
-</div>
+{{ end }}
+
+<ul class="inline-paper-links">
+  {{ partial "link_resources" .Params.links }}
+  {{ partial "pdf_resources" . }}
+  {{ partial "link_resources" .Params.news }}
+</ul>

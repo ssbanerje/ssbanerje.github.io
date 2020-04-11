@@ -17,7 +17,7 @@
       {{ .p1.Title }}
     {{ else }}
       <!-- Intermediate Page -->
-      <a href="{{ .p1.Permalink }}">{{ .p1.Title }}</a>
+      <a href="{{ .p1.RelPermalink }}">{{ .p1.Title }}</a>
     {{ end }}
   </li>
 {{ end }}

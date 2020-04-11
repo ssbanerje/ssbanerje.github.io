@@ -3,15 +3,15 @@ title = "AliEn: The ALICE Environment"
 date = 2010-05-01
 project = "alien"
 description = "Authorization mechanisms for file operations on the WLCG using AliEn gird middleware."
-concluded = "2010"
+concluded = "2012"
 weight = 2
 +++
 
 The [AliEn project][alien] is a Grid middleware solution which offers transparent access to
 distributed computing and storage resources all over the world and constitutes the primary
-production environment for simulation, reconstruction, and analysis of physics data of the
-[ALICE experiment][alice] at [CERN]. In 2010, AliEn was deployed on more than 85 sites all
-over the world which contributed more than 30,000 compute nodes and 200PB of storage.
+production environment for simulation, reconstruction, and analysis of physics data of the [ALICE
+experiment][alice] at [CERN]. In 2010, AliEn was deployed on more than 85 sites all over the world
+which contributed more than 30,000 compute nodes and 200PB of storage.
 
 My work on the AliEn project involved (1) identifying vulnerabilities in the file access protocol,
 and (2) implementing a user authorization mechanism to resolve the discovered vulnerabilities, and

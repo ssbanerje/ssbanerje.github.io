@@ -1,13 +1,29 @@
 {{ define "main" }}
   {{ .Content }}
 
-  <h1>Research</h1>
+  <h3>News</h3>
+	<ul class="news">
+	  {{ range first 5 $.Site.Data.news.news }}
+		<li>
+      <span class="news-date"><i class="fas fa-caret-right"></i>&nbsp;{{ .date }}</span>
+      <span>{{ .text | markdownify }}</span>
+    </li>
+		{{end}}
+	</ul>
 
-  <!--<h2>Projects <span class="subtitle">{{ "[[Full List](/projects/)]" | markdownify }}</span></h2>
-  {{ partial "projects.html" . }}-->
+
+  <h1 style="margin: 1rem 0 0 0; ">Research</h1>
 
   <h2>
-    Recent Publications
+    Projects
+    <span class="subtitle">{{ "[[Full List](/projects/)]" | markdownify }}</span>
+  </h2>
+  {{ partial "projects.html" . }}
+
+  <br>
+
+  <h2>
+    Publications
     <span class="subtitle">{{"[[Full List](/publications/)]" | markdownify }}</span>
   </h2>
   {{ partial "publications_bydate.html" . }}

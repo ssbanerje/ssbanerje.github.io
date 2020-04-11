@@ -7,23 +7,23 @@
   {{ $papers = where $papers "Params.projects" "intersect" (slice .Params.Project) }}
 {{ end }}
 
-<!-- Filter 4 years on homepage -->
+<!-- Filter 5 years on homepage -->
 {{ $num_years := len ($papers.GroupByDate "2006") }}
 {{ if $.IsHome }}
   {{ if .Site.Params.showFeatured }}
     {{ $papers = where $papers ".Params.pubtypes" "intersect" (slice "featured") }}
   {{ end }}
-  {{ $num_years = 4 }}
+  {{ $num_years = 5 }}
 {{ end}}
 
 <!-- Render -->
 {{ range first $num_years ($papers.GroupByDate "2006") }}
+  <h3>{{ .Key }}</h3>
   <ul class="paper-list">
-    <h3>{{ .Key }}</h3>
     {{ $year := .Key}}
     {{ range sort $papers ".Params.date" "desc" }}
       {{ if eq (dateFormat "2006" .Params.Date) $year }}
-        <li>{{ partial "paper-listing.html" . }}</li>
+        <li class="paper">{{ partial "paper-listing.html" . }}</li>
       {{ end }}
     {{ end }}
   </ul>

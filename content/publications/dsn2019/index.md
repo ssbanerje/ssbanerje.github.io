@@ -40,11 +40,11 @@ date = 2019-06-25
   url = "https://www.guancha.cn/industry-science/2019_11_01_523593.shtml"
 +++
 
-The safety and resilience of fully autonomous vehicles (AVs) is of significant concern, as exemplified by
-several headline making accidents. While AV development today inherently involves verification, validation
-and testing, end-to-end assessment of AV systems under accidental faults in realistic driving scenarios is
-largely unexplored. This paper presents DriveFI, a machine learning-based fault injection engine, which can
-mine situations and faults that maximally impact AV safety, demonstrated on two industry-grade AV
-technology stacks (from NVIDIA and Baidu). For example, DriveFI finds 561 safety critical faults in less
-than 4 hours. In comparison random injection experiments executed over several weeks could not find any safety
-critical faults.
+The safety and resilience of fully autonomous vehicles (AVs) is of significant concern, as
+exemplified by several headline making accidents. While AV development today inherently involves
+verification, validation and testing, end-to-end assessment of AV systems under accidental faults in
+realistic driving scenarios is largely unexplored. This paper presents DriveFI, a machine
+learning-based fault injection engine, which can mine situations and faults that maximally impact AV
+safety, demonstrated on two industry-grade AV technology stacks (from NVIDIA and Baidu). For
+example, DriveFI finds 561 safety critical faults in less than 4 hours. In comparison random
+injection experiments executed over several weeks could not find any safety critical faults.

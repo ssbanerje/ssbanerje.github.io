@@ -20,13 +20,13 @@
 
   <title>{{ if not .IsHome }}{{ title .Title }} | {{ end }}{{ .Site.Title }}</title>
 
-  <link rel="canonical" href="{{ .Permalink }}">
+  <link rel="canonical" href="{{ .RelPermalink }}">
   {{ range .AlternativeOutputFormats -}}
-    {{ printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
+    {{ printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .RelPermalink $.Site.Title | safeHTML }}
   {{ end -}}
-  <link rel="icon" href="{{ "img/favicon.ico" | absURL }}">
-  <link rel="shortcut icon" href="{{ "img/favicon.ico" | absURL }}">
-  <link rel="apple-touch-icon" href="{{ "img/favicon.ico" | absURL }}">
+  <link rel="icon" href="{{ "img/favicon.ico" | relURL }}">
+  <link rel="shortcut icon" href="{{ "img/favicon.ico" | relURL }}">
+  <link rel="apple-touch-icon" href="{{ "img/favicon.ico" | relURL }}">
 
   {{ $css := resources.Get "css/main.scss" | resources.ExecuteAsTemplate "main.scss" . | toCSS | minify }}
   <link rel="stylesheet" href="{{ $css.RelPermalink }}">

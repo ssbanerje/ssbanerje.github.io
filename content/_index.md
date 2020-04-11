@@ -7,15 +7,16 @@ weight = 1
   priority = 1.0
 +++
 
-I am a PhD candidate in [Computer Science at UIUC][cs@uiuc] advised by [Ravishankar K. Iyer][rkiyer] in the [DEPEND][]
-research group at the [Coordinated Science Laboratory][csl]. My research focuses on the design of workload optimized
-computing systems for data analytics applications (particularly in computational genomics and precision medicine)
-using cross-layer optimizations across the computing stack: application, runtime, OS and architecture layers.
+I am a PhD candidate in [Computer Science at UIUC][cs@uiuc] advised by [Ravishankar K. Iyer][rkiyer]
+in the [DEPEND][] research group at the [Coordinated Science Laboratory][csl]. My research focuses
+on the design of workload optimized computing systems for data analytics applications (particularly
+in computational genomics and precision medicine) using cross-layer optimizations across the
+computing stack: application, runtime, OS and architecture layers.
 
 In past summers I have interned at [IBM Research][ibm], [Microsoft Research][msr], and [CERN][].
 
 [cs@uiuc]: https://cs.illinois.edu
-[rkiyer]: http://www.ece.illinois.edu/directory/profile.asp?rkiyer
+[rkiyer]: https://ece.illinois.edu/about/directory/faculty/rkiyer
 [depend]: http://publish.illinois.edu/csldepend/
 [csl]: http://csl.illinois.edu/
 [cern]: https://cern.ch

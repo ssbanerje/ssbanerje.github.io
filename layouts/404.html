@@ -73,7 +73,7 @@
     <ul>
       {{ range first 5 (sort (where $.Site.RegularPages "Section" "publications") ".Params.date" "desc") }}
         <li>
-            <a href="{{ .Permalink }}">{{ .Title }}.</a>
+            <a href="{{ .RelPermalink }}">{{ .Title }}.</a>
             {{ with .Params.venue }}{{ . | markdownify }}.{{ end }}
         </li>
       {{ end }}

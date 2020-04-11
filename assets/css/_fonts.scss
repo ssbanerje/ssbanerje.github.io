@@ -6,19 +6,22 @@
 html {
   font-family: #{map-get($font, body)}, sans-serif;
   @include font_config(1rem, #{map-get($content, text)}, #{map-get($font_weight, body_tw)}, 1.6);
+  text-align: justify;
 }
 
 b, strong, h1, h2, h3, h4 { font-weight: #{map-get($font_weight, body_bw)}; }
+
+h1, h2, h3, h4 { text-align: left; }
 
 p {
   hyphens: auto;
   -webkit-hyphens: auto;
 }
 
-footer { font-size: 80%; }
+figure, footer { font-size: 80%; }
 
 code, pre {
-  font-family: #{map-get($font, mono)}, Consolas, monospace, sans-serif;
+  font-family: #{map-get($font, mono)}, monospace, sans-serif;
   @include font_config(90%);
   white-space: pre-wrap;
 
@@ -30,7 +33,7 @@ code, pre {
 }
 
 /* Sidebar */
-[id="sidebar"] {
+#sidebar {
   color: #{map-get($sidebar, text)};
 
   a { @include link_style(#{map-get($sidebar, link)}, #{map-get($sidebar, hover)}); }
@@ -54,7 +57,7 @@ code, pre {
 }
 
 /* Main Content */
-[id="content"] {
+#content {
   a { @include link_style(#{map-get($content, link)}, #{map-get($content, hover)}); }
 
   .subtitle { font-size: 60%; }
@@ -89,4 +92,20 @@ code, pre {
 
     h4 { font-size: 110%; }
   }
+}
+
+.titlesec {
+  text-align: left;
+  h1 { line-height: 1.1; }
+}
+
+.news {
+  text-align: left;
+}
+
+.news-date {
+  font-size: 80%;
+  color: #666666;
+  text-align: left;
+  line-height: 1.2;
 }

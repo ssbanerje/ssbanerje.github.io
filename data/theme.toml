@@ -25,5 +25,5 @@
   boldw = 700
 
 [[fonts]]
-  name = "Roboto Mono"
+  name = "Inconsolata"
   mono = true

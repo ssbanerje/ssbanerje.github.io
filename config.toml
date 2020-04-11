@@ -33,7 +33,7 @@ buildFuture = true
     codeFences = true
     guessSyntax = true
     lineNoStart = 1
-    lineNos = true
+    lineNos = false
     lineNumbersInTable = true
     noClasses = true
     style = "manni"
@@ -45,7 +45,7 @@ buildFuture = true
 
 # Site parameters
 [params]
-  showFeatured = false # Show only featured papers on homepage
+  showFeatured = true
 
 # SEO Stuff
 [sitemap]

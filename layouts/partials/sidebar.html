@@ -1,9 +1,9 @@
 <div id="avatar">
-  <img src="{{ .Site.Data.personal.avatar | absURL }}" alt="Avatar" />
+  <img src="{{ .Site.Data.personal.avatar | relURL }}" alt="Avatar" />
 </div>
 
 <div class="sidebar-content">
-  <h1><a href="{{ "/" | absURL }}">{{ .Site.Data.personal.name }}</a></h1>
+  <h1><a href="{{ "/" | relURL }}">{{ .Site.Data.personal.name }}</a></h1>
   <p>
     {{ .Site.Data.personal.position }}<br>
     {{ .Site.Data.personal.department }}<br>

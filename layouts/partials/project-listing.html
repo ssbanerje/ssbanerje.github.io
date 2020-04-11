@@ -1,16 +1,16 @@
 <project>
   <div class="project">
-    <a href="{{ .Permalink }}" class="image hover-overlay">
+    <a href="{{ .RelPermalink }}" class="image hover-overlay">
       {{ $image := (.Resources.ByType "image").GetMatch "*featured*" }}
       {{ $image_src := printf `https://dummyimage.com/360x200/141f33/fff&text=%s` (title .Title | urlize) }}
       {{ if $image }}
-        {{ $image_src = $image.Permalink }}
+        {{ $image_src = $image.RelPermalink }}
       {{ end }}
       <img src="{{ $image_src }}" alt="">
     </a>
     <div class="text">
       <h4>
-        <a href="{{ .Permalink }}">{{ title .Title }}</a>
+        <a href="{{ .RelPermalink }}">{{ .Title }}</a>
         {{ with .Params.concluded }}<span class="label">Concluded in {{ . }}</span>{{ end }}
       </h4>
       <div class="desription">
