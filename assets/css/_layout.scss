@@ -8,6 +8,13 @@ body {
   height: 100%;
 }
 
+hr {
+  height:1px;
+  border:none;
+  background-color:#d3d3d3;
+  margin: 0 0 1em 0;
+}
+
 .padding { flex-grow: 1; }
 
 #left { background-color: #{map-get($sidebar, background)}; }
@@ -45,6 +52,26 @@ footer {
   position: absolute;
   bottom: 0;
   margin-bottom: 0.5rem;
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: inline-block;
+  }
+
+  li {
+    display: inline;
+
+    &:after {
+      content: "\2022";
+      padding: 0 5px;
+    }
+
+    &:last-child { &:after { content: ""; } }
+  }
+
+
 }
 
 /* Sidebar */
@@ -108,9 +135,13 @@ p {
   }
 }
 
-h1, h2 { margin: 0.5rem 0; }
+h1, h2 { margin: 0.1rem 0; }
 
-h3 { margin: 2rem 0 0 0; }
+h3, h4 { margin: 2rem 0 0 0; }
+
+.titlesec {
+  h3, h4 { margin: 0.75rem 0 0 0; }
+}
 
 /* Breadcrumb Navigation */
 .breadcrumbs {
@@ -194,7 +225,7 @@ pre, code {
 /* Publications */
 .paper-list {
   padding: 0;
-  margin: 0 0 3rem 0;
+  margin-bottom: 3rem;
 
   p { margin: 0; }
 
@@ -224,13 +255,16 @@ pre, code {
 
 .single-paper-links {
   padding: 0;
+  margin: 0.5rem 0;
 
   li {
-    padding: 0 0.75rem;
     list-style: none;
     display: inline;
+    padding: 0 1rem;
 
-    &:first-child { padding-left: 0; }
+    &:first-child {
+      padding-left: 0;
+    }
   }
 }
 
@@ -276,3 +310,5 @@ pre, code {
     }
   }
 }
+
+.flushtop { margin-top: 0; }

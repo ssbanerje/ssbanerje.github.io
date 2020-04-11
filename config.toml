@@ -5,41 +5,46 @@ baseURL = "https://ssbaner2.cs.illinois.edu"
 languageCode = "en-us"
 enableRobotsTXT = true
 
-# Render settings
-pygmentsUseClassic=true
-pygmentsCodeFences = true
-pygmentsStyle = "manni"
-buildFuture = true
-
 # Taxonomies
 disableKinds = ["taxonomy","taxonomyTerm"]
 
-# Markdown Rendering
-[blackfriday]
-  smartypants	= true
-  fractions = true
-  smartDashes = true
-  plainIDAnchors = true
-  latexDashes = true
-  hrefTargetBlank = true
+# Markdown & Rendering
+buildFuture = true
+[markup]
+  defaultMarkdownHandler = "goldmark"
+  [markup.goldmark]
+    [markup.goldmark.extensions]
+      definitionList = true
+      footnote = true
+      linkify = true
+      strikethrough = true
+      table = true
+      taskList = true
+      typographer = true
+    [markup.goldmark.parser]
+      attribute = true
+      autoHeadingID = true
+      autoHeadingIDType = "github"
+    [markup.goldmark.renderer]
+      hardWraps = false
+      unsafe = false
+      xhtml = false
+  [markup.highlight]
+    codeFences = true
+    guessSyntax = true
+    lineNoStart = 1
+    lineNos = true
+    lineNumbersInTable = true
+    noClasses = true
+    style = "manni"
+    tabWidth = 4
+  [markup.tableOfContents]
+    endLevel = 3
+    ordered = false
+    startLevel = 2
 
 # Site parameters
 [params]
-  name = "Subho Sankar Banerjee"
-  description = "Subho Banerjee's Homepage"
-  position = "PhD Candidate"
-  department = "Computer Science"
-  univeristy = "University of Illinois at Urbana-Champaign"
-  avatar = "img/me_sq.png"
-  email = "ssbaner2@illinois.edu"
-  address = "CSL 240"
-  address_url = "https://illinois.edu/map/view?buildingId=148"
-  linkedin = "ssbanerjee"
-  github = "ssbanerje"
-  scholar = "jvV04p3aXgMC"
-  dblp = "https://dblp.uni-trier.de/pers/hd/b/Banerjee:Subho_S="
-#  orcid = "0000-0001-7187-6569"
-#  keybase = "ssbanerje"
   showFeatured = false # Show only featured papers on homepage
 
 # SEO Stuff

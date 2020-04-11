@@ -5,10 +5,10 @@
   {{ printf "<!--Hugo Build Date: %s-->" hugo.BuildDate | safeHTML }}
   {{ printf "<!--Hugo Commit Hash: %s-->" hugo.CommitHash | safeHTML }}
   {{ hugo.Generator }}
-  <meta name="author" content="{{ .Site.Params.name }}" />
+  <meta name="author" content="{{ .Site.Data.personal.name }}" />
   {{ $description := "" }}
   {{ if .IsHome }}
-    {{ $description = .Site.Params.Description }}
+    {{ $description = .Site.Data.personal.description }}
   {{ else }}
     {{ $description = .Params.title }}
   {{ end }}

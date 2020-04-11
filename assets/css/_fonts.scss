@@ -45,9 +45,11 @@ code, pre {
   ul.icon-list {
     font-size: 150%;
 
-    @include mq('tablet') { font-size: 140%; }
+    @include mq('tablet') { font-size: 120%; }
 
-    @include mq('tablet-wide') { font-size: 150%; }
+    @include mq('tablet-wide') { font-size: 140%; }
+
+    li:hover { transform: scale(1.1); }
   }
 }
 

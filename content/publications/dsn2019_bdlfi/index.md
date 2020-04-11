@@ -14,7 +14,7 @@ date = 2019-06-24
 
 This paper presents *Bayesian Deep Learning based Fault Injection* (BDLFI), a
 novel methodology for fault injection in neural networks (NNs) or more generally
-differentiable programs. BFI uses (1) Bayesian Deep Learning to model the
+differentiable programs. BDLFI uses (1) Bayesian Deep Learning to model the
 propagation of faults, and (2) Markov Chain Monte Carlo inference to quantify
 the effect of faults on the outputs of a NN. We demonstrate BDLFI on two
 representative networks and find that our results challenge pre-existing results

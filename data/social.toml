@@ -1,0 +1,28 @@
+[[link]]
+  link = "mailto:ssbaner2@illinois.edu"
+  icon = "fas fa-envelope-open fa-fw"
+
+[[link]]
+  link = "https://illinois.edu/map/view?buildingId=148"
+  icon = "fas fa-map-marker-alt fa-fw"
+  alt = "CSL 240"
+
+[[link]]
+  link = "https://scholar.google.com/citations?user=jvV04p3aXgMC"
+  icon = "ai ai-google-scholar fa-fw"
+
+[[link]]
+  link = "https://dblp.uni-trier.de/pers/hd/b/Banerjee:Subho_S="
+  icon = "ai ai-dblp fa-fw"
+
+[[link]]
+  link = "https://www.linkedin.com/in/ssbanerjee"
+  icon = "fab fa-linkedin fa-fw"
+
+[[link]]
+  link = "https://github.com/ssbanerje"
+  icon = "fab fa-github fa-fw"
+
+[[link]]
+  link = "https://keybase.io/ssbanerje"
+  icon = "fab fa-keybase fa-fw"

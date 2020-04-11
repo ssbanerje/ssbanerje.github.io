@@ -1,38 +1,47 @@
 {{ define "main" }}
-  <h1 class="no-border">{{ .Title }}</h1>
-  {{ with .Params.authors}}<h3>{{ . }}</h3>{{ end }}
-  {{ with .Params.venue }}<h4><i>{{ . }}</i></h4>{{ end }}
-  {{ with .Params.award }}
-  <h4 class="award">
-    <ul class="comma-seperated">
-      {{ range . }} <li><i class="fas fa-trophy" aria-hidden="true"></i>&nbsp;{{ . }}</li> {{ end }}
-    </ul>
-  </h4>
-  {{ end }}
-  <hr style="height:1px; border:none; background-color:#d3d3d3; margin: 0 0 1em 0;">
+  <div class="titlesec">
+    <h1 class="no-border">{{ .Title }}</h1>
+    {{ with .Params.authors}}<h3>{{ . }}</h3>{{ end }}
+    {{ with .Params.venue }}<h3 style="color: #555;"><b><i>{{ . }}</i></b></h3>{{ end }}
+    {{ with .Params.award }}
+    <h4 class="award">
+      <ul class="comma-seperated">
+        {{ range . }} <li><i class="fas fa-trophy" aria-hidden="true"></i>&nbsp;{{ . }}</li> {{ end }}
+      </ul>
+    </h4>
+    {{ end }}
+  </div>
+
+  <hr>
+
   <ul class="single-paper-links">
     {{ partial "link_resources" .Params.links }}
     {{ partial "pdf_resources" . }}
   </ul>
 
+  <h3>Abstract</h3>
   {{ .Content }}
 
   {{ with .Params.news }}
     <h3>In the News</h3>
-    <ul style="margin-top: 0;">
+    <ul class="flushtop">
       {{ partial "link_resources" . }}
     </ul>
   {{ end }}
 
   {{ if .Resources.Match "ref.bib" }}
-    <h3>Citation</h3>
-    {{ $bibstring := printf "```bibtex \n%s \n ```" (trim (.Resources.GetMatch "ref.bib").Content "\n") }}
+    {{ $bib := .Resources.GetMatch "ref.bib" }}
+    <h3>
+      Citation
+      <a href="{{ $bib.Permalink }}" style="font-size: 80%"><i class="fas fa-arrow-circle-down"></i></a>
+    </h3>
+    {{ $bibstring := printf "```bibtex \n%s \n ```" (trim $bib.Content "\n") }}
     {{ $bibstring | markdownify }}
   {{ end }}
 
   {{ if (isset .Params "projects") }}
     <h3>Related Projects</h3>
-    <ul style="margin-top: 0;">
+    <ul class="flushtop">
     {{ range .Params.projects }}
       {{ $project := $.Site.GetPage (printf "/projects/%s" .) }}
       <li><a href="{{ $project.Permalink }}">{{ $project.Title }}</a></li>
