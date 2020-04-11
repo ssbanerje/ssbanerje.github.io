@@ -46,6 +46,10 @@
           outline: 0;
           color: #222;
       }
+
+      ul, p {
+        margin: 0;
+      }
   </style>
 
   <div>
@@ -59,9 +63,20 @@
       It looks like this was the result of either:
     </p>
 
-    <ul style="margin-top: 0;">
+    <ul>
         <li>a mistyped address</li>
         <li>an out-of-date link</li>
+    </ul>
+
+    <!-- Generate list of papers -->
+    <h3> Perhaps you are looking for one of these:</h3>
+    <ul>
+      {{ range first 5 (sort (where $.Site.RegularPages "Section" "publications") ".Params.date" "desc") }}
+        <li>
+            <a href="{{ .Permalink }}">{{ .Title }}.</a>
+            {{ with .Params.venue }}{{ . | markdownify }}.{{ end }}
+        </li>
+      {{ end }}
     </ul>
 
     <script>
