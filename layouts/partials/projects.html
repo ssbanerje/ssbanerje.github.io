@@ -1,7 +1,7 @@
 {{ $projects := where $.Site.RegularPages "Section" "projects" }}
 {{ $num_projects := len $projects }}
 {{ if $.IsHome }}
-  {{ $num_projects = 3 }}
+  {{ $num_projects = 2 }}
 {{ end}}
 <div class="projects">
   {{ range first $num_projects $projects.ByWeight.Reverse }}

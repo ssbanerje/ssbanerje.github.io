@@ -33,8 +33,8 @@ attacks as accidental/random to evade detection, yet cause serious safety/reliab
 (e.g., an accident of an autonomous vehicle). The attack targets the use of adversarial examples in
 the multiple object tracking process of the AV's perception pipeline.
 
-We have used BFI and RoboTack on two industry-grade AV technology stacks: *[Drive]* (from NVIDIA) and
-*[Apollo]* (from Baidu).
+We have used BFI and RoboTack on two industry-grade AV technology stacks: NVIDIA's *[Drive Platform][Drive]*
+and Baidu's *[Apollo]*.
 
 
 [LogDriver]: {{< relref "/publications/dsn2018/index.md" >}}
