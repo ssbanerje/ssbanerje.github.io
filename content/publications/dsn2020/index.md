@@ -1,7 +1,7 @@
 +++
 pubtypes = ["paper", "featured"]
 projects = ["av"]
-title = "ML-driven Malware for Targeting AV Safety"
+title = "ML-driven Malware that Targets AV Safety"
 authors = "Saurabh Jha, Shengkun Cui, Subho S. Banerjee, James Cyriac, Timothy Tsai, Zbigniew T. Kalbarczyk and Ravishankar K. Iyer"
 venue = "DSN 2020"
 date = 2020-06-25
@@ -13,7 +13,7 @@ date = 2020-06-25
 [[links]]
   name = "arXiv"
   icon = "ai ai-arxiv"
-  url = "#"
+  url = "https://arxiv.org/abs/2004.13004"
 +++
 
 Ensuring the safety of autonomous vehicles (AVs) is critical for their mass deployment and public

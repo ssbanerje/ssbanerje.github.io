@@ -2,8 +2,6 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  {{ printf "<!--Hugo Build Date: %s-->" hugo.BuildDate | safeHTML }}
-  {{ printf "<!--Hugo Commit Hash: %s-->" hugo.CommitHash | safeHTML }}
   {{ hugo.Generator }}
   <meta name="author" content="{{ .Site.Data.personal.name }}" />
   {{ $description := "" }}
@@ -28,8 +26,10 @@
   <link rel="shortcut icon" href="{{ "img/favicon.ico" | relURL }}">
   <link rel="apple-touch-icon" href="{{ "img/favicon.ico" | relURL }}">
 
-  {{ $css := resources.Get "css/main.scss" | resources.ExecuteAsTemplate "main.scss" . | toCSS | minify }}
-  <link rel="stylesheet" href="{{ $css.RelPermalink }}">
+  {{ $normalize := resources.Get "css/normalize.css" | minify }}
+  <link rel="stylesheet" href="{{ $normalize.RelPermalink }}">
+  {{ $style := resources.Get "scss/main.scss" | resources.ExecuteAsTemplate "css/style_scss.css" . | toCSS | minify }}
+  <link rel="stylesheet" href="{{ $style.RelPermalink }}">
   <link rel="preload" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" crossorigin="anonymous" as="style" onload="this.rel='stylesheet'">
   <link rel="preload" href="https://cdn.rawgit.com/jpswalsh/academicons/master/css/academicons.min.css" type="text/css" as="style" onload="this.rel='stylesheet'">
 
