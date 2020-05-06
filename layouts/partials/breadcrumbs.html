@@ -1,6 +1,8 @@
-<ol  class="breadcrumbs">
-  {{ template "breadcrumbnav" (dict "p1" . "p2" .) }}
-</ol>
+<nav class="breadcrumb" aria-label="breadcrumbs">
+  <ul>
+    {{ template "breadcrumbnav" (dict "p1" . "p2" .) }}
+  </ul>
+</nav>
 
 {{ define "breadcrumbnav" }}
   {{ if .p1.Parent }}
@@ -8,16 +10,16 @@
   {{ else if not .p1.IsHome }}
     {{ template "breadcrumbnav" (dict "p1" .p1.Site.Home "p2" .p2 )  }}
   {{ end }}
-  <li>
-    {{ if .p1.IsHome }}
-      <!-- Home Icon -->
-      <a href="/"><i class="fas fa-home"></i></a>
-    {{ else if eq .p1 .p2 }}
-      <!-- Current page -->
-      {{ .p1.Title }}
-    {{ else }}
-      <!-- Intermediate Page -->
-      <a href="{{ .p1.RelPermalink }}">{{ .p1.Title }}</a>
-    {{ end }}
-  </li>
+
+  {{ if .p1.IsHome }}
+    <!-- Home Icon -->
+    <li><a href="/"><span class="icon is-small"><i class="fas fa-home" aria-hidden="true"></i></span><span>Home</span></a></li>
+  {{ else if eq .p1 .p2 }}
+    <!-- Current page -->
+    <li class="is-active"><a href="#" aria-current="page">This Page</a></li>
+
+  {{ else }}
+    <!-- Intermediate Page -->
+    <li><a href="{{ .p1.RelPermalink }}">{{ .p1.Title }}</a></li>
+  {{ end }}
 {{ end }}

@@ -4,26 +4,30 @@
 {{ partial "header.html" . }}
 
 <body>
-  <div class="padding" id="left"></div>
-
-  <div id="container">
-    <div id="sidebar">
+  <div class="columns is-gapless is-marginless is-min-full-height">
+    <div class="column is-one-quarter" id="sidebar">
+      <br>
       {{ partial "sidebar.html" . }}
     </div>
-    <div id="content">
-      {{ if (and (not .IsHome) (ne .Kind "404")) }}
-        {{ partial "breadcrumbs.html" . }}
-      {{ end }}
 
-      {{ block "main" . }}
-        <!-- Main Block content -->
-      {{ end }}
-
-      {{ partial "footer.html" . }}
+    <div class="column has-text-justified">
+      <div id="content">
+        {{ if (and (not .IsHome) (ne .Kind "404")) }}
+          <section class="section">
+            {{ partial "breadcrumbs.html" . }}
+          </section>
+        {{ end }}
+        {{ block "main" . }}
+          <!-- Main Block content -->
+        {{ end }}
+      </div>
+      <section class="section">
+        {{ partial "footer.html" . }}
+      </section>
     </div>
-  </div>
 
-  <div class="padding" id="right"></div>
+    <div class="column is-1" id="right"></div>
+  </div>
 
   {{ partial "js_footer.html" . }}
 </body>

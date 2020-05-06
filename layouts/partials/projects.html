@@ -1,10 +1,27 @@
 {{ $projects := where $.Site.RegularPages "Section" "projects" }}
-{{ $num_projects := len $projects }}
-{{ if $.IsHome }}
-  {{ $num_projects = 2 }}
-{{ end}}
-<div class="projects">
-  {{ range first $num_projects $projects.ByWeight.Reverse }}
-    {{ partial "project-listing.html" . }}
-  {{ end }}
+<div class="title is-ancestor">
+  <div class="tile is-vertical">
+    <!-- Main Projects -->
+    {{ range where $projects.ByWeight.Reverse ".Params.concluded" false }}
+      <div class="tile is-parent">
+        <article class="tile is-child box">
+          {{ partial "project-listing.html" . }}
+        </article>
+      </div>
+    {{ end }}
+    <!-- Concluded Projects -->
+    {{ range $i, $v := where $projects.ByWeight.Reverse ".Params.concluded" "!=" "nil" }}
+      {{ if (modBool $i 2) }}
+        <div class="tile">
+      {{ end }}
+      <div class="tile is-parent is-6">
+        <article class="tile is-child box">
+          {{ partial "project-listing.html" $v }}
+        </article>
+      </div>
+      {{ if not (modBool $i 2) }}
+        </div>
+      {{ end }}
+    {{ end }}
+  </div>
 </div>

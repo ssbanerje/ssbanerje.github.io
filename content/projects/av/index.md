@@ -4,6 +4,7 @@ date = 2017-10-01
 project = "av"
 description = "Characterizing and assessing the resilience of self-driving vehicles."
 weight = 9
+concluded = false
 +++
 
 The emergence of ML-driven systems and their ubiquitous adoption means that their trustworthiness

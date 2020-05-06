@@ -48,7 +48,23 @@ $font_weight: (
 @import url('https://use.fontawesome.com/releases/v5.12.1/css/all.css');
 @import url('https://cdn.rawgit.com/jpswalsh/academicons/master/css/academicons.min.css');
 
-/* Import subfiles */
+// Setup Bulma
+@import 'bulma_config';
+
+// Import Bulma
+@import 'bulma/bulma.sass';
+
+// Import subfiles
 @import 'mixins';
-@import 'fonts';
+
+// Import styles for listing news
+@import 'news';
+
+// Import styles for the sidebar
+@import 'sidebar';
+
+// Import styles for listing publications
+@import 'papers';
+
+// Import styles for basic layout
 @import 'layout';

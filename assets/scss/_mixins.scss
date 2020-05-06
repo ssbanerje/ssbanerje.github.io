@@ -27,29 +27,6 @@
   &:hover { color: $hover; }
 }
 
-// Media queries
-$breakpoints: (
-  "phone":        400px,
-  "phone-wide":   480px,
-  "phablet":      560px,
-  "tablet-small": 640px,
-  "tablet":       768px,
-  "tablet-wide":  1024px,
-  "desktop":      1248px,
-  "desktop-wide": 1440px
-);
-@mixin mq($width, $type: min) {
-  @if map_has_key($breakpoints, $width) {
-    $width: map_get($breakpoints, $width);
-    @if $type == max {
-      $width: $width - 1px;
-    }
-    @media only screen and (#{$type}-width: $width) {
-      @content;
-    }
-  }
-}
-
 // Use Font Awesome Icons in divs
 @mixin fontawesome_icon($content, $size: false, $color: false, $lh: false) {
   font-family: 'Font Awesome\ 5 Free';
@@ -60,14 +37,15 @@ $breakpoints: (
   @if $lh { line-height: $lh; }
 }
 
-// Clearfix
-%clearfix {
-  *zoom: 1;
-  &:before, &:after {
-    content: " ";
-    display: table;
-  }
-  &:after {
-    clear: both;
-  }
+// Inline lists
+%inline-list {
+  list-style: none;
+
+  li { display: inline-block; }
+}
+
+%comma-seperated-list {
+  @extend %inline-list;
+
+  li+li:before { content: ", "; }
 }

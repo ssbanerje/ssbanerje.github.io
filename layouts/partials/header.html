@@ -26,8 +26,6 @@
   <link rel="shortcut icon" href="{{ "img/favicon.ico" | relURL }}">
   <link rel="apple-touch-icon" href="{{ "img/favicon.ico" | relURL }}">
 
-  {{ $normalize := resources.Get "css/normalize.css" | minify }}
-  <link rel="stylesheet" href="{{ $normalize.RelPermalink }}">
   {{ $style := resources.Get "scss/main.scss" | resources.ExecuteAsTemplate "css/style_scss.css" . | toCSS | minify }}
   <link rel="stylesheet" href="{{ $style.RelPermalink }}">
   <link rel="preload" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" crossorigin="anonymous" as="style" onload="this.rel='stylesheet'">

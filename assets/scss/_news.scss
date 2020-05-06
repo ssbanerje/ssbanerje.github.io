@@ -1,0 +1,20 @@
+/**
+ * News listing on main page
+ */
+
+.news {
+  padding-left: 1rem;
+  list-style: none;
+  margin-bottom: 2rem;
+
+  li {
+    margin-bottom: 1rem;
+
+    .date {
+      display: block;
+      margin-left: -0.75rem;
+      color: #666666;
+      text-align: left;
+    }
+  }
+}

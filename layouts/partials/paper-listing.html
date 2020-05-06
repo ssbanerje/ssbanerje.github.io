@@ -1,18 +1,30 @@
-<p><a class="title" href="{{ .Permalink }}">{{ .Title }}.</a></p>
-{{ with .Params.authors }}<p class="authors">{{ . | markdownify }}.</p>{{ end }}
+<p>
+  <span><a href="{{ .Permalink }}">{{ .Title }}.</a></span>
+  <br>
 
-{{ with .Params.venue }}<p class="venue">{{ . | markdownify }}.</p>{{ end }}
+  {{ with .Params.authors }}
+    <span class="authors">{{ . | markdownify }}.</span>
+    <br>
+  {{ end }}
+
+  {{ with .Params.venue }}
+    <span class="venue">{{ . | markdownify }}.</span>
+    <br>
+  {{ end }}
+</p>
 
 {{ with .Params.award }}
-  <ul class="award comma-seperated">
+  <ul class="awards has-text-left">
     {{ range . }}
-      <li><i class="fas fa-trophy" aria-hidden="true"></i>&nbsp;{{ . | markdownify }}</li>
+      <li>
+        <span class="icon"><i class="fas fa-trophy" aria-hidden="true"></i></span>&nbsp;<b>{{ . | markdownify }}</b>
+      </li>
     {{ end }}
   </ul>
 {{ end }}
 
-<ul class="inline-paper-links">
-  {{ partial "pdf_resources" . }}
+<ul class="paper-links has-text-left">
   {{ partial "link_resources" .Params.links }}
+  {{ partial "pdf_resources" . }}
   {{ partial "link_resources" .Params.news }}
 </ul>

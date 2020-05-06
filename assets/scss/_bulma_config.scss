@@ -1,0 +1,21 @@
+$section-padding: 0.25rem;
+$footer-background-color: #{map-get($content, background)};
+$footer-padding: 0.25rem;
+
+$size-1: 2.5rem;
+$size-2: 2rem;
+$size-3: 1.5rem;
+$size-4: 1.25rem;
+$size-5: 1rem;
+$size-6: 0.75rem;
+$size-7: 0.5rem;
+$size-normal: 1.25rem;
+
+$family-sans-serif: #{map-get($font, body)};
+$family-monospace: #{map-get($font, mono)};
+$family-primary: #{map-get($font, body)};
+$family-secondary: #{map-get($font, body)};
+$family-code: #{map-get($font, mono)};
+
+$link: #{map-get($content, link)};
+$link-hover: #{map-get($content, hover)};

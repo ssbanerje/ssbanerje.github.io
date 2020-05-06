@@ -1,53 +1,66 @@
 {{ define "main" }}
-  <div class="titlesec">
-    <h1 class="no-border">{{ .Title }}</h1>
-    {{ with .Params.authors}}<h3>{{ . | markdownify }}</h3>{{ end }}
-    {{ with .Params.venue }}<h3 style="color: #7f7f7f;"><i>{{ . | markdownify }}</i></h3>{{ end }}
-    {{ with .Params.award }}
-    <h4 class="award">
-      <ul class="comma-seperated">
+  <section class="section">
+    <div class="has-text-left">
+      <h1 class="title is-1 no-border">{{ .Title }}</h1>
+      {{ with .Params.authors}}<h3 class="title is-3">{{ . | markdownify }}</h3>{{ end }}
+      {{ with .Params.venue }}<h3 class="title is-3 has-text-grey"><i>{{ . | markdownify }}</i></h3>{{ end }}
+    </div>
+    <br><hr>
+    <ul class="single-paper-links is-size-3">
+      {{ partial "link_resources" .Params.links }}
+      {{ partial "pdf_resources" . }}
+    </ul>
+  </section>
+
+  <section class="section">
+    <h2 class="title is-2">Abstract</h2>
+    <div class="content">{{ .Content }}</div>
+  </section>
+
+  {{ with .Params.award }}
+    <section class="section" style="margin-bottom: 1rem;">
+      <h2 class="title is-2">Awards</h2>
+      <ul class="awards">
         {{ range . }}
-          <li><i class="fas fa-trophy" aria-hidden="true"></i>&nbsp;{{ . | markdownify }}</li>
+          <li>
+            <i class="fas fa-trophy" aria-hidden="true"></i>&nbsp;{{ . | markdownify }}
+          </li>
         {{ end }}
       </ul>
-    </h4>
-    {{ end }}
-  </div>
-
-  <hr>
-
-  <ul class="single-paper-links">
-    {{ partial "pdf_resources" . }}
-    {{ partial "link_resources" .Params.links }}
-  </ul>
-
-  <h3>Abstract</h3>
-  {{ .Content }}
+      <br style="line-height: 50%;">
+    </section>
+  {{ end }}
 
   {{ with .Params.news }}
-    <h3>In the News</h3>
-    <ul class="flushtop">
-      {{ partial "link_resources" . }}
-    </ul>
+    <section class="section" style="margin-bottom: 1rem;">
+      <h2 class="title is-2">In the News</h2>
+      <ul class="bulleted-list">
+        {{ partial "link_resources" . }}
+      </ul>
+    </section>
   {{ end }}
 
   {{ if .Resources.Match "ref.bib" }}
-    {{ $bib := .Resources.GetMatch "ref.bib" }}
-    <h3>
-      Citation
-      <a href="{{ $bib.RelPermalink }}" style="font-size: 80%"><i class="far fa-arrow-alt-circle-down"></i></a>
-    </h3>
-    {{ $bibstring := printf "```bibtex \n%s \n ```" (trim $bib.Content "\n") }}
-    {{ $bibstring | markdownify }}
+    <section class="section" style="margin-bottom: 1rem;">
+      {{ $bib := .Resources.GetMatch "ref.bib" }}
+      <h2 class="title is-2">
+        Citation
+        <a href="{{ $bib.RelPermalink }}" style="font-size: 80%"><i class="far fa-arrow-alt-circle-down"></i></a>
+      </h2>
+      {{ $bibstring := printf "```bibtex \n%s \n ```" (trim $bib.Content "\n") }}
+      {{ $bibstring | markdownify }}
+    </section>
   {{ end }}
 
   {{ if (isset .Params "projects") }}
-    <h3>Related Projects</h3>
-    <ul class="flushtop">
-    {{ range .Params.projects }}
-      {{ $project := $.Site.GetPage (printf "/projects/%s" .) }}
-      <li><a href="{{ $project.RelPermalink }}">{{ $project.Title }}</a></li>
-    {{ end }}
-    </ul>
+    <section class="section" style="margin-bottom: 1rem;">
+      <h2 class="title is-2">Related Projects</h2>
+      <ul class="bulleted-list">
+      {{ range .Params.projects }}
+        {{ $project := $.Site.GetPage (printf "/projects/%s" .) }}
+        <li><a href="{{ $project.RelPermalink }}">{{ $project.Title }}</a></li>
+      {{ end }}
+      </ul>
+    </section>
   {{ end }}
 {{ end }}

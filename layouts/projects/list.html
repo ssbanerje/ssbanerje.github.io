@@ -1,7 +1,7 @@
 {{ define "main" }}
-  <h1>{{ .Title }}</h1>
+  <h1 class="title is-1">{{ .Title }}</h1>
 
-  {{ .Content }}
-
-  {{ partial "projects.html" . }}
+  <section class="section">
+    {{ partial "projects.html" . }}
+  </section>
 {{ end }}

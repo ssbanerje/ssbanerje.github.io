@@ -1,19 +1,23 @@
 {{ define "main" }}
-  <h1>{{ .Title }}</h1>
+  <section class="section">
+    <h1 class="title is-1">{{ .Title }}</h1>
 
-  <div class="project-content">
-    {{ .Content }}
-  </div>
+    <div class="content">
+      {{ .Content }}
+    </div>
+  </section>
 
   <!-- List of papers -->
-  <h3>Related Publications</h3>
-  <ul class="paper-list">
-    {{ $papers := where $.Site.RegularPages "Section" "publications" }}
-    {{ if eq $.Kind "page" }}
-      {{ $papers = where $papers "Params.projects" "intersect" (slice .Params.Project) }}
-    {{ end }}
-    {{ range sort $papers "Params.date" "desc" }}
-      <li>{{ partial "paper-listing.html" . }}</li>
-    {{ end }}
-  </ul>
+  <section class="section">
+    <h2 class="title is-2">Related Publications</h2>
+    <ul class="paper-list">
+      {{ $papers := where $.Site.RegularPages "Section" "publications" }}
+      {{ if eq $.Kind "page" }}
+        {{ $papers = where $papers "Params.projects" "intersect" (slice .Params.Project) }}
+      {{ end }}
+      {{ range sort $papers "Params.date" "desc" }}
+        <li>{{ partial "paper-listing.html" . }}</li>
+      {{ end }}
+    </ul>
+  </section>
 {{ end }}

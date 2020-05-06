@@ -1,5 +1,5 @@
 +++
-pubtypes = ["paper"]
+pubtypes = ["paper", "featured"]
 projects = ["compgen"]
 title = "Efficient and Scalable Workflows for Genomic Analyses"
 authors = "Subho S. Banerjee, Arjun P. Athreya, Liudmila S. Mainzer, C. Victor Jongeneel, and Wen-Mei Hwu, Zbigniew T. Kalbarczyk and Ravishankar K. Iyer"

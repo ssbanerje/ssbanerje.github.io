@@ -1,18 +1,23 @@
-<div id="avatar">
-  <img src="{{ .Site.Data.personal.avatar | relURL }}" alt="Avatar" />
-</div>
+<div style="padding-left: 0.5rem;">
+  <section class="section">
+    <figure class="image container">
+      <img class="is-rounded" src="{{ .Site.Data.personal.avatar | relURL }}" alt="Avatar" />
+    </figure>
+  </section>
 
-<div class="sidebar-content">
-  <h1><a href="{{ "/" | relURL }}">{{ .Site.Data.personal.name }}</a></h1>
-  <p>
-    {{ .Site.Data.personal.position }}<br>
-    {{ .Site.Data.personal.department }}<br>
-    {{ .Site.Data.personal.univeristy }}
-  </p>
+  <section class="section">
+    <div class="sidebar-content has-text-centered">
+      <h1 class="title is-1"><a href="{{ "/" | relURL }}">{{ .Site.Data.personal.name }}</a></h1>
+      <p>
+        {{ .Site.Data.personal.position }}<br>
+        {{ .Site.Data.personal.department }} @ {{ .Site.Data.personal.univeristy }}
+      </p>
 
-  <ul class="icon-list">
-  {{ range $social := .Site.Data.social.link }}
-    <li><a href="{{ $social.link }}"><i class="{{ $social.icon }}"></i></a></li>
-  {{ end }}
-  </ul>
+      <ul class="icon-list is-clearfix">
+      {{ range $social := .Site.Data.social.link }}
+        <li><a href="{{ $social.link }}"><i class="{{ $social.icon }}"></i></a></li>
+      {{ end }}
+      </ul>
+    </div>
+  </section>
 </div>

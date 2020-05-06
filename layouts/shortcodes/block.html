@@ -1,4 +1,12 @@
-<blockquote class="{{ .Get 0 }}">
-  <div class="icon"><i class="fas fa-info-circle fa-2x"></i></div>
-  <div class="text">{{ .Inner | markdownify }}</div>
-</blockquote>
+<article class="message {{ .Get "class" }}">
+  {{ with (.Get "title") }}
+  <div class="message-header">
+    <span>
+      <span class="icon"><i class="fas fa-info-circle"></i></span>&nbsp;{{ . | markdownify }}
+    </span>
+  </div>
+  {{ end }}
+  <div class="message-body">
+    {{ .Inner | markdownify }}
+  </div>
+</article>
