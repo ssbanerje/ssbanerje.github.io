@@ -13,17 +13,11 @@
   award = "#812717"
 
 # Fonts
-[[fonts]]
-  name = "Raleway"
-  title = true
-  textw = 800
+[fonts.sidebar]
+  name = "Vollkorn"
 
-[[fonts]]
+[fonts.content]
   name = "Lato"
-  body = true
-  textw = 400
-  boldw = 700
 
-[[fonts]]
+[fonts.mono]
   name = "Inconsolata"
-  mono = true

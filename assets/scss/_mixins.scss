@@ -1,14 +1,3 @@
-// Basic font configuration
-@mixin font_config($size: false, $color: false, $weight: false,  $lh: false) {
-  // Basic Configuration
-  @if $size { font-size: $size; }
-  @if $color { color: $color; }
-  @if $weight { font-weight: $weight; }
-  @if $lh { line-height: $lh; }
-  text-rendering: optimizeLegibility;
-  font-display: swap;
-}
-
 // Transitions
 @mixin transition($args...) {
   -webkit-transition: $args;
@@ -25,16 +14,6 @@
   @include transition(all 0.2s ease-out);
 
   &:hover { color: $hover; }
-}
-
-// Use Font Awesome Icons in divs
-@mixin fontawesome_icon($content, $size: false, $color: false, $lh: false) {
-  font-family: 'Font Awesome\ 5 Free';
-  content: $content;
-  font-weight: 900;
-  @if $size { font-size: $size; }
-  @if $color { color: $color; }
-  @if $lh { line-height: $lh; }
 }
 
 // Inline lists

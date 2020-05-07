@@ -4,7 +4,7 @@
     <!-- Main Projects -->
     {{ range where $projects.ByWeight.Reverse ".Params.concluded" false }}
       <div class="tile is-parent">
-        <article class="tile is-child box">
+        <article class="tile is-child notification is-link">
           {{ partial "project-listing.html" . }}
         </article>
       </div>
@@ -15,7 +15,7 @@
         <div class="tile">
       {{ end }}
       <div class="tile is-parent is-6">
-        <article class="tile is-child box">
+        <article class="tile is-child notification is-warning">
           {{ partial "project-listing.html" $v }}
         </article>
       </div>

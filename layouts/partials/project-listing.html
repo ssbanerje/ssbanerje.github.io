@@ -2,4 +2,8 @@
 {{ with .Description }}
   <p class="subtitle">{{ . | markdownify }}</p>
 {{ end }}
-<a class="button is-light is-medium" href="{{ .RelPermalink }}"><i class="fas fa-angle-double-right"></i>&nbsp;Learn More</a>
+<span class="subtitle">
+  <a class="button is-light is-medium" href="{{ .RelPermalink }}">
+    More&nbsp;<span class="icon has-text-link" style="margin-left: 0.05rem;"><i class="fas fa-angle-double-right"></i></span>
+  </a>
+</span>

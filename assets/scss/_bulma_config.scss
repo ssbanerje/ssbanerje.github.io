@@ -11,11 +11,11 @@ $size-6: 0.75rem;
 $size-7: 0.5rem;
 $size-normal: 1.25rem;
 
-$family-sans-serif: #{map-get($font, body)};
-$family-monospace: #{map-get($font, mono)};
-$family-primary: #{map-get($font, body)};
-$family-secondary: #{map-get($font, body)};
-$family-code: #{map-get($font, mono)};
+$family-sans-serif: #{map-get($fonts, content)};
+$family-monospace: #{map-get($fonts, mono)};
+$family-primary: #{map-get($fonts, content)};
+$family-secondary: #{map-get($fonts, sidebar)};
+$family-code: #{map-get($fonts, content)};
 
 $link: #{map-get($content, link)};
 $link-hover: #{map-get($content, hover)};

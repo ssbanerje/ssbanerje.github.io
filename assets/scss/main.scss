@@ -16,35 +16,17 @@ $content: (
 
 /* Fonts */
 {{ $fonts := .Site.Data.theme.fonts }}
-$font: (
-  {{ range $ftype := (slice "mono" "body" "title") }}
-    {{ $ftype }}: {{ (index (where $fonts $ftype true) 0).name }},
-  {{ end }}
+$fonts: (
+  content: {{ $fonts.content.name }},
+  sidebar: {{ $fonts.sidebar.name }},
+  mono: {{ $fonts.mono.name }},
 );
-$font_weight: (
-  {{ range $ftype := (slice "mono" "body" "title") }}
-    {{ with (index (where $fonts $ftype true) 0).textw }}{{ $ftype }}_tw: {{ . }},{{ end }}
-    {{ with (index (where $fonts $ftype true) 0).boldw }}{{ $ftype }}_bw: {{ . }},{{ end }}
-  {{ end }}
-);
-
 {{ $font_string := "" }}
-{{ range $ty := (slice "mono" "body" "title") }}
-  {{ $f := (index (where $fonts $ty true) 0).name }}
-  {{ $w := "" }}
-  {{ with (index (where $fonts $ty true) 0).textw }}
-    {{ $w = printf `%d,%d%s` . . "italic"}}
-  {{ end }}
-  {{ with (index (where $fonts $ty true) 0).boldw }}
-    {{ $w = printf `%s,%d,%d%s` $w . . "italic"}}
-  {{ end }}
-  {{ if gt (len $w) 0 }}
-    {{ $f = printf `%s:%s` $f $w }}
-  {{ end }}
-  {{ $font_string = printf `%s|%s` $font_string $f }}
+{{ range $fonts }}
+  {{ $fs := printf `family=%s:ital,wght@0,400;0,700;1,400;1,700` .name }}
+  {{ $font_string = printf `%s&%s` $font_string $fs }}
 {{ end }}
-{{ $font_string = trim $font_string "|" }}
-@import url('https://fonts.googleapis.com/css?family={{ $font_string }}');
+@import url('https://fonts.googleapis.com/css2?{{ $font_string }}&display=swap');
 @import url('https://use.fontawesome.com/releases/v5.12.1/css/all.css');
 @import url('https://cdn.rawgit.com/jpswalsh/academicons/master/css/academicons.min.css');
 
