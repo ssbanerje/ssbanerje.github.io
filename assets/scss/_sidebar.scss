@@ -1,9 +1,9 @@
 #sidebar {
-  font-family: #{map-get($fonts, sidebar)}, sans-serif;
-  color: #{map-get($sidebar, text)};
-  background-color: #{map-get($sidebar, background)};
+  font-family: map-get($fonts, sidebar), sans-serif;
+  color: map-get($sidebar, text);
+  background-color: map-get($sidebar, background);
 
-  a { @include link_style(#{map-get($sidebar, link)}, #{map-get($sidebar, hover)}); }
+  a { @include link_style(map-get($sidebar, link), map-get($sidebar, hover)); }
 
   .icon-list {
     font-size: 150%;
@@ -20,8 +20,8 @@
     padding: .1rem;
     max-width: 256px;
     max-height: 256px;
-    background-color: #{map-get($sidebar, background)};;
-    border: 1px solid #{map-get($sidebar, text)};
+    background-color: map-get($sidebar, background);
+    border: 1px solid map-get($sidebar, text);
   }
 
   figure {

@@ -1,18 +1,14 @@
-<div style="padding-left: 0.5rem;">
+<div style="padding: 0.5rem;">
   <section class="section">
-    <figure class="image container">
+    <figure class="image container" style="margin-bottom: 2rem;">
       <img class="is-rounded" src="{{ .Site.Data.personal.avatar | relURL }}" alt="Avatar" />
     </figure>
-  </section>
-
-  <section class="section">
     <div class="sidebar-content has-text-centered">
-      <h1 class="title is-1"><a href="{{ "/" | relURL }}">{{ .Site.Data.personal.name }}</a></h1>
+      <h1 class="title is-1"><a href="/">{{ .Site.Data.personal.name }}</a></h1>
       <p>
         <b>{{ .Site.Data.personal.position }}</b><br>
         <b>{{ .Site.Data.personal.department }} @ {{ .Site.Data.personal.univeristy }}</b>
       </p>
-
       <ul class="icon-list is-clearfix">
       {{ range $social := .Site.Data.social.link }}
         <li><a href="{{ $social.link }}"><i class="{{ $social.icon }}"></i></a></li>

@@ -23,8 +23,12 @@
   li { display: inline-block; }
 }
 
-%comma-seperated-list {
+@mixin content-seperated-list($content) {
   @extend %inline-list;
 
-  li+li:before { content: ", "; }
+  li+li:before { content: $content; }
+}
+
+%comma-seperated-list {
+  @include content-seperated-list(", ");
 }

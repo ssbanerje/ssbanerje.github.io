@@ -6,6 +6,7 @@ $sidebar: (
   link: {{ $colors.sidebar.link }},
   hover: {{ $colors.sidebar.linkhover }}
 );
+
 $content: (
   background: {{ $colors.content.background }},
   text: {{ $colors.content.text }},
@@ -23,8 +24,7 @@ $fonts: (
 );
 {{ $font_string := "" }}
 {{ range $fonts }}
-  {{ $fs := printf `family=%s:ital,wght@0,400;0,700;1,400;1,700` .name }}
-  {{ $font_string = printf `%s&%s` $font_string $fs }}
+  {{ $font_string = printf `%s&family=%s:ital,wght@0,400;0,700;1,400;1,700` $font_string .name }}
 {{ end }}
 @import url('https://fonts.googleapis.com/css2?{{ $font_string }}&display=swap');
 @import url('https://use.fontawesome.com/releases/v5.12.1/css/all.css');

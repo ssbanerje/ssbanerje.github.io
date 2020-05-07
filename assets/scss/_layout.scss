@@ -25,24 +25,24 @@ code, pre {
   .has-jax {
     font: inherit;
     font-size: 100%;
-    color: #{map-get($content, text)};
+    color: map-get($content, text);
     background: inherit;
     border: inherit;
   }
 }
 
 pre {
-  margin: 0.5rem;
+  margin: 0.5rem 0.5rem 2rem 0.5rem;
   padding: 0.5rem;
 }
 
 /* Page content */
-#left { background-color: #{map-get($sidebar, background)}; }
+#left { background-color: map-get($sidebar, background); }
 
-#right { background-color: #{map-get($content, background)}; }
+#right { background-color: map-get($content, background); }
 
 #content {
-  background-color: #{map-get($content, background)};
+  background-color: map-get($content, background);
   padding: 1rem;
 
   h1 {
@@ -60,15 +60,12 @@ footer {
   font-size: 80%;
 
   ul {
-    @extend %inline-list;
+    @include content-seperated-list("\2022");
+    margin-left: 1rem !important;
 
-    li {
-      &:after {
-        content: "\2022";
-        padding: 0 5px;
-      }
-
-      &:last-child { &:after { content: ""; } }
+    li{
+      &:before{ padding: 0 0.25rem; }
+      &:after { padding: 0 0.25rem; }
     }
   }
 }
@@ -78,6 +75,6 @@ footer {
   padding: 0.2rem 1rem;
   margin: 0 0 2rem 0;
   background-color: #eee;
-  border-radius: 0.2rem;
+  border-radius: 0.3rem;
   font-size: 70%;
 }
