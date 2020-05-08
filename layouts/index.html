@@ -8,8 +8,8 @@
   <section class="section">
     <h1 class="title is-1">News</h1>
   	<ul class="news">
-  	  {{ range first 5 $.Site.Data.news.news }}
-  		<li>
+  	  {{ range first 5 .Site.Data.news.news }}
+  		<li class="has-text-left">
         <span class="date"><i class="fas fa-caret-right"></i>&nbsp;{{ .date }}</span>
         <span>{{ .text | markdownify }}</span>
       </li>
@@ -17,9 +17,9 @@
   	</ul>
   </section>
 
-  <section class="section">
-    <h1 class="title is-1 has-text-left">
-      Research
+  <section class="section has-text-left">
+    <h1 class="title is-1">
+      Research&nbsp;
       <span class="subtitle is-4">{{ "[Full List: [Projects](/projects/), [Publications](/publications/)]" | markdownify }}</span>
     </h1>
     {{ partial "publications_bydate.html" . }}

@@ -1,0 +1,17 @@
+/* Code, MathJax and Highlighting */
+code, pre {
+  white-space: pre-wrap;
+
+  .has-jax {
+    font: inherit;
+    font-size: 100%;
+    color: map-get($content, text);
+    background: inherit;
+    border: inherit;
+  }
+}
+
+pre {
+  margin: 0.5rem 0.5rem 2rem 0.5rem;
+  padding: 0.5rem;
+}

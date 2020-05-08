@@ -1,10 +1,12 @@
 {{ $projects := where $.Site.RegularPages "Section" "projects" }}
-<div class="title is-ancestor">
+<div class="title is-ancestor has-text-left">
   <div class="tile is-vertical">
     <!-- Main Projects -->
     {{ range where $projects.ByWeight.Reverse ".Params.concluded" false }}
       <div class="tile is-parent">
-        <article class="tile is-child notification is-link">
+        {{ $class := index (shuffle (slice "is-link" "is-info")) 0 }}
+        {{ $text := cond (eq $class "is-primary") "has-text-grey-darker" "has-text-white"}}
+        <article class="tile is-child notification {{ $class }} {{ $text }}">
           {{ partial "project-listing.html" . }}
         </article>
       </div>
@@ -15,7 +17,9 @@
         <div class="tile">
       {{ end }}
       <div class="tile is-parent is-6">
-        <article class="tile is-child notification is-warning">
+        {{ $class := index (shuffle (slice "is-dark" "is-warning" "is-primary" "is-success")) 0 }}
+        {{ $text := cond (eq $class "is-dark") "has-text-white" "has-text-grey-darker"}}
+        <article class="tile is-child notification {{ $class }} {{ $text }}">
           {{ partial "project-listing.html" $v }}
         </article>
       </div>

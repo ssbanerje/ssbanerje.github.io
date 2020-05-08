@@ -1,11 +1,29 @@
 /**
  * Configure the layout of the page
- */
+ *
+
+/* Page content */
+#left { background-color: map-get($sidebar, background); }
+
+#right { background-color: map-get($content, background); }
+
+#content {
+  background-color: map-get($content, background);
+  padding: 1rem;
+  min-height: calc(100vh - 70px);
+
+  h1 {
+    border-bottom: 1px solid #d3d3d3;
+
+    &.no-border { border: 0; }
+  }
+}
 
 /* Setup text elements */
-html, body {
+body {
   hyphens: auto;
   -webkit-hyphens: auto;
+  font-size: $size-normal;
 }
 
 p { margin: 0 0 2rem 0; }
@@ -16,56 +34,17 @@ hr {
   margin: 0 0 1em 0;
 }
 
-body { font-size: $size-normal; }
-
-/* Code, MathJax and Highlighting */
-code, pre {
-  white-space: pre-wrap;
-
-  .has-jax {
-    font: inherit;
-    font-size: 100%;
-    color: map-get($content, text);
-    background: inherit;
-    border: inherit;
-  }
-}
-
-pre {
-  margin: 0.5rem 0.5rem 2rem 0.5rem;
-  padding: 0.5rem;
-}
-
-/* Page content */
-#left { background-color: map-get($sidebar, background); }
-
-#right { background-color: map-get($content, background); }
-
-#content {
-  background-color: map-get($content, background);
-  padding: 1rem;
-
-  h1 {
-    border-bottom: 1px solid #d3d3d3;
-
-    &.no-border { border: 0; }
-  }
-}
-
-.is-min-full-height {
-  min-height : 100vh;
-}
-
+/* Footer */
 footer {
-  font-size: 80%;
+  font-size: 70%;
+  height: 70px;
 
   ul {
     @include content-seperated-list("\2022");
-    margin-left: 1rem !important;
+    margin: 2rem 0 0 1rem !important;
 
     li{
-      &:before{ padding: 0 0.25rem; }
-      &:after { padding: 0 0.25rem; }
+      &:before{ padding: 0 0.5rem; }
     }
   }
 }

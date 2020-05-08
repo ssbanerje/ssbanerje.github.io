@@ -39,6 +39,9 @@ $fonts: (
 // Import subfiles
 @import 'mixins';
 
+// Import styles for displaying code
+@import 'code';
+
 // Import styles for listing news
 @import 'news';
 

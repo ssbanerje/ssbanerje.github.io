@@ -4,14 +4,14 @@
 {{ partial "header.html" . }}
 
 <body>
-  <div class="columns is-gapless is-marginless is-min-full-height">
+  <div class="columns is-gapless is-marginless">
     <div class="column is-one-quarter" id="sidebar">
       <br>
       {{ partial "sidebar.html" . }}
     </div>
 
-    <div class="column has-text-justified">
-      <div id="content">
+    <div class="column">
+      <div id="content" class="has-text-justified">
         {{ if (and (not .IsHome) (ne .Kind "404")) }}
           <section class="section">
             {{ partial "breadcrumbs.html" . }}
@@ -21,9 +21,7 @@
           <!-- Main Block content -->
         {{ end }}
       </div>
-      <section class="section">
-        {{ partial "footer.html" . }}
-      </section>
+      {{ partial "footer.html" . }}
     </div>
 
     <div class="column is-1" id="right"></div>
