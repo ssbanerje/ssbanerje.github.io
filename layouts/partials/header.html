@@ -15,6 +15,7 @@
   {{ template "_internal/google_news.html" . }}
   {{ template "_internal/schema.html" . }}
   {{ template "_internal/twitter_cards.html" . }}
+  <meta name="theme-color" content="{{ .Site.Data.theme.colors.sidebar.background }}"/>
 
   <title>{{ if not .IsHome }}{{ title .Title }} | {{ end }}{{ .Site.Title }}</title>
 
@@ -26,10 +27,19 @@
   <link rel="shortcut icon" href="{{ "img/favicon.ico" | relURL }}">
   <link rel="apple-touch-icon" href="{{ "img/favicon.ico" | relURL }}">
 
-  {{ $style := resources.Get "scss/main.scss" | resources.ExecuteAsTemplate "css/style_scss.css" . | toCSS | minify }}
+  {{ $style := resources.Get "scss/main.scss" | resources.ExecuteAsTemplate "css/style.css" . | toCSS | minify }}
   <link rel="stylesheet" href="{{ $style.RelPermalink }}">
-  <link rel="preload" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" crossorigin="anonymous" as="style" onload="this.rel='stylesheet'">
-  <link rel="preload" href="https://cdn.rawgit.com/jpswalsh/academicons/master/css/academicons.min.css" type="text/css" as="style" onload="this.rel='stylesheet'">
+  {{ $font_string := "" }}
+  {{ range .Site.Data.theme.fonts }}
+    {{ if eq $font_string "" }}
+      {{ $font_string = printf `family=%s:ital,wght@0,400;0,700;1,400;1,700` .name }}
+    {{ else }}
+      {{ $font_string = printf `%s&family=%s:ital,wght@0,400;0,700;1,400;1,700` $font_string .name }}
+    {{ end }}
+  {{ end }}
+  <link href="https://fonts.googleapis.com/css2?{{ $font_string | safeURL }}&display=swap" crossorigin="anonymous" type="text/css" rel="stylesheet">
+  <link href="https://cdn.rawgit.com/jpswalsh/academicons/master/css/academicons.min.css" crossorigin="anonymous" type="text/css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" crossorigin="anonymous" type="text/css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'">
 
   {{ if not .Site.IsServer }}
     {{ template "_internal/google_analytics_async.html" . }}

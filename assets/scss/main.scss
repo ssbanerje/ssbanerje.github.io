@@ -22,19 +22,25 @@ $fonts: (
   sidebar: {{ $fonts.sidebar.name }},
   mono: {{ $fonts.mono.name }},
 );
-{{ $font_string := "" }}
-{{ range $fonts }}
-  {{ $font_string = printf `%s&family=%s:ital,wght@0,400;0,700;1,400;1,700` $font_string .name }}
-{{ end }}
-@import url('https://fonts.googleapis.com/css2?{{ $font_string }}&display=swap');
-@import url('https://use.fontawesome.com/releases/v5.12.1/css/all.css');
-@import url('https://cdn.rawgit.com/jpswalsh/academicons/master/css/academicons.min.css');
 
 // Setup Bulma
 @import 'bulma_config';
 
 // Import Bulma
-@import 'bulma/bulma.sass';
+@import 'bulma/sass/utilities/_all';
+@import 'bulma/sass/base/_all';
+@import 'bulma/sass/grid/_all';
+@import 'bulma/sass/elements/button';
+@import 'bulma/sass/elements/container';
+@import 'bulma/sass/elements/content';
+@import 'bulma/sass/elements/icon';
+@import 'bulma/sass/elements/image';
+@import 'bulma/sass/elements/title';
+@import 'bulma/sass/elements/notification';
+@import 'bulma/sass/components/breadcrumb';
+@import 'bulma/sass/components/message';
+@import 'bulma/sass/layout/footer';
+@import 'bulma/sass/layout/section';
 
 // Import subfiles
 @import 'mixins';

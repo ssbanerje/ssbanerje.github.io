@@ -1,7 +1,7 @@
 {{ with .Resources.Match "*.pdf" }}
   {{ range . }}
     <li>
-      <a href="{{ .RelPermalink }}" target="_blank">
+      <a href="{{ .RelPermalink }}" target="_blank" rel="noreferrer" rel="noopener">
         <i class="far fa-file-pdf" aria-hidden="true"></i>&nbsp;{{ strings.TrimSuffix ".pdf" .Name }}
       </a>
     </li>

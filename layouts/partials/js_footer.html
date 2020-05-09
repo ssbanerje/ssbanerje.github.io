@@ -15,4 +15,15 @@ MathJax.Hub.Config({
 </script>
 {{ end }}
 
-<script src="https://instant.page/3.0.0" type="module" defer integrity="sha384-OeDn4XE77tdHo8pGtE1apMPmAipjoxUQ++eeJa6EtJCfHlvijigWiJpD7VDPWXV1" crossorigin="anonymous" async></script>
+<script src="https://unpkg.com/quicklink@2.0.0/dist/quicklink.umd.js" integrity="sha384-0nZ9FdSjDH2+tAS8yrmxpBHVMFs28rYR4bDVPFEoQqfzvezs/7OW7ebNI7CrWAg7" crossorigin="anonymous" async></script>
+<script>
+  window.addEventListener('load', () =>{
+    quicklink.listen({
+      ignores: [
+        uri => uri.includes('.pdf'),
+          uri => uri.includes('.bib'),
+        (uri, elem) => elem.hasAttribute('noprefetch')
+      ]
+    });
+  });
+</script>

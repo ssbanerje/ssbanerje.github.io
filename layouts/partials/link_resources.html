@@ -1,6 +1,6 @@
 {{ range . }}
   <li>
-    <a href="{{ .url | relURL }}" target="_blank">
+    <a href="{{ .url | relURL }}" target="_blank" rel="noreferrer" rel="noopener">
       <i class="{{ .icon }}" aria-hidden="true"></i>&nbsp;{{ .name }}
     </a>
   </li>
