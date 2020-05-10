@@ -12,4 +12,4 @@
 
 [[news]]
   date = "Mar 4, 2019"
-  text = "Our papers on using Bayesian methods to [perform targeted fault injection](publications/dsn2019/) and [model fault propagation](publications/dsn2019_bdlfi) in AI-driven systems have been accepted at [DSN 2019](http://2019.dsn.org)."
+  text = "Our papers on using Bayesian methods to [perform targeted fault injection](publications/dsn2019/) and [model fault propagation](publications/dsn2019_bdlfi/) in AI-driven systems have been accepted at [DSN 2019](http://2019.dsn.org)."

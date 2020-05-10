@@ -38,8 +38,9 @@
     {{ end }}
   {{ end }}
   <link href="https://fonts.googleapis.com/css2?{{ $font_string | safeURL }}&display=swap" crossorigin="anonymous" type="text/css" rel="stylesheet">
-  <link href="https://cdn.rawgit.com/jpswalsh/academicons/master/css/academicons.min.css" crossorigin="anonymous" type="text/css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <link href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" crossorigin="anonymous" type="text/css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <!-- TODO: The first rel="stylesheet" should be removed once firefox supports rel="preload".-->
+  <link href="https://unpkg.com/academicons@1.8.6/css/academicons.min.css" crossorigin="anonymous" type="text/css" rel="stylesheet" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link href="https://unpkg.com/components-font-awesome@5.9.0/css/all.min.css" crossorigin="anonymous" type="text/css" rel="stylesheet" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'">
 
   {{ if not .Site.IsServer }}
     {{ template "_internal/google_analytics_async.html" . }}
