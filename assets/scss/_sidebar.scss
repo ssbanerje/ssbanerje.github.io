@@ -17,17 +17,22 @@
     }
   }
 
-  img {
-    padding: .1rem;
+  figure {
     max-width: 256px;
     max-height: 256px;
+  }
+
+  img {
+    padding: .1rem;
     background-color: map-get($sidebar, background);
     border: 1px solid map-get($sidebar, text);
   }
 
-  figure {
-    max-width: 256px;
-    max-height: 256px;
+  @include mobile {
+    figure {
+      max-width: 175px;
+      max-height: 175px;
+    }
   }
 }
 
