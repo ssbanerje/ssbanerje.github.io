@@ -7,13 +7,15 @@
   h1 { font-family: map-get($fonts, sidebar), sans-serif; }
 
   .icon-list {
-    font-size: 150%;
+    font-size: 175%;
     display:table;
     margin: 0 auto;
     @extend %inline-list;
 
     li {
-      &:hover { transform: scale(1.1); }
+      padding: 0 5px;
+
+      &:hover { transform: scale(1.2); }
     }
   }
 
@@ -36,6 +38,6 @@
   }
 }
 
-.padded-sidebar {
-  padding: 2rem;
-}
+.padded-sidebar { padding: 2rem; }
+
+.has-text-orange { color: #f96854 !important; }

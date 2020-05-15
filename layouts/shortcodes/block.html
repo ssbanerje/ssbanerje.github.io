@@ -7,6 +7,6 @@
   </div>
   {{ end }}
   <div class="message-body">
-    {{ .Inner | markdownify }}
+    {{ .Inner | markdownify | emojify }}
   </div>
 </article>
