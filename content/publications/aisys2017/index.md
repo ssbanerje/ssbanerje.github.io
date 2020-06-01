@@ -2,7 +2,7 @@
 pubtypes = ["abstract"]
 projects = ["compgen"]
 title = "Symphony: Leveraging Probabilistic Graphical Models to Schedule Tasks to Clusters of Heterogeneous Processors"
-authors = "Subho S. Banerjee, Steve Lumetta, Zbigniew T. Kalbarczyk and Ravishankar K. Iyer"
+authors = "Subho S. Banerjee, Steve Lumetta, Zbigniew T. Kalbarczyk, and Ravishankar K. Iyer"
 venue = "AISys 2017 (Colocated with SOSP 2017)"
 date = 2017-10-28
 

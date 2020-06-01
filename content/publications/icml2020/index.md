@@ -2,7 +2,7 @@
 pubtypes = ["paper", "featured"]
 projects = ["compgen"]
 title = "Inductive Bias-driven Reinforcement Learning for Efficient Schedules in Heterogeneous Clusters"
-authors = "Subho S. Banerjee, Saurabh Jha and Ravishankar K. Iyer"
+authors = "Subho S. Banerjee, Saurabh Jha, and Ravishankar K. Iyer"
 venue = "ICML 2020"
 date = 2020-07-14
 

@@ -2,7 +2,7 @@
 pubtypes = ["paper"]
 projects = ["alien"]
 title = "Enhancing the AliEn Web Service Authentication"
-authors = "Jianlin Zhu, Pablo Saiz, Federico Carminati, Latchezar Betev, Daicui Zhou, Patricia M. Lorenzo, Alina G. Grigoras, Costin Grigoras, Fabrizio Furano, Steffen Schreiner, Olga V. Datskova, Subho S. Banerjee and Guoping Zhang"
+authors = "Jianlin Zhu, Pablo Saiz, Federico Carminati, Latchezar Betev, Daicui Zhou, Patricia M. Lorenzo, Alina G. Grigoras, Costin Grigoras, Fabrizio Furano, Steffen Schreiner, Olga V. Datskova, Subho S. Banerjee, and Guoping Zhang"
 venue = "ACAT 2011"
 date = 2011-10-22
 

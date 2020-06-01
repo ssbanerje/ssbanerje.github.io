@@ -2,7 +2,7 @@
 pubtypes = ["paper", "featured"]
 projects = ["compgen"]
 title = "Efficient and Scalable Workflows for Genomic Analyses"
-authors = "Subho S. Banerjee, Arjun P. Athreya, Liudmila S. Mainzer, C. Victor Jongeneel, and Wen-Mei Hwu, Zbigniew T. Kalbarczyk and Ravishankar K. Iyer"
+authors = "Subho S. Banerjee, Arjun P. Athreya, Liudmila S. Mainzer, C. Victor Jongeneel, and Wen-Mei Hwu, Zbigniew T. Kalbarczyk, and Ravishankar K. Iyer"
 venue = "DIDC 2016 (Colocated with HPDC 2016)"
 date = 2016-05-31
 
