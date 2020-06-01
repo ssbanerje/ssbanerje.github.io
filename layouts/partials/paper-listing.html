@@ -1,5 +1,5 @@
 <p>
-  <span><a href="{{ .RelPermalink }}">{{ .Title }}.</a></span>
+  <span><a href="{{ .RelPermalink }}">{{ .Title | markdownify }}.</a></span>
   <br>
 
   {{ with .Params.authors }}

@@ -1,4 +1,8 @@
 [[news]]
+  date = "Jun 1, 2020"
+  text = "Our paper on [domain-knowledge guided reinforcement learning](publications/icml2020/) for scheduling tasks across CPUs, GPUs, and FPGAs has been accepted at [ICML 2020](https://icml.cc)."
+
+[[news]]
   date = "Mar 4, 2020"
   text = "Our paper on [intelligent malware](publications/dsn2020/) targeting autonomous vehicle safety has been accepted at [DSN 2020](http://2020.dsn.org)."
 

@@ -1,4 +1,4 @@
-<p class="title">{{ .Title }}</p>
+<p class="title">{{ .Title | markdownify }}</p>
 {{ with .Description }}
   <p class="subtitle">{{ . | markdownify }}</p>
 {{ end }}
