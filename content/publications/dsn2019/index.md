@@ -1,5 +1,6 @@
 +++
-pubtypes = ["paper", "featured"]
+featured = true
+pubtype = "conference"
 projects = ["av"]
 title = "ML-based Fault Injection for Autonomous Vehicles: A Case for Bayesian Fault Injection"
 authors = "Saurabh Jha, Subho S. Banerjee, Timothy Tsai, Siva K. S. Hari, Michael B. Sullivan, Zbigniew T. Kalbarczyk, Stephen W. Keckler, and Ravishankar K. Iyer"

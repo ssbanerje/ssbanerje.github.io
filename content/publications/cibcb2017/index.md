@@ -1,5 +1,6 @@
 +++
-pubtypes = ["paper", "featured"]
+featured = true
+pubtype = "conference"
 projects = ["compgen"]
 title = "Data-Driven Longitudinal Modeling and Prediction of Symptom Dynamics in Major Depressive Disorder: Integrating Factor Graphs and Learning Methods"
 authors = "Arjun Athreya, Subho S. Banerjee, Drew Neavin, Rima Kaddurah-Daouk, A. John Rush, Mark A. Frye, Liewei Wang, Richard M. Weinshilboum, William V. Bobo, and Ravishankar K. Iyer"

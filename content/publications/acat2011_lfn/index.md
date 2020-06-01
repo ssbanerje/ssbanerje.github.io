@@ -1,5 +1,5 @@
 +++
-pubtypes = ["paper"]
+pubtype = "workshop"
 projects = ["alien"]
 title = "Securing the AliEn File Catalogue - Enforcing authorization with accountable file operations"
 authors = "Steffen Schreiner, Stefano Bagnasco, Subho S. Banerjee, Latchezar Betev, Federico Carminati, Olga V. Datskova, Fabrizio Furano, Alina Grigoras, Costin Grigoras, Patricia M. Lorenzo, Andreas J. Peters, Pablo Saiz, and Jianlin Zhu"

@@ -1,5 +1,6 @@
 +++
-pubtypes = ["paper", "featured"]
+featured = true
+pubtype = "conference"
 projects = ["av"]
 title = "Hands Off the Wheel in Autonomous Vehicles? A Systems Perspective on over a Million Miles of Field Data"
 authors = "Subho S. Banerjee, Saurabh Jha, James Cyriac, Zbigniew T. Kalbarczyk, and Ravishankar K. Iyer"

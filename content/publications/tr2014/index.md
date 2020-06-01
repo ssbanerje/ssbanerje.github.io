@@ -1,5 +1,5 @@
 +++
-pubtypes = ["techreport"]
+pubtype = "preprint"
 projects = ["compgen"]
 title = "Decomposing Genomics Algorithms: Core Computations for Accelerating Genomics Analyses"
 authors = "Arjun P. Athreya, Subho S. Banerjee, C. Victor Jongeneel, Zbigniew T. Kalbarczyk, and Ravishankar K. Iyer"

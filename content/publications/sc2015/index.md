@@ -1,5 +1,5 @@
 +++
-pubtypes = ["abstract"]
+pubtype = "abstract"
 projects = ["compgen"]
 title = "IGen: The Illinois Genomics Execution Environment"
 authors = "Subho S. Banerjee and Ravishankar K. Iyer"

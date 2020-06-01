@@ -1,5 +1,6 @@
 +++
-pubtypes = ["paper", "featured"]
+featured = true
+pubtype = "conference"
 projects = ["compgen"]
 title = "On Accelerating Pair-HMM Computations in Programmable Hardware"
 authors = "Subho S. Banerjee, Mohamed el-Hadedy, Ching Y. Tan, Zbigniew T. Kalbarczyk, Steve Lumetta, and Ravishankar K. Iyer"

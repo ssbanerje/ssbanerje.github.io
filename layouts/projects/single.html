@@ -16,7 +16,7 @@
         {{ $papers = where $papers "Params.projects" "intersect" (slice .Params.Project) }}
       {{ end }}
       {{ range sort $papers "Params.date" "desc" }}
-        <li>{{ partial "paper-listing.html" . }}</li>
+        <li class="paper has-text-left">{{ partial "paper-listing.html" . }}</li>
       {{ end }}
     </ul>
   </section>

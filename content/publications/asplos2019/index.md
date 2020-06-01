@@ -1,5 +1,6 @@
 +++
-pubtypes = ["paper", "featured"]
+featured = true
+pubtype = "conference"
 projects = ["compgen"]
 title = "AcMC²: Accelerated Markov Chain Monte Carlo for Probabilistic Models"
 authors = "Subho S. Banerjee, Zbigniew T. Kalbarczyk, and Ravishankar K. Iyer"

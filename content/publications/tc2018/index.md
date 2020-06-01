@@ -1,5 +1,6 @@
 +++
-pubtypes = ["paper", "featured"]
+featured = true
+pubtype = "journal"
 projects = ["compgen"]
 title = "ASAP: Accelerated Short Read Alignment on Programmable Hardware"
 authors = "Subho S. Banerjee, Mohamed el-Hadedy, Jong B. Lim, Steve Lumetta, Zbigniew T. Kalbarczyk, Deming Chen, and Ravishankar K. Iyer"

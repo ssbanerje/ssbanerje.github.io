@@ -3,18 +3,87 @@
   padding: 0;
   margin: 0;
 
-  li { margin-bottom: 3rem; }
+  li.paper {
+    margin-bottom: 2rem;
+    border-radius: 3px;
+    border: solid rgba(0, 0, 0, 0.1);
+    border-width: 0.5px 0.5px 0.5px 12px;
+    width: 100%;
+    padding: 10px 20px;
+  }
 
   p { margin: 0; }
 
   .venue { font-style: italic; }
 }
 
-.awards {
+.paper-type-key {
+  display: inline-block;
+
+  div {
+    float: left;
+    font-size: 75%;
+    padding: 2px 10px 2px 10px;
+    border: solid rgba(0, 0, 0, 0.3);
+    border-width: 0.5px;
+    font-weight: bold;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+
+    &.pubtype-conference {
+      background-color: rgba(126, 156, 244, 0.5);
+    }
+
+    &.pubtype-journal {
+      background-color: rgba(244, 126, 156, 0.5);
+    }
+
+    &.pubtype-workshop {
+      background-color: rgba(255, 221, 87, 0.5);
+    }
+
+    &.pubtype-abstract {
+      background-color: rgba(72, 199, 116, 0.5);
+    }
+
+    &.pubtype-preprint {
+      background-color: rgba(0, 0, 0, 0.1);
+    }
+  }
+}
+
+.color-paper-types {
+  li.paper {
+    &.pubtype-conference {
+      border-left-color: rgba(126, 156, 244, 0.5);
+    }
+
+    &.pubtype-journal {
+      border-left-color: rgba(244, 126, 156, 0.5);
+    }
+
+    &.pubtype-workshop {
+      border-left-color: rgba(255, 221, 87, 0.5);
+    }
+
+    &.pubtype-abstract {
+      border-left-color: rgba(72, 199, 116, 0.5);
+    }
+  }
+}
+
+.paper-title {
+  font-size: 105%;
+}
+
+.paper-awards {
   @extend %comma-seperated-list;
 
   li {
     color: map-get($content, award);
+    font-weight: bold;
+
     padding: 0;
     margin: 0;
   }

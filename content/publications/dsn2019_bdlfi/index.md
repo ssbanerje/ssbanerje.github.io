@@ -1,5 +1,5 @@
 +++
-pubtypes = ["paper"]
+pubtype = "abstract"
 projects = ["av"]
 title = "Towards a Bayesian Approach for Assessing Fault Tolerance of Deep Neural Networks"
 authors = "Subho S. Banerjee, James Cyriac, Saurabh Jha, Zbigniew T. Kalbarczyk, and Ravishankar K. Iyer"

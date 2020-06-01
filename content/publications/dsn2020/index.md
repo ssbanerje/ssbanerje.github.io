@@ -1,5 +1,6 @@
 +++
-pubtypes = ["paper", "featured"]
+featured = true
+pubtype = "conference"
 projects = ["av"]
 title = "ML-driven Malware that Targets AV Safety"
 authors = "Saurabh Jha, Shengkun Cui, Subho S. Banerjee, James Cyriac, Timothy Tsai, Zbigniew T. Kalbarczyk, and Ravishankar K. Iyer"

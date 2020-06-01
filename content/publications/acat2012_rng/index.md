@@ -1,5 +1,5 @@
 +++
-pubtypes = ["paper"]
+pubtype = "workshop"
 projects = ["nudy"]
 title = "Two dimensional correlated sampling using alias technique"
 authors = "Siddharth Mohanty, Subho S. Banerjee, Johny Jose, Dushyant Goyal, Ajit K. Mohanty, and Federico Carminati"

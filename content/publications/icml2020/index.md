@@ -1,5 +1,6 @@
 +++
-pubtypes = ["paper", "featured"]
+featured = true
+pubtype = "conference"
 projects = ["compgen"]
 title = "Inductive Bias-driven Reinforcement Learning for Efficient Schedules in Heterogeneous Clusters"
 authors = "Subho S. Banerjee, Saurabh Jha, and Ravishankar K. Iyer"
