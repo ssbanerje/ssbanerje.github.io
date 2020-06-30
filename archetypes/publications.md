@@ -1,5 +1,6 @@
 +++
-pubtypes = ["paper", "featured"]
+featured = true
+pubtypes = "conference"
 projects = ["Default"]
 title = "{{ replace .Name "-" " " | title }}"
 authors = "Subho S. Banerjee"

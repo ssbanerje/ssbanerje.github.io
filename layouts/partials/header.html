@@ -27,7 +27,7 @@
   <link rel="shortcut icon" href="{{ "img/favicon.ico" | relURL }}">
   <link rel="apple-touch-icon" href="{{ "img/favicon.ico" | relURL }}">
 
-  {{ $style := resources.Get "scss/main.scss" | resources.ExecuteAsTemplate "css/style.css" . | toCSS | minify }}
+  {{ $style := resources.Get "scss/main.scss" | resources.ExecuteAsTemplate "css/style.css" . | toCSS | minify | fingerprint }}
   <link rel="stylesheet" href="{{ $style.RelPermalink }}">
   {{ $font_string := "" }}
   {{ range .Site.Data.theme.fonts }}

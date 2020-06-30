@@ -1,5 +1,4 @@
 +++
-featured = true
 pubtype = "workshop"
 projects = ["compgen"]
 title = "Efficient and Scalable Workflows for Genomic Analyses"

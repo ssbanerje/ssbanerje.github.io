@@ -1,4 +1,8 @@
 [[news]]
+  date = "Jun 29, 2020"
+  text = "Our paper on [ML-based diagnosis and localization](publications/sc2020/) of large-scale distribted file-system failures has been accepted at [Supercomputing 2020](https://sc20.supercomputing.org)."
+
+[[news]]
   date = "May 31, 2020"
   text = "Our paper on [domain-knowledge guided reinforcement learning](publications/icml2020/) for scheduling tasks across CPUs, GPUs, and FPGAs has been accepted at [ICML 2020](https://icml.cc)."
 
@@ -9,10 +13,6 @@
 [[news]]
   date = "Oct 29, 2019"
   text = "Our [DSN 2019](publications/dsn2019/) paper was featured on [CSL News](https://csl.illinois.edu/news/csl-researchers-develop-platform-scalable-testing-autonomous-vehicle-safety), [Science Daily](https://www.sciencedaily.com/releases/2019/10/191025170813.htm), [Daily Illini](https://dailyillini.com/news/2019/11/07/researchers-look-to-increase-safety-in-self-driving-cars/), [EurekAlert](https://eurekalert.org/pub_releases/2019-10/uoic-rdp102519.php), [Sina](http://finance.sina.com.cn/stock/relnews/us/2019-11-01/doc-iicezuev6468108.shtml), and [Guancha.cn](https://www.guancha.cn/industry-science/2019_11_01_523593.shtml)."
-
-[[news]]
-  date = "Apr 22, 2019"
-  text = "Our [NSDI 2019](publications/nsdi2019/) paper was featured on [CSL News](https://csl.illinois.edu/news/illinois-researchers-sweeten-%E2%80%9Choneypot%E2%80%9D-catch-blacklist-hackers)."
 
 [[news]]
   date = "Mar 4, 2019"
