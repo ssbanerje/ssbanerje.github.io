@@ -9,7 +9,7 @@ date = 2020-11-15
 
 [[links]]
   name = "DOI"
-  icon = "ai ai-acmdl"
+  icon = "ai ai-ieee"
   url = "#"
 +++
 

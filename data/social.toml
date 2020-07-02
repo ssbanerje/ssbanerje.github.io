@@ -23,6 +23,6 @@
   link = "https://github.com/ssbanerje"
   icon = "fab fa-github fa-fw"
 
-[[link]]
-  link = "https://keybase.io/ssbanerje"
-  icon = "fab fa-keybase fa-fw"
+#[[link]]
+#  link = "https://keybase.io/ssbanerje"
+#  icon = "fab fa-keybase fa-fw"
