@@ -1,4 +1,8 @@
 [[news]]
+  date = "Jul 3, 2020"
+  text = "Our paper on [ML-based load-balancing](publications/apsys2020) in the Linux Kernel's CFS has been accepted at [ApSys 2020](https://www.ci.i.u-tokyo.ac.jp/apsys2020/)."
+
+[[news]]
   date = "Jun 29, 2020"
   text = "Our paper on [ML-based diagnosis and localization](publications/sc2020/) of large-scale distribted file-system failures has been accepted at [Supercomputing 2020](https://sc20.supercomputing.org)."
 
@@ -17,3 +21,4 @@
 [[news]]
   date = "Mar 4, 2019"
   text = "Our papers on using Bayesian methods to [perform targeted fault injection](publications/dsn2019/) and [model fault propagation](publications/dsn2019_bdlfi/) in AI-driven systems have been accepted at [DSN 2019](http://2019.dsn.org)."
+

@@ -5,7 +5,7 @@ projects = ["av"]
 title = "ML-driven Malware that Targets AV Safety"
 authors = "Saurabh Jha, Shengkun Cui, Subho S. Banerjee, James Cyriac, Timothy Tsai, Zbigniew T. Kalbarczyk, and Ravishankar K. Iyer"
 venue = "DSN 2020"
-date = 2020-06-25
+date = 2020-06-30
 
 [[links]]
   name = "DOI"
