@@ -1,14 +1,14 @@
 <p>
-  <span class="paper-title"><a href="{{ .RelPermalink }}">{{ .Title | markdownify }}.</a></span>
+  <span class="paper-title"><a href="{{ .RelPermalink }}">{{ .Title | $.RenderString }}.</a></span>
   <br>
 
   {{ with .Params.authors }}
-    <span class="paper-authors">{{ . | markdownify }}.</span>
+    <span class="paper-authors">{{ . | $.RenderString }}.</span>
     <br>
   {{ end }}
 
   {{ with .Params.venue }}
-    <span class="paper-venue">{{ . | markdownify }}.</span>
+    <span class="paper-venue">{{ . | $.RenderString }}.</span>
     <br>
   {{ end }}
 </p>
@@ -17,7 +17,7 @@
   <ul class="paper-awards">
     {{ range . }}
       <li>
-        <span class="icon"><i class="fas fa-trophy" aria-hidden="true"></i></span>&nbsp;{{ . | markdownify }}
+        <span class="icon"><i class="fas fa-trophy" aria-hidden="true"></i></span>&nbsp;{{ . | $.RenderString }}
       </li>
     {{ end }}
   </ul>

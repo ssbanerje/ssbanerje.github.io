@@ -2,8 +2,8 @@
   <section class="section">
     <div class="has-text-left">
       <h1 class="title is-1 no-border">{{ .Title }}</h1>
-      {{ with .Params.authors}}<h3 class="title is-3">{{ . | markdownify }}</h3>{{ end }}
-      {{ with .Params.venue }}<h3 class="title is-3 has-text-grey"><i>{{ . | markdownify }}</i></h3>{{ end }}
+      {{ with .Params.authors}}<h3 class="title is-3">{{ . | $.RenderString }}</h3>{{ end }}
+      {{ with .Params.venue }}<h3 class="title is-3 has-text-grey"><i>{{ . | $.RenderString }}</i></h3>{{ end }}
     </div>
     <br><hr>
     <ul class="single-paper-links is-size-3">
@@ -23,7 +23,7 @@
       <ul class="awards">
         {{ range . }}
           <li>
-            <i class="fas fa-trophy" aria-hidden="true"></i>&nbsp;{{ . | markdownify }}
+            <i class="fas fa-trophy" aria-hidden="true"></i>&nbsp;{{ . | $.RenderString }}
           </li>
         {{ end }}
       </ul>
@@ -48,7 +48,7 @@
         <a href="{{ $bib.RelPermalink }}" style="font-size: 80%"><i class="far fa-arrow-alt-circle-down"></i></a>
       </h2>
       {{ $bibstring := printf "```bibtex \n%s \n ```" (trim $bib.Content "\n") }}
-      {{ $bibstring | markdownify }}
+      {{ $bibstring | $.RenderString }}
     </section>
   {{ end }}
 

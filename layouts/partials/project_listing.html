@@ -1,6 +1,6 @@
-<p class="title">{{ .Title | markdownify }}</p>
+<p class="title">{{ .Title | $.RenderString }}</p>
 {{ with .Description }}
-  <p class="subtitle">{{ . | markdownify }}</p>
+  <p class="subtitle">{{ . | $.RenderString }}</p>
 {{ end }}
 <span class="subtitle">
   <a class="button is-light is-medium" href="{{ .RelPermalink }}">

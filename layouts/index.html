@@ -11,7 +11,7 @@
   	  {{ range first 5 .Site.Data.news.news }}
   		<li class="has-text-left">
         <span class="date"><i class="fas fa-caret-right"></i>&nbsp;{{ .date }}</span>
-        <span>{{ .text | markdownify }}</span>
+        <span>{{ .text | $.RenderString }}</span>
       </li>
   		{{end}}
   	</ul>
@@ -20,7 +20,7 @@
   <section class="section has-text-left">
     <h1 class="title is-1">
       Selected Publications&nbsp;
-      <span class="subtitle is-4">{{ "[Full List: [Publications](/publications/), [Projects](/projects/)]" | markdownify }}</span>
+      <span class="subtitle is-4">{{ "[Full List: [Publications](/publications/), [Projects](/projects/)]" | $.RenderString }}</span>
     </h1>
     {{ partial "publications_bydate.html" . }}
   </section>
