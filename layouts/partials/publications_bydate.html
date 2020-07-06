@@ -39,7 +39,7 @@
     {{ $year := .Key}}
     {{ range sort $papers ".Params.date" "desc" }}
       {{ if eq (dateFormat "2006" .Params.Date) $year }}
-        <li class="paper has-text-left pubtype-{{ .Params.pubtype }}">{{ partial "paper-listing.html" . }}</li>
+        <li class="paper has-text-left pubtype-{{ .Params.pubtype }}">{{ partial "paper_listing.html" . }}</li>
       {{ end }}
     {{ end }}
   </ul>

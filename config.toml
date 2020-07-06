@@ -6,42 +6,15 @@ languageCode = "en-us"
 enableRobotsTXT = true
 
 # Taxonomies
-disableKinds = ["taxonomy","taxonomyTerm"]
+disableKinds = ["term","taxonomy"]
 
 # Markdown & Rendering
 buildFuture = true
 [markup]
   defaultMarkdownHandler = "goldmark"
-  [markup.goldmark]
-    [markup.goldmark.extensions]
-      definitionList = true
-      footnote = true
-      linkify = true
-      strikethrough = true
-      table = true
-      taskList = true
-      typographer = true
-    [markup.goldmark.parser]
-      attribute = true
-      autoHeadingID = true
-      autoHeadingIDType = "github"
-    [markup.goldmark.renderer]
-      hardWraps = false
-      unsafe = false
-      xhtml = false
   [markup.highlight]
-    codeFences = true
     guessSyntax = true
-    lineNoStart = 1
-    lineNos = false
-    lineNumbersInTable = true
-    noClasses = true
     style = "manni"
-    tabWidth = 4
-  [markup.tableOfContents]
-    endLevel = 3
-    ordered = false
-    startLevel = 2
 
 # Site parameters
 [params]

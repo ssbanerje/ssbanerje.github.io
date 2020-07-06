@@ -7,7 +7,7 @@
         {{ $class := index (shuffle (slice "is-link" "is-info")) 0 }}
         {{ $text := cond (eq $class "is-primary") "has-text-grey-darker" "has-text-white"}}
         <article class="tile is-child notification {{ $class }} {{ $text }}">
-          {{ partial "project-listing.html" . }}
+          {{ partial "project_listing.html" . }}
         </article>
       </div>
     {{ end }}
@@ -20,7 +20,7 @@
         {{ $class := index (shuffle (slice "is-dark" "is-warning" "is-primary" "is-success")) 0 }}
         {{ $text := cond (eq $class "is-dark") "has-text-white" "has-text-grey-darker"}}
         <article class="tile is-child notification {{ $class }} {{ $text }}">
-          {{ partial "project-listing.html" $v }}
+          {{ partial "project_listing.html" $v }}
         </article>
       </div>
       {{ if not (modBool $i 2) }}
