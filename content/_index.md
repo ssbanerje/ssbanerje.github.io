@@ -1,5 +1,5 @@
 +++
-title = "Home"
+title = "Homepage"
 date = 2017-07-19
 weight = 1
 
