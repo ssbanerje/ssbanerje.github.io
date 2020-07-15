@@ -11,10 +11,12 @@ date = 2020-07-14
   name = "DOI"
   icon = "ai ai-doi"
   url = "#"
+
 [[links]]
   name = "arXiv"
   icon = "ai ai-arxiv"
   url = "https://arxiv.org/abs/1909.02119"
+
 [[news]]
   name = "CSL News"
   icon = "far fa-newspaper"

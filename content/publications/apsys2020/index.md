@@ -10,6 +10,16 @@ date = 2020-08-24
   name = "DOI"
   icon = "ai ai-acmdl"
   url = "#"
+
+[[links]]
+  name = "Code (Kernel)"
+  icon = "fas fa-code"
+  url = "https://github.com/keitokuch/linux-4.15-lb"
+
+[[links]]
+  name = "Code (ML)"
+  icon = "fas fa-code"
+  url = "https://github.com/keitokuch/MLLB"
 +++
 
 The OS load balancing algorithm governs the performance gains provided by a multi-core computer
