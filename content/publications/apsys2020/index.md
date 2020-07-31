@@ -9,7 +9,7 @@ date = 2020-08-24
 [[links]]
   name = "DOI"
   icon = "ai ai-acmdl"
-  url = "#"
+  url = "https://doi.org/10.1145/3409963.3410492"
 
 [[links]]
   name = "Code (Kernel)"
@@ -22,15 +22,16 @@ date = 2020-08-24
   url = "https://github.com/keitokuch/MLLB"
 +++
 
-The OS load balancing algorithm governs the performance gains provided by a multi-core computer
-system. The Linux scheduler tracks process loads by average CPU utilization to balance workload
-between processor cores. This approach maximizes the utilization of processing time but overlooks
-the contention for lower-level hardware resources. In servers running compute-intensive work-loads,
-an imbalanced need for limited computing resources hinders execution performance. This paper solves
-the above problem using a machine learning (ML)-based resource-aware load balancer in Linux’s
-Completely Fair Scheduler (CFS). We describe (1) a low-overhead methods to collect training data; (2)
-an ML-model based on a multi-layer perceptron (MLP) model to imitate the CFS load balancer based on
-the collected training data; and (3) an in-kernel implementation of inference on the model. Our
-experiments demonstrate that the proposed model has an accuracy of 99.9% in making migration
-decisions and only increases the latency of the load balance procedure by 13% (14.5μs to 16.4μs)
+
+The OS load balancing algorithm governs the performance gains provided by a multiprocessor computer
+system.  The Linux's Completely Fair Scheduler (CFS) scheduler tracks process loads by average CPU
+utilization to balance workload between processor cores.  That approach maximizes the utilization of
+processing time but overlooks the contention for lower-level hardware resources.  In servers running
+compute-intensive workloads, an imbalanced need for limited computing resources hinders execution
+performance.  This paper solves the above problem using a machine learning (ML)-based resource-aware
+load balancer.  We describe (1) low-overhead methods for collecting training data; (2) an ML model
+based on a multi-layer perceptron model that imitates the CFS load balancer based on the collected
+training data; and (3) an in-kernel implementation of inference on the model.  Our experiments
+demonstrate that the proposed model has an accuracy of 99% in making migration decisions and while
+only increasing the latency by 1.9 μs.
 
