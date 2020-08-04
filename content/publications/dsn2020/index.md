@@ -10,7 +10,7 @@ date = 2020-06-30
 [[links]]
   name = "DOI"
   icon = "ai ai-ieee"
-  url = "#"
+  url = "https://ieeexplore.ieee.org/document/9153375"
 [[links]]
   name = "arXiv"
   icon = "ai ai-arxiv"
