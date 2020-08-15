@@ -1,4 +1,8 @@
 [[news]]
+  date = "Aug 15, 2020"
+  text = "Our paper on [fine-grained ML-based resource rebalancing](publications/osdi2020) to meet microservice SLO-requirements has been accepted at [OSDI 2020](https://www.usenix.org/conference/osdi20)."
+
+[[news]]
   date = "Jul 3, 2020"
   text = "Our paper on [ML-based load-balancing](publications/apsys2020) in the Linux Kernel's CFS has been accepted at [ApSys 2020](https://www.ci.i.u-tokyo.ac.jp/apsys2020/)."
 
