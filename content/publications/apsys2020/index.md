@@ -9,7 +9,7 @@ date = 2020-08-24
 [[links]]
   name = "DOI"
   icon = "ai ai-acmdl"
-  url = "https://doi.org/10.1145/3409963.3410492"
+  url = "https://dl.acm.org/doi/10.1145/3409963.3410492"
 
 [[links]]
   name = "Code (Kernel)"
