@@ -2,7 +2,7 @@
 featured = true
 pubtype = "conference"
 projects = ["compgen"]
-title = "Understanding, Detecting, and Localizing Failures in High-Performance Storage Systems"
+title = "Live Forensics for HPC Systems: A Case Study on Distributed Storage Systems"
 authors = "Saurabh Jha, Shengkun Cui, Subho S. Banerjee, Tianyin Xu, Jeremy Enos, Mike Showerman, Zbigniew T. Kalbarczyk, and Ravishankar K. Iyer"
 venue = "Supercomputing 2020"
 date = 2020-11-15
