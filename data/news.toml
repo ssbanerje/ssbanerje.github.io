@@ -1,4 +1,8 @@
 [[news]]
+  date = "Sep 5, 2020"
+  text = "Our [SC 20 paper](publications/sc2020) has been nominated for the best paper and best student paper awards."
+
+[[news]]
   date = "Aug 15, 2020"
   text = "Our paper on [fine-grained ML-based resource rebalancing](publications/osdi2020) to meet microservice SLO-requirements has been accepted at [OSDI 2020](https://www.usenix.org/conference/osdi20)."
 
