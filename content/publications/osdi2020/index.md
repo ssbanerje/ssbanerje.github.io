@@ -2,7 +2,7 @@
 featured = true
 pubtype = "conference"
 projects = ["compgen"]
-title = "FIRM: An Intelligent Fine-grained Resource Management Framework for SLO-oriented Microservices"
+title = "FIRM: An Intelligent Fine-Grained Resource Management Framework for SLO-Oriented Microservices"
 authors = "Haoran Qiu, Subho S. Banerjee, Saurabh Jha, Zbigniew T. Kalbarczyk, and Ravishankar K. Iyer"
 venue = "OSDI 2020"
 date = 2020-11-04
@@ -10,12 +10,17 @@ date = 2020-11-04
 [[links]]
   name = "DOI"
   icon = "ai ai-doi"
-  url = "#"
+  url = "https://www.usenix.org/conference/osdi20/presentation/qiu"
 
 [[links]]
   name = "arXiv"
   icon = "ai ai-arxiv"
   url = "http://arxiv.org/abs/2008.08509"
+
+[[links]]
+  name = "Code"
+  icon = "fas fa-code"
+  url = "https://gitlab.engr.illinois.edu/DEPEND/firm"
 +++
 
 Modern user-facing, latency-sensitive web services include numerous distributed, intercommunicating
