@@ -21,6 +21,11 @@ date = 2020-11-04
   name = "Code"
   icon = "fas fa-code"
   url = "https://gitlab.engr.illinois.edu/DEPEND/firm"
+
+[[links]]
+  name = "Data"
+  icon = "fas fa-database"
+  url = "https://databank.illinois.edu/datasets/IDB-6738796"
 +++
 
 Modern user-facing, latency-sensitive web services include numerous distributed, intercommunicating
