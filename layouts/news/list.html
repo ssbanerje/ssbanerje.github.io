@@ -1,0 +1,13 @@
+{{ define "main" }}
+  <section class="section">
+    <h1 class="title is-1">News</h1>
+  	<ul class="news">
+  	  {{ range .Site.Data.news.news }}
+  		<li class="has-text-left">
+        <span class="date"><i class="fas fa-caret-right"></i>&nbsp;{{ .date }}</span>
+        <span>{{ .text | $.RenderString }}</span>
+      </li>
+  		{{end}}
+  	</ul>
+  </section>
+{{ end }}

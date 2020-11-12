@@ -57,3 +57,9 @@ footer {
   border-radius: 0.3rem;
   font-size: 70%;
 }
+
+/* Overwrite the margin on the default Bulma message element. */
+.message {
+  margin-bottom: 1em;
+}
+

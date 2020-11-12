@@ -6,7 +6,10 @@
   </section>
 
   <section class="section">
-    <h1 class="title is-1">News</h1>
+    <h1 class="title is-1">
+      News
+      <span class="subtitle is-4">{{ "[[More Entries](/news/)]" | $.RenderString }}</span>
+    </h1>
   	<ul class="news">
   	  {{ range first 5 .Site.Data.news.news }}
   		<li class="has-text-left">

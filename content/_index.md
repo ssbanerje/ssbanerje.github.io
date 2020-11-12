@@ -20,6 +20,11 @@ failure detection, and resilience assessment.
 
 In past summers I have interned at [IBM Research][ibm], [Microsoft Research][msr], and [CERN][].
 
+
+{{< block class="is-info">}}
+  **I am on the job market!**
+{{< /block >}}
+
 [uiuc]: https://illinois.edu
 [cs@uiuc]: https://cs.illinois.edu
 [rkiyer]: https://ece.illinois.edu/about/directory/faculty/rkiyer
@@ -28,3 +33,4 @@ In past summers I have interned at [IBM Research][ibm], [Microsoft Research][msr
 [cern]: https://cern.ch
 [msr]: http://research.microsoft.com
 [ibm]: http://ibm.com
+
