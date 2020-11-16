@@ -10,8 +10,8 @@ award = ["Best Paper Candidate", "Best Student Paper Candidate"]
 
 [[links]]
   name = "DOI"
-  icon = "ai ai-ieee"
-  url = "#"
+  icon = "ai ai-acmdl"
+  url = "https://dl.acm.org/doi/10.5555/3433701.3433787"
 [[links]]
   name = "Code"
   icon = "fas fa-code"

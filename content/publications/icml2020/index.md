@@ -10,7 +10,7 @@ date = 2020-07-14
 [[links]]
   name = "DOI"
   icon = "ai ai-doi"
-  url = "#"
+  url = "https://proceedings.icml.cc/paper/2020"
 
 [[links]]
   name = "arXiv"
