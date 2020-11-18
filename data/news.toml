@@ -1,4 +1,8 @@
 [[news]]
+  date = "Nov 19, 2020"
+  text = "Our paper on [correcting CPU-performance counter sampling errors](publications/asplos2021) has been accepted at [ASPLOS 2021](https://asplos-conference.org/)."
+
+[[news]]
   date = "Sep 5, 2020"
   text = "Our [SC 2020 paper](publications/sc2020) has been nominated for the best paper and best student paper awards."
 
