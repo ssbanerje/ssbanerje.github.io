@@ -6,6 +6,12 @@ title = "BayesPerf: Minimizing Performance Monitoring Errors Using Bayesian Stat
 authors = "Subho S. Banerjee, Saurabh Jha, Zbigniew T. Kalbarczyk, and Ravishankar K. Iyer"
 venue = "ASPLOS 2021"
 date = 2021-04-19
+
+[[links]]
+  name = "DOI"
+  icon = "ai ai-acmdl"
+  url = "https://doi.org/10.1145/3445814.3446739"
+
 +++
 
 Hardware performance counters (HPCs) that measure low-level architectural and microarchitectural
