@@ -1,6 +1,6 @@
 +++
 pubtype = "abstract"
-projects = ["compgen"]
+projects = ["learnedsystems"]
 title = "ASAP: Accelerated Short Read Alignment on Programmable Hardware"
 authors = "Subho S. Banerjee, Mohamed el-Hadedy, Jong B. Lim, Daniel Chen, Zbigniew T. Kalbarczyk, Deming Chen, and Ravishankar K. Iyer"
 venue = "FPGA 2017"

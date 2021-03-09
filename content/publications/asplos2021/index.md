@@ -1,7 +1,7 @@
 +++
 featured = true
 pubtype = "conference"
-projects = ["compgen"]
+projects = ["learnedsystems"]
 title = "BayesPerf: Minimizing Performance Monitoring Errors Using Bayesian Statistics"
 authors = "Subho S. Banerjee, Saurabh Jha, Zbigniew T. Kalbarczyk, and Ravishankar K. Iyer"
 venue = "ASPLOS 2021"

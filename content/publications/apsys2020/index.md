@@ -1,6 +1,6 @@
 +++
 pubtype = "workshop"
-projects = ["compgen"]
+projects = ["learnedsystems"]
 title = "Machine Learning for Load Balancing in the Linux Kernel"
 authors = "Jingde Chen, Subho S. Banerjee, Zbigniew T. Kalbarczyk, and Ravishankar K. Iyer"
 venue = "ApSys 2020"

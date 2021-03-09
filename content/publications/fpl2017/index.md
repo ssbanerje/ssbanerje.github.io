@@ -1,7 +1,7 @@
 +++
 featured = true
 pubtype = "conference"
-projects = ["compgen"]
+projects = ["learnedsystems"]
 title = "On Accelerating Pair-HMM Computations in Programmable Hardware"
 authors = "Subho S. Banerjee, Mohamed el-Hadedy, Ching Y. Tan, Zbigniew T. Kalbarczyk, Steve Lumetta, and Ravishankar K. Iyer"
 venue = "FPL 2017"
