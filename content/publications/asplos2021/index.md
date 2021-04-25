@@ -10,12 +10,17 @@ date = 2021-04-19
 [[links]]
  name = "DOI"
  icon = "ai ai-acmdl"
- url = "https://doi.org/10.1145/3445814.3446739"
+ url = "https://dl.acm.org/doi/10.1145/3445814.3446739"
+
 [[links]]
  name = "arXiv"
  icon = "ai ai-arxiv"
  url = "https://arxiv.org/abs/2102.10837"
 
+[[links]]
+  name = "Short Talk"
+  icon = "fab fa-youtube"
+  url = "https://youtu.be/Y3d8Vu8g-Rw"
 +++
 
 Hardware performance counters (HPCs) that measure low-level architectural and microarchitectural

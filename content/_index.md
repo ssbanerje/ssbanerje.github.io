@@ -12,11 +12,11 @@ Urbana-Champaign][uiuc], advised by [Ravishankar K. Iyer][rkiyer]. I am affiliat
 [DEPEND][] research group at the [Coordinated Science Laboratory][csl]. My research aims to improve
 the performance, resilience, and ease of management of large-scale heterogeneous computer systems.
 
-I am particularly interested in applying machine learning to challenging problems within the design
-and management of computer systems. My dissertation research has demonstrated the application of
-domain-knowledge (i.e., knowledge about software and hardware architecture) as an inductive bias to
-ML techniques to solve a variety of systems problems, including heterogeneous resource management,
-distributed failure detection, and resilience assessment.
+I am particularly interested applying machine learning to challenging problems within the design and
+management of computer systems. My research has demonstrated the application of domain-knowledge
+(i.e., knowledge about software and hardware architecture) as an inductive bias to ML techniques to
+solve a variety of systems problems, including heterogeneous resource management, distributed
+failure detection, and resilience assessment.
 
 In past summers I have interned at [IBM Research][ibm], [Microsoft Research][msr], and [CERN][].
 
