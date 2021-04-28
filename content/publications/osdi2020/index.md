@@ -1,7 +1,7 @@
 +++
 featured = true
 pubtype = "conference"
-projects = ["compgen"]
+projects = ["learnedsystems"]
 title = "FIRM: An Intelligent Fine-Grained Resource Management Framework for SLO-Oriented Microservices"
 authors = "Haoran Qiu, Subho S. Banerjee, Saurabh Jha, Zbigniew T. Kalbarczyk, and Ravishankar K. Iyer"
 venue = "OSDI 2020"

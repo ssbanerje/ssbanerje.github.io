@@ -60,10 +60,3 @@ $fonts: (
 
 // Import styles for basic layout
 @import 'layout';
-
-// This is a hack.. Need to fix according to https://github.com/jgthms/bulma/issues/2937
-@media screen and (min-width: 1400px) {
-  .column.is-narrow-desktop {
-    width: unset !important;
-  }
-}

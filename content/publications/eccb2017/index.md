@@ -1,6 +1,6 @@
 +++
 pubtype = "abstract"
-projects = ["compgen"]
+projects = ["learnedsystems"]
 title = "Bringing Innovations in Systems and Analytics to the Bedside: Design of the CompGen Machine"
 authors = "S. S. Banerjee, A. P. Athreya, Y. Varatharajah, M. Aly, C. Tan, Z. Stephens, Z. Kalbarczyk, S. Lumetta, L. Wang, R. Weinshilboum, and R. K. Iyer"
 venue = "ECCB 2017"

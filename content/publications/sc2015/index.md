@@ -1,6 +1,6 @@
 +++
 pubtype = "abstract"
-projects = ["compgen"]
+projects = ["learnedsystems"]
 title = "IGen: The Illinois Genomics Execution Environment"
 authors = "Subho S. Banerjee and Ravishankar K. Iyer"
 venue = "Supercomputing 2015 (SRC)"

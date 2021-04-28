@@ -1,7 +1,7 @@
 +++
 featured = true
 pubtype = "conference"
-projects = ["compgen"]
+projects = ["learnedsystems"]
 title = "Inductive-bias-driven Reinforcement Learning for Efficient Schedules in Heterogeneous Clusters"
 authors = "Subho S. Banerjee, Saurabh Jha, Zbigniew T. Kalbarczyk, and Ravishankar K. Iyer"
 venue = "ICML 2020"
@@ -10,7 +10,7 @@ date = 2020-07-14
 [[links]]
   name = "DOI"
   icon = "ai ai-doi"
-  url = "https://proceedings.icml.cc/paper/2020"
+  url = "http://proceedings.mlr.press/v119/banerjee20a.html"
 
 [[links]]
   name = "arXiv"

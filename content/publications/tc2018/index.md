@@ -1,7 +1,7 @@
 +++
 featured = true
 pubtype = "journal"
-projects = ["compgen"]
+projects = ["learnedsystems"]
 title = "ASAP: Accelerated Short Read Alignment on Programmable Hardware"
 authors = "Subho S. Banerjee, Mohamed el-Hadedy, Jong B. Lim, Steve Lumetta, Zbigniew T. Kalbarczyk, Deming Chen, and Ravishankar K. Iyer"
 venue = "IEEE Transactions on Computers"
