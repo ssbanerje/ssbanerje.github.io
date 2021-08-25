@@ -1,4 +1,8 @@
 [[news]]
+  date = "Aug 20, 2021"
+  text = "Our paper on [accelerating PairHMM computations on GPUs](publications/iccd2021) has been accepted at [ICCD 2021](http://www.iccd-conf.com/)."
+
+[[news]]
   date = "Nov 19, 2020"
   text = "Our paper on [correcting CPU-performance counter sampling errors](publications/asplos2021) has been accepted at [ASPLOS 2021](https://asplos-conference.org/)."
 
