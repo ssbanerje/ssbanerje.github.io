@@ -1,4 +1,8 @@
 [[news]]
+  date = "Oct 20, 2021"
+  text = "Our paper on [characterizing latency variation in serverless FaaS](publications/wosc2021) has been accepted at [WoSC 2021](https://www.serverlesscomputing.org/wosc7/)."
+
+[[news]]
   date = "Aug 20, 2021"
   text = "Our paper on [accelerating PairHMM computations on GPUs](publications/iccd2021) has been accepted at [ICCD 2021](http://www.iccd-conf.com/)."
 
