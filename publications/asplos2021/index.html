@@ -1,0 +1,173 @@
+<!doctype html><html lang=en-us>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=generator content="Hugo 0.88.1">
+<meta name=author content="Subho Sankar Banerjee">
+<meta name=description content="BayesPerf: Minimizing Performance Monitoring Errors Using Bayesian Statistics">
+<meta property="og:title" content="BayesPerf: Minimizing Performance Monitoring Errors Using Bayesian Statistics">
+<meta property="og:description" content="Hardware performance counters (HPCs) that measure low-level architectural and microarchitectural events provide dynamic contextual information about the state of the system. However, HPC measurements are error-prone due to non determinism (e.g., undercounting due to event multiplexing, or OS interrupt-handling behaviors). In this paper, we present BayesPerf, a system for quantifying uncertainty in HPC measurements by using a domain-driven Bayesian model that captures microarchitectural relationships between HPCs to jointly infer their values as probability distributions.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://ssbaner2.cs.illinois.edu/publications/asplos2021/"><meta property="article:section" content="publications">
+<meta property="article:published_time" content="2021-04-19T00:00:00+00:00">
+<meta property="article:modified_time" content="2021-04-19T00:00:00+00:00">
+<meta itemprop=name content="BayesPerf: Minimizing Performance Monitoring Errors Using Bayesian Statistics">
+<meta itemprop=description content="Hardware performance counters (HPCs) that measure low-level architectural and microarchitectural events provide dynamic contextual information about the state of the system. However, HPC measurements are error-prone due to non determinism (e.g., undercounting due to event multiplexing, or OS interrupt-handling behaviors). In this paper, we present BayesPerf, a system for quantifying uncertainty in HPC measurements by using a domain-driven Bayesian model that captures microarchitectural relationships between HPCs to jointly infer their values as probability distributions."><meta itemprop=datePublished content="2021-04-19T00:00:00+00:00">
+<meta itemprop=dateModified content="2021-04-19T00:00:00+00:00">
+<meta itemprop=wordCount content="134">
+<meta itemprop=keywords content>
+<meta name=twitter:card content="summary">
+<meta name=twitter:title content="BayesPerf: Minimizing Performance Monitoring Errors Using Bayesian Statistics">
+<meta name=twitter:description content="Hardware performance counters (HPCs) that measure low-level architectural and microarchitectural events provide dynamic contextual information about the state of the system. However, HPC measurements are error-prone due to non determinism (e.g., undercounting due to event multiplexing, or OS interrupt-handling behaviors). In this paper, we present BayesPerf, a system for quantifying uncertainty in HPC measurements by using a domain-driven Bayesian model that captures microarchitectural relationships between HPCs to jointly infer their values as probability distributions.">
+<meta name=theme-color content="#141f33">
+<title>BayesPerf: Minimizing Performance Monitoring Errors Using Bayesian Statistics | Subho Sankar Banerjee</title>
+<link rel=canonical href=/publications/asplos2021/>
+<link rel=icon href=/img/favicon.ico>
+<link rel="shortcut icon" href=/img/favicon.ico>
+<link rel=apple-touch-icon href=/img/favicon.ico>
+<link rel=stylesheet href=/css/style.min.7d22492f4d912fedeef76ed8491d15b759681c4e0c8a2be9f95b6bc4cdc58a14.css>
+<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400;1,700&family=Inconsolata:ital,wght@0,400;0,700;1,400;1,700&family=Eczar:ital,wght@0,400;0,700;1,400;1,700&display=swap" crossorigin=anonymous type=text/css rel=stylesheet>
+<link href=https://unpkg.com/academicons@1.8.6/css/academicons.min.css crossorigin=anonymous type=text/css rel=stylesheet rel=preload as=style onload="this.onload=null,this.rel='stylesheet'">
+<link href=https://unpkg.com/components-font-awesome@5.9.0/css/all.min.css crossorigin=anonymous type=text/css rel=stylesheet rel=preload as=style onload="this.onload=null,this.rel='stylesheet'">
+<script type=application/javascript>var doNotTrack=!1;doNotTrack||(window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga('create','UA-48086103-1','auto'),ga('send','pageview'))</script>
+<script async src=https://www.google-analytics.com/analytics.js></script>
+</head>
+<body>
+<div class="columns is-gapless is-marginless">
+<div class="column is-one-quarter-tablet is-narrow-desktop" id=sidebar>
+<div class=padded-sidebar>
+<section class=section>
+<figure class="image container" style=margin-bottom:2rem>
+<img class=is-rounded src=/img/me_sq.png alt=Avatar>
+</figure>
+<div class="sidebar-content has-text-centered">
+<h1 class="title is-1"><a href=/>Subho Sankar Banerjee</a></h1>
+<p class="has-text-white-ter has-text-centered">
+PhD Candidate<br>
+CS @ UIUC
+</p>
+<ul class="icon-list is-clearfix">
+<li><a href=mailto:remove_this_if_human_ssbaner2@illinois.edu><i class="fas fa-envelope-open fa-fw"></i></a></li>
+<li><a href="https://illinois.edu/map/view?buildingId=148"><i class="fas fa-map-marker-alt fa-fw"></i></a></li>
+<li><a href="https://scholar.google.com/citations?user=jvV04p3aXgMC"><i class="ai ai-google-scholar fa-fw"></i></a></li>
+<li><a href="https://dblp.uni-trier.de/pers/hd/b/Banerjee:Subho_S="><i class="ai ai-dblp fa-fw"></i></a></li>
+<li><a href=https://www.linkedin.com/in/ssbanerjee><i class="fab fa-linkedin fa-fw"></i></a></li>
+<li><a href=https://github.com/ssbanerje><i class="fab fa-github fa-fw"></i></a></li>
+</ul>
+</div>
+</section>
+</div>
+</div>
+<div class=column>
+<div id=content class=has-text-justified>
+<section class=section>
+<nav class=breadcrumb aria-label=breadcrumbs>
+<ul>
+<li><a href=/><span class="icon is-small"><i class="fas fa-home" aria-hidden=true></i></span><span>Home</span></a></li>
+<li><a href=/publications/>Publications</a></li>
+<li class=is-active><a href=# aria-current=page>This Page</a></li>
+</ul>
+</nav>
+</section>
+<section class=section>
+<div class=has-text-left>
+<h1 class="title is-1 no-border">BayesPerf: Minimizing Performance Monitoring Errors Using Bayesian Statistics</h1>
+<h3 class="title is-3">Subho S. Banerjee, Saurabh Jha, Zbigniew T. Kalbarczyk, and Ravishankar K. Iyer</h3>
+<h3 class="title is-3 has-text-grey"><i>ASPLOS 2021</i></h3>
+</div>
+<br><hr>
+<ul class="single-paper-links is-size-3">
+<li>
+<a href=https://dl.acm.org/doi/10.1145/3445814.3446739 target=_blank rel=noreferrer rel=noopener>
+<i class="ai ai-acmdl" aria-hidden=true></i>&nbsp;DOI
+</a>
+</li>
+<li>
+<a href=https://arxiv.org/abs/2102.10837 target=_blank rel=noreferrer rel=noopener>
+<i class="ai ai-arxiv" aria-hidden=true></i>&nbsp;arXiv
+</a>
+</li>
+<li>
+<a href=https://youtu.be/Y3d8Vu8g-Rw target=_blank rel=noreferrer rel=noopener>
+<i class="fab fa-youtube" aria-hidden=true></i>&nbsp;Short Talk
+</a>
+</li>
+<li>
+<a href=/publications/asplos2021/Abstract.pdf target=_blank rel=noreferrer rel=noopener>
+<i class="far fa-file-pdf" aria-hidden=true></i>&nbsp;Abstract
+</a>
+</li>
+<li>
+<a href=/publications/asplos2021/Paper.pdf target=_blank rel=noreferrer rel=noopener>
+<i class="far fa-file-pdf" aria-hidden=true></i>&nbsp;Paper
+</a>
+</li>
+<li>
+<a href=/publications/asplos2021/Slides.pdf target=_blank rel=noreferrer rel=noopener>
+<i class="far fa-file-pdf" aria-hidden=true></i>&nbsp;Slides
+</a>
+</li>
+</ul>
+</section>
+<section class=section>
+<h2 class="title is-2">Abstract</h2>
+<div class=content><p>Hardware performance counters (HPCs) that measure low-level architectural and microarchitectural
+events provide dynamic contextual information about the state of the system. However, HPC
+measurements are error-prone due to non determinism (e.g., undercounting due to event multiplexing,
+or OS interrupt-handling behaviors). In this paper, we present BayesPerf, a system for quantifying
+uncertainty in HPC measurements by using a domain-driven Bayesian model that captures
+microarchitectural relationships between HPCs to jointly infer their values as probability
+distributions. We provide the design and implementation of an accelerator that allows for
+low-latency and low-power inference of the BayesPerf model for x86 and ppc64 CPUs. BayesPerf
+reduces the average error in HPC measurements from 40.1% to 7.6% when events are being multiplexed.
+The value of BayesPerf in real-time decision-making is illustrated with a simple example of
+scheduling of PCIe transfers.</p>
+</div>
+</section>
+<section class=section style=margin-bottom:1rem>
+<h2 class="title is-2">
+Citation
+<a href=/publications/asplos2021/ref.bib style=font-size:80%><i class="far fa-arrow-alt-circle-down"></i></a>
+</h2>
+<div class=highlight><pre tabindex=0 style=background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bibtex data-lang=bibtex><span style=color:#0a8;font-weight:700>@inproceedings</span>{<span style=color:#99f>Banerjee2021</span>,
+  <span style=color:#309>author</span> = <span style=color:#c30>{Banerjee, Subho S. and Jha, Saurabh and Kalbarczyk, Zbigniew and Iyer, Ravishankar K.}</span>,
+  <span style=color:#309>title</span> = <span style=color:#c30>{BayesPerf: Minimizing Performance Monitoring Errors Using Bayesian Statistics}</span>,
+  <span style=color:#309>year</span> = <span style=color:#c30>{2021}</span>,
+  <span style=color:#309>isbn</span> = <span style=color:#c30>{9781450383172}</span>,
+  <span style=color:#309>publisher</span> = <span style=color:#c30>{Association for Computing Machinery}</span>,
+  <span style=color:#309>address</span> = <span style=color:#c30>{New York, NY, USA}</span>,
+  <span style=color:#309>url</span> = <span style=color:#c30>{https://doi.org/10.1145/3445814.3446739}</span>,
+  <span style=color:#309>doi</span> = <span style=color:#c30>{10.1145/3445814.3446739}</span>,
+  <span style=color:#309>booktitle</span> = <span style=color:#c30>{Proceedings of the 26th ACM International Conference on Architectural Support for Programming Languages and Operating Systems}</span>,
+  <span style=color:#309>pages</span> = <span style=color:#c30>{832–844}</span>,
+  <span style=color:#309>numpages</span> = <span style=color:#c30>{13}</span>,
+  <span style=color:#309>keywords</span> = <span style=color:#c30>{Error Correction, Performance Counter, Accelerator, Sampling Errors, Error Detection, Probabilistic Graphical Model}</span>,
+  <span style=color:#309>location</span> = <span style=color:#c30>{Virtual, USA}</span>,
+  <span style=color:#309>series</span> = <span style=color:#c30>{ASPLOS 2021}</span>
+} 
+</code></pre></div>
+</section>
+<section class=section style=margin-bottom:1rem>
+<h2 class="title is-2">Related Projects</h2>
+<ul class=bulleted-list>
+<li><a href=/projects/learnedsystems/>Intelligence Augmented Compter Systems</a></li>
+</ul>
+</section>
+</div>
+<footer class=footer>
+<div class="content has-text-left has-text-dark">
+<ul>
+<li><span class="icon has-text-info"><i class="fas fa-heading fa-fw"></i></span> Powered by <a href=https://www.gohugo.io>Hugo</a></li>
+<li><span class="icon has-text-link"><i class="fas fa-pencil-alt fa-fw"></i></span> Last updated 10/21/2021</li>
+<li><a href=https://ssbaner2.cs.illinois.edu/index.xml><span class="icon has-text-orange"><i class="fas fa-rss fa-fw"></i></span> Feed</a></li>
+</ul>
+</div>
+</footer>
+</div>
+<div class="column is-1 is-hidden-touch" id=right></div>
+</div>
+<script src=https://unpkg.com/quicklink@2.0.0/dist/quicklink.umd.js integrity=sha384-0nZ9FdSjDH2+tAS8yrmxpBHVMFs28rYR4bDVPFEoQqfzvezs/7OW7ebNI7CrWAg7 crossorigin=anonymous async></script>
+<script>window.addEventListener('load',()=>{quicklink.listen({ignores:[a=>a.includes('.pdf'),a=>a.includes('.bib'),(b,a)=>a.hasAttribute('noprefetch')]})})</script>
+</body>
+</html>

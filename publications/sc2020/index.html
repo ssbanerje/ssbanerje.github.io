@@ -1,0 +1,163 @@
+<!doctype html><html lang=en-us>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=generator content="Hugo 0.88.1">
+<meta name=author content="Subho Sankar Banerjee">
+<meta name=description content="Live Forensics for HPC Systems: A Case Study on Distributed Storage Systems">
+<meta property="og:title" content="Live Forensics for HPC Systems: A Case Study on Distributed Storage Systems">
+<meta property="og:description" content="Large-scale high-performance computing systems frequently experience a wide range of failure modes, such as reliability failures (e.g., hang or crash), and resource overload-related failures (e.g., congestion collapse), impacting systems and applications. Despite the adverse effects of these failures, current systems do not provide methodologies for proactively detecting, localizing, and diagnosing failures. We present Kaleidoscope, a near real-time failure detection and diagnosis framework, consisting of of hierarchical domain-guided machine learning models that identify the failing components, the corresponding failure mode, and point to the most likely cause indicative of the failure in near real-time (within one minute of failure occurrence).">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://ssbaner2.cs.illinois.edu/publications/sc2020/"><meta property="article:section" content="publications">
+<meta property="article:published_time" content="2020-11-15T00:00:00+00:00">
+<meta property="article:modified_time" content="2020-11-15T00:00:00+00:00">
+<meta itemprop=name content="Live Forensics for HPC Systems: A Case Study on Distributed Storage Systems">
+<meta itemprop=description content="Large-scale high-performance computing systems frequently experience a wide range of failure modes, such as reliability failures (e.g., hang or crash), and resource overload-related failures (e.g., congestion collapse), impacting systems and applications. Despite the adverse effects of these failures, current systems do not provide methodologies for proactively detecting, localizing, and diagnosing failures. We present Kaleidoscope, a near real-time failure detection and diagnosis framework, consisting of of hierarchical domain-guided machine learning models that identify the failing components, the corresponding failure mode, and point to the most likely cause indicative of the failure in near real-time (within one minute of failure occurrence)."><meta itemprop=datePublished content="2020-11-15T00:00:00+00:00">
+<meta itemprop=dateModified content="2020-11-15T00:00:00+00:00">
+<meta itemprop=wordCount content="144">
+<meta itemprop=keywords content>
+<meta name=twitter:card content="summary">
+<meta name=twitter:title content="Live Forensics for HPC Systems: A Case Study on Distributed Storage Systems">
+<meta name=twitter:description content="Large-scale high-performance computing systems frequently experience a wide range of failure modes, such as reliability failures (e.g., hang or crash), and resource overload-related failures (e.g., congestion collapse), impacting systems and applications. Despite the adverse effects of these failures, current systems do not provide methodologies for proactively detecting, localizing, and diagnosing failures. We present Kaleidoscope, a near real-time failure detection and diagnosis framework, consisting of of hierarchical domain-guided machine learning models that identify the failing components, the corresponding failure mode, and point to the most likely cause indicative of the failure in near real-time (within one minute of failure occurrence).">
+<meta name=theme-color content="#141f33">
+<title>Live Forensics for HPC Systems: A Case Study on Distributed Storage Systems | Subho Sankar Banerjee</title>
+<link rel=canonical href=/publications/sc2020/>
+<link rel=icon href=/img/favicon.ico>
+<link rel="shortcut icon" href=/img/favicon.ico>
+<link rel=apple-touch-icon href=/img/favicon.ico>
+<link rel=stylesheet href=/css/style.min.7d22492f4d912fedeef76ed8491d15b759681c4e0c8a2be9f95b6bc4cdc58a14.css>
+<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400;1,700&family=Inconsolata:ital,wght@0,400;0,700;1,400;1,700&family=Eczar:ital,wght@0,400;0,700;1,400;1,700&display=swap" crossorigin=anonymous type=text/css rel=stylesheet>
+<link href=https://unpkg.com/academicons@1.8.6/css/academicons.min.css crossorigin=anonymous type=text/css rel=stylesheet rel=preload as=style onload="this.onload=null,this.rel='stylesheet'">
+<link href=https://unpkg.com/components-font-awesome@5.9.0/css/all.min.css crossorigin=anonymous type=text/css rel=stylesheet rel=preload as=style onload="this.onload=null,this.rel='stylesheet'">
+<script type=application/javascript>var doNotTrack=!1;doNotTrack||(window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga('create','UA-48086103-1','auto'),ga('send','pageview'))</script>
+<script async src=https://www.google-analytics.com/analytics.js></script>
+</head>
+<body>
+<div class="columns is-gapless is-marginless">
+<div class="column is-one-quarter-tablet is-narrow-desktop" id=sidebar>
+<div class=padded-sidebar>
+<section class=section>
+<figure class="image container" style=margin-bottom:2rem>
+<img class=is-rounded src=/img/me_sq.png alt=Avatar>
+</figure>
+<div class="sidebar-content has-text-centered">
+<h1 class="title is-1"><a href=/>Subho Sankar Banerjee</a></h1>
+<p class="has-text-white-ter has-text-centered">
+PhD Candidate<br>
+CS @ UIUC
+</p>
+<ul class="icon-list is-clearfix">
+<li><a href=mailto:remove_this_if_human_ssbaner2@illinois.edu><i class="fas fa-envelope-open fa-fw"></i></a></li>
+<li><a href="https://illinois.edu/map/view?buildingId=148"><i class="fas fa-map-marker-alt fa-fw"></i></a></li>
+<li><a href="https://scholar.google.com/citations?user=jvV04p3aXgMC"><i class="ai ai-google-scholar fa-fw"></i></a></li>
+<li><a href="https://dblp.uni-trier.de/pers/hd/b/Banerjee:Subho_S="><i class="ai ai-dblp fa-fw"></i></a></li>
+<li><a href=https://www.linkedin.com/in/ssbanerjee><i class="fab fa-linkedin fa-fw"></i></a></li>
+<li><a href=https://github.com/ssbanerje><i class="fab fa-github fa-fw"></i></a></li>
+</ul>
+</div>
+</section>
+</div>
+</div>
+<div class=column>
+<div id=content class=has-text-justified>
+<section class=section>
+<nav class=breadcrumb aria-label=breadcrumbs>
+<ul>
+<li><a href=/><span class="icon is-small"><i class="fas fa-home" aria-hidden=true></i></span><span>Home</span></a></li>
+<li><a href=/publications/>Publications</a></li>
+<li class=is-active><a href=# aria-current=page>This Page</a></li>
+</ul>
+</nav>
+</section>
+<section class=section>
+<div class=has-text-left>
+<h1 class="title is-1 no-border">Live Forensics for HPC Systems: A Case Study on Distributed Storage Systems</h1>
+<h3 class="title is-3">Saurabh Jha, Shengkun Cui, Subho S. Banerjee, Tianyin Xu, Jeremy Enos, Mike Showerman, Zbigniew T. Kalbarczyk, and Ravishankar K. Iyer</h3>
+<h3 class="title is-3 has-text-grey"><i>Supercomputing 2020</i></h3>
+</div>
+<br><hr>
+<ul class="single-paper-links is-size-3">
+<li>
+<a href=https://dl.acm.org/doi/10.5555/3433701.3433787 target=_blank rel=noreferrer rel=noopener>
+<i class="ai ai-acmdl" aria-hidden=true></i>&nbsp;DOI
+</a>
+</li>
+<li>
+<a href=https://github.com/saurabhjha1/kscope-artifact target=_blank rel=noreferrer rel=noopener>
+<i class="fas fa-code" aria-hidden=true></i>&nbsp;Code
+</a>
+</li>
+<li>
+<a href=/publications/sc2020/Paper.pdf target=_blank rel=noreferrer rel=noopener>
+<i class="far fa-file-pdf" aria-hidden=true></i>&nbsp;Paper
+</a>
+</li>
+</ul>
+</section>
+<section class=section>
+<h2 class="title is-2">Abstract</h2>
+<div class=content><p>Large-scale high-performance computing systems frequently experience a wide range of failure modes,
+such as reliability failures (e.g., hang or crash), and resource overload-related failures (e.g.,
+congestion collapse), impacting systems and applications. Despite the adverse effects of these
+failures, current systems do not provide methodologies for proactively detecting, localizing, and
+diagnosing failures. We present Kaleidoscope, a near real-time failure detection and diagnosis
+framework, consisting of of hierarchical domain-guided machine learning models that identify the
+failing components, the corresponding failure mode, and point to the most likely cause indicative of
+the failure in near real-time (within one minute of failure occurrence). Kaleidoscope has been
+deployed on Blue Waters supercomputer and evaluated with more than two years of production telemetry
+data. Our evaluation shows that Kaleidoscope successfully localized 99.3% and pinpointed the root
+causes of 95.8% of 843 real-world production issues, with less than 0.01% runtime overhead.</p>
+</div>
+</section>
+<section class=section style=margin-bottom:1rem>
+<h2 class="title is-2">Awards</h2>
+<ul class=awards>
+<li>
+<i class="fas fa-trophy" aria-hidden=true></i>&nbsp;Best Paper & Best Student Paper Finalist
+</li>
+</ul>
+<br style=line-height:50%>
+</section>
+<section class=section style=margin-bottom:1rem>
+<h2 class="title is-2">
+Citation
+<a href=/publications/sc2020/ref.bib style=font-size:80%><i class="far fa-arrow-alt-circle-down"></i></a>
+</h2>
+<div class=highlight><pre tabindex=0 style=background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bibtex data-lang=bibtex><span style=color:#0a8;font-weight:700>@inproceedings</span>{<span style=color:#99f>Jha2020_SC</span>,
+  <span style=color:#309>author</span> = <span style=color:#c30>{Jha, Saurabh and Cui, Shengkun and Banerjee, Subho S. and Xu, Tianyin and Enos, Jeremy and Showerman, Mike and Kalbarczyk, Zbigniew T. and Iyer, Ravishankar K.}</span>,
+  <span style=color:#309>title</span> = <span style=color:#c30>{Live Forensics for HPC Systems: A Case Study on Distributed Storage Systems}</span>,
+  <span style=color:#309>year</span> = <span style=color:#c30>{2020}</span>,
+  <span style=color:#309>isbn</span> = <span style=color:#c30>{9781728199986}</span>,
+  <span style=color:#309>publisher</span> = <span style=color:#c30>{IEEE Press}</span>,
+  <span style=color:#309>booktitle</span> = <span style=color:#c30>{Proceedings of the International Conference for High Performance Computing, Networking, Storage and Analysis}</span>,
+  <span style=color:#309>articleno</span> = <span style=color:#c30>{65}</span>,
+  <span style=color:#309>numpages</span> = <span style=color:#c30>{16}</span>,
+  <span style=color:#309>location</span> = <span style=color:#c30>{Atlanta, Georgia}</span>,
+  <span style=color:#309>series</span> = <span style=color:#c30>{SC &#39;20}</span>
+} 
+</code></pre></div>
+</section>
+<section class=section style=margin-bottom:1rem>
+<h2 class="title is-2">Related Projects</h2>
+<ul class=bulleted-list>
+<li><a href=/projects/learnedsystems/>Intelligence Augmented Compter Systems</a></li>
+</ul>
+</section>
+</div>
+<footer class=footer>
+<div class="content has-text-left has-text-dark">
+<ul>
+<li><span class="icon has-text-info"><i class="fas fa-heading fa-fw"></i></span> Powered by <a href=https://www.gohugo.io>Hugo</a></li>
+<li><span class="icon has-text-link"><i class="fas fa-pencil-alt fa-fw"></i></span> Last updated 10/21/2021</li>
+<li><a href=https://ssbaner2.cs.illinois.edu/index.xml><span class="icon has-text-orange"><i class="fas fa-rss fa-fw"></i></span> Feed</a></li>
+</ul>
+</div>
+</footer>
+</div>
+<div class="column is-1 is-hidden-touch" id=right></div>
+</div>
+<script src=https://unpkg.com/quicklink@2.0.0/dist/quicklink.umd.js integrity=sha384-0nZ9FdSjDH2+tAS8yrmxpBHVMFs28rYR4bDVPFEoQqfzvezs/7OW7ebNI7CrWAg7 crossorigin=anonymous async></script>
+<script>window.addEventListener('load',()=>{quicklink.listen({ignores:[a=>a.includes('.pdf'),a=>a.includes('.bib'),(b,a)=>a.hasAttribute('noprefetch')]})})</script>
+</body>
+</html>

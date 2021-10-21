@@ -1,0 +1,56 @@
+==================================================================
+https://keybase.io/ssbanerje
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://ssbaner2.cs.illinois.edu
+  * I am ssbanerje (https://keybase.io/ssbanerje) on keybase.
+  * I have a public key ASCA0PVFx9onm-LZmoQnxRhu88kExCIzUJUp55JA8VFlIwo
+
+To do so, I am signing this object:
+
+{
+  "body": {
+    "key": {
+      "eldest_kid": "0120cff745d0b2ea0c1846a05a8a0c4e5a2df82411b839d1bfcdb6879b3f18bd80fb0a",
+      "host": "keybase.io",
+      "kid": "012080d0f545c7da279be2d99a8427c5186ef3c904c42233509529e79240f15165230a",
+      "uid": "f7d1dadc723df5344cd457946856c919",
+      "username": "ssbanerje"
+    },
+    "merkle_root": {
+      "ctime": 1631312106,
+      "hash": "380daa968608e9c85a45226652dc94729ed24d4479359cf02e1e7d7393a6d309ba253e86ff56a0443e06e5a84daecb534116ec52615c589c7894ed7463fcd13d",
+      "hash_meta": "0ff78987afe0d49fb9757cf1bc62b31517941cf3c7b593c6e5565e605f61ce1b",
+      "seqno": 20742402
+    },
+    "service": {
+      "entropy": "uzg+RVmfRohybqELqPLQ5s20",
+      "hostname": "ssbaner2.cs.illinois.edu",
+      "protocol": "https:"
+    },
+    "type": "web_service_binding",
+    "version": 2
+  },
+  "client": {
+    "name": "keybase.io go client",
+    "version": "5.7.0"
+  },
+  "ctime": 1631312167,
+  "expire_in": 504576000,
+  "prev": "96044b9b86f67934514e85eb9c56f59181ed651e99fd350518402a13b1b212d7",
+  "seqno": 28,
+  "tag": "signature"
+}
+
+which yields the signature:
+
+hKRib2R5hqhkZXRhY2hlZMOpaGFzaF90eXBlCqNrZXnEIwEggND1RcfaJ5vi2ZqEJ8UYbvPJBMQiM1CVKeeSQPFRZSMKp3BheWxvYWTESpcCHMQglgRLm4b2eTRRToXrnFb1kYHtZR6Z/TUFGEAqE7GyEtfEIG+doqF1JvU6i0+CtA5cYXHdvwJ3zgA2ImL2OAFx7+8eAgHCo3NpZ8RAEMKxzbJ3HO16swctp5jeXzwJQabm2XdwJwf8Hzmq8K7KdcDUZLBV9leKyQTKKC1xymxEtiw+auQ8IQDOHHW1DKhzaWdfdHlwZSCkaGFzaIKkdHlwZQildmFsdWXEICWOraQMPnNbzMNDptt8oDEL13b+F+jmYzmSLprz2DlEo3RhZ80CAqd2ZXJzaW9uAQ==
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/ssbanerje
+
+==================================================================

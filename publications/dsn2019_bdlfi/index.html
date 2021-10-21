@@ -1,0 +1,151 @@
+<!doctype html><html lang=en-us>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=generator content="Hugo 0.88.1">
+<meta name=author content="Subho Sankar Banerjee">
+<meta name=description content="Towards a Bayesian Approach for Assessing Fault Tolerance of Deep Neural Networks">
+<meta property="og:title" content="Towards a Bayesian Approach for Assessing Fault Tolerance of Deep Neural Networks">
+<meta property="og:description" content="This paper presents Bayesian Deep Learning based Fault Injection (BDLFI), a novel methodology for fault injection in neural networks (NNs) or more generally differentiable programs. BDLFI uses (1) Bayesian Deep Learning to model the propagation of faults, and (2) Markov Chain Monte Carlo inference to quantify the effect of faults on the outputs of a NN. We demonstrate BDLFI on two representative networks and find that our results challenge pre-existing results in the field.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://ssbaner2.cs.illinois.edu/publications/dsn2019_bdlfi/"><meta property="article:section" content="publications">
+<meta property="article:published_time" content="2019-06-24T00:00:00+00:00">
+<meta property="article:modified_time" content="2019-06-24T00:00:00+00:00">
+<meta itemprop=name content="Towards a Bayesian Approach for Assessing Fault Tolerance of Deep Neural Networks">
+<meta itemprop=description content="This paper presents Bayesian Deep Learning based Fault Injection (BDLFI), a novel methodology for fault injection in neural networks (NNs) or more generally differentiable programs. BDLFI uses (1) Bayesian Deep Learning to model the propagation of faults, and (2) Markov Chain Monte Carlo inference to quantify the effect of faults on the outputs of a NN. We demonstrate BDLFI on two representative networks and find that our results challenge pre-existing results in the field."><meta itemprop=datePublished content="2019-06-24T00:00:00+00:00">
+<meta itemprop=dateModified content="2019-06-24T00:00:00+00:00">
+<meta itemprop=wordCount content="74">
+<meta itemprop=keywords content>
+<meta name=twitter:card content="summary">
+<meta name=twitter:title content="Towards a Bayesian Approach for Assessing Fault Tolerance of Deep Neural Networks">
+<meta name=twitter:description content="This paper presents Bayesian Deep Learning based Fault Injection (BDLFI), a novel methodology for fault injection in neural networks (NNs) or more generally differentiable programs. BDLFI uses (1) Bayesian Deep Learning to model the propagation of faults, and (2) Markov Chain Monte Carlo inference to quantify the effect of faults on the outputs of a NN. We demonstrate BDLFI on two representative networks and find that our results challenge pre-existing results in the field.">
+<meta name=theme-color content="#141f33">
+<title>Towards a Bayesian Approach for Assessing Fault Tolerance of Deep Neural Networks | Subho Sankar Banerjee</title>
+<link rel=canonical href=/publications/dsn2019_bdlfi/>
+<link rel=icon href=/img/favicon.ico>
+<link rel="shortcut icon" href=/img/favicon.ico>
+<link rel=apple-touch-icon href=/img/favicon.ico>
+<link rel=stylesheet href=/css/style.min.7d22492f4d912fedeef76ed8491d15b759681c4e0c8a2be9f95b6bc4cdc58a14.css>
+<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400;1,700&family=Inconsolata:ital,wght@0,400;0,700;1,400;1,700&family=Eczar:ital,wght@0,400;0,700;1,400;1,700&display=swap" crossorigin=anonymous type=text/css rel=stylesheet>
+<link href=https://unpkg.com/academicons@1.8.6/css/academicons.min.css crossorigin=anonymous type=text/css rel=stylesheet rel=preload as=style onload="this.onload=null,this.rel='stylesheet'">
+<link href=https://unpkg.com/components-font-awesome@5.9.0/css/all.min.css crossorigin=anonymous type=text/css rel=stylesheet rel=preload as=style onload="this.onload=null,this.rel='stylesheet'">
+<script type=application/javascript>var doNotTrack=!1;doNotTrack||(window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga('create','UA-48086103-1','auto'),ga('send','pageview'))</script>
+<script async src=https://www.google-analytics.com/analytics.js></script>
+</head>
+<body>
+<div class="columns is-gapless is-marginless">
+<div class="column is-one-quarter-tablet is-narrow-desktop" id=sidebar>
+<div class=padded-sidebar>
+<section class=section>
+<figure class="image container" style=margin-bottom:2rem>
+<img class=is-rounded src=/img/me_sq.png alt=Avatar>
+</figure>
+<div class="sidebar-content has-text-centered">
+<h1 class="title is-1"><a href=/>Subho Sankar Banerjee</a></h1>
+<p class="has-text-white-ter has-text-centered">
+PhD Candidate<br>
+CS @ UIUC
+</p>
+<ul class="icon-list is-clearfix">
+<li><a href=mailto:remove_this_if_human_ssbaner2@illinois.edu><i class="fas fa-envelope-open fa-fw"></i></a></li>
+<li><a href="https://illinois.edu/map/view?buildingId=148"><i class="fas fa-map-marker-alt fa-fw"></i></a></li>
+<li><a href="https://scholar.google.com/citations?user=jvV04p3aXgMC"><i class="ai ai-google-scholar fa-fw"></i></a></li>
+<li><a href="https://dblp.uni-trier.de/pers/hd/b/Banerjee:Subho_S="><i class="ai ai-dblp fa-fw"></i></a></li>
+<li><a href=https://www.linkedin.com/in/ssbanerjee><i class="fab fa-linkedin fa-fw"></i></a></li>
+<li><a href=https://github.com/ssbanerje><i class="fab fa-github fa-fw"></i></a></li>
+</ul>
+</div>
+</section>
+</div>
+</div>
+<div class=column>
+<div id=content class=has-text-justified>
+<section class=section>
+<nav class=breadcrumb aria-label=breadcrumbs>
+<ul>
+<li><a href=/><span class="icon is-small"><i class="fas fa-home" aria-hidden=true></i></span><span>Home</span></a></li>
+<li><a href=/publications/>Publications</a></li>
+<li class=is-active><a href=# aria-current=page>This Page</a></li>
+</ul>
+</nav>
+</section>
+<section class=section>
+<div class=has-text-left>
+<h1 class="title is-1 no-border">Towards a Bayesian Approach for Assessing Fault Tolerance of Deep Neural Networks</h1>
+<h3 class="title is-3">Subho S. Banerjee, James Cyriac, Saurabh Jha, Zbigniew T. Kalbarczyk, and Ravishankar K. Iyer</h3>
+<h3 class="title is-3 has-text-grey"><i>DSN 2019</i></h3>
+</div>
+<br><hr>
+<ul class="single-paper-links is-size-3">
+<li>
+<a href=https://ieeexplore.ieee.org/document/8805761 target=_blank rel=noreferrer rel=noopener>
+<i class="ai ai-ieee" aria-hidden=true></i>&nbsp;DOI
+</a>
+</li>
+<li>
+<a href=/publications/dsn2019_bdlfi/Paper.pdf target=_blank rel=noreferrer rel=noopener>
+<i class="far fa-file-pdf" aria-hidden=true></i>&nbsp;Paper
+</a>
+</li>
+<li>
+<a href=/publications/dsn2019_bdlfi/Slides.pdf target=_blank rel=noreferrer rel=noopener>
+<i class="far fa-file-pdf" aria-hidden=true></i>&nbsp;Slides
+</a>
+</li>
+</ul>
+</section>
+<section class=section>
+<h2 class="title is-2">Abstract</h2>
+<div class=content><p>This paper presents <em>Bayesian Deep Learning based Fault Injection</em> (BDLFI), a
+novel methodology for fault injection in neural networks (NNs) or more generally
+differentiable programs. BDLFI uses (1) Bayesian Deep Learning to model the
+propagation of faults, and (2) Markov Chain Monte Carlo inference to quantify
+the effect of faults on the outputs of a NN. We demonstrate BDLFI on two
+representative networks and find that our results challenge pre-existing results
+in the field.</p>
+</div>
+</section>
+<section class=section style=margin-bottom:1rem>
+<h2 class="title is-2">
+Citation
+<a href=/publications/dsn2019_bdlfi/ref.bib style=font-size:80%><i class="far fa-arrow-alt-circle-down"></i></a>
+</h2>
+<div class=highlight><pre tabindex=0 style=background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bibtex data-lang=bibtex><span style=color:#0a8;font-weight:700>@INPROCEEDINGS</span>{<span style=color:#99f>Banerjee2019_DSN</span>, 
+  <span style=color:#309>author</span>=<span style=color:#c30>{S. S. {Banerjee} and J. {Cyriac} and S. {Jha} and Z. T. {Kalbarczyk} and R. K. {Iyer}}</span>,
+  <span style=color:#309>booktitle</span>=<span style=color:#c30>{2019 49th Annual IEEE/IFIP International Conference on Dependable Systems and Networks – Supplemental Volume (DSN-S)}</span>,
+  <span style=color:#309>title</span>=<span style=color:#c30>{Towards a Bayesian Approach for Assessing Fault Tolerance of Deep Neural Networks}</span>,
+  <span style=color:#309>year</span>=<span style=color:#c30>{2019}</span>,
+  <span style=color:#309>volume</span>=<span style=color:#c30>{}</span>,
+  <span style=color:#309>number</span>=<span style=color:#c30>{}</span>,
+  <span style=color:#309>pages</span>=<span style=color:#c30>{25-26}</span>,
+  <span style=color:#309>keywords</span>=<span style=color:#c30>{Fault Injection;Neural Networks}</span>,
+  <span style=color:#309>doi</span>=<span style=color:#c30>{10.1109/DSN-S.2019.00018}</span>,
+  <span style=color:#309>ISSN</span>=<span style=color:#c30>{}</span>,
+  <span style=color:#309>month</span>=<span style=color:#c30>{June}</span>,
+} 
+</code></pre></div>
+</section>
+<section class=section style=margin-bottom:1rem>
+<h2 class="title is-2">Related Projects</h2>
+<ul class=bulleted-list>
+<li><a href=/projects/av/>Autonomous Vehicle Resilience</a></li>
+</ul>
+</section>
+</div>
+<footer class=footer>
+<div class="content has-text-left has-text-dark">
+<ul>
+<li><span class="icon has-text-info"><i class="fas fa-heading fa-fw"></i></span> Powered by <a href=https://www.gohugo.io>Hugo</a></li>
+<li><span class="icon has-text-link"><i class="fas fa-pencil-alt fa-fw"></i></span> Last updated 10/21/2021</li>
+<li><a href=https://ssbaner2.cs.illinois.edu/index.xml><span class="icon has-text-orange"><i class="fas fa-rss fa-fw"></i></span> Feed</a></li>
+</ul>
+</div>
+</footer>
+</div>
+<div class="column is-1 is-hidden-touch" id=right></div>
+</div>
+<script src=https://unpkg.com/quicklink@2.0.0/dist/quicklink.umd.js integrity=sha384-0nZ9FdSjDH2+tAS8yrmxpBHVMFs28rYR4bDVPFEoQqfzvezs/7OW7ebNI7CrWAg7 crossorigin=anonymous async></script>
+<script>window.addEventListener('load',()=>{quicklink.listen({ignores:[a=>a.includes('.pdf'),a=>a.includes('.bib'),(b,a)=>a.hasAttribute('noprefetch')]})})</script>
+</body>
+</html>
