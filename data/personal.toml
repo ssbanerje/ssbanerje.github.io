@@ -1,6 +1,5 @@
 name = "Subho Sankar Banerjee"
 description = "Subho Banerjee's Homepage"
-position = "PhD Candidate"
-department = "CS"
-univeristy = "UIUC"
+position = "Software Engineer"
+company = "Google"
 avatar = "img/me_sq.png"
