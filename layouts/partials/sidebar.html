@@ -6,8 +6,7 @@
     <div class="sidebar-content has-text-centered">
       <h1 class="title is-1"><a href="/">{{ .Site.Data.personal.name }}</a></h1>
       <p class="has-text-white-ter has-text-centered">
-        {{ .Site.Data.personal.position }}<br>
-        {{ .Site.Data.personal.department }} @ {{ .Site.Data.personal.univeristy }}
+        {{ .Site.Data.personal.position }} @ {{ .Site.Data.personal.company }}
       </p>
       <ul class="icon-list is-clearfix">
       {{ range $social := .Site.Data.social.link }}
