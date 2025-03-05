@@ -10,7 +10,7 @@ weight = 1
 I am a Software Engineer at Google, where I work on building reliable hardware systems for 
 machine learning and AI.
 
-Previously, I received a Ph.D. in Computer Science from the 
+I received a Ph.D. in Computer Science from the
 [University of Illinois at Urbana-Champaign][uiuc], advised by [Ravishankar K. Iyer][rkiyer].
 My dissertation research aimed to improve the performance, resilience, and ease of management
 of large-scale computer systems using machine learning.
