@@ -3,7 +3,9 @@
     <ul>
       <li><span class="icon has-text-info"><i class="fas fa-heading fa-fw"></i></span> Powered by <a href="https://www.gohugo.io">Hugo</a></li>
       <li><span class="icon has-text-link"><i class="fas fa-pencil-alt fa-fw"></i></span> Last updated {{ now.Format "01/02/2006" }}</li>
-      <li><a href="{{ .Site.RSSLink }}"><span class="icon has-text-orange"><i class="fas fa-rss fa-fw"></i></span> Feed</a></li>
+      {{ with site.Home.OutputFormats.Get "rss" }}
+      <li><a href="{{ .Permalink }}"><span class="icon has-text-orange"><i class="fas fa-rss fa-fw"></i></span> Feed</a></li>
+      {{ end }}
     </ul>
   </div>
 </footer>

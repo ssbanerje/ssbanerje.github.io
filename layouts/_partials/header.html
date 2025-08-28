@@ -11,10 +11,9 @@
     {{ $description = .Params.title }}
   {{ end }}
   <meta name="description" content="{{ $description }}" />
-  {{ template "_internal/opengraph.html" . }}
-  {{ template "_internal/google_news.html" . }}
-  {{ template "_internal/schema.html" . }}
-  {{ template "_internal/twitter_cards.html" . }}
+  {{ partial "opengraph.html" . }}
+  {{ partial "schema.html" . }}
+  {{ partial "twitter_cards.html" . }}
   <meta name="theme-color" content="{{ .Site.Data.theme.colors.sidebar.background }}"/>
 
   <title>{{ if not .IsHome }}{{ title .Title }} | {{ end }}{{ .Site.Title }}</title>
@@ -42,7 +41,7 @@
   <link href="https://unpkg.com/academicons@1.8.6/css/academicons.min.css" crossorigin="anonymous" type="text/css" rel="stylesheet" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <link href="https://unpkg.com/components-font-awesome@5.9.0/css/all.min.css" crossorigin="anonymous" type="text/css" rel="stylesheet" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'">
 
-  {{ if not .Site.IsServer }}
-    {{ template "_internal/google_analytics_async.html" . }}
+  {{ if not hugo.IsServer }}
+    {{ partial "google_analytics.html" . }}
   {{ end }}
 </head>
