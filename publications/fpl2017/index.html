@@ -1,103 +1,4 @@
-<!doctype html><html lang=en-us>
-<head>
-<meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta http-equiv=x-ua-compatible content="IE=edge">
-<meta name=generator content="Hugo 0.88.1">
-<meta name=author content="Subho Sankar Banerjee">
-<meta name=description content="On Accelerating Pair-HMM Computations in Programmable Hardware">
-<meta property="og:title" content="On Accelerating Pair-HMM Computations in Programmable Hardware">
-<meta property="og:description" content="This paper explores hardware acceleration to significantly improve the runtime of computing the forward algorithm on Pair-HMM models, a crucial step in analyzing mutations in sequenced genomes. We describe 1) the design and evaluation of a novel accelerator architecture that can efficiently process real sequence data without performing wasteful work; and 2) aggressive memoization techniques that can significantly reduce the number of invocations of, and the amount of data transferred to the accelerator.">
-<meta property="og:type" content="article">
-<meta property="og:url" content="https://ssbaner2.cs.illinois.edu/publications/fpl2017/"><meta property="article:section" content="publications">
-<meta property="article:published_time" content="2017-09-04T00:00:00+00:00">
-<meta property="article:modified_time" content="2017-09-04T00:00:00+00:00">
-<meta itemprop=name content="On Accelerating Pair-HMM Computations in Programmable Hardware">
-<meta itemprop=description content="This paper explores hardware acceleration to significantly improve the runtime of computing the forward algorithm on Pair-HMM models, a crucial step in analyzing mutations in sequenced genomes. We describe 1) the design and evaluation of a novel accelerator architecture that can efficiently process real sequence data without performing wasteful work; and 2) aggressive memoization techniques that can significantly reduce the number of invocations of, and the amount of data transferred to the accelerator."><meta itemprop=datePublished content="2017-09-04T00:00:00+00:00">
-<meta itemprop=dateModified content="2017-09-04T00:00:00+00:00">
-<meta itemprop=wordCount content="123">
-<meta itemprop=keywords content>
-<meta name=twitter:card content="summary">
-<meta name=twitter:title content="On Accelerating Pair-HMM Computations in Programmable Hardware">
-<meta name=twitter:description content="This paper explores hardware acceleration to significantly improve the runtime of computing the forward algorithm on Pair-HMM models, a crucial step in analyzing mutations in sequenced genomes. We describe 1) the design and evaluation of a novel accelerator architecture that can efficiently process real sequence data without performing wasteful work; and 2) aggressive memoization techniques that can significantly reduce the number of invocations of, and the amount of data transferred to the accelerator.">
-<meta name=theme-color content="#141f33">
-<title>On Accelerating Pair-HMM Computations in Programmable Hardware | Subho Sankar Banerjee</title>
-<link rel=canonical href=/publications/fpl2017/>
-<link rel=icon href=/img/favicon.ico>
-<link rel="shortcut icon" href=/img/favicon.ico>
-<link rel=apple-touch-icon href=/img/favicon.ico>
-<link rel=stylesheet href=/css/style.min.7d22492f4d912fedeef76ed8491d15b759681c4e0c8a2be9f95b6bc4cdc58a14.css>
-<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400;1,700&family=Inconsolata:ital,wght@0,400;0,700;1,400;1,700&family=Eczar:ital,wght@0,400;0,700;1,400;1,700&display=swap" crossorigin=anonymous type=text/css rel=stylesheet>
-<link href=https://unpkg.com/academicons@1.8.6/css/academicons.min.css crossorigin=anonymous type=text/css rel=stylesheet rel=preload as=style onload="this.onload=null,this.rel='stylesheet'">
-<link href=https://unpkg.com/components-font-awesome@5.9.0/css/all.min.css crossorigin=anonymous type=text/css rel=stylesheet rel=preload as=style onload="this.onload=null,this.rel='stylesheet'">
-<script type=application/javascript>var doNotTrack=!1;doNotTrack||(window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga('create','UA-48086103-1','auto'),ga('send','pageview'))</script>
-<script async src=https://www.google-analytics.com/analytics.js></script>
-</head>
-<body>
-<div class="columns is-gapless is-marginless">
-<div class="column is-one-quarter-tablet is-narrow-desktop" id=sidebar>
-<div class=padded-sidebar>
-<section class=section>
-<figure class="image container" style=margin-bottom:2rem>
-<img class=is-rounded src=/img/me_sq.png alt=Avatar>
-</figure>
-<div class="sidebar-content has-text-centered">
-<h1 class="title is-1"><a href=/>Subho Sankar Banerjee</a></h1>
-<p class="has-text-white-ter has-text-centered">
-PhD Candidate<br>
-CS @ UIUC
-</p>
-<ul class="icon-list is-clearfix">
-<li><a href=mailto:remove_this_if_human_ssbaner2@illinois.edu><i class="fas fa-envelope-open fa-fw"></i></a></li>
-<li><a href="https://illinois.edu/map/view?buildingId=148"><i class="fas fa-map-marker-alt fa-fw"></i></a></li>
-<li><a href="https://scholar.google.com/citations?user=jvV04p3aXgMC"><i class="ai ai-google-scholar fa-fw"></i></a></li>
-<li><a href="https://dblp.uni-trier.de/pers/hd/b/Banerjee:Subho_S="><i class="ai ai-dblp fa-fw"></i></a></li>
-<li><a href=https://www.linkedin.com/in/ssbanerjee><i class="fab fa-linkedin fa-fw"></i></a></li>
-<li><a href=https://github.com/ssbanerje><i class="fab fa-github fa-fw"></i></a></li>
-</ul>
-</div>
-</section>
-</div>
-</div>
-<div class=column>
-<div id=content class=has-text-justified>
-<section class=section>
-<nav class=breadcrumb aria-label=breadcrumbs>
-<ul>
-<li><a href=/><span class="icon is-small"><i class="fas fa-home" aria-hidden=true></i></span><span>Home</span></a></li>
-<li><a href=/publications/>Publications</a></li>
-<li class=is-active><a href=# aria-current=page>This Page</a></li>
-</ul>
-</nav>
-</section>
-<section class=section>
-<div class=has-text-left>
-<h1 class="title is-1 no-border">On Accelerating Pair-HMM Computations in Programmable Hardware</h1>
-<h3 class="title is-3">Subho S. Banerjee, Mohamed el-Hadedy, Ching Y. Tan, Zbigniew T. Kalbarczyk, Steve Lumetta, and Ravishankar K. Iyer</h3>
-<h3 class="title is-3 has-text-grey"><i>FPL 2017</i></h3>
-</div>
-<br><hr>
-<ul class="single-paper-links is-size-3">
-<li>
-<a href=http://ieeexplore.ieee.org/document/8056837/ target=_blank rel=noreferrer rel=noopener>
-<i class="ai ai-ieee" aria-hidden=true></i>&nbsp;DOI
-</a>
-</li>
-<li>
-<a href=/publications/fpl2017/Paper.pdf target=_blank rel=noreferrer rel=noopener>
-<i class="far fa-file-pdf" aria-hidden=true></i>&nbsp;Paper
-</a>
-</li>
-<li>
-<a href=/publications/fpl2017/Slides.pdf target=_blank rel=noreferrer rel=noopener>
-<i class="far fa-file-pdf" aria-hidden=true></i>&nbsp;Slides
-</a>
-</li>
-</ul>
-</section>
-<section class=section>
-<h2 class="title is-2">Abstract</h2>
-<div class=content><p>This paper explores hardware acceleration to significantly improve the runtime of computing the
+<!doctype html><html lang=en-us><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=generator content="Hugo 0.149.0"><meta name=author content="Subho Sankar Banerjee"><meta name=description content="On Accelerating Pair-HMM Computations in Programmable Hardware"><meta property="og:url" content="https://ssbanerje.github.io/publications/fpl2017/"><meta property="og:site_name" content="Subho Sankar Banerjee"><meta property="og:title" content="On Accelerating Pair-HMM Computations in Programmable Hardware"><meta property="og:description" content="This paper explores hardware acceleration to significantly improve the runtime of computing the forward algorithm on Pair-HMM models, a crucial step in analyzing mutations in sequenced genomes. We describe 1) the design and evaluation of a novel accelerator architecture that can efficiently process real sequence data without performing wasteful work; and 2) aggressive memoization techniques that can significantly reduce the number of invocations of, and the amount of data transferred to the accelerator. We describe our demonstration of the design on a Xilinx Virtex 7 FPGA in an IBM Power8 system. Our design achieves a 14.85× higher throughput than an 8-core CPU baseline (that uses SIMD and multi-threading) and a 147.49× improvement in throughput per unit of energy expended on the NA12878 sample."><meta property="og:locale" content="en_us"><meta property="og:type" content="article"><meta property="article:section" content="publications"><meta property="article:published_time" content="2017-09-04T00:00:00+00:00"><meta property="article:modified_time" content="2017-09-04T00:00:00+00:00"><meta itemprop=name content="On Accelerating Pair-HMM Computations in Programmable Hardware"><meta itemprop=description content="This paper explores hardware acceleration to significantly improve the runtime of computing the forward algorithm on Pair-HMM models, a crucial step in analyzing mutations in sequenced genomes. We describe 1) the design and evaluation of a novel accelerator architecture that can efficiently process real sequence data without performing wasteful work; and 2) aggressive memoization techniques that can significantly reduce the number of invocations of, and the amount of data transferred to the accelerator. We describe our demonstration of the design on a Xilinx Virtex 7 FPGA in an IBM Power8 system. Our design achieves a 14.85× higher throughput than an 8-core CPU baseline (that uses SIMD and multi-threading) and a 147.49× improvement in throughput per unit of energy expended on the NA12878 sample."><meta itemprop=datePublished content="2017-09-04T00:00:00+00:00"><meta itemprop=dateModified content="2017-09-04T00:00:00+00:00"><meta itemprop=wordCount content="123"><meta name=twitter:card content="summary"><meta name=twitter:title content="On Accelerating Pair-HMM Computations in Programmable Hardware"><meta name=twitter:description content="This paper explores hardware acceleration to significantly improve the runtime of computing the forward algorithm on Pair-HMM models, a crucial step in analyzing mutations in sequenced genomes. We describe 1) the design and evaluation of a novel accelerator architecture that can efficiently process real sequence data without performing wasteful work; and 2) aggressive memoization techniques that can significantly reduce the number of invocations of, and the amount of data transferred to the accelerator. We describe our demonstration of the design on a Xilinx Virtex 7 FPGA in an IBM Power8 system. Our design achieves a 14.85× higher throughput than an 8-core CPU baseline (that uses SIMD and multi-threading) and a 147.49× improvement in throughput per unit of energy expended on the NA12878 sample."><meta name=theme-color content="#141f33"><title>On Accelerating Pair-HMM Computations in Programmable Hardware | Subho Sankar Banerjee</title><link rel=canonical href=/publications/fpl2017/><link rel=icon href=/img/favicon.ico><link rel="shortcut icon" href=/img/favicon.ico><link rel=apple-touch-icon href=/img/favicon.ico><link rel=stylesheet href=/css/style.min.a5fd5df6db3eafce9b1c5f5fabeadc25c3d64c8798012ac48a13c5fb32861ce7.css><link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400;1,700&amp;family=Inconsolata:ital,wght@0,400;0,700;1,400;1,700&amp;family=Eczar:ital,wght@0,400;0,700;1,400;1,700&display=swap" crossorigin=anonymous type=text/css rel=stylesheet><link href=https://unpkg.com/academicons@1.8.6/css/academicons.min.css crossorigin=anonymous type=text/css rel=stylesheet rel=preload as=style onload='this.onload=null,this.rel="stylesheet"'><link href=https://unpkg.com/components-font-awesome@5.9.0/css/all.min.css crossorigin=anonymous type=text/css rel=stylesheet rel=preload as=style onload='this.onload=null,this.rel="stylesheet"'></head><body><div class="columns is-gapless is-marginless"><div class="column is-one-quarter-tablet is-narrow-desktop" id=sidebar><div class=padded-sidebar><section class=section><figure class="image container" style=margin-bottom:2rem><img class=is-rounded src=/img/me_sq.png alt=Avatar></figure><div class="sidebar-content has-text-centered"><h1 class="title is-1"><a href=/>Subho Sankar Banerjee</a></h1><p class="has-text-white-ter has-text-centered">Software Engineer @ Google</p><ul class="icon-list is-clearfix"><li><a href=mailto:remove_this_if_human_ssbaner2@illinois.edu><i class="fas fa-envelope-open fa-fw"></i></a></li><li><a href="https://illinois.edu/map/view?buildingId=148"><i class="fas fa-map-marker-alt fa-fw"></i></a></li><li><a href="https://scholar.google.com/citations?user=jvV04p3aXgMC"><i class="ai ai-google-scholar fa-fw"></i></a></li><li><a href="https://dblp.uni-trier.de/pers/hd/b/Banerjee:Subho_S="><i class="ai ai-dblp fa-fw"></i></a></li><li><a href=https://www.linkedin.com/in/ssbanerjee><i class="fab fa-linkedin fa-fw"></i></a></li><li><a href=https://github.com/ssbanerje><i class="fab fa-github fa-fw"></i></a></li></ul></div></section></div></div><div class=column><div id=content class=has-text-justified><section class=section><nav class=breadcrumb aria-label=breadcrumbs><ul><li><a href=/><span class="icon is-small"><i class="fas fa-home" aria-hidden=true></i></span><span>Home</span></a></li><li><a href=/publications/>Publications</a></li><li class=is-active><a href=# aria-current=page>This Page</a></li></ul></nav></section><section class=section><div class=has-text-left><h1 class="title is-1 no-border">On Accelerating Pair-HMM Computations in Programmable Hardware</h1><h3 class="title is-3">Subho S. Banerjee, Mohamed el-Hadedy, Ching Y. Tan, Zbigniew T. Kalbarczyk, Steve Lumetta, and Ravishankar K. Iyer</h3><h3 class="title is-3 has-text-grey"><i>FPL 2017</i></h3></div><br><hr><ul class="single-paper-links is-size-3"><li><a href=http://ieeexplore.ieee.org/document/8056837/ target=_blank rel=noreferrer rel=noopener><i class="ai ai-ieee" aria-hidden=true></i>&nbsp;DOI</a></li><li><a href=/publications/fpl2017/Paper.pdf target=_blank rel=noreferrer rel=noopener><i class="far fa-file-pdf" aria-hidden=true></i>&nbsp;Paper</a></li><li><a href=/publications/fpl2017/Slides.pdf target=_blank rel=noreferrer rel=noopener><i class="far fa-file-pdf" aria-hidden=true></i>&nbsp;Slides</a></li></ul></section><section class=section><h2 class="title is-2">Abstract</h2><div class=content><p>This paper explores hardware acceleration to significantly improve the runtime of computing the
 forward algorithm on Pair-HMM models, a crucial step in analyzing mutations in sequenced genomes. We
 describe 1) the design and evaluation of a novel accelerator architecture that can efficiently
 process real sequence data without performing wasteful work; and 2) aggressive memoization
@@ -105,48 +6,17 @@ techniques that can significantly reduce the number of invocations of, and the a
 transferred to the accelerator. We describe our demonstration of the design on a Xilinx Virtex 7
 FPGA in an IBM Power8 system. Our design achieves a 14.85× higher throughput than an 8-core CPU
 baseline (that uses SIMD and multi-threading) and a 147.49× improvement in throughput per unit of
-energy expended on the NA12878 sample.</p>
-</div>
-</section>
-<section class=section style=margin-bottom:1rem>
-<h2 class="title is-2">
-Citation
-<a href=/publications/fpl2017/ref.bib style=font-size:80%><i class="far fa-arrow-alt-circle-down"></i></a>
-</h2>
-<div class=highlight><pre tabindex=0 style=background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bibtex data-lang=bibtex><span style=color:#0a8;font-weight:700>@inproceedings</span>{<span style=color:#99f>Banerjee2017_FPL</span>,
-  <span style=color:#309>author</span>=<span style=color:#c30>{S. S. {Banerjee} and M. {el-Hadedy} and C. Y. {Tan} and Z. T. {Kalbarczyk} and S. {Lumetta} and R. K. {Iyer}}</span>,
-  <span style=color:#309>booktitle</span>=<span style=color:#c30>{2017 27th International Conference on Field Programmable Logic and Applications (FPL)}</span>,
-  <span style=color:#309>title</span>=<span style=color:#c30>{On accelerating pair-HMM computations in programmable hardware}</span>,
-  <span style=color:#309>year</span>=<span style=color:#c30>{2017}</span>,
-  <span style=color:#309>volume</span>=<span style=color:#c30>{}</span>,
-  <span style=color:#309>number</span>=<span style=color:#c30>{}</span>,
-  <span style=color:#309>pages</span>=<span style=color:#c30>{1-8}</span>,
-  <span style=color:#309>doi</span>=<span style=color:#c30>{10.23919/FPL.2017.8056837}</span>,
-  <span style=color:#309>ISSN</span>=<span style=color:#c30>{1946-1488}</span>,
-  <span style=color:#309>month</span>=<span style=color:#c30>{Sep.}</span>,
-} 
-</code></pre></div>
-</section>
-<section class=section style=margin-bottom:1rem>
-<h2 class="title is-2">Related Projects</h2>
-<ul class=bulleted-list>
-<li><a href=/projects/learnedsystems/>Intelligence Augmented Compter Systems</a></li>
-</ul>
-</section>
-</div>
-<footer class=footer>
-<div class="content has-text-left has-text-dark">
-<ul>
-<li><span class="icon has-text-info"><i class="fas fa-heading fa-fw"></i></span> Powered by <a href=https://www.gohugo.io>Hugo</a></li>
-<li><span class="icon has-text-link"><i class="fas fa-pencil-alt fa-fw"></i></span> Last updated 10/21/2021</li>
-<li><a href=https://ssbaner2.cs.illinois.edu/index.xml><span class="icon has-text-orange"><i class="fas fa-rss fa-fw"></i></span> Feed</a></li>
-</ul>
-</div>
-</footer>
-</div>
-<div class="column is-1 is-hidden-touch" id=right></div>
-</div>
-<script src=https://unpkg.com/quicklink@2.0.0/dist/quicklink.umd.js integrity=sha384-0nZ9FdSjDH2+tAS8yrmxpBHVMFs28rYR4bDVPFEoQqfzvezs/7OW7ebNI7CrWAg7 crossorigin=anonymous async></script>
-<script>window.addEventListener('load',()=>{quicklink.listen({ignores:[a=>a.includes('.pdf'),a=>a.includes('.bib'),(b,a)=>a.hasAttribute('noprefetch')]})})</script>
-</body>
-</html>
+energy expended on the NA12878 sample.</p></div></section><section class=section style=margin-bottom:1rem><h2 class="title is-2">Citation
+<a href=/publications/fpl2017/ref.bib style=font-size:80%><i class="far fa-arrow-alt-circle-down"></i></a></h2><div class=highlight><pre tabindex=0 style=background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bibtex data-lang=bibtex><span style=display:flex><span><span style=color:#0a8;font-weight:700>@inproceedings</span>{<span style=color:#99f>Banerjee2017_FPL</span>,
+</span></span><span style=display:flex><span>  <span style=color:#309>author</span>=<span style=color:#c30>{S. S. {Banerjee} and M. {el-Hadedy} and C. Y. {Tan} and Z. T. {Kalbarczyk} and S. {Lumetta} and R. K. {Iyer}}</span>,
+</span></span><span style=display:flex><span>  <span style=color:#309>booktitle</span>=<span style=color:#c30>{2017 27th International Conference on Field Programmable Logic and Applications (FPL)}</span>,
+</span></span><span style=display:flex><span>  <span style=color:#309>title</span>=<span style=color:#c30>{On accelerating pair-HMM computations in programmable hardware}</span>,
+</span></span><span style=display:flex><span>  <span style=color:#309>year</span>=<span style=color:#c30>{2017}</span>,
+</span></span><span style=display:flex><span>  <span style=color:#309>volume</span>=<span style=color:#c30>{}</span>,
+</span></span><span style=display:flex><span>  <span style=color:#309>number</span>=<span style=color:#c30>{}</span>,
+</span></span><span style=display:flex><span>  <span style=color:#309>pages</span>=<span style=color:#c30>{1-8}</span>,
+</span></span><span style=display:flex><span>  <span style=color:#309>doi</span>=<span style=color:#c30>{10.23919/FPL.2017.8056837}</span>,
+</span></span><span style=display:flex><span>  <span style=color:#309>ISSN</span>=<span style=color:#c30>{1946-1488}</span>,
+</span></span><span style=display:flex><span>  <span style=color:#309>month</span>=<span style=color:#c30>{Sep.}</span>,
+</span></span><span style=display:flex><span>} 
+</span></span></code></pre></div></section><section class=section style=margin-bottom:1rem><h2 class="title is-2">Related Projects</h2><ul class=bulleted-list><li><a href=/projects/learnedsystems/>Intelligence Augmented Compter Systems</a></li></ul></section></div><footer class=footer><div class="content has-text-left has-text-dark"><ul><li><span class="icon has-text-info"><i class="fas fa-heading fa-fw"></i></span> Powered by <a href=https://www.gohugo.io>Hugo</a></li><li><span class="icon has-text-link"><i class="fas fa-pencil-alt fa-fw"></i></span> Last updated 08/28/2025</li><li><a href=https://ssbanerje.github.io/index.xml><span class="icon has-text-orange"><i class="fas fa-rss fa-fw"></i></span> Feed</a></li></ul></div></footer></div><div class="column is-1 is-hidden-touch" id=right></div></div><script src=https://unpkg.com/quicklink@2.0.0/dist/quicklink.umd.js integrity=sha384-0nZ9FdSjDH2+tAS8yrmxpBHVMFs28rYR4bDVPFEoQqfzvezs/7OW7ebNI7CrWAg7 crossorigin=anonymous async></script><script>window.addEventListener("load",()=>{quicklink.listen({ignores:[e=>e.includes(".pdf"),e=>e.includes(".bib"),(e,t)=>t.hasAttribute("noprefetch")]})})</script></body></html>

@@ -1,113 +1,4 @@
-<!doctype html><html lang=en-us>
-<head>
-<meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta http-equiv=x-ua-compatible content="IE=edge">
-<meta name=generator content="Hugo 0.88.1">
-<meta name=author content="Subho Sankar Banerjee">
-<meta name=description content="FIRM: An Intelligent Fine-Grained Resource Management Framework for SLO-Oriented Microservices">
-<meta property="og:title" content="FIRM: An Intelligent Fine-Grained Resource Management Framework for SLO-Oriented Microservices">
-<meta property="og:description" content="Modern user-facing, latency-sensitive web services include numerous distributed, intercommunicating microservices that promise to simplify software development and operation. However, multiplexing compute-resources across microservices is still challenging in production because contention for shared resources can cause latency spikes that violate the service-level objectives (SLOs) of user requests. This paper presents FIRM, an intelligent fine-grained resource management framework for predictable sharing of resources across microservices to drive up overall utilization. FIRM leverages online telemetry data and machine-learning methods to adaptively (a) detect/localize microservices that cause SLO-violations, (b) identify low-level resources in contention, and (c) take actions to mitigate SLO-violations by dynamic reprovisioning.">
-<meta property="og:type" content="article">
-<meta property="og:url" content="https://ssbaner2.cs.illinois.edu/publications/osdi2020/"><meta property="article:section" content="publications">
-<meta property="article:published_time" content="2020-11-04T00:00:00+00:00">
-<meta property="article:modified_time" content="2020-11-04T00:00:00+00:00">
-<meta itemprop=name content="FIRM: An Intelligent Fine-Grained Resource Management Framework for SLO-Oriented Microservices">
-<meta itemprop=description content="Modern user-facing, latency-sensitive web services include numerous distributed, intercommunicating microservices that promise to simplify software development and operation. However, multiplexing compute-resources across microservices is still challenging in production because contention for shared resources can cause latency spikes that violate the service-level objectives (SLOs) of user requests. This paper presents FIRM, an intelligent fine-grained resource management framework for predictable sharing of resources across microservices to drive up overall utilization. FIRM leverages online telemetry data and machine-learning methods to adaptively (a) detect/localize microservices that cause SLO-violations, (b) identify low-level resources in contention, and (c) take actions to mitigate SLO-violations by dynamic reprovisioning."><meta itemprop=datePublished content="2020-11-04T00:00:00+00:00">
-<meta itemprop=dateModified content="2020-11-04T00:00:00+00:00">
-<meta itemprop=wordCount content="139">
-<meta itemprop=keywords content>
-<meta name=twitter:card content="summary">
-<meta name=twitter:title content="FIRM: An Intelligent Fine-Grained Resource Management Framework for SLO-Oriented Microservices">
-<meta name=twitter:description content="Modern user-facing, latency-sensitive web services include numerous distributed, intercommunicating microservices that promise to simplify software development and operation. However, multiplexing compute-resources across microservices is still challenging in production because contention for shared resources can cause latency spikes that violate the service-level objectives (SLOs) of user requests. This paper presents FIRM, an intelligent fine-grained resource management framework for predictable sharing of resources across microservices to drive up overall utilization. FIRM leverages online telemetry data and machine-learning methods to adaptively (a) detect/localize microservices that cause SLO-violations, (b) identify low-level resources in contention, and (c) take actions to mitigate SLO-violations by dynamic reprovisioning.">
-<meta name=theme-color content="#141f33">
-<title>FIRM: An Intelligent Fine-Grained Resource Management Framework for SLO-Oriented Microservices | Subho Sankar Banerjee</title>
-<link rel=canonical href=/publications/osdi2020/>
-<link rel=icon href=/img/favicon.ico>
-<link rel="shortcut icon" href=/img/favicon.ico>
-<link rel=apple-touch-icon href=/img/favicon.ico>
-<link rel=stylesheet href=/css/style.min.7d22492f4d912fedeef76ed8491d15b759681c4e0c8a2be9f95b6bc4cdc58a14.css>
-<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400;1,700&family=Inconsolata:ital,wght@0,400;0,700;1,400;1,700&family=Eczar:ital,wght@0,400;0,700;1,400;1,700&display=swap" crossorigin=anonymous type=text/css rel=stylesheet>
-<link href=https://unpkg.com/academicons@1.8.6/css/academicons.min.css crossorigin=anonymous type=text/css rel=stylesheet rel=preload as=style onload="this.onload=null,this.rel='stylesheet'">
-<link href=https://unpkg.com/components-font-awesome@5.9.0/css/all.min.css crossorigin=anonymous type=text/css rel=stylesheet rel=preload as=style onload="this.onload=null,this.rel='stylesheet'">
-<script type=application/javascript>var doNotTrack=!1;doNotTrack||(window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga('create','UA-48086103-1','auto'),ga('send','pageview'))</script>
-<script async src=https://www.google-analytics.com/analytics.js></script>
-</head>
-<body>
-<div class="columns is-gapless is-marginless">
-<div class="column is-one-quarter-tablet is-narrow-desktop" id=sidebar>
-<div class=padded-sidebar>
-<section class=section>
-<figure class="image container" style=margin-bottom:2rem>
-<img class=is-rounded src=/img/me_sq.png alt=Avatar>
-</figure>
-<div class="sidebar-content has-text-centered">
-<h1 class="title is-1"><a href=/>Subho Sankar Banerjee</a></h1>
-<p class="has-text-white-ter has-text-centered">
-PhD Candidate<br>
-CS @ UIUC
-</p>
-<ul class="icon-list is-clearfix">
-<li><a href=mailto:remove_this_if_human_ssbaner2@illinois.edu><i class="fas fa-envelope-open fa-fw"></i></a></li>
-<li><a href="https://illinois.edu/map/view?buildingId=148"><i class="fas fa-map-marker-alt fa-fw"></i></a></li>
-<li><a href="https://scholar.google.com/citations?user=jvV04p3aXgMC"><i class="ai ai-google-scholar fa-fw"></i></a></li>
-<li><a href="https://dblp.uni-trier.de/pers/hd/b/Banerjee:Subho_S="><i class="ai ai-dblp fa-fw"></i></a></li>
-<li><a href=https://www.linkedin.com/in/ssbanerjee><i class="fab fa-linkedin fa-fw"></i></a></li>
-<li><a href=https://github.com/ssbanerje><i class="fab fa-github fa-fw"></i></a></li>
-</ul>
-</div>
-</section>
-</div>
-</div>
-<div class=column>
-<div id=content class=has-text-justified>
-<section class=section>
-<nav class=breadcrumb aria-label=breadcrumbs>
-<ul>
-<li><a href=/><span class="icon is-small"><i class="fas fa-home" aria-hidden=true></i></span><span>Home</span></a></li>
-<li><a href=/publications/>Publications</a></li>
-<li class=is-active><a href=# aria-current=page>This Page</a></li>
-</ul>
-</nav>
-</section>
-<section class=section>
-<div class=has-text-left>
-<h1 class="title is-1 no-border">FIRM: An Intelligent Fine-Grained Resource Management Framework for SLO-Oriented Microservices</h1>
-<h3 class="title is-3">Haoran Qiu, Subho S. Banerjee, Saurabh Jha, Zbigniew T. Kalbarczyk, and Ravishankar K. Iyer</h3>
-<h3 class="title is-3 has-text-grey"><i>OSDI 2020</i></h3>
-</div>
-<br><hr>
-<ul class="single-paper-links is-size-3">
-<li>
-<a href=https://www.usenix.org/conference/osdi20/presentation/qiu target=_blank rel=noreferrer rel=noopener>
-<i class="ai ai-doi" aria-hidden=true></i>&nbsp;DOI
-</a>
-</li>
-<li>
-<a href=http://arxiv.org/abs/2008.08509 target=_blank rel=noreferrer rel=noopener>
-<i class="ai ai-arxiv" aria-hidden=true></i>&nbsp;arXiv
-</a>
-</li>
-<li>
-<a href=https://gitlab.engr.illinois.edu/DEPEND/firm target=_blank rel=noreferrer rel=noopener>
-<i class="fas fa-code" aria-hidden=true></i>&nbsp;Code
-</a>
-</li>
-<li>
-<a href=https://databank.illinois.edu/datasets/IDB-6738796 target=_blank rel=noreferrer rel=noopener>
-<i class="fas fa-database" aria-hidden=true></i>&nbsp;Data
-</a>
-</li>
-<li>
-<a href=/publications/osdi2020/Paper.pdf target=_blank rel=noreferrer rel=noopener>
-<i class="far fa-file-pdf" aria-hidden=true></i>&nbsp;Paper
-</a>
-</li>
-</ul>
-</section>
-<section class=section>
-<h2 class="title is-2">Abstract</h2>
-<div class=content><p>Modern user-facing, latency-sensitive web services include numerous distributed, intercommunicating
+<!doctype html><html lang=en-us><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=generator content="Hugo 0.149.0"><meta name=author content="Subho Sankar Banerjee"><meta name=description content="FIRM: An Intelligent Fine-Grained Resource Management Framework for SLO-Oriented Microservices"><meta property="og:url" content="https://ssbanerje.github.io/publications/osdi2020/"><meta property="og:site_name" content="Subho Sankar Banerjee"><meta property="og:title" content="FIRM: An Intelligent Fine-Grained Resource Management Framework for SLO-Oriented Microservices"><meta property="og:description" content="Modern user-facing, latency-sensitive web services include numerous distributed, intercommunicating microservices that promise to simplify software development and operation. However, multiplexing compute-resources across microservices is still challenging in production because contention for shared resources can cause latency spikes that violate the service-level objectives (SLOs) of user requests. This paper presents FIRM, an intelligent fine-grained resource management framework for predictable sharing of resources across microservices to drive up overall utilization. FIRM leverages online telemetry data and machine-learning methods to adaptively (a) detect/localize microservices that cause SLO-violations, (b) identify low-level resources in contention, and (c) take actions to mitigate SLO-violations by dynamic reprovisioning. Experiments across four microservice benchmarks demonstrate that FIRM reduces SLO violations by up to 16x while reducing the overall requested CPU limit by up to 62%. Moreover, FIRM improves performance predictability by reducing tail latencies by up to 11x."><meta property="og:locale" content="en_us"><meta property="og:type" content="article"><meta property="article:section" content="publications"><meta property="article:published_time" content="2020-11-04T00:00:00+00:00"><meta property="article:modified_time" content="2020-11-04T00:00:00+00:00"><meta itemprop=name content="FIRM: An Intelligent Fine-Grained Resource Management Framework for SLO-Oriented Microservices"><meta itemprop=description content="Modern user-facing, latency-sensitive web services include numerous distributed, intercommunicating microservices that promise to simplify software development and operation. However, multiplexing compute-resources across microservices is still challenging in production because contention for shared resources can cause latency spikes that violate the service-level objectives (SLOs) of user requests. This paper presents FIRM, an intelligent fine-grained resource management framework for predictable sharing of resources across microservices to drive up overall utilization. FIRM leverages online telemetry data and machine-learning methods to adaptively (a) detect/localize microservices that cause SLO-violations, (b) identify low-level resources in contention, and (c) take actions to mitigate SLO-violations by dynamic reprovisioning. Experiments across four microservice benchmarks demonstrate that FIRM reduces SLO violations by up to 16x while reducing the overall requested CPU limit by up to 62%. Moreover, FIRM improves performance predictability by reducing tail latencies by up to 11x."><meta itemprop=datePublished content="2020-11-04T00:00:00+00:00"><meta itemprop=dateModified content="2020-11-04T00:00:00+00:00"><meta itemprop=wordCount content="139"><meta name=twitter:card content="summary"><meta name=twitter:title content="FIRM: An Intelligent Fine-Grained Resource Management Framework for SLO-Oriented Microservices"><meta name=twitter:description content="Modern user-facing, latency-sensitive web services include numerous distributed, intercommunicating microservices that promise to simplify software development and operation. However, multiplexing compute-resources across microservices is still challenging in production because contention for shared resources can cause latency spikes that violate the service-level objectives (SLOs) of user requests. This paper presents FIRM, an intelligent fine-grained resource management framework for predictable sharing of resources across microservices to drive up overall utilization. FIRM leverages online telemetry data and machine-learning methods to adaptively (a) detect/localize microservices that cause SLO-violations, (b) identify low-level resources in contention, and (c) take actions to mitigate SLO-violations by dynamic reprovisioning. Experiments across four microservice benchmarks demonstrate that FIRM reduces SLO violations by up to 16x while reducing the overall requested CPU limit by up to 62%. Moreover, FIRM improves performance predictability by reducing tail latencies by up to 11x."><meta name=theme-color content="#141f33"><title>FIRM: An Intelligent Fine-Grained Resource Management Framework for SLO-Oriented Microservices | Subho Sankar Banerjee</title><link rel=canonical href=/publications/osdi2020/><link rel=icon href=/img/favicon.ico><link rel="shortcut icon" href=/img/favicon.ico><link rel=apple-touch-icon href=/img/favicon.ico><link rel=stylesheet href=/css/style.min.a5fd5df6db3eafce9b1c5f5fabeadc25c3d64c8798012ac48a13c5fb32861ce7.css><link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400;1,700&amp;family=Inconsolata:ital,wght@0,400;0,700;1,400;1,700&amp;family=Eczar:ital,wght@0,400;0,700;1,400;1,700&display=swap" crossorigin=anonymous type=text/css rel=stylesheet><link href=https://unpkg.com/academicons@1.8.6/css/academicons.min.css crossorigin=anonymous type=text/css rel=stylesheet rel=preload as=style onload='this.onload=null,this.rel="stylesheet"'><link href=https://unpkg.com/components-font-awesome@5.9.0/css/all.min.css crossorigin=anonymous type=text/css rel=stylesheet rel=preload as=style onload='this.onload=null,this.rel="stylesheet"'></head><body><div class="columns is-gapless is-marginless"><div class="column is-one-quarter-tablet is-narrow-desktop" id=sidebar><div class=padded-sidebar><section class=section><figure class="image container" style=margin-bottom:2rem><img class=is-rounded src=/img/me_sq.png alt=Avatar></figure><div class="sidebar-content has-text-centered"><h1 class="title is-1"><a href=/>Subho Sankar Banerjee</a></h1><p class="has-text-white-ter has-text-centered">Software Engineer @ Google</p><ul class="icon-list is-clearfix"><li><a href=mailto:remove_this_if_human_ssbaner2@illinois.edu><i class="fas fa-envelope-open fa-fw"></i></a></li><li><a href="https://illinois.edu/map/view?buildingId=148"><i class="fas fa-map-marker-alt fa-fw"></i></a></li><li><a href="https://scholar.google.com/citations?user=jvV04p3aXgMC"><i class="ai ai-google-scholar fa-fw"></i></a></li><li><a href="https://dblp.uni-trier.de/pers/hd/b/Banerjee:Subho_S="><i class="ai ai-dblp fa-fw"></i></a></li><li><a href=https://www.linkedin.com/in/ssbanerjee><i class="fab fa-linkedin fa-fw"></i></a></li><li><a href=https://github.com/ssbanerje><i class="fab fa-github fa-fw"></i></a></li></ul></div></section></div></div><div class=column><div id=content class=has-text-justified><section class=section><nav class=breadcrumb aria-label=breadcrumbs><ul><li><a href=/><span class="icon is-small"><i class="fas fa-home" aria-hidden=true></i></span><span>Home</span></a></li><li><a href=/publications/>Publications</a></li><li class=is-active><a href=# aria-current=page>This Page</a></li></ul></nav></section><section class=section><div class=has-text-left><h1 class="title is-1 no-border">FIRM: An Intelligent Fine-Grained Resource Management Framework for SLO-Oriented Microservices</h1><h3 class="title is-3">Haoran Qiu, Subho S. Banerjee, Saurabh Jha, Zbigniew T. Kalbarczyk, and Ravishankar K. Iyer</h3><h3 class="title is-3 has-text-grey"><i>OSDI 2020</i></h3></div><br><hr><ul class="single-paper-links is-size-3"><li><a href=https://www.usenix.org/conference/osdi20/presentation/qiu target=_blank rel=noreferrer rel=noopener><i class="ai ai-doi" aria-hidden=true></i>&nbsp;DOI</a></li><li><a href=http://arxiv.org/abs/2008.08509 target=_blank rel=noreferrer rel=noopener><i class="ai ai-arxiv" aria-hidden=true></i>&nbsp;arXiv</a></li><li><a href=https://gitlab.engr.illinois.edu/DEPEND/firm target=_blank rel=noreferrer rel=noopener><i class="fas fa-code" aria-hidden=true></i>&nbsp;Code</a></li><li><a href=https://databank.illinois.edu/datasets/IDB-6738796 target=_blank rel=noreferrer rel=noopener><i class="fas fa-database" aria-hidden=true></i>&nbsp;Data</a></li><li><a href=/publications/osdi2020/Paper.pdf target=_blank rel=noreferrer rel=noopener><i class="far fa-file-pdf" aria-hidden=true></i>&nbsp;Paper</a></li></ul></section><section class=section><h2 class="title is-2">Abstract</h2><div class=content><p>Modern user-facing, latency-sensitive web services include numerous distributed, intercommunicating
 microservices that promise to simplify software development and operation. However, multiplexing
 compute-resources across microservices is still challenging in production because contention for
 shared resources can cause latency spikes that violate the service-level objectives (SLOs) of user
@@ -118,46 +9,15 @@ microservices that cause SLO-violations, (b) identify low-level resources in con
 take actions to mitigate SLO-violations by dynamic reprovisioning. Experiments across four
 microservice benchmarks demonstrate that FIRM reduces SLO violations by up to 16x while reducing the
 overall requested CPU limit by up to 62%. Moreover, FIRM improves performance predictability by
-reducing tail latencies by up to 11x.</p>
-</div>
-</section>
-<section class=section style=margin-bottom:1rem>
-<h2 class="title is-2">
-Citation
-<a href=/publications/osdi2020/ref.bib style=font-size:80%><i class="far fa-arrow-alt-circle-down"></i></a>
-</h2>
-<div class=highlight><pre tabindex=0 style=background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bibtex data-lang=bibtex><span style=color:#0a8;font-weight:700>@inproceedings</span> {<span style=color:#99f>Qiu2020</span>,
-  <span style=color:#309>author</span> = <span style=color:#c30>{Qiu, Haoran and Banerjee, Subho Sankar and Jha, Saurabh and Kalbarczyk, Zbigniew T. and Iyer, Ravishankar K.}</span>,
-  <span style=color:#309>title</span> = <span style=color:#c30>{{FIRM}: An Intelligent Fine-grained Resource Management Framework for SLO-oriented Microservices}</span>,
-  <span style=color:#309>booktitle</span> = <span style=color:#c30>{14th {USENIX} Symposium on Operating Systems Design and Implementation ({OSDI} 20)}</span>,
-  <span style=color:#309>year</span> = <span style=color:#c30>{2020}</span>,
-  <span style=color:#309>address</span> = <span style=color:#c30>{Banff, Alberta}</span>,
-  <span style=color:#309>url</span> = <span style=color:#c30>{https://www.usenix.org/conference/osdi20/presentation/qiu}</span>,
-  <span style=color:#309>publisher</span> = <span style=color:#c30>{{USENIX} Association}</span>,
-  <span style=color:#309>month</span> = <span style=color:#033>nov</span>,
-} 
-</code></pre></div>
-</section>
-<section class=section style=margin-bottom:1rem>
-<h2 class="title is-2">Related Projects</h2>
-<ul class=bulleted-list>
-<li><a href=/projects/learnedsystems/>Intelligence Augmented Compter Systems</a></li>
-</ul>
-</section>
-</div>
-<footer class=footer>
-<div class="content has-text-left has-text-dark">
-<ul>
-<li><span class="icon has-text-info"><i class="fas fa-heading fa-fw"></i></span> Powered by <a href=https://www.gohugo.io>Hugo</a></li>
-<li><span class="icon has-text-link"><i class="fas fa-pencil-alt fa-fw"></i></span> Last updated 10/21/2021</li>
-<li><a href=https://ssbaner2.cs.illinois.edu/index.xml><span class="icon has-text-orange"><i class="fas fa-rss fa-fw"></i></span> Feed</a></li>
-</ul>
-</div>
-</footer>
-</div>
-<div class="column is-1 is-hidden-touch" id=right></div>
-</div>
-<script src=https://unpkg.com/quicklink@2.0.0/dist/quicklink.umd.js integrity=sha384-0nZ9FdSjDH2+tAS8yrmxpBHVMFs28rYR4bDVPFEoQqfzvezs/7OW7ebNI7CrWAg7 crossorigin=anonymous async></script>
-<script>window.addEventListener('load',()=>{quicklink.listen({ignores:[a=>a.includes('.pdf'),a=>a.includes('.bib'),(b,a)=>a.hasAttribute('noprefetch')]})})</script>
-</body>
-</html>
+reducing tail latencies by up to 11x.</p></div></section><section class=section style=margin-bottom:1rem><h2 class="title is-2">Citation
+<a href=/publications/osdi2020/ref.bib style=font-size:80%><i class="far fa-arrow-alt-circle-down"></i></a></h2><div class=highlight><pre tabindex=0 style=background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bibtex data-lang=bibtex><span style=display:flex><span><span style=color:#0a8;font-weight:700>@inproceedings</span> {<span style=color:#99f>Qiu2020</span>,
+</span></span><span style=display:flex><span>  <span style=color:#309>author</span> = <span style=color:#c30>{Qiu, Haoran and Banerjee, Subho Sankar and Jha, Saurabh and Kalbarczyk, Zbigniew T. and Iyer, Ravishankar K.}</span>,
+</span></span><span style=display:flex><span>  <span style=color:#309>title</span> = <span style=color:#c30>{{FIRM}: An Intelligent Fine-grained Resource Management Framework for SLO-oriented Microservices}</span>,
+</span></span><span style=display:flex><span>  <span style=color:#309>booktitle</span> = <span style=color:#c30>{14th {USENIX} Symposium on Operating Systems Design and Implementation ({OSDI} 20)}</span>,
+</span></span><span style=display:flex><span>  <span style=color:#309>year</span> = <span style=color:#c30>{2020}</span>,
+</span></span><span style=display:flex><span>  <span style=color:#309>address</span> = <span style=color:#c30>{Banff, Alberta}</span>,
+</span></span><span style=display:flex><span>  <span style=color:#309>url</span> = <span style=color:#c30>{https://www.usenix.org/conference/osdi20/presentation/qiu}</span>,
+</span></span><span style=display:flex><span>  <span style=color:#309>publisher</span> = <span style=color:#c30>{{USENIX} Association}</span>,
+</span></span><span style=display:flex><span>  <span style=color:#309>month</span> = <span style=color:#033>nov</span>,
+</span></span><span style=display:flex><span>} 
+</span></span></code></pre></div></section><section class=section style=margin-bottom:1rem><h2 class="title is-2">Related Projects</h2><ul class=bulleted-list><li><a href=/projects/learnedsystems/>Intelligence Augmented Compter Systems</a></li></ul></section></div><footer class=footer><div class="content has-text-left has-text-dark"><ul><li><span class="icon has-text-info"><i class="fas fa-heading fa-fw"></i></span> Powered by <a href=https://www.gohugo.io>Hugo</a></li><li><span class="icon has-text-link"><i class="fas fa-pencil-alt fa-fw"></i></span> Last updated 08/28/2025</li><li><a href=https://ssbanerje.github.io/index.xml><span class="icon has-text-orange"><i class="fas fa-rss fa-fw"></i></span> Feed</a></li></ul></div></footer></div><div class="column is-1 is-hidden-touch" id=right></div></div><script src=https://unpkg.com/quicklink@2.0.0/dist/quicklink.umd.js integrity=sha384-0nZ9FdSjDH2+tAS8yrmxpBHVMFs28rYR4bDVPFEoQqfzvezs/7OW7ebNI7CrWAg7 crossorigin=anonymous async></script><script>window.addEventListener("load",()=>{quicklink.listen({ignores:[e=>e.includes(".pdf"),e=>e.includes(".bib"),(e,t)=>t.hasAttribute("noprefetch")]})})</script></body></html>

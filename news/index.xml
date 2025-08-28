@@ -1,1 +1,147 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>News on Subho Sankar Banerjee</title><link>https://ssbaner2.cs.illinois.edu/news/</link><description>Recent content in News on Subho Sankar Banerjee</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 19 Jul 2017 00:00:00 +0000</lastBuildDate><atom:link href="https://ssbaner2.cs.illinois.edu/news/index.xml" rel="self" type="application/rss+xml"/></channel></rss>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>News of Subho Sankar Banerjee</title><link>https://ssbanerje.github.io/news/</link><description>Recent content in News of Subho Sankar Banerjee</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><managingEditor> ()</managingEditor><webMaster> ()</webMaster><lastBuildDate>Wed, 19 Jul 2017 00:00:00 +0000</lastBuildDate><atom:link href="https://ssbanerje.github.io/news/" rel="self" type="application/rss+xml"/><item><title>Is Function-as-a-Service a Good Fit for Latency-Critical Services?</title><link>https://ssbanerje.github.io/publications/wosc2021/</link><pubDate>Mon, 06 Dec 2021 00:00:00 +0000</pubDate><author>Haoran Qiu, Saurabh Jha, Subho S. Banerjee, Archit Patke, Chen Wang, Hubertus Franke, Zbigniew T. Kalbarczyk, and Ravishankar K. Iyer</author><guid>https://ssbanerje.github.io/publications/wosc2021/</guid><description>&lt;p&gt;Function-as-a-Service (FaaS) is becoming an increasingly popular cloud-deployment paradigm for serverless computing that
+frees application developers from managing the infrastructure. At the same time, it allows cloud providers to assert
+control in workload consolidation, i.e., co-locating multiple containers on the same server, thereby achieving higher
+server utilization, often at the cost of higher end-to-end function request latency. Interestingly, a key aspect of
+serverless latency management has not been well studied: the trade-off between application developers’ latency goals and
+the FaaS providers’ utilization goals. This paper presents a multi-faceted, measurement-driven study of latency
+variation in serverless platforms that elucidates this trade-off space. We obtained production measurements by executing
+FaaS benchmarks on IBM Cloud and a private cloud to study the impact of workload consolidation, queuing delay, and cold
+starts on the end-to-end function request latency. We draw several conclusions. For example, increasing a container’s
+allocated memory limit from 128 MB to 256 MB reduces the tail latency by 2x but has 1.75x higher power consumption and
+59% lower CPU utilization.&lt;/p&gt;</description></item><item><title>Improved GPU Implementations of the Pair-HMM Forward Algorithm for DNA Sequence Alignment</title><link>https://ssbanerje.github.io/publications/iccd2021/</link><pubDate>Sun, 24 Oct 2021 00:00:00 +0000</pubDate><author>Enliang Li, Subho S. Banerjee, Sitao Huang, Ravishankar K. Iyer, Deming Chen</author><guid>https://ssbanerje.github.io/publications/iccd2021/</guid><description>&lt;p&gt;With the rise of Next-Generation Sequencing (NGS) technology, clinical sequencing services become more accessible but
+are also facing new challenges. The surging demand motivates developments of more efficient algorithms for computational
+genomics and their hardware acceleration. In this work, we use GPU to accelerate the DNA variant calling and its related
+alignment problem. The Pair-Hidden Markov Model (Pair-HMM) is one of the most popular and compute-intensive models used
+in variant calling. As a critical part of the Pair-HMM, the forward algorithm is not only a computational but
+data-intensive algorithm. Multiple previous works have been done in efforts to accelerate the computation of the forward
+algorithm by the massive parallelization of the workload. In this paper, we bring advanced GPU implementations with
+various optimizations, such as efficient host-device communication, task parallelization, pipelining, and memory
+management, to tackle this challenging task. Our design has shown a speedup of 783x comparing to the Java baseline on
+Intel single-core CPU, 31.88x to the C++ baseline on IBM Power8 multicore CPU, and 1.53x - 2.21x to the previous
+state-of-the-art GPU implementations over various genomics datasets.&lt;/p&gt;</description></item><item><title>BayesPerf: Minimizing Performance Monitoring Errors Using Bayesian Statistics</title><link>https://ssbanerje.github.io/publications/asplos2021/</link><pubDate>Mon, 19 Apr 2021 00:00:00 +0000</pubDate><author>Subho S. Banerjee, Saurabh Jha, Zbigniew T. Kalbarczyk, and Ravishankar K. Iyer</author><guid>https://ssbanerje.github.io/publications/asplos2021/</guid><description>&lt;p&gt;Hardware performance counters (HPCs) that measure low-level architectural and microarchitectural
+events provide dynamic contextual information about the state of the system. However, HPC
+measurements are error-prone due to non determinism (e.g., undercounting due to event multiplexing,
+or OS interrupt-handling behaviors). In this paper, we present BayesPerf, a system for quantifying
+uncertainty in HPC measurements by using a domain-driven Bayesian model that captures
+microarchitectural relationships between HPCs to jointly infer their values as probability
+distributions. We provide the design and implementation of an accelerator that allows for
+low-latency and low-power inference of the BayesPerf model for x86 and ppc64 CPUs. BayesPerf
+reduces the average error in HPC measurements from 40.1% to 7.6% when events are being multiplexed.
+The value of BayesPerf in real-time decision-making is illustrated with a simple example of
+scheduling of PCIe transfers.&lt;/p&gt;</description></item><item><title>Live Forensics for HPC Systems: A Case Study on Distributed Storage Systems</title><link>https://ssbanerje.github.io/publications/sc2020/</link><pubDate>Sun, 15 Nov 2020 00:00:00 +0000</pubDate><author>Saurabh Jha, Shengkun Cui, Subho S. Banerjee, Tianyin Xu, Jeremy Enos, Mike Showerman, Zbigniew T. Kalbarczyk, and Ravishankar K. Iyer</author><guid>https://ssbanerje.github.io/publications/sc2020/</guid><description>&lt;p&gt;Large-scale high-performance computing systems frequently experience a wide range of failure modes,
+such as reliability failures (e.g., hang or crash), and resource overload-related failures (e.g.,
+congestion collapse), impacting systems and applications. Despite the adverse effects of these
+failures, current systems do not provide methodologies for proactively detecting, localizing, and
+diagnosing failures. We present Kaleidoscope, a near real-time failure detection and diagnosis
+framework, consisting of of hierarchical domain-guided machine learning models that identify the
+failing components, the corresponding failure mode, and point to the most likely cause indicative of
+the failure in near real-time (within one minute of failure occurrence). Kaleidoscope has been
+deployed on Blue Waters supercomputer and evaluated with more than two years of production telemetry
+data. Our evaluation shows that Kaleidoscope successfully localized 99.3% and pinpointed the root
+causes of 95.8% of 843 real-world production issues, with less than 0.01% runtime overhead.&lt;/p&gt;</description></item><item><title>FIRM: An Intelligent Fine-Grained Resource Management Framework for SLO-Oriented Microservices</title><link>https://ssbanerje.github.io/publications/osdi2020/</link><pubDate>Wed, 04 Nov 2020 00:00:00 +0000</pubDate><author>Haoran Qiu, Subho S. Banerjee, Saurabh Jha, Zbigniew T. Kalbarczyk, and Ravishankar K. Iyer</author><guid>https://ssbanerje.github.io/publications/osdi2020/</guid><description>&lt;p&gt;Modern user-facing, latency-sensitive web services include numerous distributed, intercommunicating
+microservices that promise to simplify software development and operation. However, multiplexing
+compute-resources across microservices is still challenging in production because contention for
+shared resources can cause latency spikes that violate the service-level objectives (SLOs) of user
+requests. This paper presents FIRM, an intelligent fine-grained resource management framework for
+predictable sharing of resources across microservices to drive up overall utilization. FIRM
+leverages online telemetry data and machine-learning methods to adaptively (a) detect/localize
+microservices that cause SLO-violations, (b) identify low-level resources in contention, and (c)
+take actions to mitigate SLO-violations by dynamic reprovisioning. Experiments across four
+microservice benchmarks demonstrate that FIRM reduces SLO violations by up to 16x while reducing the
+overall requested CPU limit by up to 62%. Moreover, FIRM improves performance predictability by
+reducing tail latencies by up to 11x.&lt;/p&gt;</description></item><item><title>Machine Learning for Load Balancing in the Linux Kernel</title><link>https://ssbanerje.github.io/publications/apsys2020/</link><pubDate>Mon, 24 Aug 2020 00:00:00 +0000</pubDate><author>Jingde Chen, Subho S. Banerjee, Zbigniew T. Kalbarczyk, and Ravishankar K. Iyer</author><guid>https://ssbanerje.github.io/publications/apsys2020/</guid><description>&lt;p&gt;The OS load balancing algorithm governs the performance gains provided by a multiprocessor computer
+system. The Linux&amp;rsquo;s Completely Fair Scheduler (CFS) scheduler tracks process loads by average CPU
+utilization to balance workload between processor cores. That approach maximizes the utilization of
+processing time but overlooks the contention for lower-level hardware resources. In servers running
+compute-intensive workloads, an imbalanced need for limited computing resources hinders execution
+performance. This paper solves the above problem using a machine learning (ML)-based resource-aware
+load balancer. We describe (1) low-overhead methods for collecting training data; (2) an ML model
+based on a multi-layer perceptron model that imitates the CFS load balancer based on the collected
+training data; and (3) an in-kernel implementation of inference on the model. Our experiments
+demonstrate that the proposed model has an accuracy of 99% in making migration decisions and while
+only increasing the latency by 1.9 μs.&lt;/p&gt;</description></item><item><title>Inductive-bias-driven Reinforcement Learning for Efficient Schedules in Heterogeneous Clusters</title><link>https://ssbanerje.github.io/publications/icml2020/</link><pubDate>Tue, 14 Jul 2020 00:00:00 +0000</pubDate><author>Subho S. Banerjee, Saurabh Jha, Zbigniew T. Kalbarczyk, and Ravishankar K. Iyer</author><guid>https://ssbanerje.github.io/publications/icml2020/</guid><description>&lt;p&gt;The problem of scheduling of workloads onto heterogeneous processors (e.g., CPUs, GPUs, FPGAs) is of
+fundamental importance in modern data centers. Current system schedulers rely on
+application/system-specific heuristics that have to be built on a case-by-case basis. Recent work
+has demonstrated ML techniques for automating the heuristic search by using black-box approaches
+which require significant training data and time, which make them challenging to use in practice.
+This paper presents Symphony, a scheduling framework that addresses the challenge in two ways: (i) a
+domain-driven Bayesian reinforcement learning (RL) model for scheduling, which inherently models the
+resource dependencies identified from the system architecture; and (ii) a sampling-based technique
+to compute the gradients of a Bayesian model without performing full probabilistic inference.
+Together, these techniques reduce both the amount of training data and the time required to produce
+scheduling policies that significantly outperform black-box approaches by up to 2.2×.&lt;/p&gt;</description></item><item><title>ML-driven Malware that Targets AV Safety</title><link>https://ssbanerje.github.io/publications/dsn2020/</link><pubDate>Tue, 30 Jun 2020 00:00:00 +0000</pubDate><author>Saurabh Jha, Shengkun Cui, Subho S. Banerjee, James Cyriac, Timothy Tsai, Zbigniew T. Kalbarczyk, and Ravishankar K. Iyer</author><guid>https://ssbanerje.github.io/publications/dsn2020/</guid><description>&lt;p&gt;Ensuring the safety of autonomous vehicles (AVs) is critical for their mass deployment and public
+adoption. However, security attacks that violate safety constraints and cause accidents are a
+major deterrent to achieving public trust in AVs which hinders a vendors&amp;rsquo; ability to deploy the AVs.
+Creating a security hazard that results in a serious safety compromise (for example, an accident) is
+compelling from an attacker&amp;rsquo;s perspective. In this paper, we introduce an attack model, a method to
+deploy the attack in the form of a smart malware, and experimental evaluation of its impact on
+production grade autonomous driving software. We find that determining the time interval during
+which to launch the attack is critically important for causing safety hazards (such as collision)
+with a high degree of success. For example, the smart malware caused 32× more forced emergency
+braking compared to random attacks, and accidents in 52.6% of the driving simulations.&lt;/p&gt;</description></item><item><title>ML-based Fault Injection for Autonomous Vehicles: A Case for Bayesian Fault Injection</title><link>https://ssbanerje.github.io/publications/dsn2019/</link><pubDate>Tue, 25 Jun 2019 00:00:00 +0000</pubDate><author>Saurabh Jha, Subho S. Banerjee, Timothy Tsai, Siva K. S. Hari, Michael B. Sullivan, Zbigniew T. Kalbarczyk, Stephen W. Keckler, and Ravishankar K. Iyer</author><guid>https://ssbanerje.github.io/publications/dsn2019/</guid><description>&lt;p&gt;The safety and resilience of fully autonomous vehicles (AVs) is of significant concern, as
+exemplified by several headline making accidents. While AV development today inherently involves
+verification, validation and testing, end-to-end assessment of AV systems under accidental faults in
+realistic driving scenarios is largely unexplored. This paper presents DriveFI, a machine
+learning-based fault injection engine, which can mine situations and faults that maximally impact AV
+safety, demonstrated on two industry-grade AV technology stacks (from NVIDIA and Baidu). For
+example, DriveFI finds 561 safety critical faults in less than 4 hours. In comparison random
+injection experiments executed over several weeks could not find any safety critical faults.&lt;/p&gt;</description></item><item><title>Towards a Bayesian Approach for Assessing Fault Tolerance of Deep Neural Networks</title><link>https://ssbanerje.github.io/publications/dsn2019_bdlfi/</link><pubDate>Mon, 24 Jun 2019 00:00:00 +0000</pubDate><author>Subho S. Banerjee, James Cyriac, Saurabh Jha, Zbigniew T. Kalbarczyk, and Ravishankar K. Iyer</author><guid>https://ssbanerje.github.io/publications/dsn2019_bdlfi/</guid><description>&lt;p&gt;This paper presents &lt;em&gt;Bayesian Deep Learning based Fault Injection&lt;/em&gt; (BDLFI), a
+novel methodology for fault injection in neural networks (NNs) or more generally
+differentiable programs. BDLFI uses (1) Bayesian Deep Learning to model the
+propagation of faults, and (2) Markov Chain Monte Carlo inference to quantify
+the effect of faults on the outputs of a NN. We demonstrate BDLFI on two
+representative networks and find that our results challenge pre-existing results
+in the field.&lt;/p&gt;</description></item><item><title>AcMC²: Accelerated Markov Chain Monte Carlo for Probabilistic Models</title><link>https://ssbanerje.github.io/publications/asplos2019/</link><pubDate>Sat, 13 Apr 2019 00:00:00 +0000</pubDate><author>Subho S. Banerjee, Zbigniew T. Kalbarczyk, and Ravishankar K. Iyer</author><guid>https://ssbanerje.github.io/publications/asplos2019/</guid><description>&lt;p&gt;Probabilistic models (PMs) are ubiquitously used across a variety of machine learning applications.
+They have been shown to successfully integrate structural prior information about data and
+effectively quantify uncertainty to enable the development of more powerful, interpretable, and
+efficient learning algorithms. This paper presents AcMC², a compiler that transforms PMs into
+optimized hardware accelerators (for use in FPGAs or ASICs) that utilize Markov chain Monte Carlo
+methods to infer and query a distribution of posterior samples from the model. The compiler analyzes
+statistical dependencies in the PM to drive several optimizations to maximally exploit the
+parallelism and data locality available in the problem. We demonstrate the use of AcMC² to implement
+several learning and inference tasks on a Xilinx Virtex-7 FPGA. AcMC²-generated accelerators provide
+a 47−100× improvement in runtime performance over a 6-core IBM Power8 CPU and a 8−18× improvement
+over an NVIDIA K80 GPU. This corresponds to a 753−1600× improvement over the CPU and 248−463× over
+the GPU in performance-per-watt terms.&lt;/p&gt;</description></item><item><title>CAUDIT: Continuous Auditing of SSH-Servers To Mitigate Brute-Force Attacks</title><link>https://ssbanerje.github.io/publications/nsdi2019/</link><pubDate>Tue, 26 Feb 2019 00:00:00 +0000</pubDate><author>Phuong M. Cao, Yuming Wu, Subho S. Banerjee, Justin Azoff, Alex Withers, Zbigniew T. Kalbarczyk, and Ravishankar K. Iyer</author><guid>https://ssbanerje.github.io/publications/nsdi2019/</guid><description>&lt;p&gt;This paper describes CAUDIT, an operational system deployed at the National Center for
+Supercomputing Applications (NCSA) at the University of Illinois. CAUDIT is a fully
+automated system to enable the identification and exclusion of hosts that are vulnerable
+to SSH brute-force attacks. Its key features includes: 1) a honeypot for attracting
+SSH-based attacks over a /16 IP address range and extracting key-metadata (e.g., source
+IP, password, SSH-client version, or -key) from these attacks; 2) executing audits on the
+live production network by replaying attack attempts recorded by the honeypot; 3) using
+the IP addresses recorded by the honeypot to block SSH attack attempts at the network
+border using a Black Hole Router (BHR) while significantly reducing the load on NCSA&amp;rsquo;s
+security monitoring system; and 4) informing peer sites of attack attempts in real-time
+to ensure containment of coordinated attacks. The system is composed of existing techniques
+with custom-built components, and its novelty is to execute at a scale that has not been
+validated earlier (thousands of nodes and tens of millions of attack attempts per day).
+Experience over 463 days shows that CAUDIT successfully blocks an average of 57 million
+attack attempts on a daily basis using the proposed BHR. This represents a 66× reduction
+in the number of SSH attempts compared to the daily average and has reduced 78% of the
+traffic to the NCSA internal network-security-monitoring infrastructure.&lt;/p&gt;</description></item><item><title>ASAP: Accelerated Short Read Alignment on Programmable Hardware</title><link>https://ssbanerje.github.io/publications/tc2018/</link><pubDate>Sat, 10 Nov 2018 00:00:00 +0000</pubDate><author>Subho S. Banerjee, Mohamed el-Hadedy, Jong B. Lim, Steve Lumetta, Zbigniew T. Kalbarczyk, Deming Chen, and Ravishankar K. Iyer</author><guid>https://ssbanerje.github.io/publications/tc2018/</guid><description>&lt;p&gt;The proliferation of high-throughput sequencing machines ensures rapid generation of up to billions
+of short nucleotide fragments in a short period of time. This massive amount of sequence data can
+quickly overwhelm today&amp;rsquo;s storage and compute infrastructure. This paper explores the use of
+hardware acceleration to significantly improve the runtime of short-read alignment, a crucial step
+in preprocessing sequenced genomes. We focus on the Levenshtein distance (edit-distance) computation
+kernel and propose the ASAP accelerator, which utilizes the intrinsic delay of circuits for
+edit-distance computation elements as a proxy for computation. Our design is implemented on an
+Xilinx Virtex 7 FPGA in an IBM POWER8 system that uses the CAPI interface for cache coherence across
+the CPU and FPGA. Our design is 200x faster than an equivalent Smith-Waterman-C implementation of
+the kernel running on the host processor, 40-60x faster than an equivalent Landau-Vishkin-C++
+implementation of the kernel running on the IBM Power8 host processor, and 2x faster for an
+end-to-end alignment tool for 120&amp;ndash;150 base-pair short-read sequences. Further the design represents
+a 3760x improvement over the CPU in performance/Watt terms.&lt;/p&gt;</description></item><item><title>A ML-based Runtime System for Executing Dataflow Graphs on Heterogeneous Processors</title><link>https://ssbanerje.github.io/publications/socc18/</link><pubDate>Thu, 11 Oct 2018 00:00:00 +0000</pubDate><author>Subho S. Banerjee, Steve Lumetta, Zbigniew T. Kalbarczyk, and Ravishankar K. Iyer</author><guid>https://ssbanerje.github.io/publications/socc18/</guid><description>&lt;p&gt;This paper briefly describes the design a system that addresses the challenge of scheduling
+distributed data-analytics workloads on heterogeneous processing fabrics (which include CPUs, GPUs,
+FPGAs and ASICs) in cloud-based, dynamic, multi-tenant environments. To demonstrate the capabilities
+of the proposed system, we use a computational genomics workflow that addresses the growing need for
+rapid genomic analyses in hospital environments.&lt;/p&gt;</description></item><item><title>Hands Off the Wheel in Autonomous Vehicles? A Systems Perspective on over a Million Miles of Field Data</title><link>https://ssbanerje.github.io/publications/dsn2018/</link><pubDate>Thu, 28 Jun 2018 00:00:00 +0000</pubDate><author>Subho S. Banerjee, Saurabh Jha, James Cyriac, Zbigniew T. Kalbarczyk, and Ravishankar K. Iyer</author><guid>https://ssbanerje.github.io/publications/dsn2018/</guid><description>&lt;p&gt;Autonomous vehicle (AV) technology is rapidly becoming a reality on U.S. roads, offering the promise
+of improvements in traffic management, safety, and the comfort and efficiency of vehicular travel.
+The California Department of Motor Vehicles (DMV) reports that between 2014 and 2017, manufacturers
+tested 144 AVs, driving a cumulative 1,116,605 autonomous miles, and reported 5,328 disengagements
+and 42 accidents involving AVs on public roads. This paper investigates the causes, dynamics, and
+impacts of such AV failures by analyzing disengagement and accident reports obtained from public DMV
+databases. We draw several conclusions. For example, we find that autonomous vehicles are 15 &amp;ndash;
+4000x worse than human drivers for accidents per cumulative mile driven; that drivers of AVs need to
+be as alert as drivers of non-AVs; and that the AVs&amp;rsquo; machine-learning-based systems for perceiving
+the environment and control of the AV are the primary cause of all disengagements (64% of all
+cases).&lt;/p&gt;</description></item></channel></rss>
