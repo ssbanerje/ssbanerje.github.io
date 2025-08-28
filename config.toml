@@ -6,7 +6,7 @@ languageCode = "en-us"
 enableRobotsTXT = true
 
 # Taxonomies
-disableKinds = ["term", "taxonomy", "taxonomyTerm"]
+disableKinds = ["term", "taxonomy"]
 
 # Markdown & Rendering
 buildFuture = true

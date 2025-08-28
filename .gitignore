@@ -12,3 +12,9 @@ $RECYCLE.BIN/
 
 # OSX
 .DS_Store
+
+# build files
+.hugo_build.lock
+
+# installer files
+webi_installer.sh
