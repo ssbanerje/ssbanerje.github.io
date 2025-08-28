@@ -1,4 +1,16 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Homepage of Subho Sankar Banerjee</title><link>https://ssbanerje.github.io/</link><description>Recent content in Homepage of Subho Sankar Banerjee</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><managingEditor> ()</managingEditor><webMaster> ()</webMaster><lastBuildDate>Wed, 19 Jul 2017 00:00:00 +0000</lastBuildDate><atom:link href="https://ssbanerje.github.io/" rel="self" type="application/rss+xml"/><item><title>Is Function-as-a-Service a Good Fit for Latency-Critical Services?</title><link>https://ssbanerje.github.io/publications/wosc2021/</link><pubDate>Mon, 06 Dec 2021 00:00:00 +0000</pubDate><author>Haoran Qiu, Saurabh Jha, Subho S. Banerjee, Archit Patke, Chen Wang, Hubertus Franke, Zbigniew T. Kalbarczyk, and Ravishankar K. Iyer</author><guid>https://ssbanerje.github.io/publications/wosc2021/</guid><description>&lt;p&gt;Function-as-a-Service (FaaS) is becoming an increasingly popular cloud-deployment paradigm for serverless computing that
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Homepage of Subho Sankar Banerjee</title><link>https://ssbanerje.github.io/</link><description>Recent content in Homepage of Subho Sankar Banerjee</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><managingEditor> ()</managingEditor><webMaster> ()</webMaster><lastBuildDate>Wed, 19 Jul 2017 00:00:00 +0000</lastBuildDate><atom:link href="https://ssbanerje.github.io/" rel="self" type="application/rss+xml"/><item><title>Silent Data Corruption by 10× Test Escapes Threatens Reliable Computing</title><link>https://ssbanerje.github.io/publications/d_t2025/</link><pubDate>Thu, 28 Aug 2025 00:00:00 +0000</pubDate><author>Subhasish Mitra, Subho Banerjee, Martin Dixon, Rama Govindaraju, Peter Hochschild, Eric Liu, Bharath Parthasarathy, and Parthasarathy Ranganathan</author><guid>https://ssbanerje.github.io/publications/d_t2025/</guid><description>&lt;p&gt;Too many defective compute chips are escaping today’s manufacturing
+tests – at least an order of magnitude more than industrial targets
+across all compute chip types in data centers. Silent data corruptions
+(SDCs) caused by test escapes, when left unaddressed, pose a major
+threat to reliable computing. We present a three-pronged approach
+outlining future directions for overcoming test escapes: (a) Quick
+diagnosis of defective chips directly from system-level incorrect
+behaviors. Such diagnosis is critical for gaining insights into why so
+many defective chips escape existing manufacturing testing. (b)
+In-field detection of defective chips. (c) New test experiments to
+understand the effectiveness of new techniques for detecting defective
+chips. These experiments must overcome the drawbacks and pitfalls of
+previous industrial test experiments and case studies.&lt;/p&gt;</description></item><item><title>Is Function-as-a-Service a Good Fit for Latency-Critical Services?</title><link>https://ssbanerje.github.io/publications/wosc2021/</link><pubDate>Mon, 06 Dec 2021 00:00:00 +0000</pubDate><author>Haoran Qiu, Saurabh Jha, Subho S. Banerjee, Archit Patke, Chen Wang, Hubertus Franke, Zbigniew T. Kalbarczyk, and Ravishankar K. Iyer</author><guid>https://ssbanerje.github.io/publications/wosc2021/</guid><description>&lt;p&gt;Function-as-a-Service (FaaS) is becoming an increasingly popular cloud-deployment paradigm for serverless computing that
 frees application developers from managing the infrastructure. At the same time, it allows cloud providers to assert
 control in workload consolidation, i.e., co-locating multiple containers on the same server, thereby achieving higher
 server utilization, often at the cost of higher end-to-end function request latency. Interestingly, a key aspect of
@@ -134,14 +146,4 @@ a 3760x improvement over the CPU in performance/Watt terms.&lt;/p&gt;</descripti
 distributed data-analytics workloads on heterogeneous processing fabrics (which include CPUs, GPUs,
 FPGAs and ASICs) in cloud-based, dynamic, multi-tenant environments. To demonstrate the capabilities
 of the proposed system, we use a computational genomics workflow that addresses the growing need for
-rapid genomic analyses in hospital environments.&lt;/p&gt;</description></item><item><title>Hands Off the Wheel in Autonomous Vehicles? A Systems Perspective on over a Million Miles of Field Data</title><link>https://ssbanerje.github.io/publications/dsn2018/</link><pubDate>Thu, 28 Jun 2018 00:00:00 +0000</pubDate><author>Subho S. Banerjee, Saurabh Jha, James Cyriac, Zbigniew T. Kalbarczyk, and Ravishankar K. Iyer</author><guid>https://ssbanerje.github.io/publications/dsn2018/</guid><description>&lt;p&gt;Autonomous vehicle (AV) technology is rapidly becoming a reality on U.S. roads, offering the promise
-of improvements in traffic management, safety, and the comfort and efficiency of vehicular travel.
-The California Department of Motor Vehicles (DMV) reports that between 2014 and 2017, manufacturers
-tested 144 AVs, driving a cumulative 1,116,605 autonomous miles, and reported 5,328 disengagements
-and 42 accidents involving AVs on public roads. This paper investigates the causes, dynamics, and
-impacts of such AV failures by analyzing disengagement and accident reports obtained from public DMV
-databases. We draw several conclusions. For example, we find that autonomous vehicles are 15 &amp;ndash;
-4000x worse than human drivers for accidents per cumulative mile driven; that drivers of AVs need to
-be as alert as drivers of non-AVs; and that the AVs&amp;rsquo; machine-learning-based systems for perceiving
-the environment and control of the AV are the primary cause of all disengagements (64% of all
-cases).&lt;/p&gt;</description></item></channel></rss>
+rapid genomic analyses in hospital environments.&lt;/p&gt;</description></item></channel></rss>
