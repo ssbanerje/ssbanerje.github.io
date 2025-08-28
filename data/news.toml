@@ -1,4 +1,8 @@
 [[news]]
+  date = "Aug 28, 2025"
+  text = "Our paper on [silent data corruption](publications/d_t2025) has been accepted at [IEEE Design & Test](https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=54)."
+
+[[news]]
   date = "Oct 20, 2021"
   text = "Our paper on [characterizing latency variation in serverless FaaS](publications/wosc2021) has been accepted at [WoSC 2021](https://www.serverlesscomputing.org/wosc7/)."
 
