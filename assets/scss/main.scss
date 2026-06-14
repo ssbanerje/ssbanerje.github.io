@@ -27,9 +27,9 @@ $fonts: (
 @import 'bulma_config';
 
 // Import Bulma
-@import 'bulma/sass/utilities/_all';
-@import 'bulma/sass/base/_all';
-@import 'bulma/sass/grid/_all';
+@import 'bulma/sass/utilities/_index';
+@import 'bulma/sass/base/_index';
+@import 'bulma/sass/grid/_index';
 @import 'bulma/sass/elements/button';
 @import 'bulma/sass/elements/container';
 @import 'bulma/sass/elements/content';
@@ -39,7 +39,7 @@ $fonts: (
 @import 'bulma/sass/elements/notification';
 @import 'bulma/sass/components/breadcrumb';
 @import 'bulma/sass/components/message';
-@import 'bulma/sass/helpers/_all';
+@import 'bulma/sass/helpers/_index';
 @import 'bulma/sass/layout/footer';
 @import 'bulma/sass/layout/section';
 
