@@ -28,10 +28,11 @@ $fonts: (
 
 // Import Bulma
 @import 'bulma/sass/utilities/_index';
+@import 'bulma/sass/utilities/mixins';
 @import 'bulma/sass/base/_index';
 @import 'bulma/sass/grid/_index';
 @import 'bulma/sass/elements/button';
-@import 'bulma/sass/elements/container';
+@import 'bulma/sass/layout/container';
 @import 'bulma/sass/elements/content';
 @import 'bulma/sass/elements/icon';
 @import 'bulma/sass/elements/image';

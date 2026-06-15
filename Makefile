@@ -1,10 +1,10 @@
 HUGO=hugo
-USER=ssbaner2
-HOST=web.illinois.edu
-DIR=public_html/
-FILES=$(shell find archetypes assets content data layouts static -type f)
+FILES=$(shell find archetypes assets content data layouts static -type f -not -path '*/bulma/docs/*' -not -path '*/bulma/test/*' -not -path '*/.git*')
+
+DOCKER_IMAGE_NAME=ssbanerje-hugo
 
 .PHONY: all clean watch sync
+.PHONY: docker-image docker-all docker-clean docker-watch
 
 all: public
 
@@ -13,11 +13,19 @@ clean:
 
 public: $(FILES) config.toml
 	$(HUGO) --minify
-	mkdir -p public/cgi-bin
 	@find . -name ".DS_Store" -delete
 
 watch:
 	$(HUGO) server --disableFastRender --buildDrafts
 
-sync: public
-	rsync -avz --delete public/ $(USER)@$(HOST):$(DIR)
+docker-image:
+	docker build -t $(DOCKER_IMAGE_NAME) .
+
+docker-all: docker-image
+	docker run --rm --user $(shell id -u):$(shell id -g) -v $(CURDIR):/src -w /src $(DOCKER_IMAGE_NAME) make all
+
+docker-clean: docker-image
+	docker run --rm --user $(shell id -u):$(shell id -g) -v $(CURDIR):/src -w /src $(DOCKER_IMAGE_NAME) make clean
+
+docker-watch: docker-image
+	docker run --rm -it --user $(shell id -u):$(shell id -g) -v $(CURDIR):/src -w /src -p 1313:1313 $(DOCKER_IMAGE_NAME) make watch
