@@ -1,6 +1,11 @@
-+++ title = "Homepage" date = 2025-08-28 weight = 1
++++
+title = "Homepage"
+date = 2025-08-28
+weight = 1
 
-[sitemap] priority = 1.0 +++
+[sitemap]
+  priority = 1.0
++++
 
 I am a Software Engineer at [Google], where I work on building reliable
 computing systems for machine learning and AI, focusing on identifying,
