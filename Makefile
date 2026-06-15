@@ -11,7 +11,7 @@ all: public
 clean:
 	rm -rf public/ resources/
 
-public: $(FILES) config.toml
+public: $(FILES) hugo.toml
 	$(HUGO) --minify
 	@find . -name ".DS_Store" -delete
 
