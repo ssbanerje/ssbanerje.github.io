@@ -9,7 +9,10 @@
 
   a { @include mx.link_style(map.get(tv.$sidebar, link), map.get(tv.$sidebar, hover)); }
 
-  h1 { font-family: map.get(tv.$fonts, sidebar), sans-serif; }
+  h1 {
+    font-family: map.get(tv.$fonts, sidebar), sans-serif;
+    color: inherit;
+  }
 
   .icon-list {
     font-size: 175%;

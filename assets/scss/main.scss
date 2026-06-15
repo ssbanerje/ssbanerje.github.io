@@ -23,6 +23,9 @@
 // Load Bulma mixins
 @use 'bulma/sass/utilities/mixins' as bulma_mixins;
 
+// Load Bulma Themes (defines CSS variables)
+@use 'bulma/sass/themes';
+
 // Load Bulma Base, Grid
 @use 'bulma/sass/base/_index' as bulma_base with (
   $body-background-color: bc.$body-background-color
