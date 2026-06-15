@@ -1,15 +1,15 @@
 <div class="padded-sidebar">
   <section class="section">
     <figure class="image container" style="margin-bottom: 2rem;">
-      <img class="is-rounded" src="{{ .Site.Data.personal.avatar | relURL }}" alt="Avatar" />
+      <img class="is-rounded" src="{{ hugo.Data.personal.avatar | relURL }}" alt="Avatar" />
     </figure>
     <div class="sidebar-content has-text-centered">
-      <h1 class="title is-1"><a href="/">{{ .Site.Data.personal.name }}</a></h1>
+      <h1 class="title is-1"><a href="/">{{ hugo.Data.personal.name }}</a></h1>
       <p class="has-text-white-ter has-text-centered">
-        {{ .Site.Data.personal.position }} @ {{ .Site.Data.personal.company }}
+        {{ hugo.Data.personal.position }} @ {{ hugo.Data.personal.company }}
       </p>
       <ul class="icon-list is-clearfix">
-      {{ range $social := .Site.Data.social.link }}
+      {{ range $social := hugo.Data.social.link }}
         <li><a href="{{ $social.link }}"><i class="{{ $social.icon }}"></i></a></li>
       {{ end }}
       </ul>
