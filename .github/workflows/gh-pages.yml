@@ -12,6 +12,8 @@ jobs:
   deploy:
     name: Build and deploy
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -29,5 +31,4 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
           publish_dir: ./public
-          deploy_dir: ./
           commit_message: ${{ github.event.head_commit.message }}
