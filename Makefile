@@ -19,7 +19,7 @@ watch:
 	$(HUGO) server --disableFastRender --buildDrafts
 
 docker-image:
-	docker build -t $(DOCKER_IMAGE_NAME) .
+	docker build --pull -t $(DOCKER_IMAGE_NAME) .
 
 docker-all: docker-image
 	docker run --rm --user $(shell id -u):$(shell id -g) -v $(CURDIR):/src -w /src $(DOCKER_IMAGE_NAME) make all
@@ -28,4 +28,4 @@ docker-clean: docker-image
 	docker run --rm --user $(shell id -u):$(shell id -g) -v $(CURDIR):/src -w /src $(DOCKER_IMAGE_NAME) make clean
 
 docker-watch: docker-image
-	docker run --rm -it --user $(shell id -u):$(shell id -g) -v $(CURDIR):/src -w /src -p 1313:1313 $(DOCKER_IMAGE_NAME) make watch
+	docker run --it --rm -p 1313:1313 --user $(shell id -u):$(shell id -g) -v $(CURDIR):/src -w /src $(DOCKER_IMAGE_NAME) make watch
