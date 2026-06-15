@@ -14,21 +14,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
-        with:
-          submodules: true
+        uses: actions/checkout@v4
 
-      - name: Setup Hugo
-        uses: peaceiris/actions-hugo@v2
-        with:
-          hugo-version: 'latest'
-          extended: true
+      - name: Build Docker Image
+        run: docker build -t ssbanerje-hugo .
 
       - name: Build Webpage
-        run: hugo --minify
+        run: docker run --rm -v ${{ github.workspace }}:/src -w /src ssbanerje-hugo make all
 
       - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
+        uses: peaceiris/actions-gh-pages@v4
         if: ${{ github.ref == 'refs/heads/master' }}
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
@@ -36,5 +31,3 @@ jobs:
           publish_dir: ./public
           deploy_dir: ./
           commit_message: ${{ github.event.head_commit.message }}
-
-...
