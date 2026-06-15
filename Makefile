@@ -3,8 +3,7 @@ FILES=$(shell find archetypes assets content data layouts static -type f -not -p
 
 DOCKER_IMAGE_NAME=ssbanerje-hugo
 
-.PHONY: all clean watch sync
-.PHONY: docker-image docker-all docker-clean docker-watch
+.PHONY: all clean watch docker-image docker-all docker-clean docker-watch
 
 all: public
 
