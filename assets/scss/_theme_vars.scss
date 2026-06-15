@@ -1,0 +1,22 @@
+@use 'hugo:vars' as v;
+
+$sidebar: (
+  background: v.$sidebar-background,
+  text: v.$sidebar-text,
+  link: v.$sidebar-link,
+  hover: v.$sidebar-linkhover
+) !default;
+
+$content: (
+  background: v.$content-background,
+  text: v.$content-text,
+  link: v.$content-link,
+  hover: v.$content-linkhover,
+  award: v.$content-award
+) !default;
+
+$fonts: (
+  content: v.$font-content,
+  sidebar: v.$font-sidebar,
+  mono: v.$font-mono
+) !default;

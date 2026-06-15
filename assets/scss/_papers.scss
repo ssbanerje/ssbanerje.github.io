@@ -1,3 +1,7 @@
+@use "sass:map";
+@use "theme_vars" as tv;
+@use "mixins" as mx;
+
 /* Publications */
 .paper-list {
   padding: 0;
@@ -78,10 +82,10 @@
 }
 
 .paper-awards {
-  @extend %comma-seperated-list;
+  @include mx.comma-seperated-list;
 
   li {
-    color: map-get($content, award);
+    color: map.get(tv.$content, award);
     font-weight: bold;
 
     padding: 0;
@@ -92,11 +96,11 @@
 .paper-links {
   padding-top: 5px;;
   font-size: 80%;
-  @extend %inline-list;
+  @include mx.inline-list;
   list-style: none;
 
   li {
-    border: 1px dotted map-get($content, text);
+    border: 1px dotted map.get(tv.$content, text);
     padding: 0.1rem 0.25rem;
     margin: 0.25rem 0 0 0.25rem;
     border-radius: 4px;
@@ -104,9 +108,9 @@
     &:first-child { margin-left: 0; }
 
     &:hover {
-      border-color: map-get($content, hover);
+      border-color: map.get(tv.$content, hover);
 
-      a { color: map-get($content, hover); }
+      a { color: map.get(tv.$content, hover); }
     }
   }
 }

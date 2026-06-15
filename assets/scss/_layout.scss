@@ -1,14 +1,15 @@
-/**
- * Configure the layout of the page
- *
+@use "sass:map";
+@use "theme_vars" as tv;
+@use "bulma_config" as bc;
+@use "mixins" as mx;
 
 /* Page content */
-#left { background-color: map-get($sidebar, background); }
+#left { background-color: map.get(tv.$sidebar, background); }
 
-#right { background-color: map-get($content, background); }
+#right { background-color: map.get(tv.$content, background); }
 
 #content {
-  background-color: map-get($content, background);
+  background-color: map.get(tv.$content, background);
   padding: 1rem;
   min-height: calc(100vh - 70px);
 
@@ -23,7 +24,7 @@
 body {
   hyphens: auto;
   -webkit-hyphens: auto;
-  font-size: $size-normal;
+  font-size: bc.$size-normal;
 }
 
 p { margin: 0 0 2rem 0; }
@@ -40,7 +41,7 @@ footer {
   height: 70px;
 
   ul {
-    @include content-seperated-list("\2022");
+    @include mx.content-seperated-list("\2022");
     margin: 2rem 0 0 1rem !important;
 
     li{
@@ -62,4 +63,3 @@ footer {
 .message {
   margin-bottom: 1em;
 }
-

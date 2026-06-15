@@ -26,7 +26,10 @@
   <link rel="shortcut icon" href="{{ "img/favicon.ico" | relURL }}">
   <link rel="apple-touch-icon" href="{{ "img/favicon.ico" | relURL }}">
 
-  {{ $style := resources.Get "scss/main.scss" | resources.ExecuteAsTemplate "scss/main.processed.scss" . | toCSS (dict "targetPath" "css/style.css" "transpiler" "dartsass") | minify | fingerprint }}
+  {{ $theme := .Site.Data.theme }}
+  {{ $sassVars := dict "sidebar-background" $theme.colors.sidebar.background "sidebar-text" $theme.colors.sidebar.text "sidebar-link" $theme.colors.sidebar.link "sidebar-linkhover" $theme.colors.sidebar.linkhover "content-background" $theme.colors.content.background "content-text" $theme.colors.content.text "content-link" $theme.colors.content.link "content-linkhover" $theme.colors.content.linkhover "content-award" $theme.colors.content.award "font-content" $theme.fonts.content.name "font-sidebar" $theme.fonts.sidebar.name "font-mono" $theme.fonts.mono.name }}
+  {{ $opts := dict "transpiler" "dartsass" "vars" $sassVars "targetPath" "css/style.css" "silenceDependencyDeprecations" true }}
+  {{ $style := resources.Get "scss/main.scss" | toCSS $opts | minify | fingerprint }}
   <link rel="stylesheet" href="{{ $style.RelPermalink }}">
   {{ $font_string := "" }}
   {{ range .Site.Data.theme.fonts }}
