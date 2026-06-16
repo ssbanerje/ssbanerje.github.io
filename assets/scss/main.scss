@@ -1,36 +1,11 @@
-@use 'bulma_config' as bc;
-
-// Configure and load Bulma Utilities
-@use 'bulma/sass/utilities/_index' as bulma_utils with (
-  $size-1: bc.$size-1,
-  $size-2: bc.$size-2,
-  $size-3: bc.$size-3,
-  $size-4: bc.$size-4,
-  $size-5: bc.$size-5,
-  $size-6: bc.$size-6,
-  $size-7: bc.$size-7,
-  $size-normal: bc.$size-normal,
-  $family-sans-serif: bc.$family-sans-serif,
-  $family-monospace: bc.$family-monospace,
-  $family-primary: bc.$family-primary,
-  $family-secondary: bc.$family-secondary,
-  $family-code: bc.$family-code,
-  $text: bc.$text,
-  $background: bc.$background,
-  $link: bc.$link
-);
-
-// Load Bulma mixins
-@use 'bulma/sass/utilities/mixins' as bulma_mixins;
-
-// Load Bulma Themes (defines CSS variables)
+@use "sass:map";
+@use "bulma_config" as bc;
+@use 'bulma_theme' as bt;
 @use 'bulma/sass/themes';
-
-// Load Bulma Base, Grid
-@use 'bulma/sass/base/_index' as bulma_base with (
+@use 'bulma/sass/base' with (
   $body-background-color: bc.$body-background-color
 );
-@use 'bulma/sass/grid/_index' as bulma_grid;
+@use 'bulma/sass/grid';
 
 // Load Bulma Elements
 @use 'bulma/sass/elements/button';
@@ -72,4 +47,5 @@
 :root {
   --bulma-text-l: 20%;
   --bulma-text-strong-l: 10%;
+  --bulma-link-text-hover: #{map.get(bt.$content, hover)};
 }

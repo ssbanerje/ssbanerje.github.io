@@ -1,31 +1,23 @@
 {{ $projects := where $.Site.RegularPages "Section" "projects" }}
-<div class="title is-ancestor has-text-left">
-  <div class="tile is-vertical">
-    <!-- Main Projects -->
-    {{ range where $projects.ByWeight.Reverse ".Params.concluded" false }}
-      <div class="tile is-parent">
-        {{ $class := index (shuffle (slice "is-link" "is-info")) 0 }}
-        {{ $text := cond (eq $class "is-primary") "has-text-grey-darker" "has-text-white"}}
-        <article class="tile is-child notification {{ $class }} {{ $text }}">
-          {{ partial "project_listing.html" . }}
-        </article>
-      </div>
-    {{ end }}
-    <!-- Concluded Projects -->
-    {{ range $i, $v := where $projects.ByWeight.Reverse ".Params.concluded" "!=" "nil" }}
-      {{ if (modBool $i 2) }}
-        <div class="tile">
-      {{ end }}
-      <div class="tile is-parent is-6">
-        {{ $class := index (shuffle (slice "is-dark" "is-warning" "is-primary" "is-success")) 0 }}
-        {{ $text := cond (eq $class "is-dark") "has-text-white" "has-text-grey-darker"}}
-        <article class="tile is-child notification {{ $class }} {{ $text }}">
-          {{ partial "project_listing.html" $v }}
-        </article>
-      </div>
-      {{ if not (modBool $i 2) }}
-        </div>
-      {{ end }}
-    {{ end }}
-  </div>
+<div class="columns is-multiline has-text-left">
+  <!-- Main Projects -->
+  {{ range where $projects.ByWeight.Reverse ".Params.concluded" false }}
+    <div class="column is-12">
+      {{ $class := index (shuffle (slice "is-link" "is-info")) 0 }}
+      {{ $text := cond (eq $class "is-primary") "has-text-grey-darker" "has-text-white"}}
+      <article class="notification {{ $class }} {{ $text }}">
+        {{ partial "project_listing.html" . }}
+      </article>
+    </div>
+  {{ end }}
+  <!-- Concluded Projects -->
+  {{ range where $projects.ByWeight.Reverse ".Params.concluded" "!=" "nil" }}
+    <div class="column is-6">
+      {{ $class := index (shuffle (slice "is-dark" "is-warning" "is-primary" "is-success")) 0 }}
+      {{ $text := cond (eq $class "is-dark") "has-text-white" "has-text-grey-darker"}}
+      <article class="notification {{ $class }} {{ $text }}">
+        {{ partial "project_listing.html" . }}
+      </article>
+    </div>
+  {{ end }}
 </div>
