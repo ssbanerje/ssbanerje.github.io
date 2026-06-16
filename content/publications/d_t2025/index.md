@@ -16,7 +16,7 @@ date = 2025-08-28
   icon = "ai ai-arxiv"
   url = "https://arxiv.org/abs/2508.01786"
 [[links]]
-  name = "Google Research"
+  name = "GR"
   icon = "fa-brands fa-google"
   url = "https://research.google/pubs/silent-data-corruption-by-10-test-escapes-threatens-reliable-computing-4/"
 +++
