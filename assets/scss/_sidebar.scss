@@ -1,16 +1,24 @@
+@use "sass:map";
+@use "theme_vars" as tv;
+@use "mixins" as mx;
+@use "bulma/sass/utilities/mixins" as bm;
+
 #sidebar {
-  color: map-get($sidebar, text);
-  background-color: map-get($sidebar, background);
+  color: map.get(tv.$sidebar, text);
+  background-color: map.get(tv.$sidebar, background);
 
-  a { @include link_style(map-get($sidebar, link), map-get($sidebar, hover)); }
+  a { @include mx.link_style(map.get(tv.$sidebar, link), map.get(tv.$sidebar, hover)); }
 
-  h1 { font-family: map-get($fonts, sidebar), sans-serif; }
+  h1 {
+    font-family: map.get(tv.$fonts, sidebar), sans-serif;
+    color: inherit;
+  }
 
   .icon-list {
     font-size: 175%;
     display:table;
     margin: 0 auto;
-    @extend %inline-list;
+    @include mx.inline-list;
 
     li {
       padding: 0 5px;
@@ -26,11 +34,11 @@
 
   img {
     padding: .1rem;
-    background-color: map-get($sidebar, background);
-    border: 1px solid map-get($sidebar, text);
+    background-color: map.get(tv.$sidebar, background);
+    border: 1px solid map.get(tv.$sidebar, text);
   }
 
-  @include mobile {
+  @include bm.mobile {
     figure {
       max-width: 175px;
       max-height: 175px;

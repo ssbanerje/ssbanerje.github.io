@@ -11,7 +11,7 @@
       <span class="subtitle is-4">{{ "[[More Entries](/news/)]" | $.RenderString }}</span>
     </h1>
   	<ul class="news">
-  	  {{ range first 5 .Site.Data.news.news }}
+  	  {{ range first 5 hugo.Data.news.news }}
   		<li class="has-text-left">
         <span class="date"><i class="fas fa-caret-right"></i>&nbsp;{{ .date }}</span>
         <span>{{ .text | $.RenderString }}</span>

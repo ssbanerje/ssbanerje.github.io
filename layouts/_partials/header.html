@@ -3,10 +3,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   {{ hugo.Generator }}
-  <meta name="author" content="{{ .Site.Data.personal.name }}" />
+  <meta name="author" content="{{ hugo.Data.personal.name }}" />
   {{ $description := "" }}
   {{ if .IsHome }}
-    {{ $description = .Site.Data.personal.description }}
+    {{ $description = hugo.Data.personal.description }}
   {{ else }}
     {{ $description = .Params.title }}
   {{ end }}
@@ -14,7 +14,7 @@
   {{ partial "opengraph.html" . }}
   {{ partial "schema.html" . }}
   {{ partial "twitter_cards.html" . }}
-  <meta name="theme-color" content="{{ .Site.Data.theme.colors.sidebar.background }}"/>
+  <meta name="theme-color" content="{{ hugo.Data.theme.colors.sidebar.background }}"/>
 
   <title>{{ if not .IsHome }}{{ title .Title }} | {{ end }}{{ .Site.Title }}</title>
 
@@ -26,10 +26,13 @@
   <link rel="shortcut icon" href="{{ "img/favicon.ico" | relURL }}">
   <link rel="apple-touch-icon" href="{{ "img/favicon.ico" | relURL }}">
 
-  {{ $style := resources.Get "scss/main.scss" | resources.ExecuteAsTemplate "css/style.css" . | toCSS | minify | fingerprint }}
+  {{ $theme := hugo.Data.theme }}
+  {{ $sassVars := dict "sidebar-background" $theme.colors.sidebar.background "sidebar-text" $theme.colors.sidebar.text "sidebar-link" $theme.colors.sidebar.link "sidebar-linkhover" $theme.colors.sidebar.linkhover "content-background" $theme.colors.content.background "content-text" $theme.colors.content.text "content-link" $theme.colors.content.link "content-linkhover" $theme.colors.content.linkhover "content-award" $theme.colors.content.award "font-content" $theme.fonts.content.name "font-sidebar" $theme.fonts.sidebar.name "font-mono" $theme.fonts.mono.name }}
+  {{ $opts := dict "transpiler" "dartsass" "vars" $sassVars "targetPath" "css/style.css" }}
+  {{ $style := resources.Get "scss/main.scss" | toCSS $opts | minify | fingerprint }}
   <link rel="stylesheet" href="{{ $style.RelPermalink }}">
   {{ $font_string := "" }}
-  {{ range .Site.Data.theme.fonts }}
+  {{ range hugo.Data.theme.fonts }}
     {{ if eq $font_string "" }}
       {{ $font_string = printf `family=%s:ital,wght@0,400;0,700;1,400;1,700` .name }}
     {{ else }}
@@ -38,8 +41,8 @@
   {{ end }}
   <link href="https://fonts.googleapis.com/css2?{{ $font_string | safeURL }}&display=swap" crossorigin="anonymous" type="text/css" rel="stylesheet">
   <!-- TODO: The first rel="stylesheet" should be removed once firefox supports rel="preload".-->
-  <link href="https://unpkg.com/academicons@1.8.6/css/academicons.min.css" crossorigin="anonymous" type="text/css" rel="stylesheet" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <link href="https://unpkg.com/components-font-awesome@5.9.0/css/all.min.css" crossorigin="anonymous" type="text/css" rel="stylesheet" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link href="https://unpkg.com/academicons@1.9.5/css/academicons.min.css" crossorigin="anonymous" type="text/css" rel="stylesheet" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link href="https://unpkg.com/@fortawesome/fontawesome-free@7.2.0/css/all.min.css" crossorigin="anonymous" type="text/css" rel="stylesheet" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'">
 
   {{ if not hugo.IsServer }}
     {{ partial "google_analytics.html" . }}

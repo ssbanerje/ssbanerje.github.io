@@ -17,18 +17,18 @@
 }
 
 // Inline lists
-%inline-list {
+@mixin inline-list {
   list-style: none;
 
   li { display: inline-block; }
 }
 
 @mixin content-seperated-list($content) {
-  @extend %inline-list;
+  @include inline-list;
 
   li+li:before { content: $content; }
 }
 
-%comma-seperated-list {
+@mixin comma-seperated-list {
   @include content-seperated-list(", ");
 }

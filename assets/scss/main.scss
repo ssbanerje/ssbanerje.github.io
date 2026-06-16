@@ -1,62 +1,69 @@
-/* Color Scheme */
-{{ $colors := .Site.Data.theme.colors }}
-$sidebar: (
-  background: {{ $colors.sidebar.background }},
-  text: {{ $colors.sidebar.text }},
-  link: {{ $colors.sidebar.link }},
-  hover: {{ $colors.sidebar.linkhover }}
+@use 'bulma_config' as bc;
+
+// Configure and load Bulma Utilities
+@use 'bulma/sass/utilities/_index' as bulma_utils with (
+  $size-1: bc.$size-1,
+  $size-2: bc.$size-2,
+  $size-3: bc.$size-3,
+  $size-4: bc.$size-4,
+  $size-5: bc.$size-5,
+  $size-6: bc.$size-6,
+  $size-7: bc.$size-7,
+  $size-normal: bc.$size-normal,
+  $family-sans-serif: bc.$family-sans-serif,
+  $family-monospace: bc.$family-monospace,
+  $family-primary: bc.$family-primary,
+  $family-secondary: bc.$family-secondary,
+  $family-code: bc.$family-code,
+  $text: bc.$text,
+  $background: bc.$background,
+  $link: bc.$link
 );
 
-$content: (
-  background: {{ $colors.content.background }},
-  text: {{ $colors.content.text }},
-  link: {{ $colors.content.link }},
-  hover: {{ $colors.content.linkhover }},
-  award: {{ $colors.content.award }}
+// Load Bulma mixins
+@use 'bulma/sass/utilities/mixins' as bulma_mixins;
+
+// Load Bulma Themes (defines CSS variables)
+@use 'bulma/sass/themes';
+
+// Load Bulma Base, Grid
+@use 'bulma/sass/base/_index' as bulma_base with (
+  $body-background-color: bc.$body-background-color
+);
+@use 'bulma/sass/grid/_index' as bulma_grid;
+
+// Load Bulma Elements
+@use 'bulma/sass/elements/button';
+@use 'bulma/sass/elements/content';
+@use 'bulma/sass/elements/icon';
+@use 'bulma/sass/elements/image';
+@use 'bulma/sass/elements/title';
+@use 'bulma/sass/elements/notification';
+
+// Load Bulma Components
+@use 'bulma/sass/components/breadcrumb';
+@use 'bulma/sass/components/message';
+
+// Load Bulma Helpers
+@use 'bulma/sass/helpers/_index' as bulma_helpers;
+
+// Load configured Bulma Layouts
+@use 'bulma/sass/layout/container';
+@use 'bulma/sass/layout/section' with (
+  $section-padding: bc.$section-padding,
+  $section-padding-desktop: bc.$section-padding-desktop,
+  $section-padding-medium: bc.$section-padding-medium,
+  $section-padding-large: bc.$section-padding-large
+);
+@use 'bulma/sass/layout/footer' with (
+  $footer-background-color: bc.$footer-background-color,
+  $footer-padding: bc.$footer-padding
 );
 
-/* Fonts */
-{{ $fonts := .Site.Data.theme.fonts }}
-$fonts: (
-  content: {{ $fonts.content.name }},
-  sidebar: {{ $fonts.sidebar.name }},
-  mono: {{ $fonts.mono.name }},
-);
-
-// Setup Bulma
-@import 'bulma_config';
-
-// Import Bulma
-@import 'bulma/sass/utilities/_all';
-@import 'bulma/sass/base/_all';
-@import 'bulma/sass/grid/_all';
-@import 'bulma/sass/elements/button';
-@import 'bulma/sass/elements/container';
-@import 'bulma/sass/elements/content';
-@import 'bulma/sass/elements/icon';
-@import 'bulma/sass/elements/image';
-@import 'bulma/sass/elements/title';
-@import 'bulma/sass/elements/notification';
-@import 'bulma/sass/components/breadcrumb';
-@import 'bulma/sass/components/message';
-@import 'bulma/sass/helpers/_all';
-@import 'bulma/sass/layout/footer';
-@import 'bulma/sass/layout/section';
-
-// Import subfiles
-@import 'mixins';
-
-// Import styles for displaying code
-@import 'code';
-
-// Import styles for listing news
-@import 'news';
-
-// Import styles for the sidebar
-@import 'sidebar';
-
-// Import styles for listing publications
-@import 'papers';
-
-// Import styles for basic layout
-@import 'layout';
+// Load our own subfiles (using @use)
+@use 'mixins';
+@use 'code';
+@use 'news';
+@use 'sidebar';
+@use 'papers';
+@use 'layout';
