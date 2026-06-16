@@ -7,19 +7,13 @@ weight = 1
   priority = 1.0
 +++
 
-I am a Software Engineer at [Google], where I work on building reliable
-computing systems for machine learning and AI, focusing on identifying,
-triaging, and mitigating silent data corruption in the company's datacenters. My
-research interests include applying machine learning to improve system
-reliability and performance.
+I am a Software Engineer at [Google], working on reliability, analytics and performance evaluation for large-scale AI systems. I work across different layers of the stack to detect, localize, and mitigate fail-stop, fail-wrong, and fail-silent issues within Google's infrastructure, spanning CPUs, TPUs, GPUs, and NICs.
 
-I received a Ph.D. in [Computer Science][cs@uiuc] from the
-[University of Illinois at Urbana-Champaign][uiuc], advised by
-[Ravishankar K. Iyer][rkiyer]. My dissertation research aimed to improve the
-performance, resilience, and ease of management of large-scale computer systems
-using machine learning.
+My research interests lie at the intersection of AI and systems, specifically applying AI methods to improve system reliability and performance. I completed my Ph.D. in [Computer Science][cs@uiuc] at the [University of Illinois at Urbana-Champaign][uiuc], advised by Prof. [Ravishankar K. Iyer][rkiyer]. My dissertation research focused on establishing a framework (using reinforcement learning) for the control, management, and optimization of large-scale heterogeneous computer systems.
+
 
 [uiuc]: https://illinois.edu
 [cs@uiuc]: https://cs.illinois.edu
 [rkiyer]: https://ece.illinois.edu/about/directory/faculty/rkiyer
 [google]: https://techsysinfra.google/
+
