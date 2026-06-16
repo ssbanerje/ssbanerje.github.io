@@ -67,3 +67,8 @@
 @use 'sidebar';
 @use 'papers';
 @use 'layout';
+
+// Override Bulma 1.0 default text color (#4a4a4a) to match original design (#333)
+:root {
+  --bulma-text-l: 20%;
+}
