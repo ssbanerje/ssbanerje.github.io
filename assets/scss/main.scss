@@ -1,7 +1,10 @@
 @use "sass:map";
 @use "bulma_config" as bc;
 @use 'bulma_theme' as bt;
-@use 'bulma/sass/themes';
+@use "bulma/sass/utilities/css-variables" as cv;
+@use "bulma/sass/utilities/initial-variables" as iv;
+@use "bulma/sass/themes/light";
+@use "bulma/sass/themes/setup";
 @use 'bulma/sass/base' with (
   $body-background-color: bc.$body-background-color
 );
@@ -42,6 +45,23 @@
 @use 'sidebar';
 @use 'papers';
 @use 'layout';
+
+// Custom Theme Setup (Light only)
+#{iv.$variables-host} {
+  @include light.light-theme;
+  @include setup.setup-theme;
+}
+
+// prefers-color-scheme: light
+@include cv.system-theme($name: "light") {
+  @include light.light-theme;
+}
+
+// :root, [data-theme=light], .theme-light
+@include cv.bulma-theme($name: "light") {
+  @include light.light-theme;
+  @include setup.setup-theme;
+}
 
 // Override Bulma 1.0 default text color (#4a4a4a) to match original design (#333)
 :root {
