@@ -1,6 +1,14 @@
 [[news]]
+  date = "Jul 7, 2026"
+  text = "Our paper on using [compiler based instruction-duplication](/publications/micro26) techniques to detect defect driven silent data corruption in CPUs has been accepted at [MICRO 59](https://www.microarch.org/micro59/index.php)."
+
+[[news]]
   date = "Aug 28, 2025"
   text = "Our paper on [silent data corruption from defective chips](/publications/d_t2025) has been accepted at [IEEE Design & Test](https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=54)."
+
+[[news]]
+  date = "Nov 20, 2021"
+  text = "I finished my PhD and will be joining the [Platforms-Performance](https://research.google/teams/system-performance/) team in Google as a Software Engineer."
 
 [[news]]
   date = "Oct 20, 2021"
