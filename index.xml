@@ -1,4 +1,17 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Homepage of Subho Sankar Banerjee</title><link>https://ssbanerje.github.io/</link><description>Recent content in Homepage of Subho Sankar Banerjee</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><managingEditor> ()</managingEditor><webMaster> ()</webMaster><lastBuildDate>Thu, 28 Aug 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://ssbanerje.github.io/" rel="self" type="application/rss+xml"/><item><title>Silent Data Corruption by 10× Test Escapes Threatens Reliable Computing</title><link>https://ssbanerje.github.io/publications/d_t2025/</link><pubDate>Thu, 28 Aug 2025 00:00:00 +0000</pubDate><author>Subhasish Mitra, Subho Banerjee, Martin Dixon, Rama Govindaraju, Peter Hochschild, Eric Liu, Bharath Parthasarathy, and Parthasarathy Ranganathan</author><guid>https://ssbanerje.github.io/publications/d_t2025/</guid><description>&lt;p&gt;Too many defective compute chips are escaping today’s manufacturing
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Homepage of Subho Sankar Banerjee</title><link>https://ssbanerje.github.io/</link><description>Recent content in Homepage of Subho Sankar Banerjee</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><managingEditor> ()</managingEditor><webMaster> ()</webMaster><lastBuildDate>Thu, 28 Aug 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://ssbanerje.github.io/" rel="self" type="application/rss+xml"/><item><title>ITHICA: Intra-Thread Instruction Checking Approach for Defect-Induced Silent Data Corruptions</title><link>https://ssbanerje.github.io/publications/micro2026/</link><pubDate>Tue, 07 Jul 2026 00:00:00 +0000</pubDate><author>Ioanna Vavelidou, Subho S. Banerjee, Eric X. Liu, Mike Fuller, Subhasish Mitra, Caroline Trippel</author><guid>https://ssbanerje.github.io/publications/micro2026/</guid><description>&lt;p&gt;Hyperscaler reports of silent data corruptions (SDCs), presumed to be caused by silicon
+manufacturing defects, have motivated the development of functional tests for detecting defective
+CPUs. We present ITHICA, an approach for automatically generating functional tests for
+defect-induced errors from arbitrary programs by inserting intra-thread, instruction-level error
+checks, primarily leveraging instruction duplication and output comparison. Our key insight is that
+the most pernicious defects cause inconsistent errors: two executions of the same instruction within
+the same thread, given the same inputs, can produce different architectural outputs depending on the
+execution context in which they run. By exploiting this insight, ITHICA enables arbitrary programs
+to serve as tests and identifies affected instructions upon error detections. We use ITHICA to
+transform industrial hyperscaler test programs (our baseline), datacenter workloads, and common
+libraries into functional tests, and evaluate them on over 3,000 CPU servers. ITHICA error checks
+detect 39% more defective servers than native checks within the ITHICA tests derived from our
+baseline programs, and enable novel findings on defect behavior that challenge conclusions drawn by
+prior hyperscaler fleet studies.&lt;/p&gt;</description></item><item><title>Silent Data Corruption by 10× Test Escapes Threatens Reliable Computing</title><link>https://ssbanerje.github.io/publications/d_t2025/</link><pubDate>Thu, 28 Aug 2025 00:00:00 +0000</pubDate><author>Subhasish Mitra, Subho Banerjee, Martin Dixon, Rama Govindaraju, Peter Hochschild, Eric Liu, Bharath Parthasarathy, and Parthasarathy Ranganathan</author><guid>https://ssbanerje.github.io/publications/d_t2025/</guid><description>&lt;p&gt;Too many defective compute chips are escaping today’s manufacturing
 tests – at least an order of magnitude more than industrial targets
 across all compute chip types in data centers. Silent data corruptions
 (SDCs) caused by test escapes, when left unaddressed, pose a major
@@ -142,8 +155,4 @@ the CPU and FPGA. Our design is 200x faster than an equivalent Smith-Waterman-C 
 the kernel running on the host processor, 40-60x faster than an equivalent Landau-Vishkin-C++
 implementation of the kernel running on the IBM Power8 host processor, and 2x faster for an
 end-to-end alignment tool for 120&amp;ndash;150 base-pair short-read sequences. Further the design represents
-a 3760x improvement over the CPU in performance/Watt terms.&lt;/p&gt;</description></item><item><title>A ML-based Runtime System for Executing Dataflow Graphs on Heterogeneous Processors</title><link>https://ssbanerje.github.io/publications/socc18/</link><pubDate>Thu, 11 Oct 2018 00:00:00 +0000</pubDate><author>Subho S. Banerjee, Steve Lumetta, Zbigniew T. Kalbarczyk, and Ravishankar K. Iyer</author><guid>https://ssbanerje.github.io/publications/socc18/</guid><description>&lt;p&gt;This paper briefly describes the design a system that addresses the challenge of scheduling
-distributed data-analytics workloads on heterogeneous processing fabrics (which include CPUs, GPUs,
-FPGAs and ASICs) in cloud-based, dynamic, multi-tenant environments. To demonstrate the capabilities
-of the proposed system, we use a computational genomics workflow that addresses the growing need for
-rapid genomic analyses in hospital environments.&lt;/p&gt;</description></item></channel></rss>
+a 3760x improvement over the CPU in performance/Watt terms.&lt;/p&gt;</description></item></channel></rss>
