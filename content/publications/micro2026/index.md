@@ -11,6 +11,10 @@ date = 2026-07-07
   name = "arXiv"
   icon = "ai ai-arxiv"
   url = "https://arxiv.org/abs/2605.15638"
+[[links]]
+  name = "GR"
+  icon = "fa-brands fa-google"
+  url = "https://research.google/pubs/ithica-intra-thread-instruction-checking-approach-for-defect-induced-silent-data-corruptions/"
 +++
 
 Hyperscaler reports of silent data corruptions (SDCs), presumed to be caused by silicon
