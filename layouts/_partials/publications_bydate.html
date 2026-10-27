@@ -5,7 +5,7 @@
 <!-- Filter by project -->
 {{ if eq $.Kind "page" }}
   <!-- Project Page -->
-  {{ $papers = where $papers "Params.projects" "intersect" (slice .Params.Project) }}
+  {{ $papers = where $papers "Params.projects" "intersect" (slice .Params.project) }}
 {{ end }}
 
 <!-- Filter 5 years on homepage -->
@@ -21,13 +21,13 @@
 
 <!-- Render -->
 {{ if $show_type }}
-<div class="content paper-type-key">
-  <div class="pubtype-preprint">Preprint</div>
-  <div class="pubtype-conference">Conference</div>
-  <div class="pubtype-journal">Journal</div>
-  <div class="pubtype-workshop">Workshop</div>
-  <div class="pubtype-abstract">Abstract</div>
-</div>
+  {{ partial "type_key.html" (slice
+    (dict "class" "pubtype-preprint" "label" "Preprint")
+    (dict "class" "pubtype-conference" "label" "Conference")
+    (dict "class" "pubtype-journal" "label" "Journal")
+    (dict "class" "pubtype-workshop" "label" "Workshop")
+    (dict "class" "pubtype-abstract" "label" "Abstract")
+  ) }}
 {{ end }}
 
 {{ range first $num_years $grouped }}

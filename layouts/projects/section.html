@@ -1,7 +1,26 @@
 {{ define "main" }}
-  <h1 class="title is-1">{{ .Title }}</h1>
+  <section class="section has-text-left">
+    <h1 class="title is-1">{{ .Title }}</h1>
 
-  <section class="section">
-    {{ partial "projects.html" . }}
+    {{ partial "type_key.html" (slice
+      (dict "class" "inst-google" "label" "Google")
+      (dict "class" "inst-uiuc" "label" "UIUC")
+      (dict "class" "inst-cern" "label" "CERN")
+    ) }}
+
+    <ul class="paper-list color-paper-types">
+      {{ range .Pages.ByDate.Reverse }}
+        <li class="paper has-text-left inst-{{ .Params.institution_key }}">
+          <p>
+            <span class="paper-title"><a href="{{ .RelPermalink }}">{{ .Title | $.RenderString }}</a></span>
+            <br>
+            <span class="venue">{{ .Params.institution }}, {{ .Params.period }}</span>
+            {{ with .Description }}
+              <span class="project-description">{{ . | $.RenderString }}</span>
+            {{ end }}
+          </p>
+        </li>
+      {{ end }}
+    </ul>
   </section>
 {{ end }}

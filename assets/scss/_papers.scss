@@ -19,6 +19,11 @@
   p { margin: 0; }
 
   .venue { font-style: italic; }
+
+  .project-description {
+    display: block;
+    margin-top: 0.2rem;
+  }
 }
 
 .paper-type-key {
@@ -54,6 +59,18 @@
     &.pubtype-preprint {
       background-color: rgba(0, 0, 0, 0.1);
     }
+
+    &.inst-google {
+      background-color: rgba(126, 156, 244, 0.5);
+    }
+
+    &.inst-uiuc {
+      background-color: rgba(244, 126, 156, 0.5);
+    }
+
+    &.inst-cern {
+      background-color: rgba(72, 199, 116, 0.5);
+    }
   }
 }
 
@@ -72,6 +89,18 @@
     }
 
     &.pubtype-abstract {
+      border-left-color: rgba(72, 199, 116, 0.5);
+    }
+
+    &.inst-google {
+      border-left-color: rgba(126, 156, 244, 0.5);
+    }
+
+    &.inst-uiuc {
+      border-left-color: rgba(244, 126, 156, 0.5);
+    }
+
+    &.inst-cern {
       border-left-color: rgba(72, 199, 116, 0.5);
     }
   }
