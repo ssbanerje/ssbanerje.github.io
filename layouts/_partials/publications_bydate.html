@@ -3,9 +3,9 @@
 {{ $show_type := true }}
 
 <!-- Filter by project -->
-{{ if eq $.Kind "page" }}
+{{ if and .IsPage (eq .Section "projects") }}
   <!-- Project Page -->
-  {{ $papers = where $papers "Params.projects" "intersect" (slice .Params.project) }}
+  {{ $papers = where $papers "Params.projects" "intersect" (slice (path.Base .Path)) }}
 {{ end }}
 
 <!-- Filter 5 years on homepage -->

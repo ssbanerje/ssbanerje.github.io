@@ -1,7 +1,6 @@
 +++
 title = "Homepage"
 date = 2026-08-10
-weight = 1
 
 [sitemap]
   priority = 1.0

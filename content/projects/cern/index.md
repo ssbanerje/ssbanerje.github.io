@@ -1,7 +1,6 @@
 +++
 title = "Grid Security & Scientific Computing at CERN"
 date = 2012-02-22
-project = "cern"
 aliases = ["/projects/alien/", "/projects/nudy/"]
 period = "2010–2012"
 institution = "CERN"

@@ -19,7 +19,7 @@ date = 2020-07-14
 
 [[news]]
   name = "CSL News"
-  icon = "far fa-newspaper"
+  icon = "fa-regular fa-newspaper"
   url = "http://csl.illinois.edu/news/new-computation-tool-make-dna-analysis-more-affordable-efficient"
 +++
 

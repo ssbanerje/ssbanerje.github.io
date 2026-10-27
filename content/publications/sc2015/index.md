@@ -8,7 +8,7 @@ date = 2015-01-01
 
 [[links]]
   name = "Web"
-  icon = "fa fa-globe"
+  icon = "fa-solid fa-globe"
   url = "http://sc15.supercomputing.org/sites/all/themes/SC15images/src_poster/src_poster_pages/spost159.html"
 +++
 

@@ -2,10 +2,10 @@
 featured = true
 pubtype = "conference"
 projects = ["learnedsystems"]
-title = "{{ replace .Name "-" " " | title }}"
+title = "{{ replace .File.ContentBaseName "-" " " | title }}"
 authors = "Subho S. Banerjee"
 venue = "Conference"
-date = {{ .Date }}
+date = {{ time.Now.Format "2006-01-02" }}
 
 [[links]]
   name = "DOI"

@@ -8,7 +8,7 @@ date = 2017-10-28
 
 [[links]]
   name = "Paper"
-  icon = "fa fa-globe"
+  icon = "fa-solid fa-globe"
   url = "https://github.com/LearningSys/sosp17/blob/master/papers/18%5CCameraReadySubmission%5Csymphony.pdf"
 +++
 

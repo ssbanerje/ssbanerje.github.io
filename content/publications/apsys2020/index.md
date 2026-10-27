@@ -13,12 +13,12 @@ date = 2020-08-24
 
 [[links]]
   name = "Code (Kernel)"
-  icon = "fas fa-code"
+  icon = "fa-solid fa-code"
   url = "https://github.com/keitokuch/linux-4.15-lb"
 
 [[links]]
   name = "Code (ML)"
-  icon = "fas fa-code"
+  icon = "fa-solid fa-code"
   url = "https://github.com/keitokuch/MLLB"
 +++
 

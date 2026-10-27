@@ -8,7 +8,7 @@ date = 2017-07-10
 
 [[links]]
   name = "Web"
-  icon = "fa fa-globe"
+  icon = "fa-solid fa-globe"
   url = "https://www.iscb.org/cms_addon/conferences/ismbeccb2017/technologytrack.php"
 +++
 

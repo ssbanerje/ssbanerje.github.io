@@ -14,7 +14,7 @@ award = ["Best Paper Award"]
   url = "http://ieeexplore.ieee.org/document/8058559/"
 [[news]]
   name = "Forbes"
-  icon = "far fa-newspaper"
+  icon = "fa-regular fa-newspaper"
   url = "https://www.forbes.com/sites/insights-intelai/2019/02/11/how-machine-learning-is-crafting-precision-medicine"
 +++
 

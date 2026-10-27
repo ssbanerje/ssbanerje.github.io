@@ -12,7 +12,7 @@ date = 2018-06-27
   url = "https://ieeexplore.ieee.org/document/8416212/"
 [[links]]
   name = "Code"
-  icon = "fas fa-code"
+  icon = "fa-solid fa-code"
   url = "https://github.com/CSLDepend/AVFI"
 +++
 

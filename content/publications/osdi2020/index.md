@@ -19,12 +19,12 @@ date = 2020-11-04
 
 [[links]]
   name = "Code"
-  icon = "fas fa-code"
+  icon = "fa-solid fa-code"
   url = "https://gitlab.engr.illinois.edu/DEPEND/firm"
 
 [[links]]
   name = "Data"
-  icon = "fas fa-database"
+  icon = "fa-solid fa-database"
   url = "https://databank.illinois.edu/datasets/IDB-6738796"
 +++
 

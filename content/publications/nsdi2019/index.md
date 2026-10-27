@@ -13,11 +13,11 @@ date = 2019-02-26
   url = "https://www.usenix.org/conference/nsdi19/presentation/cao"
 [[links]]
   name = "Data"
-  icon = "fas fa-database"
+  icon = "fa-solid fa-database"
   url = "https://pmcao.github.io/caudit/"
 [[news]]
   name = "CSL News"
-  icon = "far fa-newspaper"
+  icon = "fa-regular fa-newspaper"
   url = "https://csl.illinois.edu/news/illinois-researchers-sweeten-“honeypot”-catch-blacklist-hackers"
 +++
 

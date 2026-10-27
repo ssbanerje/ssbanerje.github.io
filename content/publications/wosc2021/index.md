@@ -1,5 +1,4 @@
 +++
-featured = false
 pubtype = "workshop"
 projects = ["learnedsystems"]
 title = "Is Function-as-a-Service a Good Fit for Latency-Critical Services?"

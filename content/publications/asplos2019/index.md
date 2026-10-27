@@ -14,7 +14,7 @@ date = 2019-04-13
 
 [[links]]
   name = "Lightning Talk"
-  icon = "fab fa-youtube"
+  icon = "fa-brands fa-youtube"
   url = "https://youtu.be/3l_ZuBkZjJk"
 +++
 

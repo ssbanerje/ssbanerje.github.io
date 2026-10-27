@@ -1,7 +1,6 @@
 +++
 title = "Autonomous Vehicle Resilience"
 date = 2020-06-30
-project = "av"
 period = "2017–2020"
 institution = "University of Illinois at Urbana-Champaign"
 institution_key = "uiuc"
