@@ -35,15 +35,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://unpkg.com" crossorigin>
-  {{ $font_string := "" }}
+  {{ $families := slice }}
   {{ range hugo.Data.theme.fonts }}
-    {{ if eq $font_string "" }}
-      {{ $font_string = printf `family=%s:ital,wght@0,400;0,700;1,400;1,700` .name }}
-    {{ else }}
-      {{ $font_string = printf `%s&family=%s:ital,wght@0,400;0,700;1,400;1,700` $font_string .name }}
-    {{ end }}
+    {{ $families = $families | append (printf "family=%s:%s" (replace .name " " "+") (.axes | default "wght@400")) }}
   {{ end }}
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?{{ $font_string | safeURL }}&display=swap" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?{{ delimit $families "&" | safeURL }}&display=swap" crossorigin="anonymous">
   <link rel="stylesheet" href="https://unpkg.com/academicons@1.9.5/css/academicons.min.css" integrity="sha384-IAnhEDrYZnLsYcVzowpizdxXTHFovW5/CkZObGfY2QuaCKaQpvLCjj45LGb4Q/yE" crossorigin="anonymous">
   <link rel="stylesheet" href="https://unpkg.com/@fortawesome/fontawesome-free@7.2.0/css/all.min.css" integrity="sha384-EXatlQyrOJgDaM9/a74ArMzy7/2bTMSrZj8ID1IPeVmc3GncfCugefCFWSLj8JL/" crossorigin="anonymous">
 

@@ -12,12 +12,15 @@
   linkhover = "#f16421"
   award = "#812717"
 
-# Fonts
+# Fonts (Google Fonts); axes = css2 axis spec of the styles/weights in use.
 [fonts.sidebar]
   name = "Eczar"
+  axes = "wght@700"
 
 [fonts.content]
   name = "Lato"
+  axes = "ital,wght@0,400;0,700;1,400;1,700"
 
 [fonts.mono]
   name = "Inconsolata"
+  axes = "wght@400;700"
