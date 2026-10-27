@@ -31,7 +31,7 @@ buildFuture = true
 [params]
   showFeatured = true
   description = "Subho Sankar Banerjee — Software Engineer at Google DeepMind researching systems, computer architecture, and machine learning."
-  images = ["img/me_sq.png"]
+  images = ["img/me_sq.webp"]
 
 # SEO Stuff
 [sitemap]

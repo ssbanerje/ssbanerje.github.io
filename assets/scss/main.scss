@@ -2,13 +2,14 @@
 @use "bulma_config" as bc;
 @use 'bulma_theme' as bt;
 @use "bulma/sass/utilities/css-variables" as cv;
+@use "bulma/sass/utilities/derived-variables" as dv;
 @use "bulma/sass/utilities/initial-variables" as iv;
 @use "bulma/sass/themes/light";
 @use "bulma/sass/themes/setup";
 @use 'bulma/sass/base' with (
   $body-background-color: bc.$body-background-color
 );
-@use 'bulma/sass/grid';
+@use 'bulma/sass/grid/columns';
 
 // Load Bulma Elements
 @use 'bulma/sass/elements/button';
@@ -23,7 +24,10 @@
 @use 'bulma/sass/components/message';
 
 // Load Bulma Helpers
-@use 'bulma/sass/helpers/_index' as bulma_helpers;
+@use 'bulma/sass/helpers/float';
+@use 'bulma/sass/helpers/spacing';
+@use 'bulma/sass/helpers/typography';
+@use 'bulma/sass/helpers/visibility';
 
 // Load configured Bulma Layouts
 @use 'bulma/sass/layout/container';
@@ -45,6 +49,18 @@
 @use 'sidebar';
 @use 'papers';
 @use 'layout';
+
+// Semantic text color helpers without 00..100 numeric palette bloat
+@each $name, $_ in dv.$colors {
+  .#{iv.$class-prefix}#{iv.$helpers-has-prefix}text-#{$name} {
+    color: hsl(#{cv.getVar($name, "", "-h")}, #{cv.getVar($name, "", "-s")}, #{cv.getVar($name, "", "-l")}) !important;
+  }
+}
+@each $name, $shade in dv.$shades {
+  .#{iv.$class-prefix}#{iv.$helpers-has-prefix}text-#{$name} {
+    color: #{$shade} !important;
+  }
+}
 
 // Custom Theme Setup (Light only)
 #{iv.$variables-host} {
