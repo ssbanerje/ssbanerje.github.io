@@ -24,11 +24,6 @@ buildFuture = true
   description = "Subho Sankar Banerjee — Software Engineer at Google DeepMind researching systems, computer architecture, and machine learning."
   images = ["img/me_sq.webp"]
 
-# SEO Stuff
-[sitemap]
-  changefreq = "weekly"
-  priority = 0.5
-
 # Hugo Modules
 [module]
   [[module.imports]]
