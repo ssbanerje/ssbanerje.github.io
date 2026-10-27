@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="{{ .Site.Language.Locale | default "en-us" }}">
+<html lang="{{ site.Language.Locale | default "en-us" }}">
 
 {{ partial "header.html" . }}
 
 <body>
   <div class="columns is-gapless m-0">
     <div class="column is-one-quarter-tablet is-narrow-desktop" id="sidebar">
-      {{ partial "sidebar.html" . }}
+      {{ partialCached "sidebar.html" . }}
     </div>
 
     <div class="column">
@@ -26,7 +26,7 @@
     <div class="column is-1 is-hidden-touch" id="right"></div>
   </div>
 
-  {{ partial "js_footer.html" . }}
+  {{ partialCached "js_footer.html" . }}
 </body>
 
 </html>
