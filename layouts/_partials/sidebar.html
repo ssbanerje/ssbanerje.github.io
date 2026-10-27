@@ -1,6 +1,6 @@
 <div class="padded-sidebar">
   <section class="section">
-    <figure class="image container" style="margin-bottom: 2rem;">
+    <figure class="image container">
       {{- $avatar := resources.Get hugo.Data.personal.avatar -}}
       {{- $avatar1x := $avatar.Resize "256x webp q90" -}}
       {{- $avatar2x := $avatar.Resize "468x webp q90" | resources.Copy "img/me_sq.webp" -}}

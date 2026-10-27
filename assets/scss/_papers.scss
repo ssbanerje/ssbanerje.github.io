@@ -151,6 +151,12 @@
   }
 }
 
+// Spacer after the award list on single paper pages (publications/page.html)
+.half-line { line-height: 50%; }
+
+// BibTeX download icon next to the "Citation" heading (publications/page.html)
+.bibtex-download { font-size: 80%; }
+
 .bulleted-list {
   margin: 0 0 1rem 0;
   padding: 0 0 0 3rem;

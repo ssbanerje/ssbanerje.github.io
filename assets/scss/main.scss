@@ -1,3 +1,4 @@
+@use "sass:list";
 @use "sass:map";
 @use "bulma_config" as bc;
 @use 'bulma_theme' as bt;
@@ -14,18 +15,15 @@
 // Load Bulma Elements
 @use 'bulma/sass/elements/content';
 @use 'bulma/sass/elements/icon';
-@use 'bulma/sass/elements/image';
+@use 'image';
 @use 'bulma/sass/elements/title';
 
 // Load Bulma Components
 @use 'bulma/sass/components/breadcrumb';
 @use 'bulma/sass/components/message';
 
-// Load Bulma Helpers
-@use 'bulma/sass/helpers/float';
-@use 'bulma/sass/helpers/spacing';
-@use 'bulma/sass/helpers/typography';
-@use 'bulma/sass/helpers/visibility';
+// Load the Bulma helper classes in use (subset, see _helpers.scss)
+@use 'helpers';
 
 // Load configured Bulma Layouts
 @use 'bulma/sass/layout/container';
@@ -46,15 +44,21 @@
 @use 'papers';
 @use 'layout';
 
-// Semantic text color helpers without 00..100 numeric palette bloat
+// Semantic text color helpers, limited to the classes the templates use.
+$text-colors-in-use: ("dark", "link", "info");
+$text-shades-in-use: ("grey", "white-ter");
 @each $name, $_ in dv.$colors {
-  .#{iv.$class-prefix}#{iv.$helpers-has-prefix}text-#{$name} {
-    color: hsl(#{cv.getVar($name, "", "-h")}, #{cv.getVar($name, "", "-s")}, #{cv.getVar($name, "", "-l")}) !important;
+  @if list.index($text-colors-in-use, $name) {
+    .#{iv.$class-prefix}#{iv.$helpers-has-prefix}text-#{$name} {
+      color: hsl(#{cv.getVar($name, "", "-h")}, #{cv.getVar($name, "", "-s")}, #{cv.getVar($name, "", "-l")}) !important;
+    }
   }
 }
 @each $name, $shade in dv.$shades {
-  .#{iv.$class-prefix}#{iv.$helpers-has-prefix}text-#{$name} {
-    color: #{$shade} !important;
+  @if list.index($text-shades-in-use, $name) {
+    .#{iv.$class-prefix}#{iv.$helpers-has-prefix}text-#{$name} {
+      color: #{$shade} !important;
+    }
   }
 }
 

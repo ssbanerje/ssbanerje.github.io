@@ -31,6 +31,9 @@ a {
 
 p { margin: 0 0 2rem 0; }
 
+// De-emphasized text, e.g. the ":(" on the 404 page
+.text-faint { color: #bbb; }
+
 hr {
   height:1px;
   background-color:#d3d3d3;
