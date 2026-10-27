@@ -3,7 +3,7 @@ featured = true
 pubtype = "conference"
 projects = ["sdc"]
 title = "ITHICA: Intra-Thread Instruction Checking Approach for Defect-Induced Silent Data Corruptions"
-authors = "Ioanna Vavelidou, Subho S. Banerjee, Eric X. Liu, Mike Fuller, Subhasish Mitra, Caroline Trippel"
+authors = "Ioanna Vavelidou, Subho S. Banerjee, Eric X. Liu, Mike Fuller, Subhasish Mitra, and Caroline Trippel"
 venue = "MICRO 59 (2026)"
 date = 2026-07-07
 
