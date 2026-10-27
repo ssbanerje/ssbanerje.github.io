@@ -11,7 +11,7 @@ award = ["Best Paper Award"]
 [[links]]
   name = "DOI"
   icon = "ai ai-ieee"
-  url = "http://ieeexplore.ieee.org/document/8058559/"
+  url = "https://ieeexplore.ieee.org/document/8058559/"
 [[news]]
   name = "Forbes"
   icon = "fa-regular fa-newspaper"

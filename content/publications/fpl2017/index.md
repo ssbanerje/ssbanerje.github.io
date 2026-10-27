@@ -10,7 +10,7 @@ date = 2017-09-04
 [[links]]
   name = "DOI"
   icon = "ai ai-ieee"
-  url = "http://ieeexplore.ieee.org/document/8056837/"
+  url = "https://ieeexplore.ieee.org/document/8056837/"
 +++
 
 This paper explores hardware acceleration to significantly improve the runtime of computing the

@@ -10,7 +10,7 @@ date = 2020-07-14
 [[links]]
   name = "DOI"
   icon = "ai ai-doi"
-  url = "http://proceedings.mlr.press/v119/banerjee20a.html"
+  url = "https://proceedings.mlr.press/v119/banerjee20a.html"
 
 [[links]]
   name = "arXiv"
@@ -20,7 +20,7 @@ date = 2020-07-14
 [[news]]
   name = "CSL News"
   icon = "fa-regular fa-newspaper"
-  url = "http://csl.illinois.edu/news/new-computation-tool-make-dna-analysis-more-affordable-efficient"
+  url = "https://csl.illinois.edu/news/new-computation-tool-make-dna-analysis-more-affordable-efficient"
 +++
 
 The problem of scheduling of workloads onto heterogeneous processors (e.g., CPUs, GPUs, FPGAs) is of

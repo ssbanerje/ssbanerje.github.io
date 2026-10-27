@@ -9,7 +9,7 @@ date = 2017-02-25
 [[links]]
   name = "DOI"
   icon = "ai ai-acmdl"
-  url = "http://doi.acm.org/10.1145/3020078.3021796"
+  url = "https://doi.acm.org/10.1145/3020078.3021796"
 +++
 
 The proliferation of high-throughput sequencing machines allows for the rapid generation of billions

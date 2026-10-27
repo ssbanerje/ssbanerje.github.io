@@ -9,7 +9,7 @@ date = 2011-10-22
 [[links]]
   name = "DOI"
   icon = "ai ai-open-access"
-  url = "http://stacks.iop.org/1742-6596/331/i=6/a=062048"
+  url = "https://stacks.iop.org/1742-6596/331/i=6/a=062048"
 +++
 
 Web Services are an XML based technology that allow applications to communicate with each other

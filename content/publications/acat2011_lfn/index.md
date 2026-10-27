@@ -9,7 +9,7 @@ date = 2011-10-22
 [[links]]
   name = "DOI"
   icon = "ai ai-open-access"
-  url = "http://stacks.iop.org/1742-6596/331/i=6/a=062044"
+  url = "https://stacks.iop.org/1742-6596/331/i=6/a=062044"
 +++
 
 The AliEn Grid Services, as operated by the ALICE Collaboration in its global physics analysis grid

@@ -9,7 +9,7 @@ date = 2016-05-31
 [[links]]
   name = "DOI"
   icon = "ai ai-acmdl"
-  url = "http://dl.acm.org/citation.cfm?id=2912156"
+  url = "https://dl.acm.org/citation.cfm?id=2912156"
 +++
 
 Recent growth in the volume of DNA sequence data and associated computational costs of extracting
