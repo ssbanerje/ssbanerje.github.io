@@ -11,14 +11,14 @@ clean:
 	rm -rf public/ resources/
 
 public: $(FILES) hugo.toml
-	$(HUGO) --minify
+	$(HUGO) --gc --minify --printPathWarnings
 	@find . -name ".DS_Store" -delete
 
 watch:
 	$(HUGO) server --disableFastRender --buildDrafts
 
 docker-image:
-	docker build --pull -t $(DOCKER_IMAGE_NAME) .
+	docker build -t $(DOCKER_IMAGE_NAME) .
 
 docker-all: docker-image
 	docker run --rm --user $(shell id -u):$(shell id -g) -v $(CURDIR):/src -w /src $(DOCKER_IMAGE_NAME) make all
