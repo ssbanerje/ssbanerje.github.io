@@ -5,6 +5,11 @@ title = "Is Function-as-a-Service a Good Fit for Latency-Critical Services?"
 authors = "Haoran Qiu, Saurabh Jha, Subho S. Banerjee, Archit Patke, Chen Wang, Hubertus Franke, Zbigniew T. Kalbarczyk, and Ravishankar K. Iyer"
 venue = "WoSC 2021 (Colocated with Middleware 2021)"
 date = 2021-12-06
+
+[[links]]
+  name = "DOI"
+  icon = "ai ai-acmdl"
+  url = "https://dl.acm.org/doi/10.1145/3493651.3493666"
 +++
 
 Function-as-a-Service (FaaS) is becoming an increasingly popular cloud-deployment paradigm for serverless computing that
