@@ -8,19 +8,22 @@
   {{ if .IsHome }}
     {{ $description = hugo.Data.personal.description }}
   {{ else }}
-    {{ $description = .Params.title }}
+    {{ $description = .Description | default (.Summary | plainify | chomp | truncate 160) | default site.Params.description }}
   {{ end }}
   <meta name="description" content="{{ $description }}" />
   {{ partial "opengraph.html" . }}
   {{ partial "schema.html" . }}
   {{ partial "twitter_cards.html" . }}
+  {{ if and .IsPage (eq .Section "publications") }}
+    {{ partial "highwire.html" . }}
+  {{ end }}
   <meta name="theme-color" content="{{ hugo.Data.theme.colors.sidebar.background }}"/>
 
-  <title>{{ if not .IsHome }}{{ title .Title }} | {{ end }}{{ .Site.Title }}</title>
+  <title>{{ if not .IsHome }}{{ title .Title }} | {{ end }}{{ site.Title }}</title>
 
-  <link rel="canonical" href="{{ .RelPermalink }}">
+  <link rel="canonical" href="{{ .Permalink }}">
   {{ range .AlternativeOutputFormats -}}
-    {{ printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .RelPermalink $.Site.Title | safeHTML }}
+    {{ printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .Permalink site.Title | safeHTML }}
   {{ end -}}
   <link rel="icon" href="{{ "img/favicon.ico" | relURL }}">
   <link rel="shortcut icon" href="{{ "img/favicon.ico" | relURL }}">

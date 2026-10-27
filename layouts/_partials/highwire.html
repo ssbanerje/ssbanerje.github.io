@@ -1,0 +1,26 @@
+<meta name="citation_title" content="{{ .Title | plainify }}" />
+{{- with .Params.authors -}}
+  {{- $normalized := replace (replace (. | $.RenderString | plainify) ", and " ", ") " and " ", " -}}
+  {{- range split $normalized "," -}}
+    {{- $name := trim . " \t\n*" -}}
+    {{- if $name }}
+  <meta name="citation_author" content="{{ $name }}" />
+    {{- end -}}
+  {{- end -}}
+{{- end }}
+  <meta name="citation_publication_date" content="{{ .Date.Format "2006/01/02" }}" />
+{{- with .Params.venue -}}
+  {{- $venue := . | $.RenderString | plainify -}}
+  {{- if eq $.Params.pubtype "journal" }}
+  <meta name="citation_journal_title" content="{{ $venue }}" />
+  {{- else }}
+  <meta name="citation_conference_title" content="{{ $venue }}" />
+  {{- end -}}
+{{- end -}}
+{{- $pdf := or (.Resources.Get "Paper.pdf") (.Resources.Get "Abstract.pdf") (.Resources.Get "Poster.pdf") -}}
+{{- if not $pdf -}}
+  {{- with .Resources.Match "*.pdf" -}}{{- $pdf = index . 0 -}}{{- end -}}
+{{- end -}}
+{{- with $pdf }}
+  <meta name="citation_pdf_url" content="{{ .Permalink }}" />
+{{- end }}
