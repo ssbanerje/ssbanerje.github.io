@@ -7,24 +7,15 @@ enableGitInfo = true
 disableKinds = ["term", "taxonomy"]
 buildFuture = true
 
-[frontmatter]
-  lastmod = [":git", "lastmod", "date"]
-
 [services]
   [services.googleAnalytics]
     id = "G-VGWDWM7F6S"
   [services.rss]
     limit = 15
 
-[privacy]
-  [privacy.googleAnalytics]
-    respectDoNotTrack = true
-
 # Markdown & Rendering
 [markup]
-  defaultMarkdownHandler = "goldmark"
   [markup.highlight]
-    guessSyntax = true
     style = "manni"
 
 # Site parameters
@@ -36,7 +27,6 @@ buildFuture = true
 # SEO Stuff
 [sitemap]
   changefreq = "weekly"
-  filename = "sitemap.xml"
   priority = 0.5
 
 # Hugo Modules
