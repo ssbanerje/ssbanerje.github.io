@@ -1,5 +1,5 @@
 <!-- Generate list of papers -->
-{{ $papers := where $.Site.RegularPages "Section" "publications" }}
+{{ $papers := where site.RegularPages "Section" "publications" }}
 {{ $show_type := true }}
 
 <!-- Filter by project -->
@@ -9,14 +9,15 @@
 {{ end }}
 
 <!-- Filter 5 years on homepage -->
-{{ $num_years := len ($papers.GroupByDate "2006") }}
+{{ if and $.IsHome site.Params.showFeatured }}
+  {{ $papers = where $papers "Params.featured" "==" true }}
+{{ end }}
+{{ $grouped := $papers.GroupByDate "2006" }}
+{{ $num_years := len $grouped }}
 {{ if $.IsHome }}
-  {{ if .Site.Params.showFeatured }}
-    {{ $papers = where $papers ".Params.featured" "==" true }}
-  {{ end }}
   {{ $num_years = 5 }}
   {{ $show_type = false }}
-{{ end}}
+{{ end }}
 
 <!-- Render -->
 {{ if $show_type }}
@@ -29,18 +30,15 @@
 </div>
 {{ end }}
 
-{{ range first $num_years ($papers.GroupByDate "2006") }}
+{{ range first $num_years $grouped }}
   <h3 class="title is-3">{{ .Key }}</h3>
-  {{ if $show_type}}
+  {{ if $show_type }}
     <ul class="paper-list color-paper-types">
   {{ else }}
     <ul class="paper-list">
   {{ end }}
-    {{ $year := .Key}}
-    {{ range sort $papers ".Params.date" "desc" }}
-      {{ if eq (dateFormat "2006" .Params.Date) $year }}
-        <li class="paper has-text-left pubtype-{{ .Params.pubtype }}">{{ partial "paper_listing.html" . }}</li>
-      {{ end }}
+    {{ range .Pages }}
+      <li class="paper has-text-left pubtype-{{ .Params.pubtype }}">{{ partial "paper_listing.html" . }}</li>
     {{ end }}
   </ul>
 {{ end }}
