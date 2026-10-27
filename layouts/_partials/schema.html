@@ -1,0 +1,51 @@
+{{- if .IsHome -}}
+  {{- $sameAs := slice -}}
+  {{- range hugo.Data.social.link -}}
+    {{- if not (strings.HasPrefix .link "mailto:") -}}
+      {{- $sameAs = $sameAs | append .link -}}
+    {{- end -}}
+  {{- end -}}
+  {{- $person := dict
+    "@type" "Person"
+    "name" hugo.Data.personal.name
+    "jobTitle" hugo.Data.personal.position
+    "worksFor" (dict "@type" "Organization" "name" hugo.Data.personal.company)
+    "url" site.BaseURL
+    "image" ("img/me_sq.webp" | absURL)
+    "sameAs" $sameAs
+  -}}
+  {{- $ld := dict
+    "@context" "https://schema.org"
+    "@type" "ProfilePage"
+    "url" .Permalink
+    "name" site.Title
+    "description" hugo.Data.personal.description
+    "mainEntity" $person
+  -}}
+  {{ printf "<script type=\"application/ld+json\">%s</script>" ($ld | jsonify) | safeHTML }}
+{{- else if and .IsPage (eq .Section "publications") -}}
+  {{- $authors := slice -}}
+  {{- with .Params.authors -}}
+    {{- $normalized := replace (replace (. | $.RenderString | plainify) ", and " ", ") " and " ", " -}}
+    {{- range split $normalized "," -}}
+      {{- $name := trim . " \t\n*" -}}
+      {{- if $name -}}
+        {{- $authors = $authors | append (dict "@type" "Person" "name" $name) -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+  {{- $ld := dict
+    "@context" "https://schema.org"
+    "@type" "ScholarlyArticle"
+    "headline" (.Title | plainify)
+    "author" $authors
+    "datePublished" (.Date.Format "2006-01-02")
+    "dateModified" (.Lastmod.Format "2006-01-02")
+    "url" .Permalink
+    "description" (.Description | default (.Summary | plainify | chomp))
+  -}}
+  {{- with .Params.venue -}}
+    {{- $ld = merge $ld (dict "isPartOf" (dict "@type" "PublicationEvent" "name" (. | $.RenderString | plainify))) -}}
+  {{- end -}}
+  {{ printf "<script type=\"application/ld+json\">%s</script>" ($ld | jsonify) | safeHTML }}
+{{- end -}}
