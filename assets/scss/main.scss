@@ -10,7 +10,7 @@
 @use 'bulma/sass/base' with (
   $body-background-color: bc.$body-background-color
 );
-@use 'bulma/sass/grid/columns';
+@use 'columns';
 
 // Load Bulma Elements
 @use 'bulma/sass/elements/content';
