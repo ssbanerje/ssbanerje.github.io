@@ -15,7 +15,7 @@
 # Fonts (Google Fonts); axes = css2 axis spec of the styles/weights in use.
 [fonts.sidebar]
   name = "Eczar"
-  axes = "wght@700"
+  axes = "wght@700;800"
 
 [fonts.content]
   name = "Lato"
