@@ -1,23 +1,18 @@
 {{ define "main" }}
   <section class="section">
-    <h1 class="title is-1">{{ .Title }}</h1>
+    <div class="has-text-left">
+      <h1 class="title is-1 no-border">{{ .Title }}</h1>
+      <h3 class="title is-3 has-text-grey"><i>{{ .Params.institution }}, {{ .Params.period }}</i></h3>
+    </div>
+    <br><hr>
 
     <div class="content">
       {{ .Content }}
     </div>
   </section>
 
-  <!-- List of papers -->
-  <section class="section">
+  <section class="section has-text-left">
     <h2 class="title is-2">Related Publications</h2>
-    <ul class="paper-list">
-      {{ $papers := where $.Site.RegularPages "Section" "publications" }}
-      {{ if eq $.Kind "page" }}
-        {{ $papers = where $papers "Params.projects" "intersect" (slice .Params.Project) }}
-      {{ end }}
-      {{ range sort $papers "Params.date" "desc" }}
-        <li class="paper has-text-left">{{ partial "paper_listing.html" . }}</li>
-      {{ end }}
-    </ul>
+    {{ partial "publications_bydate.html" . }}
   </section>
 {{ end }}
