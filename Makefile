@@ -12,6 +12,7 @@ all: public
 clean:
 	rm -rf public/ resources/
 
+# .github/workflows/gh-pages.yml runs hugo with the same flags; keep them in sync.
 public: $(FILES) hugo.toml
 	$(HUGO) --gc --minify --printPathWarnings
 

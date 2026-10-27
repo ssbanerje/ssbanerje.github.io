@@ -23,14 +23,15 @@ jobs:
           fetch-depth: 0
           filter: blob:none
 
-      - name: Build Docker Image
-        run: docker build -t ssbanerje-hugo .
-
+      # Same pinned image as the Dockerfile; keep the hugo flags in sync with Makefile `public`.
       - name: Build Webpage
         run: >-
           docker run --rm
-          -v ${{ github.workspace }}:/src -w /src
-          ssbanerje-hugo make all
+          --user "$(id -u):$(id -g)"
+          -e HUGO_CACHEDIR=/tmp/hugo_cache
+          -v ${{ github.workspace }}:/project -w /project
+          ghcr.io/gohugoio/hugo:v0.168.0@sha256:1fb8fe7f417abd5802d86747d297728aa48078d763159e7dff6559fe3f8bb8e7
+          --gc --minify --printPathWarnings
 
       - name: Upload Pages artifact
         if: github.ref == 'refs/heads/master'
