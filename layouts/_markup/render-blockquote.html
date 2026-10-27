@@ -1,0 +1,22 @@
+{{- if eq .Type "alert" -}}
+  {{- $bulmaClass := dict
+    "note" "is-info"
+    "tip" "is-success"
+    "important" "is-link"
+    "warning" "is-warning"
+    "caution" "is-danger"
+  -}}
+  {{- $cls := index $bulmaClass .AlertType | default "is-info" -}}
+  <article class="message {{ $cls }}">
+    <div class="message-header">
+      <span>{{ or .AlertTitle (title .AlertType) }}</span>
+    </div>
+    <div class="message-body">
+      {{ .Text }}
+    </div>
+  </article>
+{{- else -}}
+  <blockquote>
+    {{ .Text }}
+  </blockquote>
+{{- end -}}
