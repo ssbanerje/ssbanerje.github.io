@@ -3,7 +3,7 @@ featured = true
 pubtype = "journal"
 projects = ["sdc"]
 title = "Silent Data Corruption by 10× Test Escapes Threatens Reliable Computing"
-authors = "Subhasish Mitra, Subho Banerjee, Martin Dixon, Rama Govindaraju, Peter Hochschild, Eric Liu, Bharath Parthasarathy, and Parthasarathy Ranganathan"
+authors = "Subhasish Mitra, Subho S. Banerjee, Martin Dixon, Mike Fuller, Rama Govindaraju, Peter Hochschild, Eric X. Liu, Bharath Parthasarathy, and Parthasarathy Ranganathan"
 venue = "IEEE Design & Test"
 date = 2025-08-28
 
