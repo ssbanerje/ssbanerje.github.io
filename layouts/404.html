@@ -20,7 +20,7 @@
     <ul>
       {{ range first 5 (where site.RegularPages "Section" "publications").ByDate.Reverse }}
         <li>
-            <a href="{{ .RelPermalink }}">{{ .Title }}.</a>
+            <a href="{{ .RelPermalink }}">{{ .Title }}{{ if not (findRE `[.?!]$` .Title) }}.{{ end }}</a>
             {{ with .Params.venue }}{{ $.RenderString . }}.{{ end }}
         </li>
       {{ end }}

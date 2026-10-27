@@ -6,10 +6,12 @@
       {{ with .Params.venue }}<h3 class="title is-3 has-text-grey"><i>{{ . | $.RenderString }}</i></h3>{{ end }}
     </div>
     <br><hr>
-    <ul class="single-paper-links is-size-3">
-      {{ partial "link_resources" .Params.links }}
-      {{ partial "pdf_resources" . }}
-    </ul>
+    {{ if or .Params.links (.Resources.Match "*.pdf") }}
+      <ul class="single-paper-links is-size-3">
+        {{ partial "link_resources" .Params.links }}
+        {{ partial "pdf_resources" . }}
+      </ul>
+    {{ end }}
   </section>
 
   <section class="section">
