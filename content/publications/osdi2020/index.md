@@ -15,7 +15,7 @@ date = 2020-11-04
 [[links]]
   name = "arXiv"
   icon = "ai ai-arxiv"
-  url = "http://arxiv.org/abs/2008.08509"
+  url = "https://arxiv.org/abs/2008.08509"
 
 [[links]]
   name = "Code"

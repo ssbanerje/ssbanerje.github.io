@@ -34,7 +34,7 @@ date = 2019-06-25
 [[news]]
   name = "Sina"
   icon = "fa-regular fa-newspaper"
-  url = "http://finance.sina.com.cn/stock/relnews/us/2019-11-01/doc-iicezuev6468108.shtml"
+  url = "https://finance.sina.com.cn/stock/relnews/us/2019-11-01/doc-iicezuev6468108.shtml"
 [[news]]
   name = "Guancha.cn"
   icon = "fa-regular fa-newspaper"
