@@ -1,15 +1,26 @@
 # Basic Stuff
 title = "Subho Sankar Banerjee"
-googleAnalytics = "G-VGWDWM7F6S"
 baseURL = "https://ssbanerje.github.io"
 locale = "en-us"
 enableRobotsTXT = true
-
-# Taxonomies
+enableGitInfo = true
 disableKinds = ["term", "taxonomy"]
+buildFuture = true
+
+[frontmatter]
+  lastmod = [":git", "lastmod", "date"]
+
+[services]
+  [services.googleAnalytics]
+    id = "G-VGWDWM7F6S"
+  [services.rss]
+    limit = 15
+
+[privacy]
+  [privacy.googleAnalytics]
+    respectDoNotTrack = true
 
 # Markdown & Rendering
-buildFuture = true
 [markup]
   defaultMarkdownHandler = "goldmark"
   [markup.highlight]
@@ -19,6 +30,8 @@ buildFuture = true
 # Site parameters
 [params]
   showFeatured = true
+  description = "Subho Sankar Banerjee — Software Engineer at Google DeepMind researching systems, computer architecture, and machine learning."
+  images = ["img/me_sq.png"]
 
 # SEO Stuff
 [sitemap]
@@ -33,4 +46,3 @@ buildFuture = true
     [[module.imports.mounts]]
       source = "sass"
       target = "assets/scss/bulma/sass"
-
