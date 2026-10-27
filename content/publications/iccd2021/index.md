@@ -5,6 +5,11 @@ title = "Improved GPU Implementations of the Pair-HMM Forward Algorithm for DNA 
 authors = "Enliang Li, Subho S. Banerjee, Sitao Huang, Ravishankar K. Iyer, and Deming Chen"
 venue = "ICCD 2021"
 date = 2021-10-24
+
+[[links]]
+  name = "DOI"
+  icon = "ai ai-ieee"
+  url = "https://ieeexplore.ieee.org/document/9643812/"
 +++
 
 With the rise of Next-Generation Sequencing (NGS) technology, clinical sequencing services become more accessible but
