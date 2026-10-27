@@ -1,9 +1,6 @@
 +++
 title = "Homepage"
 date = 2026-08-10
-
-[sitemap]
-  priority = 1.0
 +++
 
 I am a Software Engineer at [Google DeepMind][gdm], where I work on training the [Gemini][gemini] family of models using reinforcement learning. Previously, at [Google Cloud][gcloud], I worked on reliability and performance for large-scale AI infrastructure, focusing on detecting and mitigating [silent data corruption][sdc] across CPUs, TPUs, GPUs, and NICs.
