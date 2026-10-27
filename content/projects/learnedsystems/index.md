@@ -1,69 +1,83 @@
 +++
-title = "Intelligence Augmented Compter Systems"
-date = 2018-01-01
+title = "Intelligence-Augmented Computer Systems"
+date = 2021-12-06
 project = "learnedsystems"
-description = "A framework for intelligent control, management, and optimization of large-scale heterogeneous computer systems."
-weight = 10
-concluded = false
+period = "2014–2021"
+institution = "University of Illinois at Urbana-Champaign"
+institution_key = "uiuc"
+description = "Hybrid Bayesian–deep learning controllers and custom accelerators for managing heterogeneous computer systems."
 +++
 
-Computer systems are rapidly evolving to meet the computational demands of emerging application
-demands by incorporating innovations in hardware architecture, operating systems, network
-interconnects, and storage, leading to increased heterogeneity. The state of the art is to
-vertically integrate these systems with painstakingly built, handcrafted, average-case heuristics.
-Heuristic generation is already a fundamental challenge, as variations across machine
-configurations, workloads, and deployment environments can make heuristic generation painful and
-costly. Moreover, we are reaching the limits of conventional approaches of generating heuristics,
-which involve recurring human-expert-driven engineering efforts.
+Modern heterogeneous computer systems integrate diverse CPUs, GPUs, FPGAs,
+interconnects, and disaggregated storage using brittle, handcrafted,
+average-case heuristics that must be reinvented across workloads and hardware
+generations. Automating system management faces two fundamental hurdles:
+*complexity* from non-linear parameter interactions across the hardware-software
+stack, and *dynamics* from unpredictable shifts in workloads, multi-tenant
+contention, and user goals. Pure black-box deep learning struggles in production
+systems because it requires prohibitive training data and offers little
+interpretability when decisions go wrong.
 
-My research addresses the above challenge by providing intelligent control, management, and
-optimization of large-scale heterogeneous computer systems in a fundamental way, starting with
-mathematical models and ending with real software and hardware that provides efficient, scalable,
-and composable system management solutions. It does so by building innovations at the intersection
-of systems, machine learning (ML), and computer architecture to develop computer systems that
-continuously monitor themselves, adapting both their behavior and internal models to ensure that the
-users' throughput, latency, and resilience goals are met in complex, dynamic environments.
+My research overcomes both hurdles by combining neural networks (to capture
+high-dimensional system complexity) with domain-knowledge-driven Bayesian
+probabilistic models of hardware and software architecture (to capture dynamics,
+partial observability, and uncertainty). Jointly training and inferring these
+grey-box hybrid models produces data-efficient, interpretable reinforcement
+learning (RL) controllers deployed in production environments at IBM, NVIDIA,
+and NCSA at UIUC:
 
-We have used those techniques to implement:
-* *Policies for Automated Resource Management:* We have built several systems for performance-oriented
-resource management in heterogeneous clusters.
-  * We have built *[Symphony]* to schedule data-flow graphs across heterogeneous clusters containing
-  multiple types of CPUs as well as accelerators like GPUs and FPGAs.
-  * We have built *[FIRM]* for reallocating resources to microservices in order minimize tail
-  latency and sustain SLOs.
-  * We have built *[ML-LB]* to load-balance threads across multiple scheduling domains in Linux's
-  Completely Fair Scheduler.
-* *Policies for Automated Resilience Management:* We have built several systems for diagnosing and
-correcting errors in large heterogeneous systems.
-  * We have built *[BayesPerf]* for correcting measurement errors in the input telemetry data to the
-  ML-controllers.
-  * We have built *[Kaleidoscope]* for the diagnosis and localization of failures in large
-  disaggregated storage systems.
-  * We have built *[BFI]* for targeted test-case generation for fault injection campaigns to test
-  the resilience of ML-controllers.
-* *Enabling low-latency training and inference:* We have built several techniques to satisfy the
-tight latency constraints required by these ML-controllers:
-  * We have designed sampling-based [approximate inference methods][Symphony] for hybrid
-  Bayesian-deep learning models.
-  * We have designed [AcMC²] a high-level synthesis compiler for FPGA-based Markov chain Monte Carlo
-  accelerators to target sampling-based training and inference of ML-controllers.
+* *Policies for Automated Resource Management:* Hybrid Bayesian-RL controllers
+  that replace static heuristics across cluster, cloud, and kernel layers:
+  * *[Symphony]* couples a probabilistic model of microarchitectural
+    backpressure with a learned optimizer to schedule dataflow graphs across
+    CPUs, GPUs, and FPGAs, outperforming black-box RL by up to 2.2×.
+  * *[FIRM]* combines per-critical-path variability attribution with multilevel
+    RL to reprovision microservice resources dynamically and cut tail-latency
+    SLO violations by up to 16×, complemented by production *[serverless
+    consolidation studies][WoSC]*.
+  * *[ML-LB]* embeds low-overhead (1.9 μs) resource-aware neural inference
+    directly inside the Linux Completely Fair Scheduler at 99% decision
+    accuracy.
+* *State Estimation & Live Resilience Management:* Treating telemetry noise and
+  distributed failure propagation as first-class inference problems:
+  * *[BayesPerf]* extends Linux `perf` with a microarchitecture-aware Bayesian
+    model across multiplexed hardware performance counters, cutting measurement
+    error by up to 5.3× at under 2% latency overhead.
+  * *[Kaleidoscope]* (*SC 2020 Best Paper & Best Student Paper Finalist*) uses
+    hierarchical topology-aware probabilistic models on the 25K+-node Blue
+    Waters supercomputer to localize (99.3%) and disambiguate (95.8%) fail-stop,
+    fail-slow, and congestion failures within one minute at under 0.01% I/O
+    overhead.
+  * *[CAUDIT]* captures live attack traces via honeypots and replays them for
+    continuous online auditing at NCSA, blocking 57M daily SSH attacks (66×
+    reduction).
+* *Low-Latency Bayesian Training & Hardware Acceleration:* Moving probabilistic
+  training and MCMC inference off latency-critical system paths:
+  * *Approximate sampling gradients* ([Symphony]) backpropagate through
+    probabilistic models without NP-hard exact inference, cutting online model
+    update latency by 7.4×.
+  * *[AcMC²]* is a high-level synthesis compiler and EDA flow that exploits
+    marginal and conditional independencies in probabilistic programs to
+    generate custom FPGA MCMC accelerators with 1–2 orders of magnitude runtime
+    and performance-per-watt gains over CPUs and GPUs.
 
-
-Moreover, applications, their computational requirements, and their ease of programming have been
-essential in my research and a driving force behind the broader goals of managing, controlling, and
-optimizing computer system performance using ML. For example, in my work on designing and
-implementing a *workload optimized computing system for computational genomics and precision
-medicine applications*
-[[1](/publications/didc2016/),
-[2](/publications/fpl2017/),
-[3](/publications/tc2018/),
-[4](/publications/cibcb2017/)].
-
+These abstractions were motivated by and co-designed with end-to-end workloads
+in computational genomics and precision medicine, including distributed runtime
+and custom FPGA/GPU accelerators for genome alignment and variant calling
+(*[IGen]*, *[ASAP]*, *[Pair-HMM FPGA][FPL17]*, *[Pair-HMM GPU][ICCD21]*) and
+longitudinal factor-graph models for psychiatric drug-response prediction
+(*[CIBCB 2017 Best Paper][CIBCB17]*).
 
 [Symphony]: /publications/icml2020/
 [FIRM]: /publications/osdi2020/
+[WoSC]: /publications/wosc2021/
 [ML-LB]: /publications/apsys2020/
-[Kaleidoscope]: /publications/sc2020/
 [BayesPerf]: /publications/asplos2021/
-[BFI]: /publications/dsn2019/
+[Kaleidoscope]: /publications/sc2020/
+[CAUDIT]: /publications/nsdi2019/
 [AcMC²]: /publications/asplos2019/
+[IGen]: /publications/didc2016/
+[ASAP]: /publications/tc2018/
+[FPL17]: /publications/fpl2017/
+[ICCD21]: /publications/iccd2021/
+[CIBCB17]: /publications/cibcb2017/

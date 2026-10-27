@@ -1,6 +1,9 @@
 +++
 title = "{{ replace .Name "-" " " | title }}"
 date = {{ .Date }}
-project = "Default"
-description = "Lorem Ipsum Sativum."
+project = "{{ .Name }}"
+period = ""
+institution = ""
+institution_key = ""
+description = ""
 +++
