@@ -1,5 +1,4 @@
 +++
-featured = true
 pubtype = "conference"
 projects = ["av"]
 title = "Hands Off the Wheel in Autonomous Vehicles? A Systems Perspective on over a Million Miles of Field Data"
