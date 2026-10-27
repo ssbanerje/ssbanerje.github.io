@@ -1,0 +1,61 @@
+@use "bulma_theme" as bt;
+
+// Subset of bulma/sass/grid/columns for the 4 column patterns in baseof.html and sidebar.html.
+
+:root {
+  --bulma-column-gap: 0.75rem;
+}
+
+.column {
+  display: block;
+  flex-basis: 0;
+  flex-grow: 1;
+  flex-shrink: 1;
+  padding: var(--bulma-column-gap);
+}
+
+@include bt.tablet {
+  .column.is-one-quarter-tablet {
+    flex: none;
+    width: 25%;
+  }
+
+  .column.is-1 {
+    flex: none;
+    width: 8.3333333333%;
+  }
+}
+
+@include bt.desktop {
+  .column.is-narrow-desktop {
+    flex: none;
+    width: unset;
+  }
+}
+
+.columns {
+  margin-inline-start: calc(-1 * var(--bulma-column-gap));
+  margin-inline-end: calc(-1 * var(--bulma-column-gap));
+  margin-top: calc(-1 * var(--bulma-column-gap));
+
+  &:last-child { margin-bottom: calc(-1 * var(--bulma-column-gap)); }
+  &:not(:last-child) { margin-bottom: calc(var(--bulma-block-spacing) - var(--bulma-column-gap)); }
+
+  &.is-gapless {
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+    margin-top: 0;
+
+    > .column {
+      margin: 0;
+      padding: 0 !important;
+    }
+
+    &:not(:last-child) { margin-bottom: 1.5rem; }
+    &:last-child { margin-bottom: 0; }
+  }
+}
+
+@include bt.tablet {
+  .columns:not(.is-desktop) { display: flex; }
+}
