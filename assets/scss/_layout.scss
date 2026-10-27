@@ -3,8 +3,6 @@
 @use "mixins" as mx;
 
 /* Page content */
-#left { background-color: map.get(bt.$sidebar, background); }
-
 #right { background-color: map.get(bt.$content, background); }
 
 #content {
@@ -22,7 +20,6 @@
 /* Setup text elements */
 body {
   hyphens: auto;
-  -webkit-hyphens: auto;
   font-size: bt.$size-normal;
 }
 
@@ -46,7 +43,7 @@ footer {
   height: 70px;
 
   ul {
-    @include mx.content-seperated-list("\2022");
+    @include mx.content-separated-list("\2022");
     margin: 2rem 0 0 1rem !important;
 
     li{
@@ -54,6 +51,9 @@ footer {
     }
   }
 }
+
+// RSS feed icon in the footer (layouts/_partials/footer.html)
+.has-text-orange { color: #f96854 !important; }
 
 /* Breadcrumb Navigation */
 .breadcrumb {

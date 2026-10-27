@@ -31,9 +31,7 @@
 @use 'bulma/sass/layout/container';
 @use 'bulma/sass/layout/section' with (
   $section-padding: bc.$section-padding,
-  $section-padding-desktop: bc.$section-padding-desktop,
-  $section-padding-medium: bc.$section-padding-medium,
-  $section-padding-large: bc.$section-padding-large
+  $section-padding-desktop: bc.$section-padding-desktop
 );
 @use 'bulma/sass/layout/footer' with (
   $footer-background-color: bc.$footer-background-color,
@@ -60,19 +58,8 @@
   }
 }
 
-// Custom Theme Setup (Light only)
+// Light theme, emitted once on :root (no dark theme or data-theme switch).
 #{iv.$variables-host} {
-  @include light.light-theme;
-  @include setup.setup-theme;
-}
-
-// prefers-color-scheme: light
-@include cv.system-theme($name: "light") {
-  @include light.light-theme;
-}
-
-// :root, [data-theme=light], .theme-light
-@include cv.bulma-theme($name: "light") {
   @include light.light-theme;
   @include setup.setup-theme;
 }
