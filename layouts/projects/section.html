@@ -2,11 +2,11 @@
   <section class="section has-text-left">
     <h1 class="title is-1">{{ .Title }}</h1>
 
-    {{ partial "type_key.html" (slice
+    {{ partialCached "type_key.html" (slice
       (dict "class" "inst-google" "label" "Google")
       (dict "class" "inst-uiuc" "label" "UIUC")
       (dict "class" "inst-cern" "label" "CERN")
-    ) }}
+    ) "institution" }}
 
     <ul class="paper-list color-paper-types">
       {{ range .Pages.ByDate.Reverse }}

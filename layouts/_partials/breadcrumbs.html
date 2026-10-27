@@ -1,25 +1,12 @@
 <nav class="breadcrumb" aria-label="breadcrumbs">
   <ul>
-    {{ template "breadcrumbnav" (dict "p1" . "p2" .) }}
+    {{ range .Ancestors.Reverse }}
+      {{ if .IsHome }}
+        <li><a href="/"><span class="icon is-small"><i class="fa-solid fa-house" aria-hidden="true"></i></span><span>Home</span></a></li>
+      {{ else }}
+        <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+      {{ end }}
+    {{ end }}
+    <li class="is-active"><a href="#" aria-current="page">This Page</a></li>
   </ul>
 </nav>
-
-{{ define "breadcrumbnav" }}
-  {{ if .p1.Parent }}
-    {{ template "breadcrumbnav" (dict "p1" .p1.Parent "p2" .p2 )  }}
-  {{ else if not .p1.IsHome }}
-    {{ template "breadcrumbnav" (dict "p1" .p1.Site.Home "p2" .p2 )  }}
-  {{ end }}
-
-  {{ if .p1.IsHome }}
-    <!-- Home Icon -->
-    <li><a href="/"><span class="icon is-small"><i class="fas fa-home" aria-hidden="true"></i></span><span>Home</span></a></li>
-  {{ else if eq .p1 .p2 }}
-    <!-- Current page -->
-    <li class="is-active"><a href="#" aria-current="page">This Page</a></li>
-
-  {{ else }}
-    <!-- Intermediate Page -->
-    <li><a href="{{ .p1.RelPermalink }}">{{ .p1.Title }}</a></li>
-  {{ end }}
-{{ end }}

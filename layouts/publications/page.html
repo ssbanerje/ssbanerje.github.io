@@ -23,7 +23,7 @@
       <ul class="awards">
         {{ range . }}
           <li>
-            <i class="fas fa-trophy" aria-hidden="true"></i>&nbsp;{{ . | $.RenderString }}
+            <i class="fa-solid fa-trophy" aria-hidden="true"></i>&nbsp;{{ . | $.RenderString }}
           </li>
         {{ end }}
       </ul>
@@ -44,7 +44,7 @@
     <section class="section" style="margin-bottom: 1rem;">
       <h2 class="title is-2">
         Citation
-        <a href="{{ .RelPermalink }}" style="font-size: 80%"><i class="far fa-arrow-alt-circle-down"></i></a>
+        <a href="{{ .RelPermalink }}" style="font-size: 80%"><i class="fa-regular fa-circle-down"></i></a>
       </h2>
       {{ transform.Highlight (trim .Content "\n") "bibtex" }}
     </section>

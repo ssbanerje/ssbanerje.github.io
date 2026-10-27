@@ -1,12 +1,6 @@
 <meta name="citation_title" content="{{ .Title | plainify }}" />
-{{- with .Params.authors -}}
-  {{- $normalized := replace (replace (. | $.RenderString | plainify) ", and " ", ") " and " ", " -}}
-  {{- range split $normalized "," -}}
-    {{- $name := trim . " \t\n*" -}}
-    {{- if $name }}
-  <meta name="citation_author" content="{{ $name }}" />
-    {{- end -}}
-  {{- end -}}
+{{- range partialCached "parse_authors.html" . .RelPermalink }}
+  <meta name="citation_author" content="{{ . }}" />
 {{- end }}
   <meta name="citation_publication_date" content="{{ .Date.Format "2006/01/02" }}" />
 {{- with .Params.venue -}}
