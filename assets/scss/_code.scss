@@ -1,17 +1,6 @@
-@use "sass:map";
-@use "theme_vars" as tv;
-
-/* Code, MathJax and Highlighting */
+/* Code and Highlighting */
 code, pre {
   white-space: pre-wrap;
-
-  .has-jax {
-    font: inherit;
-    font-size: 100%;
-    color: map.get(tv.$content, text);
-    background: inherit;
-    border: inherit;
-  }
 }
 
 pre {

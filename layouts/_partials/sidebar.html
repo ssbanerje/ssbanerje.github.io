@@ -1,7 +1,14 @@
 <div class="padded-sidebar">
   <section class="section">
     <figure class="image container" style="margin-bottom: 2rem;">
-      <img class="is-rounded" src="{{ hugo.Data.personal.avatar | relURL }}" alt="Avatar" />
+      {{- $avatar := resources.Get hugo.Data.personal.avatar -}}
+      {{- $avatar1x := $avatar.Resize "256x webp q90" -}}
+      {{- $avatar2x := $avatar.Resize "468x webp q90" | resources.Copy "img/me_sq.webp" -}}
+      <img class="is-rounded"
+           src="{{ $avatar1x.RelPermalink }}"
+           srcset="{{ $avatar1x.RelPermalink }} 256w, {{ $avatar2x.RelPermalink }} 468w"
+           sizes="(max-width: 768px) 175px, 256px"
+           width="256" height="256" decoding="async" alt="Avatar" />
     </figure>
     <div class="sidebar-content has-text-centered">
       <h1 class="title is-1"><a href="/">{{ hugo.Data.personal.name }}</a></h1>

@@ -1,29 +1,15 @@
-{{ if or .Params.math .Site.Params.math }}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML" async></script>
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-  tex2jax: {
-    inlineMath: [['$','$'], ['\\(','\\)']],
-    displayMath: [['$$','$$'], ['\[','\]']],
-    processEscapes: true,
-    processEnvironments: true,
-    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
-    TeX: { equationNumbers: { autoNumber: "AMS" },
-         extensions: ["AMSmath.js", "AMSsymbols.js"] }
-  }
-});
-</script>
-{{ end }}
-
-<script src="https://unpkg.com/quicklink@2.0.0/dist/quicklink.umd.js" integrity="sha384-0nZ9FdSjDH2+tAS8yrmxpBHVMFs28rYR4bDVPFEoQqfzvezs/7OW7ebNI7CrWAg7" crossorigin="anonymous" async></script>
-<script>
-  window.addEventListener('load', () =>{
-    quicklink.listen({
-      ignores: [
-        uri => uri.includes('.pdf'),
-          uri => uri.includes('.bib'),
-        (uri, elem) => elem.hasAttribute('noprefetch')
+<script type="speculationrules">
+{
+  "prefetch": [{
+    "where": {
+      "and": [
+        { "href_matches": "/*" },
+        { "not": { "href_matches": "/*.pdf" } },
+        { "not": { "href_matches": "/*.bib" } },
+        { "not": { "selector_matches": "[noprefetch]" } }
       ]
-    });
-  });
+    },
+    "eagerness": "moderate"
+  }]
+}
 </script>
