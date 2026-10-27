@@ -24,8 +24,9 @@
   {{ range .AlternativeOutputFormats -}}
     {{ printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .Permalink site.Title | safeHTML }}
   {{ end -}}
-  <link rel="icon" href="{{ "img/favicon.ico" | relURL }}">
-  <link rel="apple-touch-icon" href="{{ "img/favicon.ico" | relURL }}">
+  <link rel="icon" href="{{ "img/favicon.svg" | relURL }}" type="image/svg+xml">
+  <link rel="icon" href="{{ "img/favicon.ico" | relURL }}" sizes="32x32">
+  <link rel="apple-touch-icon" href="{{ "img/apple-touch-icon.png" | relURL }}">
 
   {{ $theme := hugo.Data.theme }}
   {{ $sassVars := dict "sidebar-background" $theme.colors.sidebar.background "sidebar-text" $theme.colors.sidebar.text "sidebar-link" $theme.colors.sidebar.link "sidebar-linkhover" $theme.colors.sidebar.linkhover "content-background" $theme.colors.content.background "content-text" $theme.colors.content.text "content-link" $theme.colors.content.link "content-linkhover" $theme.colors.content.linkhover "content-award" $theme.colors.content.award "font-content" $theme.fonts.content.name "font-sidebar" $theme.fonts.sidebar.name "font-mono" $theme.fonts.mono.name }}
