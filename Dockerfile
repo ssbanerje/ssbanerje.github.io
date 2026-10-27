@@ -1,10 +1,9 @@
-FROM hugomods/hugo:dart-sass-go-git-0.165.0
-ARG HUGO_VERSION=0.168.0
-ARG TARGETARCH
+# Official Hugo image (with Dart Sass, Go and Git), pinned by digest to match CI.
+FROM ghcr.io/gohugoio/hugo:v0.168.0@sha256:1fb8fe7f417abd5802d86747d297728aa48078d763159e7dff6559fe3f8bb8e7
 USER root
-RUN apk add --no-cache make git gcompat libstdc++ && \
-    wget -qO /tmp/hugo.tar.gz "https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-${TARGETARCH}.tar.gz" && \
-    wget -qO /tmp/checksums.txt "https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_${HUGO_VERSION}_checksums.txt" && \
-    grep "  hugo_extended_${HUGO_VERSION}_linux-${TARGETARCH}.tar.gz$" /tmp/checksums.txt | sed "s|  .*|  /tmp/hugo.tar.gz|" | sha256sum -c - && \
-    tar -xzf /tmp/hugo.tar.gz -C /usr/bin hugo && \
-    rm -f /tmp/hugo.tar.gz /tmp/checksums.txt
+RUN apk add --no-cache make
+USER hugo
+# The image's /cache belongs to uid 1000, but make runs as the host uid.
+ENV HUGO_CACHEDIR=/tmp/hugo_cache
+# Run `make ...` directly instead of passing it to /entrypoint.sh as hugo flags.
+ENTRYPOINT []
