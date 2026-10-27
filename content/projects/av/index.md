@@ -38,10 +38,10 @@ We have used BFI and RoboTack on two industry-grade AV technology stacks: NVIDIA
 and Baidu's *[Apollo]*.
 
 
-[LogDriver]: {{< relref "/publications/dsn2018/index.md" >}}
-[AVFI]: {{< relref "/publications/dsn2018_avfi/index.md" >}}
-[BFI]: {{< relref "/publications/dsn2019/index.md" >}}
-[BDLFI]: {{< relref "/publications/dsn2019_bdlfi/index.md" >}}
-[RoboTack]: {{< relref "/publications/dsn2020/index.md" >}}
+[LogDriver]: /publications/dsn2018/
+[AVFI]: /publications/dsn2018_avfi/
+[BFI]: /publications/dsn2019/
+[BDLFI]: /publications/dsn2019_bdlfi/
+[RoboTack]: /publications/dsn2020/
 [Drive]: https://www.nvidia.com/en-us/self-driving-cars/drive-platform/software/
 [Apollo]: http://apollo.auto

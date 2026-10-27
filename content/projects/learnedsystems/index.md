@@ -54,16 +54,16 @@ essential in my research and a driving force behind the broader goals of managin
 optimizing computer system performance using ML. For example, in my work on designing and
 implementing a *workload optimized computing system for computational genomics and precision
 medicine applications*
-[[1]({{< relref "/publications/didc2016/index.md" >}}),
-[2]({{< relref "/publications/fpl2017/index.md" >}}),
-[3]({{< relref "/publications/tc2018/index.md" >}}),
-[4]({{< relref "/publications/cibcb2017/index.md" >}})].
+[[1](/publications/didc2016/),
+[2](/publications/fpl2017/),
+[3](/publications/tc2018/),
+[4](/publications/cibcb2017/)].
 
 
-[Symphony]: {{< relref "/publications/icml2020/index.md" >}}
-[FIRM]: {{< relref "/publications/osdi2020/index.md" >}}
-[ML-LB]: {{< relref "/publications/apsys2020/index.md" >}}
-[Kaleidoscope]: {{< relref "/publications/sc2020/index.md" >}}
-[BayesPerf]: {{< relref "/publications/asplos2021/index.md" >}}
-[BFI]: {{< relref "/publications/dsn2019/index.md" >}}
-[AcMC²]: {{< relref "/publications/asplos2019/index.md" >}}
+[Symphony]: /publications/icml2020/
+[FIRM]: /publications/osdi2020/
+[ML-LB]: /publications/apsys2020/
+[Kaleidoscope]: /publications/sc2020/
+[BayesPerf]: /publications/asplos2021/
+[BFI]: /publications/dsn2019/
+[AcMC²]: /publications/asplos2019/

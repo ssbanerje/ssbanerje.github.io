@@ -21,7 +21,7 @@
       {{ range first 5 (sort (where $.Site.RegularPages "Section" "publications") ".Params.date" "desc") }}
         <li>
             <a href="{{ .RelPermalink }}">{{ .Title }}.</a>
-            {{ with .Params.venue }}{{ . | markdownify }}.{{ end }}
+            {{ with .Params.venue }}{{ $.RenderString . }}.{{ end }}
         </li>
       {{ end }}
     </ul>
