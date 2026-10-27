@@ -2,7 +2,7 @@
   {{ range . }}
     <li>
       <a href="{{ .RelPermalink }}" target="_blank" rel="noopener noreferrer">
-        <i class="far fa-file-pdf" aria-hidden="true"></i>&nbsp;{{ strings.TrimSuffix ".pdf" .Name }}
+        <i class="fa-regular fa-file-pdf" aria-hidden="true"></i>&nbsp;{{ strings.TrimSuffix ".pdf" .Name }}
       </a>
     </li>
   {{ end }}

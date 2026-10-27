@@ -21,13 +21,13 @@
 
 <!-- Render -->
 {{ if $show_type }}
-  {{ partial "type_key.html" (slice
+  {{ partialCached "type_key.html" (slice
     (dict "class" "pubtype-preprint" "label" "Preprint")
     (dict "class" "pubtype-conference" "label" "Conference")
     (dict "class" "pubtype-journal" "label" "Journal")
     (dict "class" "pubtype-workshop" "label" "Workshop")
     (dict "class" "pubtype-abstract" "label" "Abstract")
-  ) }}
+  ) "pubtype" }}
 {{ end }}
 
 {{ range first $num_years $grouped }}

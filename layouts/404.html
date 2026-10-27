@@ -18,7 +18,7 @@
     <!-- Generate list of papers -->
     <h3 class="title is-3"> Perhaps you are looking for one of these:</h3>
     <ul>
-      {{ range first 5 (sort (where $.Site.RegularPages "Section" "publications") ".Params.date" "desc") }}
+      {{ range first 5 (where site.RegularPages "Section" "publications").ByDate.Reverse }}
         <li>
             <a href="{{ .RelPermalink }}">{{ .Title }}.</a>
             {{ with .Params.venue }}{{ $.RenderString . }}.{{ end }}

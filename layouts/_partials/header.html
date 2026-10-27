@@ -1,7 +1,6 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   {{ hugo.Generator }}
   <meta name="author" content="{{ hugo.Data.personal.name }}" />
   {{ $description := "" }}
@@ -26,7 +25,6 @@
     {{ printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .Permalink site.Title | safeHTML }}
   {{ end -}}
   <link rel="icon" href="{{ "img/favicon.ico" | relURL }}">
-  <link rel="shortcut icon" href="{{ "img/favicon.ico" | relURL }}">
   <link rel="apple-touch-icon" href="{{ "img/favicon.ico" | relURL }}">
 
   {{ $theme := hugo.Data.theme }}

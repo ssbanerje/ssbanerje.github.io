@@ -1,0 +1,12 @@
+{{- /* Returns the plain-text author names of a publication page as a slice. */ -}}
+{{- $names := slice -}}
+{{- with .Params.authors -}}
+  {{- $normalized := replace (replace (. | $.RenderString | plainify) ", and " ", ") " and " ", " -}}
+  {{- range split $normalized "," -}}
+    {{- $name := trim . " \t\n*" -}}
+    {{- if $name -}}
+      {{- $names = $names | append $name -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- return $names -}}

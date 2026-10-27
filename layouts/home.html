@@ -8,22 +8,15 @@
   <section class="section">
     <h1 class="title is-1">
       News
-      <span class="subtitle is-4">{{ "[[More Entries](/news/)]" | $.RenderString }}</span>
+      <span class="subtitle is-4">[<a href="/news/">More Entries</a>]</span>
     </h1>
-  	<ul class="news">
-  	  {{ range first 5 hugo.Data.news.news }}
-  		<li class="has-text-left">
-        <span class="date"><i class="fas fa-caret-right"></i>&nbsp;{{ .date }}</span>
-        <span>{{ .text | $.RenderString }}</span>
-      </li>
-  		{{end}}
-  	</ul>
+    {{ partial "news_list.html" (dict "page" . "items" (first 5 hugo.Data.news.news)) }}
   </section>
 
   <section class="section has-text-left">
     <h1 class="title is-1">
       Selected Publications&nbsp;
-      <span class="subtitle is-4">{{ "[Full List: [Publications](/publications/), [Projects](/projects/)]" | $.RenderString }}</span>
+      <span class="subtitle is-4">[Full List: <a href="/publications/">Publications</a>, <a href="/projects/">Projects</a>]</span>
     </h1>
     {{ partial "publications_bydate.html" . }}
   </section>
