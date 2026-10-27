@@ -2,7 +2,7 @@
   <section class="section">
     <div class="has-text-left">
       <h1 class="title is-1 no-border">{{ .Title }}</h1>
-      {{ with .Params.authors}}<h3 class="title is-3">{{ . | $.RenderString }}</h3>{{ end }}
+      {{ with .Params.authors }}<h3 class="title is-3">{{ . | $.RenderString }}</h3>{{ end }}
       {{ with .Params.venue }}<h3 class="title is-3 has-text-grey"><i>{{ . | $.RenderString }}</i></h3>{{ end }}
     </div>
     <br><hr>
@@ -40,25 +40,24 @@
     </section>
   {{ end }}
 
-  {{ if .Resources.Match "ref.bib" }}
+  {{ with .Resources.Get "ref.bib" }}
     <section class="section" style="margin-bottom: 1rem;">
-      {{ $bib := .Resources.GetMatch "ref.bib" }}
       <h2 class="title is-2">
         Citation
-        <a href="{{ $bib.RelPermalink }}" style="font-size: 80%"><i class="far fa-arrow-alt-circle-down"></i></a>
+        <a href="{{ .RelPermalink }}" style="font-size: 80%"><i class="far fa-arrow-alt-circle-down"></i></a>
       </h2>
-      {{ $bibstring := printf "```bibtex \n%s \n ```" (trim $bib.Content "\n") }}
-      {{ $bibstring | $.RenderString }}
+      {{ transform.Highlight (trim .Content "\n") "bibtex" }}
     </section>
   {{ end }}
 
-  {{ if (isset .Params "projects") }}
+  {{ with .Params.projects }}
     <section class="section" style="margin-bottom: 1rem;">
       <h2 class="title is-2">Related Projects</h2>
       <ul class="bulleted-list">
-      {{ range .Params.projects }}
-        {{ $project := $.Site.GetPage (printf "/projects/%s" .) }}
-        <li><a href="{{ $project.RelPermalink }}">{{ $project.Title }}</a></li>
+      {{ range . }}
+        {{ with site.GetPage (printf "/projects/%s" .) }}
+          <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+        {{ end }}
       {{ end }}
       </ul>
     </section>

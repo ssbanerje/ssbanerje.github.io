@@ -1,22 +1,25 @@
-{{ $projects := where $.Site.RegularPages "Section" "projects" }}
+{{ $projects := (where site.RegularPages "Section" "projects").ByWeight.Reverse }}
+{{ $active := where $projects "Params.concluded" false }}
+{{ $concluded := $projects | complement $active }}
+{{ $activePalette := slice "is-info" "is-link" }}
+{{ $concludedPalette := slice "is-dark" "is-primary" "is-warning" "is-success" }}
 <div class="columns is-multiline has-text-left">
   <!-- Main Projects -->
-  {{ range where $projects.ByWeight.Reverse ".Params.concluded" false }}
+  {{ range $i, $p := $active }}
     <div class="column is-12">
-      {{ $class := index (shuffle (slice "is-link" "is-info")) 0 }}
-      {{ $text := cond (eq $class "is-primary") "has-text-grey-darker" "has-text-white"}}
-      <article class="notification {{ $class }} {{ $text }}">
-        {{ partial "project_listing.html" . }}
+      {{ $class := index $activePalette (mod $i (len $activePalette)) }}
+      <article class="notification {{ $class }} has-text-white">
+        {{ partial "project_listing.html" $p }}
       </article>
     </div>
   {{ end }}
   <!-- Concluded Projects -->
-  {{ range where $projects.ByWeight.Reverse ".Params.concluded" "!=" "nil" }}
+  {{ range $i, $p := $concluded }}
     <div class="column is-6">
-      {{ $class := index (shuffle (slice "is-dark" "is-warning" "is-primary" "is-success")) 0 }}
-      {{ $text := cond (eq $class "is-dark") "has-text-white" "has-text-grey-darker"}}
+      {{ $class := index $concludedPalette (mod $i (len $concludedPalette)) }}
+      {{ $text := cond (eq $class "is-dark") "has-text-white" "has-text-grey-darker" }}
       <article class="notification {{ $class }} {{ $text }}">
-        {{ partial "project_listing.html" . }}
+        {{ partial "project_listing.html" $p }}
       </article>
     </div>
   {{ end }}
