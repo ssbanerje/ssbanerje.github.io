@@ -4,8 +4,6 @@
 // Section
 $section-padding: 0.1rem;
 $section-padding-desktop: 0.1rem;
-$section-padding-medium: 0.1rem;
-$section-padding-large: 0.1rem;
 
 // Footer configuration
 $footer-background-color: map.get(tv.$content, background);
@@ -25,7 +23,6 @@ $size-normal: 1.25rem;
 $family-sans-serif: map.get(tv.$fonts, content), sans-serif;
 $family-monospace: map.get(tv.$fonts, mono), monospace;
 $family-primary: map.get(tv.$fonts, content), sans-serif;
-$family-secondary: map.get(tv.$fonts, sidebar), serif;
 $family-code: map.get(tv.$fonts, mono), monospace;
 
 // Text and Background Colors
@@ -33,4 +30,3 @@ $text: map.get(tv.$content, text);
 $background: map.get(tv.$content, background);
 $body-background-color: map.get(tv.$content, background);
 $link: map.get(tv.$content, link);
-$link-hover: map.get(tv.$content, hover);

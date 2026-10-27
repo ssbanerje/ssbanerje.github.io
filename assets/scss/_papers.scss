@@ -36,8 +36,6 @@
     border: solid rgba(0, 0, 0, 0.3);
     border-width: 0.5px;
     font-weight: bold;
-    -webkit-user-select: none;
-    -moz-user-select: none;
     user-select: none;
 
     &.pubtype-conference {
@@ -111,7 +109,7 @@
 }
 
 .paper-awards {
-  @include mx.comma-seperated-list;
+  @include mx.comma-separated-list;
 
   li {
     color: map.get(bt.$content, award);
@@ -123,10 +121,9 @@
 }
 
 .paper-links {
-  padding-top: 5px;;
+  padding-top: 5px;
   font-size: 80%;
   @include mx.inline-list;
-  list-style: none;
 
   li {
     border: 1px dotted map.get(bt.$content, text);

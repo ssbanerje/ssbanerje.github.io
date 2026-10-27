@@ -1,9 +1,5 @@
 // Transitions
 @mixin transition($args...) {
-  -webkit-transition: $args;
-  -moz-transition: $args;
-  -ms-transition: $args;
-  -o-transition: $args;
   transition: $args;
 }
 
@@ -23,12 +19,12 @@
   li { display: inline-block; }
 }
 
-@mixin content-seperated-list($content) {
+@mixin content-separated-list($content) {
   @include inline-list;
 
   li+li:before { content: $content; }
 }
 
-@mixin comma-seperated-list {
-  @include content-seperated-list(", ");
+@mixin comma-separated-list {
+  @include content-separated-list(", ");
 }
