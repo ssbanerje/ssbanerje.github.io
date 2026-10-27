@@ -1,5 +1,5 @@
 <p>
-  <span class="paper-title"><a href="{{ .RelPermalink }}">{{ .Title | $.RenderString }}.</a></span>
+  <span class="paper-title"><a href="{{ .RelPermalink }}">{{ .Title | $.RenderString }}{{ if not (findRE `[.?!]$` .Title) }}.{{ end }}</a></span>
   <br>
 
   {{ with .Params.authors }}
@@ -23,8 +23,10 @@
   </ul>
 {{ end }}
 
-<ul class="paper-links has-text-left">
-  {{ partial "link_resources" .Params.links }}
-  {{ partial "pdf_resources" . }}
-  {{ partial "link_resources" .Params.news }}
-</ul>
+{{ if or .Params.links (.Resources.Match "*.pdf") .Params.news }}
+  <ul class="paper-links has-text-left">
+    {{ partial "link_resources" .Params.links }}
+    {{ partial "pdf_resources" . }}
+    {{ partial "link_resources" .Params.news }}
+  </ul>
+{{ end }}
