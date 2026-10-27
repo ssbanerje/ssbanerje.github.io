@@ -1,0 +1,13 @@
+// Subset of bulma/sass/elements/image: only the sidebar avatar rules.
+.image {
+  display: block;
+  position: relative;
+
+  img {
+    display: block;
+    height: auto;
+    width: 100%;
+
+    &.is-rounded { border-radius: var(--bulma-radius-rounded); }
+  }
+}

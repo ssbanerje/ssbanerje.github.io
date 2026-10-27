@@ -18,7 +18,7 @@
   </section>
 
   {{ with .Params.award }}
-    <section class="section" style="margin-bottom: 1rem;">
+    <section class="section mb-4">
       <h2 class="title is-2">Awards</h2>
       <ul class="awards">
         {{ range . }}
@@ -27,12 +27,12 @@
           </li>
         {{ end }}
       </ul>
-      <br style="line-height: 50%;">
+      <br class="half-line">
     </section>
   {{ end }}
 
   {{ with .Params.news }}
-    <section class="section" style="margin-bottom: 1rem;">
+    <section class="section mb-4">
       <h2 class="title is-2">In the News</h2>
       <ul class="bulleted-list">
         {{ partial "link_resources" . }}
@@ -41,17 +41,17 @@
   {{ end }}
 
   {{ with .Resources.Get "ref.bib" }}
-    <section class="section" style="margin-bottom: 1rem;">
+    <section class="section mb-4">
       <h2 class="title is-2">
         Citation
-        <a href="{{ .RelPermalink }}" style="font-size: 80%"><i class="fa-regular fa-circle-down"></i></a>
+        <a class="bibtex-download" href="{{ .RelPermalink }}"><i class="fa-regular fa-circle-down"></i></a>
       </h2>
       {{ transform.Highlight (trim .Content "\n") "bibtex" }}
     </section>
   {{ end }}
 
   {{ with .Params.projects }}
-    <section class="section" style="margin-bottom: 1rem;">
+    <section class="section mb-4">
       <h2 class="title is-2">Related Projects</h2>
       <ul class="bulleted-list">
       {{ range . }}

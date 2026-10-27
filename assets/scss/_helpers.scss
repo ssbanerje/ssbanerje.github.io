@@ -1,0 +1,25 @@
+@use "bulma_theme" as bt;
+
+// Subset of bulma/sass/helpers/{float,spacing,typography,visibility}: only the classes the templates use.
+
+// float
+.is-clearfix::after {
+  clear: both;
+  content: " ";
+  display: table;
+}
+
+// spacing
+.m-0 { margin: 0 !important; }
+.mb-4 { margin-bottom: 1rem !important; }
+
+// typography
+.is-size-3 { font-size: bt.$size-3 !important; }
+.has-text-centered { text-align: center !important; }
+.has-text-justified { text-align: justify !important; }
+.has-text-left { text-align: left !important; }
+
+// visibility
+@include bt.touch {
+  .is-hidden-touch { display: none !important; }
+}
