@@ -2,7 +2,7 @@
 pubtype = "conference"
 projects = ["learnedsystems"]
 title = "Improved GPU Implementations of the Pair-HMM Forward Algorithm for DNA Sequence Alignment"
-authors = "Enliang Li, Subho S. Banerjee, Sitao Huang, Ravishankar K. Iyer, Deming Chen"
+authors = "Enliang Li, Subho S. Banerjee, Sitao Huang, Ravishankar K. Iyer, and Deming Chen"
 venue = "ICCD 2021"
 date = 2021-10-24
 +++
