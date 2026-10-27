@@ -1,7 +1,6 @@
 +++
 title = "Silent Data Corruption"
 date = 2026-07-07
-project = "sdc"
 period = "2021–2026"
 institution = "Google"
 institution_key = "google"

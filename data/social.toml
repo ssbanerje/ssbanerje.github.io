@@ -1,19 +1,19 @@
 [[link]]
   link = "mailto:remove_this_if_human_ssbaner2@illinois.edu"
-  icon = "fas fa-envelope-open fa-fw"
+  icon = "fa-solid fa-envelope-open"
 
 [[link]]
   link = "https://scholar.google.com/citations?user=jvV04p3aXgMC"
-  icon = "ai ai-google-scholar fa-fw"
+  icon = "ai ai-google-scholar"
 
 [[link]]
   link = "https://dblp.uni-trier.de/pers/hd/b/Banerjee:Subho_S="
-  icon = "ai ai-dblp fa-fw"
+  icon = "ai ai-dblp"
 
 [[link]]
   link = "https://www.linkedin.com/in/ssbanerjee"
-  icon = "fab fa-linkedin fa-fw"
+  icon = "fa-brands fa-linkedin"
 
 [[link]]
   link = "https://github.com/ssbanerje"
-  icon = "fab fa-github fa-fw"
+  icon = "fa-brands fa-github"

@@ -14,7 +14,7 @@ award = ["Best Paper & Best Student Paper Finalist"]
   url = "https://dl.acm.org/doi/10.5555/3433701.3433787"
 [[links]]
   name = "Code"
-  icon = "fas fa-code"
+  icon = "fa-solid fa-code"
   url = "https://github.com/saurabhjha1/kscope-artifact"
 +++
 

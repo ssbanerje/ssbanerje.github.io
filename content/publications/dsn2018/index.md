@@ -13,7 +13,7 @@ date = 2018-06-28
   url = "https://ieeexplore.ieee.org/document/8416518/"
 [[links]]
   name = "Code"
-  icon = "fas fa-code"
+  icon = "fa-solid fa-code"
   url = "https://gitlab.engr.illinois.edu/DEPEND/autonomouscars"
 +++
 

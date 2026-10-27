@@ -1,7 +1,6 @@
 +++
 title = "Intelligence-Augmented Computer Systems"
 date = 2021-12-06
-project = "learnedsystems"
 period = "2014–2021"
 institution = "University of Illinois at Urbana-Champaign"
 institution_key = "uiuc"
