@@ -21,7 +21,6 @@
   background-color: map.get(bt.$content, background);
   flex: 1;
   inline-size: 100%;
-  max-inline-size: 80ch;
   padding: 1rem;
 
   :where(h1, h2.is-1) {
