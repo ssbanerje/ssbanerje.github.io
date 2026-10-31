@@ -42,7 +42,7 @@
     <ul class="paper-list" role="list">
   {{ end }}
     {{ range .Pages }}
-      <li class="paper has-text-left pubtype-{{ .Params.pubtype }}">{{ partial "paper_listing.html" . }}</li>
+      <li class="paper has-text-left pubtype-{{ .Params.pubtype }}">{{- if $show_type }}<span class="visually-hidden paper-type-badge">[{{ title .Params.pubtype }}] </span>{{- end }}{{ partial "paper_listing.html" . }}</li>
     {{ end }}
   </ul>
 {{ end }}
