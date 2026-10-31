@@ -75,3 +75,15 @@ $text-shades-in-use: ("grey", "white-ter");
   --bulma-text-strong-l: 10%;
   --bulma-link-text-hover: #{map.get(bt.$content, hover)};
 }
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --bulma-duration: 0s;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition {
+    navigation: auto;
+  }
+}
