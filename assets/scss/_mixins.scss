@@ -22,7 +22,10 @@
 @mixin content-separated-list($content) {
   @include inline-list;
 
-  li+li:before { content: $content; }
+  li+li:before {
+    content: $content;
+    content: $content / "";
+  }
 }
 
 @mixin comma-separated-list {
