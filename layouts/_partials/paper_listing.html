@@ -14,7 +14,7 @@
 </p>
 
 {{ with .Params.award }}
-  <ul class="paper-awards">
+  <ul class="paper-awards" role="list">
     {{ range . }}
       <li>
         <span class="icon"><i class="fa-solid fa-trophy" aria-hidden="true"></i></span>&nbsp;{{ . | $.RenderString }}
@@ -24,7 +24,7 @@
 {{ end }}
 
 {{ if or .Params.links (.Resources.Match "*.pdf") .Params.news }}
-  <ul class="paper-links has-text-left">
+  <ul class="paper-links has-text-left" role="list">
     {{- $title := .Title | $.RenderString | plainify -}}
     {{ partial "link_resources" (dict "links" .Params.links "title" $title) }}
     {{ partial "pdf_resources" (dict "page" . "title" $title) }}

@@ -8,7 +8,7 @@
       (dict "class" "inst-cern" "label" "CERN")
     ) "institution" }}
 
-    <ul class="paper-list color-paper-types">
+    <ul class="paper-list color-paper-types" role="list">
       {{ range .Pages.ByDate.Reverse }}
         <li class="paper has-text-left inst-{{ .Params.institution_key }}">
           <p>

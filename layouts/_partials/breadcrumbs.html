@@ -7,6 +7,6 @@
         <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
       {{ end }}
     {{ end }}
-    <li class="is-active"><a href="#" aria-current="page">This Page</a></li>
+    <li class="is-active"><a href="{{ .RelPermalink }}" aria-current="page">This Page<span class="visually-hidden">: {{ .Title }}</span></a></li>
   </ul>
 </nav>

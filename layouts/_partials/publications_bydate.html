@@ -37,9 +37,9 @@
     <h3 class="title is-3">{{ .Key }}</h3>
   {{ end }}
   {{ if $show_type }}
-    <ul class="paper-list color-paper-types">
+    <ul class="paper-list color-paper-types" role="list">
   {{ else }}
-    <ul class="paper-list">
+    <ul class="paper-list" role="list">
   {{ end }}
     {{ range .Pages }}
       <li class="paper has-text-left pubtype-{{ .Params.pubtype }}">{{ partial "paper_listing.html" . }}</li>

@@ -1,8 +1,8 @@
 {{- /* News items are TOML maps, so Markdown is rendered through the page passed in "page". */ -}}
-<ul class="news">
+<ul class="news" role="list">
   {{ range .items }}
     <li class="has-text-left">
-      <span class="date"><i class="fa-solid fa-caret-right"></i>&nbsp;{{ .date }}</span>
+      <span class="date"><i class="fa-solid fa-caret-right" aria-hidden="true"></i>&nbsp;{{ .date }}</span>
       <span>{{ .text | $.page.RenderString }}</span>
     </li>
   {{ end }}
