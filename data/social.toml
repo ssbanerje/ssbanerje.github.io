@@ -1,19 +1,24 @@
 [[link]]
   link = "mailto:remove_this_if_human_ssbaner2@illinois.edu"
   icon = "fa-solid fa-envelope-open"
+  label = "Email"
 
 [[link]]
   link = "https://scholar.google.com/citations?user=jvV04p3aXgMC"
   icon = "ai ai-google-scholar"
+  label = "Google Scholar"
 
 [[link]]
   link = "https://dblp.uni-trier.de/pers/hd/b/Banerjee:Subho_S="
   icon = "ai ai-dblp"
+  label = "DBLP"
 
 [[link]]
   link = "https://www.linkedin.com/in/ssbanerjee"
   icon = "fa-brands fa-linkedin"
+  label = "LinkedIn"
 
 [[link]]
   link = "https://github.com/ssbanerje"
   icon = "fa-brands fa-github"
+  label = "GitHub"

@@ -21,7 +21,7 @@
       </p>
       <ul class="icon-list is-clearfix">
       {{ range $social := hugo.Data.social.link }}
-        <li><a href="{{ $social.link }}"><i class="{{ $social.icon }}"></i></a></li>
+        <li><a href="{{ $social.link }}" aria-label="{{ $social.label }}"><i class="{{ $social.icon }}" aria-hidden="true"></i></a></li>
       {{ end }}
       </ul>
     </div>
