@@ -20,19 +20,19 @@
 #content {
   background-color: map.get(bt.$content, background);
   flex: 1;
+  inline-size: 100%;
   max-inline-size: 80ch;
   padding: 1rem;
-  width: 100%;
 
   :where(h1, h2.is-1) {
-    border-bottom: 1px solid #d3d3d3;
+    border-block-end: 1px solid #d3d3d3;
 
     &.no-border { border: 0; }
   }
 }
 
 .content h2.is-3:not(:first-child) {
-  margin-top: 1.3333em;
+  margin-block-start: 1.3333em;
 }
 
 /* Setup text elements */
@@ -73,25 +73,31 @@ a {
   }
 }
 
-p { margin: 0 0 2rem 0; }
+p {
+  margin: 0;
+  margin-block-end: 2rem;
+}
 
 // De-emphasized text, e.g. the ":(" on the 404 page
 .text-faint { color: #bbb; }
 
 hr {
-  height:1px;
-  background-color:#d3d3d3;
-  margin: 0 0 1em 0;
+  block-size: 1px;
+  background-color: #d3d3d3;
+  margin: 0;
+  margin-block-end: 1em;
 }
 
 /* Footer */
 footer {
   font-size: 70%;
-  min-height: 4.375rem;
+  min-block-size: 4.375rem;
 
   ul {
     @include mx.content-separated-list("\2022");
-    margin: 2rem 0 0 1rem !important;
+    margin: 0 !important;
+    margin-block-start: 2rem !important;
+    margin-inline-start: 1rem !important;
 
     li{
       &:before{ padding: 0 0.5rem; }
@@ -105,7 +111,8 @@ footer {
 /* Breadcrumb Navigation */
 .breadcrumb {
   padding: 0.2rem 1rem;
-  margin: 0 0 2rem 0;
+  margin: 0;
+  margin-block-end: 2rem;
   background-color: #eee;
   border-radius: 0.3rem;
   font-size: 70%;
@@ -113,5 +120,5 @@ footer {
 
 /* Overwrite the margin on the default Bulma message element. */
 .message {
-  margin-bottom: 1em;
+  margin-block-end: 1em;
 }

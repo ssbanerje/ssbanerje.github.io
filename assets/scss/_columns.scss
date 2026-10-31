@@ -17,37 +17,37 @@
 @include bt.tablet {
   .column.is-one-quarter-tablet {
     flex: none;
-    width: 25%;
+    inline-size: 25%;
   }
 }
 
 @include bt.desktop {
   .column.is-narrow-desktop {
     flex: none;
-    width: unset;
+    inline-size: unset;
   }
 }
 
 .columns {
   margin-inline-start: calc(-1 * var(--bulma-column-gap));
   margin-inline-end: calc(-1 * var(--bulma-column-gap));
-  margin-top: calc(-1 * var(--bulma-column-gap));
+  margin-block-start: calc(-1 * var(--bulma-column-gap));
 
-  &:last-child { margin-bottom: calc(-1 * var(--bulma-column-gap)); }
-  &:not(:last-child) { margin-bottom: calc(var(--bulma-block-spacing) - var(--bulma-column-gap)); }
+  &:last-child { margin-block-end: calc(-1 * var(--bulma-column-gap)); }
+  &:not(:last-child) { margin-block-end: calc(var(--bulma-block-spacing) - var(--bulma-column-gap)); }
 
   &.is-gapless {
     margin-inline-start: 0;
     margin-inline-end: 0;
-    margin-top: 0;
+    margin-block-start: 0;
 
     > .column {
       margin: 0;
       padding: 0 !important;
     }
 
-    &:not(:last-child) { margin-bottom: 1.5rem; }
-    &:last-child { margin-bottom: 0; }
+    &:not(:last-child) { margin-block-end: 1.5rem; }
+    &:last-child { margin-block-end: 0; }
   }
 }
 
