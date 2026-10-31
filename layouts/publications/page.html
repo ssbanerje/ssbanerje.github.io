@@ -46,7 +46,7 @@
     <section class="section mb-4">
       <h2 class="title is-2">
         Citation
-        <a class="bibtex-download" href="{{ .RelPermalink }}"><i class="fa-regular fa-circle-down"></i></a>
+        <a class="bibtex-download" href="{{ .RelPermalink }}" download aria-label="Download BibTeX citation"><i class="fa-regular fa-circle-down" aria-hidden="true"></i></a>
       </h2>
       {{ transform.Highlight (trim .Content "\n") "bibtex" }}
     </section>

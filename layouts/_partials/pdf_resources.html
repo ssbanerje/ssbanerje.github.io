@@ -1,8 +1,15 @@
-{{ with .Resources.Match "*.pdf" }}
+{{- $page := . -}}
+{{- $title := "" -}}
+{{- if reflect.IsMap . -}}
+  {{- $page = .page -}}
+  {{- $title = .title -}}
+{{- end -}}
+{{ with $page.Resources.Match "*.pdf" }}
   {{ range . }}
+    {{- $name := strings.TrimSuffix ".pdf" .Name }}
     <li>
-      <a href="{{ .RelPermalink }}" target="_blank" rel="noopener noreferrer">
-        <i class="fa-regular fa-file-pdf" aria-hidden="true"></i>&nbsp;{{ strings.TrimSuffix ".pdf" .Name }}
+      <a href="{{ .RelPermalink }}" target="_blank" rel="noopener noreferrer"{{ if $title }} aria-label="{{ $name }} — {{ $title }}"{{ end }}>
+        <i class="fa-regular fa-file-pdf" aria-hidden="true"></i>&nbsp;{{ $name }}
       </a>
     </li>
   {{ end }}
