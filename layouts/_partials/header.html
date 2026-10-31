@@ -1,6 +1,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
   {{ hugo.Generator }}
   <meta name="author" content="{{ hugo.Data.personal.name }}" />
   {{ $description := "" }}
@@ -40,9 +41,9 @@
   {{ range hugo.Data.theme.fonts }}
     {{ $families = $families | append (printf "family=%s:%s" (replace .name " " "+") (.axes | default "wght@400")) }}
   {{ end }}
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?{{ delimit $families "&" | safeURL }}&display=swap" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://unpkg.com/academicons@1.9.5/css/academicons.min.css" integrity="sha384-IAnhEDrYZnLsYcVzowpizdxXTHFovW5/CkZObGfY2QuaCKaQpvLCjj45LGb4Q/yE" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://unpkg.com/@fortawesome/fontawesome-free@7.2.0/css/all.min.css" integrity="sha384-EXatlQyrOJgDaM9/a74ArMzy7/2bTMSrZj8ID1IPeVmc3GncfCugefCFWSLj8JL/" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?{{ delimit $families "&" | safeURL }}&display=swap" crossorigin="anonymous" referrerpolicy="no-referrer">
+  <link rel="stylesheet" href="https://unpkg.com/academicons@1.9.5/css/academicons.min.css" integrity="sha384-IAnhEDrYZnLsYcVzowpizdxXTHFovW5/CkZObGfY2QuaCKaQpvLCjj45LGb4Q/yE" crossorigin="anonymous" referrerpolicy="no-referrer">
+  <link rel="stylesheet" href="https://unpkg.com/@fortawesome/fontawesome-free@7.2.0/css/all.min.css" integrity="sha384-EXatlQyrOJgDaM9/a74ArMzy7/2bTMSrZj8ID1IPeVmc3GncfCugefCFWSLj8JL/" crossorigin="anonymous" referrerpolicy="no-referrer">
 
   {{ if hugo.IsProduction }}
     {{ partial "google_analytics.html" . }}
