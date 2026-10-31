@@ -70,6 +70,7 @@ $text-shades-in-use: ("grey", "white-ter");
 
 // Override Bulma 1.0 default text color (#4a4a4a) to match original design (#333)
 :root {
+  color-scheme: light;
   --bulma-text-l: 20%;
   --bulma-text-strong-l: 10%;
   --bulma-link-text-hover: #{map.get(bt.$content, hover)};
