@@ -11,7 +11,11 @@
            width="256" height="256" fetchpriority="high" alt="{{ hugo.Data.personal.name }}" />
     </figure>
     <div class="sidebar-content has-text-centered">
-      <h1 class="title is-1"><a href="/">{{ hugo.Data.personal.name }}</a></h1>
+      {{ if .IsHome }}
+        <h1 class="sidebar-title title is-1"><a href="/">{{ hugo.Data.personal.name }}</a></h1>
+      {{ else }}
+        <div class="sidebar-title title is-1"><a href="/">{{ hugo.Data.personal.name }}</a></div>
+      {{ end }}
       <p class="has-text-white-ter has-text-centered">
         {{ hugo.Data.personal.position }} @ {{ hugo.Data.personal.company }}
       </p>

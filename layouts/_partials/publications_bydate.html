@@ -31,7 +31,11 @@
 {{ end }}
 
 {{ range first $num_years $grouped }}
-  <h3 class="title is-3">{{ .Key }}</h3>
+  {{ if and $.IsSection (eq $.Section "publications") }}
+    <h2 class="title is-3">{{ .Key }}</h2>
+  {{ else }}
+    <h3 class="title is-3">{{ .Key }}</h3>
+  {{ end }}
   {{ if $show_type }}
     <ul class="paper-list color-paper-types">
   {{ else }}

@@ -10,11 +10,15 @@
   padding: 1rem;
   min-height: calc(100vh - 70px);
 
-  h1 {
+  :where(h1, h2.is-1) {
     border-bottom: 1px solid #d3d3d3;
 
     &.no-border { border: 0; }
   }
+}
+
+.content h2.is-3:not(:first-child) {
+  margin-top: 1.3333em;
 }
 
 /* Setup text elements */
