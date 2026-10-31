@@ -6,7 +6,8 @@
         { "href_matches": "/*" },
         { "not": { "href_matches": "/*.pdf" } },
         { "not": { "href_matches": "/*.bib" } },
-        { "not": { "selector_matches": "[noprefetch]" } }
+        { "not": { "href_matches": "/*.xml" } },
+        { "not": { "selector_matches": "[noprefetch], [download], [target=_blank]" } }
       ]
     },
     "eagerness": "moderate"
