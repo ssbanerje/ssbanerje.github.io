@@ -24,7 +24,7 @@
 {{ end }}
 
 {{ if or .Params.links (.Resources.Match "*.pdf") .Params.news }}
-  <ul class="paper-links has-text-left" role="list">
+  <ul class="paper-links" role="list">
     {{- $title := .Title | $.RenderString | plainify -}}
     {{ partial "link_resources" (dict "links" .Params.links "title" $title) }}
     {{ partial "pdf_resources" (dict "page" . "title" $title) }}

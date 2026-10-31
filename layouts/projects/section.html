@@ -1,5 +1,5 @@
 {{ define "main" }}
-  <section class="section has-text-left">
+  <section class="section">
     <h1 class="title is-1">{{ .Title }}</h1>
 
     {{ partialCached "type_key.html" (slice
@@ -10,7 +10,7 @@
 
     <ul class="paper-list color-paper-types" role="list">
       {{ range .Pages.ByDate.Reverse }}
-        <li class="paper has-text-left inst-{{ .Params.institution_key }}">
+        <li class="paper inst-{{ .Params.institution_key }}">
           <p>
             <span class="paper-title"><a href="{{ .RelPermalink }}">{{ .Title | $.RenderString }}</a></span>
             <br>
