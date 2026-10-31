@@ -8,7 +8,7 @@
            src="{{ $avatar1x.RelPermalink }}"
            srcset="{{ $avatar1x.RelPermalink }} 256w, {{ $avatar2x.RelPermalink }} 468w"
            sizes="(max-width: 768px) 175px, 256px"
-           width="256" height="256" decoding="async" alt="Avatar" />
+           width="256" height="256" fetchpriority="high" alt="{{ hugo.Data.personal.name }}" />
     </figure>
     <div class="sidebar-content has-text-centered">
       <h1 class="title is-1"><a href="/">{{ hugo.Data.personal.name }}</a></h1>
