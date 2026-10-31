@@ -1,6 +1,12 @@
-{{ range . }}
+{{- $links := . -}}
+{{- $title := "" -}}
+{{- if reflect.IsMap . -}}
+  {{- $links = .links -}}
+  {{- $title = .title -}}
+{{- end -}}
+{{ range $links }}
   <li>
-    <a href="{{ .url | relURL }}" target="_blank" rel="noopener noreferrer">
+    <a href="{{ .url | relURL }}" target="_blank" rel="noopener noreferrer"{{ if $title }} aria-label="{{ .name }} — {{ $title }}"{{ end }}>
       <i class="{{ .icon }}" aria-hidden="true"></i>&nbsp;{{ .name }}
     </a>
   </li>
