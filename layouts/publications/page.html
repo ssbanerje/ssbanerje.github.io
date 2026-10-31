@@ -1,6 +1,6 @@
 {{ define "main" }}
   <section class="section">
-    <div class="has-text-left">
+    <div>
       <h1 class="title is-1 no-border">{{ .Title }}</h1>
       {{ with .Params.authors }}<div class="title is-3">{{ . | $.RenderString }}</div>{{ end }}
       {{ with .Params.venue }}<div class="title is-3 has-text-grey"><i>{{ . | $.RenderString }}</i></div>{{ end }}

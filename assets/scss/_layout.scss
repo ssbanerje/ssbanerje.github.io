@@ -3,12 +3,26 @@
 @use "mixins" as mx;
 
 /* Page content */
-#right { background-color: map.get(bt.$content, background); }
+.page-shell {
+  min-block-size: 100dvh;
+
+  @include bt.desktop {
+    padding-inline-end: 8.3333333333%;
+  }
+}
+
+.page-main {
+  display: flex;
+  flex-direction: column;
+  min-inline-size: 0;
+}
 
 #content {
   background-color: map.get(bt.$content, background);
+  flex: 1;
+  max-inline-size: 80ch;
   padding: 1rem;
-  min-height: calc(100vh - 70px);
+  width: 100%;
 
   :where(h1, h2.is-1) {
     border-bottom: 1px solid #d3d3d3;
@@ -23,8 +37,34 @@
 
 /* Setup text elements */
 body {
-  hyphens: auto;
   font-size: bt.$size-normal;
+  font-size-adjust: from-font;
+  hyphens: auto;
+  overflow-wrap: break-word;
+  text-align: start;
+}
+
+h1, h2, h3, h4, h5, h6,
+strong, b, em, i,
+.title, .subtitle,
+.venue, .paper-venue,
+.paper-awards li,
+.paper-type-key div {
+  font-size-adjust: from-font;
+}
+
+.fa-solid, .fa-regular, .fa-brands, .ai {
+  font-size-adjust: none;
+}
+
+.no-border,
+h2:not(.is-1), h3, h4, h5, h6,
+.sidebar-title {
+  text-wrap: balance;
+}
+
+p, .content li, .news li, blockquote {
+  text-wrap: pretty;
 }
 
 a {

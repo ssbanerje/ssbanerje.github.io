@@ -10,6 +10,7 @@
 
   .sidebar-title {
     font-family: map.get(bt.$fonts, sidebar), sans-serif;
+    font-size-adjust: from-font;
     color: inherit;
   }
 
