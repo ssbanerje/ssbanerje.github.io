@@ -1,3 +1,4 @@
+@use "sass:map";
 @use "bulma_theme" as bt;
 
 // Subset of bulma/sass/helpers/{float,spacing,typography,visibility}: only the classes the templates use.
@@ -22,4 +23,29 @@
 // visibility
 @include bt.touch {
   .is-hidden-touch { display: none !important; }
+}
+
+.visually-hidden:where(:not(:focus-within, :active)) {
+  clip-path: inset(50%);
+  height: 1px;
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+.skip-link:is(:focus, :active) {
+  background-color: map.get(bt.$content, background);
+  border: 2px solid map.get(bt.$content, link);
+  border-radius: 0.25rem;
+  color: map.get(bt.$content, link);
+  font-weight: bold;
+  inset-block-start: 0.5rem;
+  inset-inline-start: 0.5rem;
+  padding: 0.5rem 1rem;
+  position: fixed;
+  transition: none;
+  z-index: 1000;
 }

@@ -4,13 +4,14 @@
 {{ partial "header.html" . }}
 
 <body>
+  <a class="visually-hidden skip-link" href="#content">Skip to main content</a>
   <div class="columns is-gapless m-0">
-    <div class="column is-one-quarter-tablet is-narrow-desktop" id="sidebar">
+    <aside class="column is-one-quarter-tablet is-narrow-desktop" id="sidebar">
       {{ partialCached "sidebar.html" . }}
-    </div>
+    </aside>
 
     <div class="column">
-      <div id="content" class="has-text-justified">
+      <main id="content" class="has-text-justified">
         {{ if (and (not .IsHome) (ne .Kind "404")) }}
           <section class="section">
             {{ partial "breadcrumbs.html" . }}
@@ -19,7 +20,7 @@
         {{ block "main" . }}
           <!-- Main Block content -->
         {{ end }}
-      </div>
+      </main>
       {{ partialCached "footer.html" . }}
     </div>
 
