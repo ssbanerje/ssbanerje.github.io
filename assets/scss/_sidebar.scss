@@ -8,7 +8,7 @@
 
   a { @include mx.link_style(map.get(bt.$sidebar, link), map.get(bt.$sidebar, hover)); }
 
-  h1 {
+  .sidebar-title {
     font-family: map.get(bt.$fonts, sidebar), sans-serif;
     color: inherit;
   }

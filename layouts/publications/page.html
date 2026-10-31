@@ -2,8 +2,8 @@
   <section class="section">
     <div class="has-text-left">
       <h1 class="title is-1 no-border">{{ .Title }}</h1>
-      {{ with .Params.authors }}<h3 class="title is-3">{{ . | $.RenderString }}</h3>{{ end }}
-      {{ with .Params.venue }}<h3 class="title is-3 has-text-grey"><i>{{ . | $.RenderString }}</i></h3>{{ end }}
+      {{ with .Params.authors }}<div class="title is-3">{{ . | $.RenderString }}</div>{{ end }}
+      {{ with .Params.venue }}<div class="title is-3 has-text-grey"><i>{{ . | $.RenderString }}</i></div>{{ end }}
     </div>
     <br><hr>
     {{ if or .Params.links (.Resources.Match "*.pdf") }}

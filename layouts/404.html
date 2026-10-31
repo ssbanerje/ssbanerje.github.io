@@ -16,7 +16,7 @@
     </ul>
 
     <!-- Generate list of papers -->
-    <h3 class="title is-3"> Perhaps you are looking for one of these:</h3>
+    <h2 class="title is-3"> Perhaps you are looking for one of these:</h2>
     <ul>
       {{ range first 5 (where site.RegularPages "Section" "publications").ByDate.Reverse }}
         <li>
