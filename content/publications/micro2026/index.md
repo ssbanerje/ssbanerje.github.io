@@ -15,6 +15,10 @@ date = 2026-07-07
   name = "GR"
   icon = "fa-brands fa-google"
   url = "https://research.google/pubs/ithica-intra-thread-instruction-checking-approach-for-defect-induced-silent-data-corruptions/"
+[[links]]
+  name = "Code"
+  icon = "fa-solid fa-code"
+  url = "https://github.com/ioannavav/ithica"
 +++
 
 Hyperscaler reports of silent data corruptions (SDCs), presumed to be caused by silicon
