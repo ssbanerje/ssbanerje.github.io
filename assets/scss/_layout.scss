@@ -43,7 +43,7 @@ hr {
 /* Footer */
 footer {
   font-size: 70%;
-  height: 70px;
+  min-height: 4.375rem;
 
   ul {
     @include mx.content-separated-list("\2022");
