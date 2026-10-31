@@ -1,13 +1,15 @@
 // Transitions
 @mixin transition($args...) {
-  transition: $args;
+  @media (prefers-reduced-motion: no-preference) {
+    transition: $args;
+  }
 }
 
 // Configure link colors and hover behavior
 @mixin link_style($color, $hover, $decoration: none) {
   color: $color;
   text-decoration: $decoration;
-  @include transition(all 0.2s ease-out);
+  @include transition(color 0.2s ease-out);
 
   &:hover { color: $hover; }
 }

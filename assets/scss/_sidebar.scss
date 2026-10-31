@@ -22,8 +22,11 @@
 
     li {
       padding: 0 5px;
+      @include mx.transition(scale 0.2s ease-out);
 
-      &:hover { transform: scale(1.2); }
+      @media (prefers-reduced-motion: no-preference) {
+        &:hover { scale: 1.2; }
+      }
     }
   }
 
