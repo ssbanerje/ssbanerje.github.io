@@ -3,16 +3,16 @@
  */
 
 .news {
-  padding-left: 1rem;
-  margin-bottom: 2rem;
+  padding-inline-start: 1rem;
+  margin-block-end: 2rem;
   list-style: none;
 
   li {
-    margin-bottom: 1rem;
+    margin-block-end: 1rem;
 
     .date {
       display: block;
-      margin-left: -0.75rem;
+      margin-inline-start: -0.75rem;
       color: #666;
     }
   }

@@ -28,9 +28,9 @@
   }
 
   figure {
-    max-width: 256px;
-    max-height: 256px;
-    margin-bottom: 2rem;
+    max-inline-size: 256px;
+    max-block-size: 256px;
+    margin-block-end: 2rem;
   }
 
   img {
@@ -41,8 +41,8 @@
 
   @include bt.mobile {
     figure {
-      max-width: 175px;
-      max-height: 175px;
+      max-inline-size: 175px;
+      max-block-size: 175px;
     }
   }
 }
