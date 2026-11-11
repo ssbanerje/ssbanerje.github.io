@@ -121,6 +121,11 @@ footer {
   background-color: #eee;
   border-radius: 0.3rem;
   font-size: 70%;
+
+  li + li::before {
+    content: "/";
+    content: "/" / "";
+  }
 }
 
 /* Overwrite the margin on the default Bulma message element. */
