@@ -1,6 +1,6 @@
 # Subho Sankar Banerjee — Personal Website
 
-Source for [ssbanerje.github.io](https://ssbanerje.github.io), built with [Hugo](https://gohugo.io/) (`v0.168.0`, with Dart Sass) and [Bulma](https://bulma.io/) via Hugo Modules.
+Source for [ssbanerje.github.io](https://ssbanerje.github.io), built with [Hugo](https://gohugo.io/) (`v0.169.0`, with Dart Sass) and [Bulma](https://bulma.io/) via Hugo Modules.
 
 ## Make targets
 
