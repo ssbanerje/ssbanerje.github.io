@@ -1,0 +1,6 @@
+{{- /* Processes and publishes the sidebar and social avatar variants once per build. */ -}}
+{{- $avatar := resources.Get hugo.Data.personal.avatar -}}
+{{- $x1 := $avatar.Resize "256x webp q90" -}}
+{{- $x2 := $avatar.Resize "468x webp q90" | resources.Copy "img/me_sq.webp" -}}
+{{- $_ := $x2.RelPermalink -}}
+{{- return (dict "x1" $x1 "x2" $x2) -}}
