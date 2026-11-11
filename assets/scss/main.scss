@@ -1,5 +1,5 @@
 @use "sass:list";
-@use "sass:map";
+@use "hugo:vars/content" as content-vars;
 @use "bulma_config" as bc;
 @use 'bulma_theme' as bt;
 @use "bulma/sass/utilities/css-variables" as cv;
@@ -73,7 +73,7 @@ $text-shades-in-use: ("grey", "white-ter");
   color-scheme: light;
   --bulma-text-l: 20%;
   --bulma-text-strong-l: 10%;
-  --bulma-link-text-hover: #{map.get(bt.$content, hover)};
+  --bulma-link-text-hover: #{content-vars.$linkhover};
 }
 
 @media (prefers-reduced-motion: reduce) {

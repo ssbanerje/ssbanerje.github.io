@@ -1,15 +1,16 @@
-@use "sass:map";
+@use "hugo:vars/sidebar";
+@use "hugo:vars/fonts";
 @use "bulma_theme" as bt;
 @use "mixins" as mx;
 
 #sidebar {
-  color: map.get(bt.$sidebar, text);
-  background-color: map.get(bt.$sidebar, background);
+  color: sidebar.$text;
+  background-color: sidebar.$background;
 
-  a { @include mx.link_style(map.get(bt.$sidebar, link), map.get(bt.$sidebar, hover)); }
+  a { @include mx.link_style(sidebar.$link, sidebar.$linkhover); }
 
   .sidebar-title {
-    font-family: map.get(bt.$fonts, sidebar), sans-serif;
+    font-family: fonts.$sidebar, sans-serif;
     font-size-adjust: from-font;
     color: inherit;
   }
@@ -38,8 +39,8 @@
 
   img {
     padding: .1rem;
-    background-color: map.get(bt.$sidebar, background);
-    border: 1px solid map.get(bt.$sidebar, text);
+    background-color: sidebar.$background;
+    border: 1px solid sidebar.$text;
   }
 
   @include bt.mobile {

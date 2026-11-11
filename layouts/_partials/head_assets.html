@@ -3,8 +3,16 @@
 <link rel="apple-touch-icon" href="{{ "img/apple-touch-icon.png" | relURL }}">
 
 {{ $theme := hugo.Data.theme }}
-{{ $sassVars := dict "sidebar-background" $theme.colors.sidebar.background "sidebar-text" $theme.colors.sidebar.text "sidebar-link" $theme.colors.sidebar.link "sidebar-linkhover" $theme.colors.sidebar.linkhover "content-background" $theme.colors.content.background "content-text" $theme.colors.content.text "content-link" $theme.colors.content.link "content-linkhover" $theme.colors.content.linkhover "content-award" $theme.colors.content.award "font-content" $theme.fonts.content.name "font-sidebar" $theme.fonts.sidebar.name "font-mono" $theme.fonts.mono.name }}
-{{ $opts := dict "transpiler" "dartsass" "vars" $sassVars "targetPath" "css/style.css" "enableSourceMap" hugo.IsDevelopment }}
+{{ $vars := dict
+  "sidebar" $theme.colors.sidebar
+  "content" $theme.colors.content
+  "fonts" (dict
+    "content" $theme.fonts.content.name
+    "sidebar" $theme.fonts.sidebar.name
+    "mono" $theme.fonts.mono.name
+  )
+}}
+{{ $opts := dict "transpiler" "dartsass" "vars" $vars "targetPath" "css/style.css" "enableSourceMap" hugo.IsDevelopment }}
 {{ $style := resources.Get "scss/main.scss" | css.Sass $opts }}
 {{ if hugo.IsDevelopment }}
   <link rel="stylesheet" href="{{ $style.RelPermalink }}">

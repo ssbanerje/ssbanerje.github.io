@@ -1,5 +1,4 @@
-@use "sass:map";
-@use "bulma_theme" as bt;
+@use "hugo:vars/content";
 @use "mixins" as mx;
 
 /* Publications */
@@ -128,7 +127,7 @@
   @include mx.comma-separated-list;
 
   li {
-    color: map.get(bt.$content, award);
+    color: content.$award;
     font-weight: bold;
 
     padding: 0;
@@ -142,7 +141,7 @@
   @include mx.inline-list;
 
   li {
-    border: 1px dotted map.get(bt.$content, text);
+    border: 1px dotted content.$text;
     padding: 0.1rem 0.25rem;
     margin: 0;
     margin-block-start: 0.25rem;
@@ -152,9 +151,9 @@
     &:first-child { margin-inline-start: 0; }
 
     &:hover {
-      border-color: map.get(bt.$content, hover);
+      border-color: content.$linkhover;
 
-      a { color: map.get(bt.$content, hover); }
+      a { color: content.$linkhover; }
     }
   }
 }
