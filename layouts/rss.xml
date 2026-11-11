@@ -1,24 +1,28 @@
 {{- printf "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>" | safeHTML }}
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
   <channel>
-    <title>{{ with .Title }}{{ if ne . site.Title }}{{ . | transform.XMLEscape | safeHTML }} of {{ end }}{{ end }}{{ site.Title | transform.XMLEscape | safeHTML }}</title>
-    <link>{{ .Permalink }}</link>
-    <description>Recent content {{ with .Title }}{{ if ne . site.Title }}in {{ title . | transform.XMLEscape | safeHTML }} {{ end }}{{ end }}of {{ site.Title | transform.XMLEscape | safeHTML }}</description>
-    <generator>Hugo</generator>
-    {{ with site.Language.Locale }}<language>{{ . }}</language>{{ end }}
-    {{ if not .Date.IsZero }}<lastBuildDate>{{ .Date.Format "Mon, 02 Jan 2006 15:04:05 -0700" | safeHTML }}</lastBuildDate>{{ end }}
-    {{- with .OutputFormats.Get "RSS" }}
-    {{ printf "<atom:link href=%q rel=\"self\" type=%q />" .Permalink .MediaType.Type | safeHTML }}
-    {{- end }}
     {{- $limit := site.Config.Services.RSS.Limit -}}
     {{- $papers := (where site.RegularPages "Section" "publications").ByDate.Reverse -}}
     {{- if gt $limit 0 }}{{ $papers = first $limit $papers }}{{ end -}}
+    <title>{{ with .Title }}{{ if ne . site.Title }}{{ . | transform.XMLEscape | safeHTML }} of {{ end }}{{ end }}{{ site.Title | transform.XMLEscape | safeHTML }}</title>
+    <link>{{ .Permalink }}</link>
+    <description>Recent content {{ with .Title }}{{ if ne . site.Title }}in {{ . | transform.XMLEscape | safeHTML }} {{ end }}{{ end }}of {{ site.Title | transform.XMLEscape | safeHTML }}</description>
+    <generator>Hugo</generator>
+    {{ with site.Language.Locale }}<language>{{ . }}</language>{{ end }}
+    {{- range first 1 $papers }}
+    <lastBuildDate>{{ .Date.Format "Mon, 02 Jan 2006 15:04:05 -0700" | safeHTML }}</lastBuildDate>
+    {{- end }}
+    {{- with .OutputFormats.Get "RSS" }}
+    {{ printf "<atom:link href=%q rel=\"self\" type=%q />" .Permalink .MediaType.Type | safeHTML }}
+    {{- end }}
     {{- range $papers }}
       <item>
-        <title>{{ .Title | transform.XMLEscape | safeHTML }}</title>
+        <title>{{ .Title | plainify | transform.XMLEscape | safeHTML }}</title>
         <link>{{ .Permalink }}</link>
         <pubDate>{{ .Date.Format "Mon, 02 Jan 2006 15:04:05 -0700" | safeHTML }}</pubDate>
-        {{ with .Params.authors }}<dc:creator>{{ . | transform.XMLEscape | safeHTML }}</dc:creator>{{ end }}
+        {{- range partialCached "parse_authors.html" . .RelPermalink }}
+        <dc:creator>{{ . | transform.XMLEscape | safeHTML }}</dc:creator>
+        {{- end }}
         <guid>{{ .Permalink }}</guid>
         <description>{{ .Content | transform.XMLEscape | safeHTML }}</description>
       </item>

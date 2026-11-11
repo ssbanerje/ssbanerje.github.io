@@ -7,6 +7,10 @@ enableGitInfo = true
 disableKinds = ["term", "taxonomy"]
 buildFuture = true
 
+[outputs]
+  home = ["html", "rss"]
+  section = ["html"]
+
 [services]
   [services.googleAnalytics]
     id = "G-VGWDWM7F6S"
