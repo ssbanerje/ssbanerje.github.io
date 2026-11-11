@@ -30,6 +30,10 @@
   }
 }
 
+.section {
+  padding: 0.1rem;
+}
+
 .content h2.is-3:not(:first-child) {
   margin-block-start: 1.3333em;
 }
@@ -89,8 +93,10 @@ hr {
 
 /* Footer */
 footer {
+  background-color: content.$background;
   font-size: 70%;
   min-block-size: 4.375rem;
+  padding: 0.25rem;
 
   ul {
     @include mx.content-separated-list("\2022");
