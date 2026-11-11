@@ -1,12 +1,10 @@
 <div class="padded-sidebar">
   <section class="section">
     <figure class="image container">
-      {{- $avatar := resources.Get hugo.Data.personal.avatar -}}
-      {{- $avatar1x := $avatar.Resize "256x webp q90" -}}
-      {{- $avatar2x := $avatar.Resize "468x webp q90" | resources.Copy "img/me_sq.webp" -}}
+      {{- $avatar := partialCached "avatar.html" . -}}
       <img class="is-rounded"
-           src="{{ $avatar1x.RelPermalink }}"
-           srcset="{{ $avatar1x.RelPermalink }} 256w, {{ $avatar2x.RelPermalink }} 468w"
+           src="{{ $avatar.x1.RelPermalink }}"
+           srcset="{{ $avatar.x1.RelPermalink }} 256w, {{ $avatar.x2.RelPermalink }} 468w"
            sizes="(max-width: 768px) 175px, 256px"
            width="256" height="256" fetchpriority="high" alt="{{ hugo.Data.personal.name }}" />
     </figure>

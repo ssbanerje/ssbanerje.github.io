@@ -5,13 +5,14 @@
       {{- $sameAs = $sameAs | append .link -}}
     {{- end -}}
   {{- end -}}
+  {{- $avatar := partialCached "avatar.html" . -}}
   {{- $person := dict
     "@type" "Person"
     "name" hugo.Data.personal.name
     "jobTitle" hugo.Data.personal.position
     "worksFor" (dict "@type" "Organization" "name" hugo.Data.personal.company)
     "url" site.BaseURL
-    "image" ("img/me_sq.webp" | absURL)
+    "image" $avatar.x2.Permalink
     "sameAs" $sameAs
   -}}
   {{- $ld := dict
