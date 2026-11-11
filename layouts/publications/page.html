@@ -8,8 +8,8 @@
     <br><hr>
     {{ if or .Params.links (.Resources.Match "*.pdf") }}
       <ul class="single-paper-links is-size-3" role="list">
-        {{ partial "link_resources" .Params.links }}
-        {{ partial "pdf_resources" . }}
+        {{ partial "link_resources.html" .Params.links }}
+        {{ partial "pdf_resources.html" . }}
       </ul>
     {{ end }}
   </section>
@@ -36,7 +36,7 @@
     <section class="section mb-4">
       <h2 class="title is-2">In the News</h2>
       <ul class="bulleted-list">
-        {{ partial "link_resources" . }}
+        {{ partial "link_resources.html" . }}
       </ul>
     </section>
   {{ end }}
