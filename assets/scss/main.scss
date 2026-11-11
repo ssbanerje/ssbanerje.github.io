@@ -1,7 +1,7 @@
 @use "sass:list";
 @use "hugo:vars/content" as content-vars;
 @use "bulma_config" as bc;
-@use 'bulma_theme' as bt;
+@use 'bulma_theme';
 @use "bulma/sass/utilities/css-variables" as cv;
 @use "bulma/sass/utilities/derived-variables" as dv;
 @use "bulma/sass/utilities/initial-variables" as iv;
@@ -20,21 +20,12 @@
 
 // Load Bulma Components
 @use 'bulma/sass/components/breadcrumb';
-@use 'bulma/sass/components/message';
+@use 'bulma/sass/components/message' with (
+  $message-colors: ("info": null, "success": null, "link": null, "warning": null, "danger": null)
+);
 
 // Load the Bulma helper classes in use (subset, see _helpers.scss)
 @use 'helpers';
-
-// Load configured Bulma Layouts
-@use 'bulma/sass/layout/container';
-@use 'bulma/sass/layout/section' with (
-  $section-padding: bc.$section-padding,
-  $section-padding-desktop: bc.$section-padding-desktop
-);
-@use 'bulma/sass/layout/footer' with (
-  $footer-background-color: bc.$footer-background-color,
-  $footer-padding: bc.$footer-padding
-);
 
 // Load our own subfiles (using @use)
 @use 'mixins';

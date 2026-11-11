@@ -1,14 +1,6 @@
 @use "hugo:vars/content";
 @use "hugo:vars/fonts";
 
-// Section
-$section-padding: 0.1rem;
-$section-padding-desktop: 0.1rem;
-
-// Footer configuration
-$footer-background-color: content.$background;
-$footer-padding: 0.25rem;
-
 // Text size
 $size-1: 2.5rem;
 $size-2: 2rem;
