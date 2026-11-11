@@ -6,25 +6,32 @@
   <meta name="referrer" content="strict-origin-when-cross-origin">
   {{ hugo.Generator }}
   <meta name="author" content="{{ hugo.Data.personal.name }}" />
-  {{ $description := "" }}
-  {{ if .IsHome }}
-    {{ $description = hugo.Data.personal.description }}
-  {{ else }}
+  {{ $description := site.Params.description }}
+  {{ if not .IsHome }}
     {{ $description = .Description | default (.Summary | plainify | chomp | truncate 160) | default site.Params.description }}
   {{ end }}
   <meta name="description" content="{{ $description }}" />
-  {{ $_ := partialCached "avatar.html" . }}
-  {{ partial "opengraph.html" . }}
-  {{ partial "schema.html" . }}
-  {{ partial "twitter_cards.html" . }}
-  {{ if and .IsPage (eq .Section "publications") }}
-    {{ partial "highwire.html" . }}
+  {{ $avatar := partialCached "avatar.html" . }}
+  {{ if eq .Kind "404" }}
+    <meta name="robots" content="noindex">
+  {{ else }}
+    {{ partial "opengraph.html" . }}
+    {{ partial "schema.html" . }}
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title | plainify }}{{ end }}">
+    <meta name="twitter:description" content="{{ $description }}">
+    <meta name="twitter:image" content="{{ $avatar.x2.Permalink }}">
+    {{ if and .IsPage (eq .Section "publications") }}
+      {{ partial "highwire.html" . }}
+    {{ end }}
   {{ end }}
   <meta name="theme-color" content="{{ hugo.Data.theme.colors.sidebar.background }}"/>
 
-  <title>{{ if not .IsHome }}{{ title .Title }} | {{ end }}{{ site.Title }}</title>
+  <title>{{ if not .IsHome }}{{ .Title | plainify }} | {{ end }}{{ site.Title }}</title>
 
-  <link rel="canonical" href="{{ .Permalink }}">
+  {{ if ne .Kind "404" }}
+    <link rel="canonical" href="{{ .Permalink }}">
+  {{ end }}
   {{ range .AlternativeOutputFormats -}}
     {{ printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .Permalink site.Title | safeHTML }}
   {{ end -}}

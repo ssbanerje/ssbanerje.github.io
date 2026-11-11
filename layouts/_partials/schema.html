@@ -20,7 +20,7 @@
     "@type" "ProfilePage"
     "url" .Permalink
     "name" site.Title
-    "description" hugo.Data.personal.description
+    "description" site.Params.description
     "mainEntity" $person
   -}}
   {{ printf "<script type=\"application/ld+json\">%s</script>" ($ld | jsonify) | safeHTML }}

@@ -1,4 +1,4 @@
 +++
 title = "News"
-date = 2017-07-19
+description = "News, awards, talks, and career milestones from Subho Sankar Banerjee."
 +++
