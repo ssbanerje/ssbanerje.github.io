@@ -21,6 +21,3 @@
 
 // Forward Bulma mixins so they are available via this module
 @forward "bulma/sass/utilities/mixins";
-
-// Forward our own design tokens and theme vars
-@forward "theme_vars";

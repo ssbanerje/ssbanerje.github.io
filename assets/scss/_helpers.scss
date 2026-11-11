@@ -1,4 +1,4 @@
-@use "sass:map";
+@use "hugo:vars/content";
 @use "bulma_theme" as bt;
 
 // Subset of bulma/sass/helpers/{float,spacing,typography,visibility}: only the classes the templates use.
@@ -32,10 +32,10 @@
 }
 
 .skip-link:is(:focus, :active) {
-  background-color: map.get(bt.$content, background);
-  border: 2px solid map.get(bt.$content, link);
+  background-color: content.$background;
+  border: 2px solid content.$link;
   border-radius: 0.25rem;
-  color: map.get(bt.$content, link);
+  color: content.$link;
   font-weight: bold;
   inset-block-start: 0.5rem;
   inset-inline-start: 0.5rem;

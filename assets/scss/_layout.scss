@@ -1,4 +1,4 @@
-@use "sass:map";
+@use "hugo:vars/content";
 @use "bulma_theme" as bt;
 @use "mixins" as mx;
 
@@ -18,7 +18,7 @@
 }
 
 #content {
-  background-color: map.get(bt.$content, background);
+  background-color: content.$background;
   flex: 1;
   inline-size: 100%;
   padding: 1rem;

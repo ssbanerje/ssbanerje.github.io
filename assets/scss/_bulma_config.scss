@@ -1,12 +1,12 @@
-@use "sass:map";
-@use "theme_vars" as tv;
+@use "hugo:vars/content";
+@use "hugo:vars/fonts";
 
 // Section
 $section-padding: 0.1rem;
 $section-padding-desktop: 0.1rem;
 
 // Footer configuration
-$footer-background-color: map.get(tv.$content, background);
+$footer-background-color: content.$background;
 $footer-padding: 0.25rem;
 
 // Text size
@@ -20,13 +20,13 @@ $size-7: 0.5rem;
 $size-normal: 1.25rem;
 
 // Fonts
-$family-sans-serif: map.get(tv.$fonts, content), sans-serif;
-$family-monospace: map.get(tv.$fonts, mono), monospace;
-$family-primary: map.get(tv.$fonts, content), sans-serif;
-$family-code: map.get(tv.$fonts, mono), monospace;
+$family-sans-serif: fonts.$content, sans-serif;
+$family-monospace: fonts.$mono, monospace;
+$family-primary: fonts.$content, sans-serif;
+$family-code: fonts.$mono, monospace;
 
 // Text and Background Colors
-$text: map.get(tv.$content, text);
-$background: map.get(tv.$content, background);
-$body-background-color: map.get(tv.$content, background);
-$link: map.get(tv.$content, link);
+$text: content.$text;
+$background: content.$background;
+$body-background-color: content.$background;
+$link: content.$link;
