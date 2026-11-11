@@ -1,14 +1,7 @@
 @use "hugo:vars/content";
 @use "bulma_theme" as bt;
 
-// Subset of bulma/sass/helpers/{float,spacing,typography,visibility}: only the classes the templates use.
-
-// float
-.is-clearfix::after {
-  clear: both;
-  content: " ";
-  display: table;
-}
+// Subset of bulma/sass/helpers/{spacing,typography,visibility}: only the classes the templates use.
 
 // spacing
 .m-0 { margin: 0 !important; }

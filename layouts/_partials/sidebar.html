@@ -17,7 +17,7 @@
       <p class="has-text-white-ter">
         {{ hugo.Data.personal.position }} @ {{ hugo.Data.personal.company }}
       </p>
-      <ul class="icon-list is-clearfix" role="list">
+      <ul class="icon-list" role="list">
       {{ range $social := hugo.Data.social.link }}
         <li><a href="{{ $social.link }}" aria-label="{{ $social.label }}"><i class="{{ $social.icon }}" aria-hidden="true"></i></a></li>
       {{ end }}
