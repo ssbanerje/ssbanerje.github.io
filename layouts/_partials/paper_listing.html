@@ -26,8 +26,8 @@
 {{ if or .Params.links (.Resources.Match "*.pdf") .Params.news }}
   <ul class="paper-links" role="list">
     {{- $title := .Title | $.RenderString | plainify -}}
-    {{ partial "link_resources" (dict "links" .Params.links "title" $title) }}
-    {{ partial "pdf_resources" (dict "page" . "title" $title) }}
-    {{ partial "link_resources" (dict "links" .Params.news "title" $title) }}
+    {{ partial "link_resources.html" (dict "links" .Params.links "title" $title) }}
+    {{ partial "pdf_resources.html" (dict "page" . "title" $title) }}
+    {{ partial "link_resources.html" (dict "links" .Params.news "title" $title) }}
   </ul>
 {{ end }}
