@@ -3,17 +3,16 @@
 {{- if not $u.IsAbs -}}
   {{- $path := strings.TrimPrefix "./" $u.Path -}}
   {{- if $path -}}
-    {{- $trimmed := strings.TrimSuffix "/" $path -}}
-    {{- with or (.PageInner.GetPage $path) (cond (ne $trimmed "") (.PageInner.GetPage $trimmed) nil) (.PageInner.Resources.Get $path) (resources.Get $path) -}}
+    {{- with or (.PageInner.GetPage $path) (.PageInner.Resources.Get $path) (resources.Get $path) -}}
       {{- $href = .RelPermalink -}}
       {{- with $u.RawQuery }}{{ $href = printf "%s?%s" $href . }}{{ end -}}
       {{- with $u.Fragment }}{{ $href = printf "%s#%s" $href . }}{{ end -}}
     {{- else -}}
       {{- if not (fileExists (printf "static/%s" (strings.TrimPrefix "/" $path))) -}}
-        {{- errorf "Broken internal link %q on page %s" .Destination .Page.Path -}}
+        {{- errorf "Broken internal link %q: see %s" .Destination .Position -}}
       {{- end -}}
     {{- end -}}
   {{- end -}}
 {{- end -}}
-<a href="{{ $href | safeURL }}"{{ with .Title }} title="{{ . }}"{{ end }}{{ if $u.IsAbs }} target="_blank" rel="noopener noreferrer"{{ end }}>{{ .Text | safeHTML }}</a>
+<a href="{{ $href | safeURL }}"{{ with .Title }} title="{{ . }}"{{ end }}{{ if in (slice "http" "https") $u.Scheme }} target="_blank" rel="noopener noreferrer"{{ end }}>{{ .Text }}</a>
 {{- /* This comment removes trailing newlines. */ -}}
