@@ -1,5 +1,4 @@
 +++
-featured = true
 pubtype = "conference"
 projects = ["learnedsystems"]
 title = "On Accelerating Pair-HMM Computations in Programmable Hardware"

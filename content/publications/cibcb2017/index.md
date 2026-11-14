@@ -1,5 +1,4 @@
 +++
-featured = true
 pubtype = "conference"
 projects = ["learnedsystems"]
 title = "Data-Driven Longitudinal Modeling and Prediction of Symptom Dynamics in Major Depressive Disorder: Integrating Factor Graphs and Learning Methods"
