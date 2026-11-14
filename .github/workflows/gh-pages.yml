@@ -6,12 +6,13 @@ on:
       - gh-pages
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   build:
     name: Build site
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
     concurrency:
       group: build-${{ github.ref }}
       cancel-in-progress: ${{ github.ref != 'refs/heads/master' }}
