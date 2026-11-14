@@ -2,9 +2,8 @@ name: GitHub Pages
 
 on:
   push:
-    branches:
-      - master
-  pull_request:
+    branches-ignore:
+      - gh-pages
   workflow_dispatch:
 
 jobs:
