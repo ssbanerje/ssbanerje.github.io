@@ -15,21 +15,25 @@
 }
 
 // Inline lists
-@mixin inline-list {
-  list-style: none;
+@mixin inline-list($gap: 0) {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $gap;
+  list-style: none !important;
+  padding-inline-start: 0;
 
-  li { display: inline-block; }
+  li { list-style: none; }
 }
 
-@mixin content-separated-list($content) {
-  @include inline-list;
+@mixin content-separated-list($content, $row-gap: 0.25rem) {
+  @include inline-list($row-gap 0);
 
-  li+li:before {
+  li:not(:last-child)::after {
     content: $content;
     content: $content / "";
   }
 }
 
 @mixin comma-separated-list {
-  @include content-separated-list(", ");
+  @include content-separated-list(",\00a0");
 }

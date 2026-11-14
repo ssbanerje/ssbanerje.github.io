@@ -137,8 +137,10 @@ footer {
     margin-block-start: 2rem !important;
     margin-inline-start: 1rem !important;
 
-    li{
-      &:before{ padding: 0 0.5rem; }
+    li {
+      margin: 0 !important;
+
+      &:not(:last-child)::after { padding: 0 0.5rem; }
     }
   }
 }

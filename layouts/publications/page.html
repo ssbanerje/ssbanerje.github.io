@@ -7,7 +7,7 @@
     </div>
     <br><hr>
     {{ if or .Params.links (.Resources.Match "*.pdf") }}
-      <ul class="single-paper-links is-size-3" role="list">
+      <ul class="single-paper-links" role="list">
         {{ partial "link_resources.html" .Params.links }}
         {{ partial "pdf_resources.html" . }}
       </ul>

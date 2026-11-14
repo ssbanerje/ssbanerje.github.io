@@ -44,14 +44,10 @@ $_fluid-pad: math.div(bt.$sidebar-padding, bt.$sidebar-max-width) * 100cqi;
   }
 
   .icon-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.15em 0.25em;
+    @include mx.inline-list(0.15em 0.25em);
     font-size: bt.$sidebar-icon-scale * 1em;
     justify-content: center;
-    list-style: none;
     margin: 0;
-    padding-inline-start: 0;
 
     li {
       @include mx.transition(scale 0.2s ease-out);

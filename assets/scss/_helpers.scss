@@ -1,5 +1,4 @@
 @use "hugo:vars/content";
-@use "bulma_theme" as bt;
 
 // Subset of bulma/sass/helpers/{spacing,typography,visibility}: only the classes the templates use.
 
@@ -8,7 +7,6 @@
 .mb-4 { margin-block-end: 1rem !important; }
 
 // typography
-.is-size-3 { font-size: bt.$size-3 !important; }
 .has-text-centered { text-align: center !important; }
 
 // accessibility & visibility
