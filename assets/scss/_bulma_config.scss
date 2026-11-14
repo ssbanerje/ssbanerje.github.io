@@ -1,5 +1,9 @@
+@use "sass:math";
 @use "hugo:vars/content";
 @use "hugo:vars/fonts";
+@use "hugo:vars/layout";
+
+$_root-px: 16;
 
 // Text size
 $size-1: 2.5rem;
@@ -9,7 +13,23 @@ $size-4: 1.25rem;
 $size-5: 1rem;
 $size-6: 0.75rem;
 $size-7: 0.5rem;
-$size-normal: 1.25rem;
+$size-normal: $size-4;
+
+// Responsive scale ratios derived from the type scale
+$mobile-heading-scale: math.div($size-2, $size-1);     // 0.8 (steps display headings down 1 tier on mobile)
+$mobile-body-scale: 0.5 * (1 + $mobile-heading-scale); // 0.9 (midpoint scale for mobile body copy)
+
+// Grid & sidebar geometry derived from data/theme.toml [layout]
+$_desktop-shell-cols: layout.$grid_columns - layout.$page_end_gutter_cols;
+$sidebar-tablet-width: math.percentage(math.div(layout.$sidebar_tablet_cols, layout.$grid_columns));
+$sidebar-desktop-width: math.percentage(math.div(layout.$sidebar_desktop_cols, $_desktop-shell-cols));
+$page-end-gutter: math.percentage(math.div(layout.$page_end_gutter_cols, layout.$grid_columns));
+
+$avatar-size: math.div(layout.$avatar_size, $_root-px) * 1rem;
+$sidebar-padding: $size-2;
+$sidebar-max-width: 2 * $avatar-size;
+$sidebar-ref-width: $avatar-size + $sidebar-padding;
+$sidebar-icon-scale: math.div($size-2, $size-4);
 
 // Fonts
 $family-sans-serif: fonts.$content, sans-serif;

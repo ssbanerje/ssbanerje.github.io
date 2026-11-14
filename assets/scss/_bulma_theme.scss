@@ -19,5 +19,16 @@
   $link: bc.$link
 );
 
-// Forward Bulma mixins so they are available via this module
+// Forward Bulma mixins and our derived layout/scale tokens
 @forward "bulma/sass/utilities/mixins";
+@forward "bulma_config" show
+  $mobile-heading-scale,
+  $mobile-body-scale,
+  $sidebar-tablet-width,
+  $sidebar-desktop-width,
+  $page-end-gutter,
+  $avatar-size,
+  $sidebar-padding,
+  $sidebar-max-width,
+  $sidebar-ref-width,
+  $sidebar-icon-scale;

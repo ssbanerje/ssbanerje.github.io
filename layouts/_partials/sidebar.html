@@ -4,9 +4,8 @@
       {{- $avatar := partialCached "avatar.html" . -}}
       <img class="is-rounded"
            src="{{ $avatar.x1.RelPermalink }}"
-           srcset="{{ $avatar.x1.RelPermalink }} 256w, {{ $avatar.x2.RelPermalink }} 468w"
-           sizes="(max-width: 768px) 175px, 256px"
-           width="256" height="256" fetchpriority="high" alt="{{ hugo.Data.personal.name }}" />
+           srcset="{{ $avatar.x1.RelPermalink }} 1x, {{ $avatar.x2.RelPermalink }} 2x"
+           width="{{ $avatar.x1.Width }}" height="{{ $avatar.x1.Height }}" fetchpriority="high" alt="{{ hugo.Data.personal.name }}" />
     </figure>
     <div class="sidebar-content has-text-centered">
       {{ if .IsHome }}

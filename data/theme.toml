@@ -24,3 +24,11 @@
 [fonts.mono]
   name = "Inconsolata"
   axes = "wght@400;700"
+
+# Layout proportions (12-column Bulma grid) & base dimensions
+[layout]
+  grid_columns = 12
+  sidebar_tablet_cols = 3
+  sidebar_desktop_cols = 4
+  page_end_gutter_cols = 1
+  avatar_size = 256
