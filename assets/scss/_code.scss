@@ -1,11 +1,22 @@
+@use "bulma_theme" as bt;
+
 /* Code and Highlighting */
 code, pre {
   font-size-adjust: from-font;
   white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  hyphens: none;
 }
 
 pre {
   margin-block: 0.5rem 2rem;
   margin-inline: 0.5rem;
   padding: 0.5rem;
+
+  span { min-inline-size: 0; }
+
+  @include bt.mobile {
+    margin-inline: 0;
+    font-size: bt.$mobile-heading-scale * 1em;
+  }
 }
