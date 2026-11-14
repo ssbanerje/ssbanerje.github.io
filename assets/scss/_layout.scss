@@ -1,3 +1,4 @@
+@use "sass:list";
 @use "hugo:vars/content";
 @use "bulma_theme" as bt;
 @use "mixins" as mx;
@@ -21,7 +22,19 @@
   background-color: content.$background;
   flex: 1;
   inline-size: 100%;
-  padding: 1rem;
+  padding-block: 1rem;
+  padding-inline-start: 1rem;
+  padding-inline-end: max(1rem, env(safe-area-inset-right));
+
+  @include bt.mobile {
+    padding-inline-start: max(1rem, env(safe-area-inset-left));
+
+    @for $i from 1 through 3 {
+      .title.is-#{$i} {
+        font-size: list.nth(bt.$sizes, $i) * bt.$mobile-heading-scale;
+      }
+    }
+  }
 
   :where(h1, h2.is-1) {
     border-block-end: 1px solid #d3d3d3;
@@ -46,9 +59,23 @@
 body {
   font-size: bt.$size-normal;
   font-size-adjust: from-font;
-  hyphens: auto;
   overflow-wrap: break-word;
   text-align: start;
+
+  @include bt.mobile {
+    font-size: bt.$size-normal * bt.$mobile-body-scale;
+  }
+}
+
+.title, .subtitle {
+  word-break: normal;
+  overflow-wrap: break-word;
+}
+
+.title > .subtitle {
+  display: inline-block;
+  line-height: 1.25;
+  margin: 0;
 }
 
 h1, h2, h3, h4, h5, h6,
@@ -64,13 +91,15 @@ strong, b, em, i,
   font-size-adjust: none;
 }
 
+h1,
 .no-border,
 h2:not(.is-1), h3, h4, h5, h6,
 .sidebar-title {
   text-wrap: balance;
 }
 
-p, .content li, .news li, blockquote {
+#content p, .content li, .news li, blockquote {
+  hyphens: auto;
   text-wrap: pretty;
 }
 
