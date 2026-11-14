@@ -28,6 +28,10 @@
 
     &.no-border { border: 0; }
   }
+
+  .content:last-child {
+    margin-block-end: 2rem;
+  }
 }
 
 .section {
