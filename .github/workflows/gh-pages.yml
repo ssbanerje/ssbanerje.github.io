@@ -17,21 +17,23 @@ jobs:
       group: build-${{ github.ref }}
       cancel-in-progress: ${{ github.ref != 'refs/heads/master' }}
     steps:
-      - name: Checkout code
+      - name: Checkout
         uses: actions/checkout@v7
         with:
           fetch-depth: 0
           filter: blob:none
+          lfs: false
 
       # Same Hugo image as the Dockerfile; keep the hugo flags in sync with Makefile `public`.
-      - name: Build Webpage
+      - name: Build
         run: >-
           docker run --rm
           --user "$(id -u):$(id -g)"
           -e HUGO_CACHEDIR=/tmp/hugo_cache
-          -v ${{ github.workspace }}:/project -w /project
+          -e TZ=America/Los_Angeles
+          -v "$GITHUB_WORKSPACE:/project"
           ghcr.io/gohugoio/hugo:v0.169.0
-          --gc --minify --cleanDestinationDir --printPathWarnings
+          build --gc --minify --cleanDestinationDir --printPathWarnings
 
       - name: Upload Pages artifact
         if: github.ref == 'refs/heads/master'
