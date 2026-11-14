@@ -13,18 +13,6 @@
   .columns {
     display: flex;
   }
-
-  .column.is-one-quarter-tablet {
-    flex: none;
-    inline-size: 25%;
-  }
-}
-
-@include bt.desktop {
-  .column.is-narrow-desktop {
-    flex: none;
-    inline-size: unset;
-  }
 }
 
 .columns.is-gapless {
