@@ -44,8 +44,11 @@ Click any storage node to inject a fault and toggle `Pinned Probes: ON/OFF`. Bec
 
 Fast low-level control is bounded by the physical cost of hardware and kernel monitoring. Continuous instrumentation across every microarchitectural structure or kernel path costs prohibitive silicon area, power, and CPU overhead; processors therefore multiplex hundreds of events onto a handful of physical counter registers, and OS profilers sample across time slices. Tools such as Linux `perf` rotate counter groups and scale counts linearly, which introduces severe estimation errors across bursty phases and OS interrupts. Downstream controllers cannot act reliably on such uncalibrated measurements.
 
-[BayesPerf][bayesperf] formulated profiling itself as statistical inference. Individual multiplexed counters are noisy and incomplete, but related hardware and software events obey architectural conservation laws such as pipeline issue-slot accounting and cache-hierarchy miss balance. [BayesPerf][bayesperf] encoded these invariants in a Bayesian factor graph, overlapped counter groups across consecutive multiplexing windows, and reconstructed unmonitored events with calibrated uncertainty bounds at under 2% latency overhead. Correcting multiplexing bias at the counter layer spared higher-level controllers from learning around corrupted inputs.
+[BayesPerf][bayesperf] formulated profiling itself as statistical inference. Individual multiplexed counters are noisy and incomplete, but related hardware and software events obey architectural conservation laws such as pipeline issue-slot accounting and cache-hierarchy miss balance. [BayesPerf][bayesperf] encoded these invariants in a Bayesian factor graph, overlapped counter groups across consecutive multiplexing windows, and reconstructed unmonitored events with calibrated uncertainty bounds at under 2% latency overhead (Figure 4). Correcting multiplexing bias at the counter layer spared higher-level controllers from learning around corrupted inputs.
 
+{{< viz id="ls-obs" >}}
+Sweep *Physical PMU registers* from `1/6` to `6/6` or click any counter node to inspect its trace. Under scarce registers (`2–3` PMUs), architectural conservation factors propagate constraints across overlapping windows to reconstruct unmonitored events with tight credible bounds; at `6/6`, hardware measures all counters directly.
+{{< /viz >}}
 
 ## Algorithm–Hardware Co-Design
 

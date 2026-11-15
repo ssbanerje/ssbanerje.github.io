@@ -460,6 +460,8 @@ figure.viz .progress:where(#{$_tone-is}) { --bulma-progress-value-background-col
 
 .viz-dot.is-slate { fill: #94a3b8; stroke: none; }
 .viz-edge-lbl.is-crimson { font-size: 10px; }
+.viz-band.is-active-ep { fill: rgba($viz-orange, 0.13); }
+.viz-active-ep-frame { fill: none; pointer-events: none; stroke: rgba($viz-orange, 0.8); stroke-width: 1.4; }
 
 .viz-node {
   &.is-navy {

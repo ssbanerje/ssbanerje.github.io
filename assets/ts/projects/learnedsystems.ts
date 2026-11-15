@@ -6,8 +6,8 @@
 import d3Area from 'd3-shape/area';
 import d3Line from 'd3-shape/line';
 import { monotoneX } from 'd3-shape/monotone';
-import { clamp, createRng, h, iterate, lerp, matchRule, maxIndex, memoBy, mountFigure, patchAttrs, pushRing, range, setText, sum, svgEl, toRecord, type FigureSpec, type MountHandle, type Rng } from '../lib/engine';
-import { createChart, rayEdge, renderTopo, type EdgePatch, type TopoConfig, type TopoEdgeDef, type TopoPatch } from '../lib/layers';
+import { clamp, createRng, h, iterate, lerp, matchRule, maxIndex, mean, memoBy, mountFigure, patchAttrs, pushRing, range, setText, sum, svgEl, toRecord, type FigureSpec, type MountHandle, type Rng } from '../lib/engine';
+import { createChart, rayEdge, renderTopo, type EdgePatch, type TopoConfig, type TopoEdgeDef, type TopoNodeDef, type TopoPatch } from '../lib/layers';
 
 // Figure 1: Heterogeneous Accelerator Scheduling (Symphony)
 type LoopMode = 'greybox' | 'point' | 'blackbox';
@@ -648,6 +648,177 @@ mountFigure('ls-storage', ST_SPEC, (ctx) => {
     },
     render: () => {
       renderStorageView(ctx, faults, { betaRows, logEl, verdictEl, patchTopo });
+    },
+  };
+});
+
+// Figure 4: Uncertainty-Aware Telemetry (BayesPerf)
+interface ObsPt { readonly truth: number; readonly perf: number; readonly ep: number; readonly ci: number }
+interface ObsEval {
+  readonly sets: ReadonlyArray<readonly number[]>; readonly series: readonly ObsPt[];
+  readonly blueEpochs: number; readonly bluePct: number; readonly errEp: number; readonly errPerf: number;
+}
+
+const OBS_CFG = { nEp: 12, nPts: 84 } as const;
+const PMU_VARS = [
+  { short: 'Ret', name: 'Retiring', x: 42, y: 40, side: 'bottom' },
+  { short: 'FE', name: 'FE Bound', x: 42, y: 102, side: 'bottom' },
+  { short: 'Spec', name: 'Bad Spec', x: 42, y: 164, side: 'bottom' },
+  { short: 'L2', name: 'L2 Stall', x: 166, y: 46, side: 'right' },
+  { short: 'L3', name: 'L3 Stall', x: 166, y: 108, side: 'right' },
+  { short: 'DRAM', name: 'DRAM Stall', x: 166, y: 170, side: 'right' },
+] as const;
+const PMU_FACTORS = [{ label: 'ψ_Σ', y: 68, vars: [0, 1, 2, 3] }, { label: 'ψ_L2', y: 120, vars: [2, 3, 4] }, { label: 'ψ_BW', y: 168, vars: [4, 5] }] as const;
+const OBS_TOPO_NODES: readonly TopoNodeDef[] = [
+  ...PMU_FACTORS.map((f, fi): TopoNodeDef => ({ id: `f-${fi}`, kind: 'pill', x: 106, y: f.y, w: 34, h: 22, label: f.label, cls: 'is-teal-pill' })),
+  ...PMU_VARS.map((pmu, vi): TopoNodeDef => ({
+    id: `v-${vi}`, kind: 'circle', x: pmu.x, y: pmu.y, r: 15.5, label: pmu.short, sub: pmu.name, subSide: pmu.side, click: true, cls: 'is-slate',
+    tip: `**${pmu.name} (${pmu.short})**\nClick to inspect this counter's 12-epoch reconstruction.`,
+  })),
+];
+const OBS_TOPO_EDGES: readonly TopoEdgeDef[] = PMU_FACTORS.flatMap((f, fi) =>
+  f.vars.map((vi): TopoEdgeDef => ({ id: `e-${fi}-${vi}`, d: `M106,${f.y}L${PMU_VARS[vi].x},${PMU_VARS[vi].y}`, arrow: false, cls: 'is-muted' })),
+);
+
+const OBS_SPEC: FigureSpec = {
+  kicker: 'Figure 4 · Uncertainty-Aware Telemetry (BayesPerf) · Architectural Conservation Laws Across Physical PMU Budgets',
+  toggles: [{ key: 'overlap', label: 'Window Overlap', on: true }],
+  actions: ['step', 'play'], stepLabel: 'Step Epoch', stepMs: 1500,
+  legend: [
+    { kind: 'swatch', tone: 'blue', label: 'Physically monitored PMU' },
+    { kind: 'band', tone: 'orange', label: 'Current epoch' },
+    { kind: 'swatch', tone: 'amber', label: 'Overlapping window variable' },
+    { kind: 'swatch', tone: 'teal', label: 'Conservation factor' },
+    { kind: 'line', tone: 'navy', label: 'True counter rate' },
+    { kind: 'line', tone: 'blue', label: 'BayesPerf posterior' },
+    { kind: 'band', tone: 'teal', label: 'BayesPerf ±95% CI' },
+    { kind: 'line', tone: 'crimson', dashed: true, label: 'Linear time-scaled `perf`' },
+  ],
+  grid: 'is-2col-asym',
+  panels: [
+    { kind: 'plot', title: 'FACTOR GRAPH (2/6 PMUs · CLICK NODE)', titleKey: 'obs-g-title', svgId: 'svg-ls-obs-a' },
+    { kind: 'plot', title: 'RECONSTRUCTION OF L3 STALL (4/12 EPOCHS = 33% BLUE)', titleKey: 'obs-c-title', svgId: 'svg-ls-obs-b' },
+  ],
+  sliders: [
+    { key: 'pmus', label: 'Physical PMU registers per epoch', min: 1, max: 6, step: 1, value: 2, fmt: (v) => {
+      const k = Math.round(v);
+      return k === 6 ? 'All 6 PMUs' : k === 1 ? '1 PMU (Single)' : `${k} / 6 PMUs`;
+    } },
+    { key: 'burst', label: 'Workload phase burstiness', min: 0.25, max: 1.0, step: 0.05, value: 0.7, fmt: (v) => v.toFixed(2) },
+  ],
+  metrics: [{ key: 'coverage', label: 'Monitored coverage' }, { key: 'overlap', label: 'Window overlap' }, { key: 'bayesErr', label: 'BayesPerf error' }, { key: 'perfErr', label: 'Linear perf error' }],
+};
+
+function buildObsSeries(sets: ReadonlyArray<readonly number[]>, kPmus: number, burst: number, inspected: number): ObsPt[] {
+  const nbrs = [...new Set(PMU_FACTORS.filter((f) => f.vars.some((v) => v === inspected)).flatMap((f) => f.vars).filter((vi) => vi !== inspected))];
+  const shift = inspected * 0.85;
+  let last = 0.46;
+  return range(OBS_CFG.nPts).map((ptIdx) => {
+    const u = ptIdx / (OBS_CFG.nPts - 1);
+    const epoch = Math.min(OBS_CFG.nEp - 1, Math.floor(u * OBS_CFG.nEp));
+    const curSet = sets[epoch];
+    const prevSet = sets[(epoch + OBS_CFG.nEp - 1) % OBS_CFG.nEp];
+    const sched = curSet.includes(inspected);
+    const actNbrs = nbrs.filter((nb) => curSet.includes(nb)).length;
+    const ovFrac = kPmus > 1 ? Math.min(1, curSet.filter((vi) => prevSet.includes(vi)).length / Math.max(1, kPmus - 1)) : 0;
+    const truth = clamp(0.47 + 0.26 * burst * Math.sin(u * Math.PI * 5 + shift) + 0.13 * burst * Math.cos(u * Math.PI * 11 + shift), 0.09, 0.91);
+    last = sched ? truth : last;
+    const gain = clamp(0.12 + 0.54 * (actNbrs / Math.max(1, nbrs.length)) + 0.34 * ovFrac, 0.1, 0.94);
+    return {
+      truth, perf: sched ? truth : clamp(last * (1 + 0.13 * Math.sin(epoch * 2.1)), 0.06, 0.95),
+      ep: sched ? truth : lerp(last, truth, gain), ci: sched ? 0.022 : clamp(0.24 - 0.18 * gain, 0.045, 0.23),
+    };
+  });
+}
+
+const calcObsModel = memoBy((kPmus: number, overlap: boolean, burst: number, inspected: number): ObsEval => {
+  const sets = range(OBS_CFG.nEp).map((ep) => kPmus >= 6 ? [0, 1, 2, 3, 4, 5] : range(kPmus).map((slot) => ((overlap && kPmus >= 2 ? ep + slot : ep * kPmus + slot) % 6)));
+  const series = buildObsSeries(sets, kPmus, burst, inspected);
+  const blueEpochs = sets.filter((s) => s.includes(inspected)).length;
+  return { sets, series, blueEpochs, bluePct: Math.round((blueEpochs / OBS_CFG.nEp) * 100), errEp: mean(series, (d) => Math.abs(d.ep - d.truth)), errPerf: mean(series, (d) => Math.abs(d.perf - d.truth)) };
+}, 16);
+
+function buildObsTopoPatch(kPmus: number, inspected: number, curSet: readonly number[], overlapVars: readonly number[]): TopoPatch {
+  return {
+    nodes: toRecord(range(6), (vi) => {
+      const monitored = curSet.includes(vi);
+      const isOv = kPmus > 1 && kPmus < 6 && overlapVars.includes(vi);
+      return [`v-${vi}`, { cls: monitored ? 'is-blue-solid' : 'is-slate', ring: vi === inspected ? 'dashed' : isOv ? 'solid' : '', pressed: vi === inspected, ariaLabel: `Inspect ${PMU_VARS[vi].name} (${monitored ? 'monitored' : 'latent'})` }];
+    }),
+    edges: Object.fromEntries(
+      PMU_FACTORS.flatMap((factor, fi) => {
+        const hasMeas = factor.vars.some((vi) => curSet.includes(vi));
+        return factor.vars.map((vi) => [`e-${fi}-${vi}`, { cls: hasMeas && !curSet.includes(vi) ? 'is-teal is-flowing' : hasMeas ? 'is-blue-soft' : 'is-muted' }] as const);
+      }),
+    ),
+  };
+}
+
+function buildObsReconLayers(svgNode: SVGSVGElement): (obs: ObsEval, curEp: number, inspected: number, kPmus: number) => void {
+  const chart = createChart(svgNode, { box: [380, 212], pad: [8, 8, 10, 8], x: [0, OBS_CFG.nPts - 1], y: [0, 1] });
+  const epW = (OBS_CFG.nPts - 1) / OBS_CFG.nEp;
+  const epCols = chart.cols<readonly number[]>(epW, (_, epochIdx) => epochIdx * epW);
+  const activeEp = chart.vband({ cls: 'is-active-ep' });
+  const activeFrame = svgEl('rect', { cls: 'viz-active-ep-frame', y: chart.y0 + 0.7, height: chart.h - 1.4 });
+  chart.overlayEl.append(activeFrame);
+  const ciArea = chart.area<ObsPt>((_, idx) => idx, (d) => d.ep - d.ci, (d) => d.ep + d.ci, 'is-teal');
+  const truthLine = chart.line<ObsPt>((_, idx) => idx, (d) => d.truth, 'is-navy');
+  const perfLine = chart.line<ObsPt>((_, idx) => idx, (d) => d.perf, 'is-crimson is-dashed');
+  const epLine = chart.line<ObsPt>((_, idx) => idx, (d) => d.ep, 'is-blue');
+
+  return (obs, curEp, inspected, kPmus) => {
+    const xA = curEp * epW;
+    const xB = (curEp + 1) * epW;
+    epCols(obs.sets, (epochSet, epochIdx) => (epochIdx === curEp ? 'is-empty' : epochSet.includes(inspected) ? 'is-blue' : 'is-grid'));
+    activeEp(xA, xB);
+    patchAttrs(activeFrame, { x: chart.sx(xA) + 0.7, width: Math.max(0, chart.sx(xB) - chart.sx(xA) - 1.4) });
+    ciArea(obs.series);
+    truthLine(obs.series);
+    perfLine(obs.series, 'is-crimson is-dashed', kPmus < 6);
+    epLine(obs.series);
+  };
+}
+
+function renderObsView(
+  ctx: MountHandle, state: { readonly epochCursor: number; readonly inspected: number },
+  patchTopo: (patch: TopoPatch) => void, drawRecon: (obs: ObsEval, curEp: number, inspected: number, kPmus: number) => void,
+): void {
+  const kPmus = Math.round(ctx.num('pmus'));
+  const obs = calcObsModel(kPmus, ctx.flag('overlap'), ctx.num('burst'), state.inspected);
+  const curEp = state.epochCursor % OBS_CFG.nEp;
+  const curSet = obs.sets[curEp];
+  const prevSet = obs.sets[(curEp + OBS_CFG.nEp - 1) % OBS_CFG.nEp];
+  const overlapVars = kPmus >= 6 ? curSet : curSet.filter((vi) => prevSet.includes(vi));
+  const shared = kPmus > 1 ? overlapVars.length : 0;
+  ctx.setTitle('obs-g-title', `FACTOR GRAPH (${kPmus}/6 PMUs · CLICK NODE)`);
+  ctx.setTitle('obs-c-title', `RECONSTRUCTION OF ${PMU_VARS[state.inspected].name.toUpperCase()} (${obs.blueEpochs}/${OBS_CFG.nEp} EPOCHS = ${obs.bluePct}% BLUE)`);
+  ctx.setMetric('coverage', kPmus === 6 ? '6 / 6 PMUs (100% direct)' : `${kPmus} / 6 PMUs (${obs.bluePct}% blue)`, 'is-blue');
+  ctx.setMetric('overlap', kPmus === 6 ? 'Full direct observation' : `${shared} shared counter${shared === 1 ? '' : 's'}`);
+  ctx.setMetric('bayesErr', kPmus === 6 ? '0.000' : obs.errEp.toFixed(3), 'is-teal');
+  ctx.setMetric('perfErr', kPmus === 6 ? '0.000 (no mux)' : obs.errPerf.toFixed(3), kPmus === 6 ? 'is-teal' : 'is-crimson');
+  patchTopo(buildObsTopoPatch(kPmus, state.inspected, curSet, overlapVars));
+  drawRecon(obs, curEp, state.inspected, kPmus);
+}
+
+mountFigure('ls-obs', OBS_SPEC, (ctx) => {
+  let state = { epochCursor: 0, inspected: 4 };
+  const drawRecon = buildObsReconLayers(ctx.svg('svg-ls-obs-b'));
+  const patchTopo = renderTopo(ctx.svg('svg-ls-obs-a'), {
+    box: [246, 212], nodes: OBS_TOPO_NODES, edges: OBS_TOPO_EDGES,
+    onNodeClick: (id) => {
+      const nextIdx = id.startsWith('v-') ? Number(id.slice(2)) : NaN;
+      if (Number.isInteger(nextIdx) && nextIdx >= 0 && nextIdx < PMU_VARS.length) {
+        state = { ...state, inspected: nextIdx };
+        renderObsView(ctx, state, patchTopo, drawRecon);
+      }
+    },
+  });
+  return {
+    step: () => {
+      state = { ...state, epochCursor: state.epochCursor + 1 };
+    },
+    render: () => {
+      renderObsView(ctx, state, patchTopo, drawRecon);
     },
   };
 });
