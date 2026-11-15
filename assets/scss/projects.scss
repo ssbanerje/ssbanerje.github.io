@@ -498,6 +498,15 @@ figure.viz.is-paused .viz-edge.is-flowing {
   animation-play-state: paused;
 }
 
+// Cache-Way Strip
+.way-strip { block-size: 11px; display: grid; gap: 2px; grid-template-columns: repeat(12, 1fr); }
+.way-cell {
+  background: #e2e8f0;
+  border-radius: 2px;
+
+  &:where(#{$_tone-is}) { background: var(--c); }
+}
+
 // Floating Hover & Focus Tooltip (positioned via GPU translate3d)
 .fx-tip {
   background: rgba(bt.$background, 0.97);
@@ -688,6 +697,7 @@ figcaption.viz-cap {
 
   .leg-swatch,
   .leg-line,
+  .way-cell,
   .viz-svg {
     forced-color-adjust: none;
   }
