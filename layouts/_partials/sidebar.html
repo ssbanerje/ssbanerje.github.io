@@ -1,14 +1,11 @@
 <div class="padded-sidebar">
   <section class="section">
-    <figure class="image container">
-      {{- $avatar := resources.Get hugo.Data.personal.avatar -}}
-      {{- $avatar1x := $avatar.Resize "256x webp q90" -}}
-      {{- $avatar2x := $avatar.Resize "468x webp q90" | resources.Copy "img/me_sq.webp" -}}
+    <figure class="image">
+      {{- $avatar := partialCached "avatar.html" . -}}
       <img class="is-rounded"
-           src="{{ $avatar1x.RelPermalink }}"
-           srcset="{{ $avatar1x.RelPermalink }} 256w, {{ $avatar2x.RelPermalink }} 468w"
-           sizes="(max-width: 768px) 175px, 256px"
-           width="256" height="256" fetchpriority="high" alt="{{ hugo.Data.personal.name }}" />
+           src="{{ $avatar.x1.RelPermalink }}"
+           srcset="{{ $avatar.x1.RelPermalink }} 1x, {{ $avatar.x2.RelPermalink }} 2x"
+           width="{{ $avatar.x1.Width }}" height="{{ $avatar.x1.Height }}" fetchpriority="high" alt="{{ hugo.Data.personal.name }}" />
     </figure>
     <div class="sidebar-content has-text-centered">
       {{ if .IsHome }}
@@ -19,7 +16,7 @@
       <p class="has-text-white-ter">
         {{ hugo.Data.personal.position }} @ {{ hugo.Data.personal.company }}
       </p>
-      <ul class="icon-list is-clearfix" role="list">
+      <ul class="icon-list" role="list">
       {{ range $social := hugo.Data.social.link }}
         <li><a href="{{ $social.link }}" aria-label="{{ $social.label }}"><i class="{{ $social.icon }}" aria-hidden="true"></i></a></li>
       {{ end }}

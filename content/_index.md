@@ -1,11 +1,10 @@
 +++
-title = "Homepage"
-date = 2026-08-10
+date = 2026-11-14
 +++
 
-I am a Software Engineer at [Google DeepMind][gdm], where I work on training the [Gemini][gemini] family of models using reinforcement learning. Previously, at [Google Cloud][gcloud], I worked on reliability and performance for large-scale AI infrastructure, focusing on detecting and mitigating [silent data corruption][sdc] across CPUs, TPUs, GPUs, and NICs.
+I am a Software Engineer at [Google DeepMind][gdm], where I work on post-training [Gemini][gemini] with reinforcement learning. Previously, at [Google Cloud][gcloud], I worked on reliability and performance for large-scale AI infrastructure, focusing on detecting and mitigating [silent data corruption][sdc] across CPUs, TPUs, GPUs, and NICs.
 
-My research focuses on AI for systems and systems for AI. I completed my Ph.D. in [Computer Science][cs@uiuc] at the [University of Illinois at Urbana-Champaign][uiuc], advised by Prof. [Ravishankar K. Iyer][rkiyer]. My dissertation research focused on establishing a reinforcement learning framework for the control, management, and optimization of large-scale heterogeneous computer systems.
+Prior to Google, I completed my Ph.D. in [Computer Science][cs@uiuc] at the [University of Illinois at Urbana-Champaign][uiuc], advised by Prof. [R. K. Iyer][rkiyer]. My dissertation research established a reinforcement learning framework to manage and optimize large-scale heterogeneous computer systems.
 
 
 [gdm]: https://deepmind.google/

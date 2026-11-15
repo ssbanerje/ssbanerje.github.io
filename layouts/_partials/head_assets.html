@@ -1,0 +1,27 @@
+<link rel="icon" href="{{ "img/favicon.svg" | relURL }}" type="image/svg+xml">
+<link rel="icon" href="{{ "img/favicon.ico" | relURL }}" sizes="32x32">
+<link rel="apple-touch-icon" href="{{ "img/apple-touch-icon.png" | relURL }}">
+
+{{ $sheets := slice (dict "src" "scss/main.scss" "out" "css/style.css") }}
+{{ if ne (.Params.projects_script | default "") "" }}
+  {{ $sheets = $sheets | append (dict "src" "scss/projects.scss" "out" "css/projects.css") }}
+{{ end }}
+{{ range $sheets }}
+  {{ $s := resources.Get .src | css.Sass (dict "transpiler" "dartsass" "targetPath" .out "enableSourceMap" hugo.IsDevelopment) }}
+  {{ if hugo.IsDevelopment }}
+    <link rel="stylesheet" href="{{ $s.RelPermalink }}">
+  {{ else }}
+    {{ $s = $s | minify | fingerprint }}
+    <link rel="stylesheet" href="{{ $s.RelPermalink }}" integrity="{{ $s.Data.Integrity }}" crossorigin="anonymous">
+  {{ end }}
+{{ end }}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://unpkg.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400;1,700&family=Inconsolata:wght@400;700&family=Eczar:wght@700;800&display=swap" crossorigin="anonymous" referrerpolicy="no-referrer">
+<link rel="stylesheet" href="https://unpkg.com/academicons@1.9.5/css/academicons.min.css" integrity="sha384-IAnhEDrYZnLsYcVzowpizdxXTHFovW5/CkZObGfY2QuaCKaQpvLCjj45LGb4Q/yE" crossorigin="anonymous" referrerpolicy="no-referrer">
+<link rel="stylesheet" href="https://unpkg.com/@fortawesome/fontawesome-free@7.2.0/css/all.min.css" integrity="sha384-EXatlQyrOJgDaM9/a74ArMzy7/2bTMSrZj8ID1IPeVmc3GncfCugefCFWSLj8JL/" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+{{ if hugo.IsProduction }}
+  {{ partial "google_analytics.html" . }}
+{{ end }}

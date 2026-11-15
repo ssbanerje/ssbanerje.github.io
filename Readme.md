@@ -1,10 +1,10 @@
 # Subho Sankar Banerjee — Personal Website
 
-Source for [ssbanerje.github.io](https://ssbanerje.github.io), built with [Hugo](https://gohugo.io/) (`v0.168.0`, with Dart Sass) and [Bulma](https://bulma.io/) via Hugo Modules.
+Source for [ssbanerje.github.io](https://ssbanerje.github.io), built with [Hugo](https://gohugo.io/) (`v0.169.0`, with Dart Sass) and [Bulma](https://bulma.io/) via Hugo Modules.
 
 ## Make targets
 
-| Docker (recommended) | Native (needs Hugo, Dart Sass, Go, Git) | What it does |
+| Docker (recommended) | Native (needs Hugo, Dart Sass, Go, Node.js, Git) | What it does |
 |---|---|---|
 | `make docker-all` | `make all` | Build the site into `public/` |
 | `make docker-clean` | `make clean` | Remove `public/` and `resources/` |

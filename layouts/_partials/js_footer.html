@@ -14,3 +14,31 @@
   }]
 }
 </script>
+{{- with .Params.projects_script }}
+  {{- $src := resources.Get . -}}
+  {{- if not $src -}}
+    {{- errorf "projects_script %q not found" . -}}
+  {{- end -}}
+  {{- $shims := dict
+    "d3-selection/select" "ts/mod/d3-selection/select.js"
+    "d3-shape/line"       "ts/mod/d3-shape/line.js"
+    "d3-shape/area"       "ts/mod/d3-shape/area.js"
+    "d3-shape/monotone"   "ts/mod/d3-shape/curve/monotone.js"
+    "d3-path"             "ts/mod/d3-path/index.js"
+  -}}
+  {{- $jsOpts := dict
+    "targetPath" (printf "js/%s" (replace (path.Base .) ".ts" ".js"))
+    "format" "esm"
+    "target" "es2022"
+    "shims" $shims
+    "minify" (not hugo.IsDevelopment)
+  -}}
+  {{- $js := $src | js.Build $jsOpts -}}
+  <noscript><style>.viz-mount:empty{display:none}</style></noscript>
+  {{- if hugo.IsDevelopment }}
+    <script type="module" src="{{ $js.RelPermalink }}"></script>
+  {{- else }}
+    {{- $js = $js | fingerprint }}
+    <script type="module" src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}" crossorigin="anonymous"></script>
+  {{- end }}
+{{- end }}

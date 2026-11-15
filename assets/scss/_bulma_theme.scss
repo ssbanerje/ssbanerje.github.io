@@ -19,8 +19,9 @@
   $link: bc.$link
 );
 
-// Forward Bulma mixins so they are available via this module
+// Forward Bulma mixins and our derived palette/layout/scale tokens
 @forward "bulma/sass/utilities/mixins";
-
-// Forward our own design tokens and theme vars
-@forward "theme_vars";
+@forward "bulma_config" hide
+  $size-1, $size-2, $size-3, $size-4, $size-5, $size-6, $size-7, $size-normal,
+  $family-sans-serif, $family-monospace, $family-primary, $family-code,
+  $text, $background, $link;

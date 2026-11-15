@@ -1,13 +1,24 @@
-@use "sass:map";
-@use "theme_vars" as tv;
+@use "sass:math";
 
-// Section
-$section-padding: 0.1rem;
-$section-padding-desktop: 0.1rem;
+// Palette: Sidebar & Content
+$sidebar-bg: #141f33; // keep synced with <meta name="theme-color"> in layouts/_partials/header.html
+$sidebar-text: #fff;
+$sidebar-link: #fff;
+$sidebar-link-hover: #feb24c;
 
-// Footer configuration
-$footer-background-color: map.get(tv.$content, background);
-$footer-padding: 0.25rem;
+$background: #fff;
+$body-background-color: $background;
+$text: #333;
+$link: #274798;
+$link-hover: #f16421;
+$award: #812717;
+
+// Fonts
+$family-sidebar: Eczar, sans-serif;
+$family-sans-serif: Lato, sans-serif;
+$family-monospace: Inconsolata, monospace;
+$family-primary: $family-sans-serif;
+$family-code: $family-monospace;
 
 // Text size
 $size-1: 2.5rem;
@@ -17,16 +28,19 @@ $size-4: 1.25rem;
 $size-5: 1rem;
 $size-6: 0.75rem;
 $size-7: 0.5rem;
-$size-normal: 1.25rem;
+$size-normal: $size-4;
 
-// Fonts
-$family-sans-serif: map.get(tv.$fonts, content), sans-serif;
-$family-monospace: map.get(tv.$fonts, mono), monospace;
-$family-primary: map.get(tv.$fonts, content), sans-serif;
-$family-code: map.get(tv.$fonts, mono), monospace;
+// Responsive scale ratios derived from the type scale
+$mobile-heading-scale: math.div($size-2, $size-1);     // 0.8 (steps display headings down 1 tier on mobile)
+$mobile-body-scale: 0.5 * (1 + $mobile-heading-scale); // 0.9 (midpoint scale for mobile body copy)
 
-// Text and Background Colors
-$text: map.get(tv.$content, text);
-$background: map.get(tv.$content, background);
-$body-background-color: map.get(tv.$content, background);
-$link: map.get(tv.$content, link);
+// 12-column grid & sidebar geometry (3/12 tablet, 4/11 desktop inside 11/12 shell, 1/12 end gutter)
+$sidebar-tablet-width: math.percentage(math.div(3, 12));
+$sidebar-desktop-width: math.percentage(math.div(4, 11));
+$page-end-gutter: math.percentage(math.div(1, 12));
+
+$avatar-size: 16rem; // matches 256x resize in layouts/_partials/avatar.html
+$sidebar-padding: $size-2;
+$sidebar-max-width: 2 * $avatar-size;
+$sidebar-ref-width: $avatar-size + $sidebar-padding;
+$sidebar-icon-scale: math.div($size-2, $size-4);

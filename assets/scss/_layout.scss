@@ -1,4 +1,4 @@
-@use "sass:map";
+@use "sass:list";
 @use "bulma_theme" as bt;
 @use "mixins" as mx;
 
@@ -7,7 +7,7 @@
   min-block-size: 100dvh;
 
   @include bt.desktop {
-    padding-inline-end: 8.3333333333%;
+    padding-inline-end: bt.$page-end-gutter;
   }
 }
 
@@ -18,16 +18,36 @@
 }
 
 #content {
-  background-color: map.get(bt.$content, background);
+  background-color: bt.$background;
   flex: 1;
   inline-size: 100%;
-  padding: 1rem;
+  padding-block: 1rem;
+  padding-inline-start: 1rem;
+  padding-inline-end: max(1rem, env(safe-area-inset-right));
+
+  @include bt.mobile {
+    padding-inline-start: max(1rem, env(safe-area-inset-left));
+
+    @for $i from 1 through 3 {
+      .title.is-#{$i} {
+        font-size: list.nth(bt.$sizes, $i) * bt.$mobile-heading-scale;
+      }
+    }
+  }
 
   :where(h1, h2.is-1) {
     border-block-end: 1px solid #d3d3d3;
 
     &.no-border { border: 0; }
   }
+
+  .content:last-child {
+    margin-block-end: 2rem;
+  }
+}
+
+.section {
+  padding: 0.1rem;
 }
 
 .content h2.is-3:not(:first-child) {
@@ -38,15 +58,29 @@
 body {
   font-size: bt.$size-normal;
   font-size-adjust: from-font;
-  hyphens: auto;
   overflow-wrap: break-word;
   text-align: start;
+
+  @include bt.mobile {
+    font-size: bt.$size-normal * bt.$mobile-body-scale;
+  }
+}
+
+.title, .subtitle {
+  word-break: normal;
+  overflow-wrap: break-word;
+}
+
+.title > .subtitle {
+  display: inline-block;
+  line-height: 1.25;
+  margin: 0;
 }
 
 h1, h2, h3, h4, h5, h6,
 strong, b, em, i,
 .title, .subtitle,
-.venue, .paper-venue,
+.venue,
 .paper-awards li,
 .paper-type-key div {
   font-size-adjust: from-font;
@@ -56,13 +90,15 @@ strong, b, em, i,
   font-size-adjust: none;
 }
 
+h1,
 .no-border,
 h2:not(.is-1), h3, h4, h5, h6,
 .sidebar-title {
   text-wrap: balance;
 }
 
-p, .content li, .news li, blockquote {
+#content p, .content li, .news li, blockquote {
+  hyphens: auto;
   text-wrap: pretty;
 }
 
@@ -80,17 +116,59 @@ p {
 // De-emphasized text, e.g. the ":(" on the 404 page
 .text-faint { color: #bbb; }
 
-hr {
-  block-size: 1px;
-  background-color: #d3d3d3;
-  margin: 0;
-  margin-block-end: 1em;
-}
+/* Table of Contents */
+#TableOfContents {
+  border: 1px solid #d3d3d3;
+  border-radius: 3px;
+  font-size: bt.$size-5;
+  hyphens: none;
+  inline-size: fit-content;
+  margin-block: 1.75rem 2.25rem;
+  max-inline-size: 100%;
+  min-inline-size: 12rem;
+  padding: 1rem 2.25rem 0.85rem 1.4rem;
+  position: relative;
 
+  @include bt.mobile {
+    font-size: bt.$size-5 * bt.$mobile-body-scale;
+    padding: 0.9rem 1.5rem 0.75rem 1.15rem;
+  }
+
+  &::before {
+    background-color: bt.$background;
+    color: bt.$grey;
+    content: "Table of Contents";
+    font-size: 0.85em;
+    font-weight: 700;
+    inset-block-start: 0;
+    inset-inline-start: 0.85rem;
+    letter-spacing: 0.015em;
+    line-height: 1;
+    padding-inline: 0.45rem;
+    position: absolute;
+    transform: translateY(-50%);
+
+    @media (forced-colors: active) {
+      background-color: Canvas;
+    }
+  }
+
+  ol {
+    margin-block: 0;
+    margin-inline-start: 1.35em;
+  }
+
+  li {
+    hyphens: none;
+    line-height: 1.45;
+  }
+}
 /* Footer */
 footer {
+  background-color: bt.$background;
   font-size: 70%;
   min-block-size: 4.375rem;
+  padding: 0.25rem;
 
   ul {
     @include mx.content-separated-list("\2022");
@@ -98,8 +176,10 @@ footer {
     margin-block-start: 2rem !important;
     margin-inline-start: 1rem !important;
 
-    li{
-      &:before{ padding: 0 0.5rem; }
+    li {
+      margin: 0 !important;
+
+      &:not(:last-child)::after { padding: 0 0.5rem; }
     }
   }
 }
@@ -115,6 +195,11 @@ footer {
   background-color: #eee;
   border-radius: 0.3rem;
   font-size: 70%;
+
+  li + li::before {
+    content: "/";
+    content: "/" / "";
+  }
 }
 
 /* Overwrite the margin on the default Bulma message element. */

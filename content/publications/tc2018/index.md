@@ -1,5 +1,4 @@
 +++
-featured = true
 pubtype = "journal"
 projects = ["learnedsystems"]
 title = "ASAP: Accelerated Short Read Alignment on Programmable Hardware"

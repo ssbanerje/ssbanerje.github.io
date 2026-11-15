@@ -1,6 +1,6 @@
 {{ define "main" }}
   <section class="section">
-    <h1 class="title is-1">News</h1>
+    <h1 class="title is-1">{{ .Title }}</h1>
     {{ partial "news_list.html" (dict "page" . "items" hugo.Data.news.news) }}
   </section>
 {{ end }}

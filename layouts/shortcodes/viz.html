@@ -1,0 +1,13 @@
+{{- $id := .Get "id" -}}
+{{- if not $id -}}{{- errorf "viz shortcode requires id at %s" .Position -}}{{- end -}}
+{{- $refs := $.Page.Store.Get "vizRefs" -}}
+{{- if eq $refs nil -}}
+  {{- $refs = delimit (findRE `(?m)^\[[^\]]+\]:\s+\S+.*$` $.Page.RawContent) "\n" -}}
+  {{- $.Page.Store.Set "vizRefs" $refs -}}
+{{- end -}}
+<figure class="viz" id="fig-{{ $id }}">
+  <div class="viz-mount"></div>
+  {{- with (strings.TrimSpace .Inner) -}}
+    <figcaption class="viz-cap">{{ printf "%s\n\n%s" . $refs | $.Page.RenderString }}</figcaption>
+  {{- end -}}
+</figure>

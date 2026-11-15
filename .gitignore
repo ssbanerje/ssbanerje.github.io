@@ -15,3 +15,4 @@ $RECYCLE.BIN/
 
 # build files
 .hugo_build.lock
+assets/jsconfig.json

@@ -2,36 +2,50 @@ name: GitHub Pages
 
 on:
   push:
-    branches:
-      - master
-  pull_request:
+    branches-ignore:
+      - gh-pages
   workflow_dispatch:
+
+permissions:
+  contents: read
 
 jobs:
   build:
     name: Build site
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
     concurrency:
       group: build-${{ github.ref }}
       cancel-in-progress: ${{ github.ref != 'refs/heads/master' }}
     steps:
-      - name: Checkout code
+      - name: Checkout
         uses: actions/checkout@v7
         with:
           fetch-depth: 0
           filter: blob:none
+          lfs: false
 
-      # Same pinned image as the Dockerfile; keep the hugo flags in sync with Makefile `public`.
-      - name: Build Webpage
-        run: >-
-          docker run --rm
-          --user "$(id -u):$(id -g)"
-          -e HUGO_CACHEDIR=/tmp/hugo_cache
-          -v ${{ github.workspace }}:/project -w /project
-          ghcr.io/gohugoio/hugo:v0.168.0@sha256:1fb8fe7f417abd5802d86747d297728aa48078d763159e7dff6559fe3f8bb8e7
-          --gc --minify --printPathWarnings
+      - name: Typecheck
+        run: make typecheck
+
+      - name: Cache Hugo modules
+        uses: actions/cache@v6
+        with:
+          path: ${{ runner.temp }}/hugo_cache
+          key: hugo-mods-${{ hashFiles('go.sum') }}
+
+      # Same Hugo image as the Dockerfile; keep the hugo flags in sync with Makefile `public`.
+      - name: Build
+        run: |
+          mkdir -p "$RUNNER_TEMP/hugo_cache"
+          docker run --rm \
+            --user "$(id -u):$(id -g)" \
+            -e HUGO_CACHEDIR=/tmp/hugo_cache \
+            -e GOFLAGS=-modcacherw \
+            -e TZ=America/Los_Angeles \
+            -v "$RUNNER_TEMP/hugo_cache:/tmp/hugo_cache" \
+            -v "$GITHUB_WORKSPACE:/project" \
+            ghcr.io/gohugoio/hugo:v0.169.0 \
+            build --gc --minify --cleanDestinationDir --printPathWarnings
 
       - name: Upload Pages artifact
         if: github.ref == 'refs/heads/master'

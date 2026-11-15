@@ -20,13 +20,20 @@
 {{ end }}
 
 <!-- Render -->
+{{ $pubtype_labels := dict
+  "preprint" "Report"
+  "conference" "Conference"
+  "journal" "Journal"
+  "workshop" "Workshop"
+  "abstract" "Abstract"
+}}
 {{ if $show_type }}
   {{ partialCached "type_key.html" (slice
-    (dict "class" "pubtype-preprint" "label" "Preprint")
-    (dict "class" "pubtype-conference" "label" "Conference")
-    (dict "class" "pubtype-journal" "label" "Journal")
-    (dict "class" "pubtype-workshop" "label" "Workshop")
-    (dict "class" "pubtype-abstract" "label" "Abstract")
+    (dict "class" "pubtype-preprint" "label" (index $pubtype_labels "preprint"))
+    (dict "class" "pubtype-conference" "label" (index $pubtype_labels "conference"))
+    (dict "class" "pubtype-journal" "label" (index $pubtype_labels "journal"))
+    (dict "class" "pubtype-workshop" "label" (index $pubtype_labels "workshop"))
+    (dict "class" "pubtype-abstract" "label" (index $pubtype_labels "abstract"))
   ) "pubtype" }}
 {{ end }}
 
@@ -42,7 +49,7 @@
     <ul class="paper-list" role="list">
   {{ end }}
     {{ range .Pages }}
-      <li class="paper pubtype-{{ .Params.pubtype }}">{{- if $show_type }}<span class="visually-hidden paper-type-badge">[{{ title .Params.pubtype }}] </span>{{- end }}{{ partial "paper_listing.html" . }}</li>
+      <li class="paper pubtype-{{ .Params.pubtype }}">{{- if $show_type }}<span class="visually-hidden paper-type-badge">[{{ index $pubtype_labels .Params.pubtype | default (title .Params.pubtype) }}] </span>{{- end }}{{ partial "paper_listing.html" . }}</li>
     {{ end }}
   </ul>
 {{ end }}

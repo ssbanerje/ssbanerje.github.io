@@ -1,27 +1,53 @@
-@use "sass:map";
+@use "sass:math";
 @use "bulma_theme" as bt;
 @use "mixins" as mx;
 
-#sidebar {
-  color: map.get(bt.$sidebar, text);
-  background-color: map.get(bt.$sidebar, background);
+// Ratios derived from base tokens in _bulma_config.scss
+$_title-em: math.div(bt.$size-1, bt.$size-normal) * 1em;
+$_avatar-em: math.div(bt.$avatar-size, bt.$size-normal) * 1em;
+$_pad-em: math.div(bt.$sidebar-padding, bt.$size-normal) * 1em;
+$_fluid-font: math.div(bt.$size-normal, bt.$sidebar-ref-width) * 100cqi;
+$_fluid-pad: math.div(bt.$sidebar-padding, bt.$sidebar-max-width) * 100cqi;
 
-  a { @include mx.link_style(map.get(bt.$sidebar, link), map.get(bt.$sidebar, hover)); }
+#sidebar {
+  color: bt.$sidebar-text;
+  background-color: bt.$sidebar-bg;
+  font-size: bt.$size-normal * bt.$mobile-heading-scale;
+  hyphens: none;
+
+  @include bt.tablet {
+    container-type: inline-size;
+    flex: none;
+    inline-size: bt.$sidebar-tablet-width;
+  }
+
+  @include bt.desktop {
+    inline-size: min(bt.$sidebar-desktop-width, bt.$sidebar-max-width);
+  }
+
+  a { @include mx.link_style(bt.$sidebar-link, bt.$sidebar-link-hover); }
 
   .sidebar-title {
-    font-family: map.get(bt.$fonts, sidebar), sans-serif;
-    font-size-adjust: from-font;
     color: inherit;
+    font-family: bt.$family-sidebar;
+    font-size: $_title-em;
+    font-size-adjust: from-font;
+    overflow-wrap: normal;
+    word-break: normal;
+  }
+
+  .sidebar-content p {
+    font-size: 1em;
+    margin-block-end: $_pad-em;
   }
 
   .icon-list {
-    font-size: 175%;
-    display:table;
-    margin: 0 auto;
-    @include mx.inline-list;
+    @include mx.inline-list(0.15em 0.25em);
+    font-size: bt.$sidebar-icon-scale * 1em;
+    justify-content: center;
+    margin: 0;
 
     li {
-      padding: 0 5px;
       @include mx.transition(scale 0.2s ease-out);
 
       @media (prefers-reduced-motion: no-preference) {
@@ -31,23 +57,33 @@
   }
 
   figure {
-    max-inline-size: 256px;
-    max-block-size: 256px;
-    margin-block-end: 2rem;
+    inline-size: 100%;
+    max-inline-size: bt.$avatar-size;
+    max-block-size: bt.$avatar-size;
+    margin-inline: auto;
+    margin-block-end: $_pad-em;
+
+    @include bt.mobile {
+      max-inline-size: $_avatar-em * bt.$mobile-heading-scale;
+      max-block-size: $_avatar-em * bt.$mobile-heading-scale;
+    }
   }
 
   img {
-    padding: .1rem;
-    background-color: map.get(bt.$sidebar, background);
-    border: 1px solid map.get(bt.$sidebar, text);
-  }
-
-  @include bt.mobile {
-    figure {
-      max-inline-size: 175px;
-      max-block-size: 175px;
-    }
+    padding: 0.1rem;
+    background-color: bt.$sidebar-bg;
+    border: 1px solid bt.$sidebar-text;
   }
 }
 
-.padded-sidebar { padding: 2rem; }
+.padded-sidebar {
+  padding-block: $_pad-em;
+  padding-inline-start: max(1em, env(safe-area-inset-left));
+  padding-inline-end: max(1em, env(safe-area-inset-right));
+
+  @include bt.tablet {
+    font-size: min(#{bt.$size-normal}, #{$_fluid-font});
+    padding-inline-start: max(clamp(1em, #{$_fluid-pad}, #{$_pad-em}), env(safe-area-inset-left));
+    padding-inline-end: clamp(1em, #{$_fluid-pad}, #{$_pad-em});
+  }
+}
