@@ -2,13 +2,18 @@
 <link rel="icon" href="{{ "img/favicon.ico" | relURL }}" sizes="32x32">
 <link rel="apple-touch-icon" href="{{ "img/apple-touch-icon.png" | relURL }}">
 
-{{ $opts := dict "transpiler" "dartsass" "targetPath" "css/style.css" "enableSourceMap" hugo.IsDevelopment }}
-{{ $style := resources.Get "scss/main.scss" | css.Sass $opts }}
-{{ if hugo.IsDevelopment }}
-  <link rel="stylesheet" href="{{ $style.RelPermalink }}">
-{{ else }}
-  {{ $style = $style | minify | fingerprint }}
-  <link rel="stylesheet" href="{{ $style.RelPermalink }}" integrity="{{ $style.Data.Integrity }}" crossorigin="anonymous">
+{{ $sheets := slice (dict "src" "scss/main.scss" "out" "css/style.css") }}
+{{ if ne (.Params.projects_script | default "") "" }}
+  {{ $sheets = $sheets | append (dict "src" "scss/projects.scss" "out" "css/projects.css") }}
+{{ end }}
+{{ range $sheets }}
+  {{ $s := resources.Get .src | css.Sass (dict "transpiler" "dartsass" "targetPath" .out "enableSourceMap" hugo.IsDevelopment) }}
+  {{ if hugo.IsDevelopment }}
+    <link rel="stylesheet" href="{{ $s.RelPermalink }}">
+  {{ else }}
+    {{ $s = $s | minify | fingerprint }}
+    <link rel="stylesheet" href="{{ $s.RelPermalink }}" integrity="{{ $s.Data.Integrity }}" crossorigin="anonymous">
+  {{ end }}
 {{ end }}
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

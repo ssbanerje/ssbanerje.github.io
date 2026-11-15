@@ -116,6 +116,53 @@ p {
 // De-emphasized text, e.g. the ":(" on the 404 page
 .text-faint { color: #bbb; }
 
+/* Table of Contents */
+#TableOfContents {
+  border: 1px solid #d3d3d3;
+  border-radius: 3px;
+  font-size: bt.$size-5;
+  hyphens: none;
+  inline-size: fit-content;
+  margin-block: 1.75rem 2.25rem;
+  max-inline-size: 100%;
+  min-inline-size: 12rem;
+  padding: 1rem 2.25rem 0.85rem 1.4rem;
+  position: relative;
+
+  @include bt.mobile {
+    font-size: bt.$size-5 * bt.$mobile-body-scale;
+    padding: 0.9rem 1.5rem 0.75rem 1.15rem;
+  }
+
+  &::before {
+    background-color: bt.$background;
+    color: bt.$grey;
+    content: "Table of Contents";
+    font-size: 0.85em;
+    font-weight: 700;
+    inset-block-start: 0;
+    inset-inline-start: 0.85rem;
+    letter-spacing: 0.015em;
+    line-height: 1;
+    padding-inline: 0.45rem;
+    position: absolute;
+    transform: translateY(-50%);
+
+    @media (forced-colors: active) {
+      background-color: Canvas;
+    }
+  }
+
+  ol {
+    margin-block: 0;
+    margin-inline-start: 1.35em;
+  }
+
+  li {
+    hyphens: none;
+    line-height: 1.45;
+  }
+}
 /* Footer */
 footer {
   background-color: bt.$background;

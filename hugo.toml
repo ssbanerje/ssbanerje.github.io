@@ -4,6 +4,7 @@ baseURL = "https://ssbanerje.github.io"
 locale = "en-us"
 enableRobotsTXT = true
 enableGitInfo = true
+enableInlineShortcodes = true
 disableKinds = ["term", "taxonomy"]
 buildFuture = true
 
@@ -21,6 +22,10 @@ buildFuture = true
 [markup]
   [markup.highlight]
     style = "manni"
+  [markup.tableOfContents]
+    startLevel = 2
+    endLevel = 2
+    ordered = true
 
 # Site parameters
 [params]

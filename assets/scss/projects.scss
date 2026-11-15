@@ -1,0 +1,8 @@
+$_viz-max-width: 64rem;
+
+figure.viz {
+  container: viz / inline-size;
+  hyphens: none;
+  margin-block: 2.2rem 2.7rem;
+  max-inline-size: $_viz-max-width;
+}
