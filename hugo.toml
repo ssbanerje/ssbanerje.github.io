@@ -25,7 +25,7 @@ buildFuture = true
 # Site parameters
 [params]
   showFeatured = true
-  description = "Subho Sankar Banerjee — Software Engineer at Google DeepMind researching systems, computer architecture, and machine learning."
+  description = "Subho Sankar Banerjee — Software Engineer at Google DeepMind working on post-training Gemini, AI systems and infrastructure, and reinforcement learning."
   images = ["img/me_sq.webp"]
 
 # Hugo Modules
