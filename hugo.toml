@@ -40,3 +40,18 @@ buildFuture = true
     [[module.imports.mounts]]
       source = "sass"
       target = "assets/scss/bulma/sass"
+  [[module.imports]]
+    path = "github.com/d3/d3-selection"
+    [[module.imports.mounts]]
+      source = "src"
+      target = "assets/ts/mod/d3-selection"
+  [[module.imports]]
+    path = "github.com/d3/d3-shape"
+    [[module.imports.mounts]]
+      source = "src"
+      target = "assets/ts/mod/d3-shape"
+  [[module.imports]]
+    path = "github.com/d3/d3-path"
+    [[module.imports.mounts]]
+      source = "src"
+      target = "assets/ts/mod/d3-path"

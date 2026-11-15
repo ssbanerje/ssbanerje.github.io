@@ -25,7 +25,7 @@
     </div>
   </div>
 
-  {{ partialCached "js_footer.html" . }}
+  {{ partialCached "js_footer.html" . (.Params.projects_script | default "") }}
 </body>
 
 </html>

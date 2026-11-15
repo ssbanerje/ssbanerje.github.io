@@ -4,7 +4,7 @@ Source for [ssbanerje.github.io](https://ssbanerje.github.io), built with [Hugo]
 
 ## Make targets
 
-| Docker (recommended) | Native (needs Hugo, Dart Sass, Go, Git) | What it does |
+| Docker (recommended) | Native (needs Hugo, Dart Sass, Go, Node.js, Git) | What it does |
 |---|---|---|
 | `make docker-all` | `make all` | Build the site into `public/` |
 | `make docker-clean` | `make clean` | Remove `public/` and `resources/` |

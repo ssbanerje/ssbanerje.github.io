@@ -1,2 +1,8 @@
+github.com/d3/d3-path v3.1.0+incompatible h1:BZ6jhY1nF64GgOJPGX+cjU/ccx4uRvzlMM1NRVAPU3g=
+github.com/d3/d3-path v3.1.0+incompatible/go.mod h1:CJCJop90EXR7PFzPMKYZkXhu37qX0ZcVzTudhcHo3Q0=
+github.com/d3/d3-selection v3.0.0+incompatible h1:494UgcFpjZf1szNwCVFR+b9JgZp4HHFMGES9Qg4e0sk=
+github.com/d3/d3-selection v3.0.0+incompatible/go.mod h1:Ol3TWNQdQRpyDAqTHKzqAx7EewIwPJ5NgRT8v/hDbgI=
+github.com/d3/d3-shape v3.2.0+incompatible h1:TMsulxoXEv95NlTUW8wRQjgD4kJP0McwzF2hjmX71+Q=
+github.com/d3/d3-shape v3.2.0+incompatible/go.mod h1:eJ3pGmAO0vJgzsrtQmnt5b6ufpiJgopZwxI/gHlH2gs=
 github.com/jgthms/bulma v0.0.0-20260921095601-c5cd04baf025 h1:phBiAcBQmxntNF4wrXjPhKBkc1Nyrix2YX1ywKTSAFs=
 github.com/jgthms/bulma v0.0.0-20260921095601-c5cd04baf025/go.mod h1:89FLBKXYFKfOKAoDeUT26V0pHGwzr205cMXAEqtAVOI=

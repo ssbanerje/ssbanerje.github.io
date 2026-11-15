@@ -4,12 +4,15 @@ BIND=127.0.0.1
 
 DOCKER_IMAGE_NAME=ssbanerje-hugo
 
-.PHONY: all public clean watch docker-image docker-all docker-clean docker-watch
+.PHONY: all public clean watch typecheck docker-image docker-all docker-clean docker-watch
 
-all: public
+all: typecheck public
 
 clean:
 	rm -rf public/ resources/
+
+typecheck:
+	npx --yes --package=typescript@5.8.3 tsc
 
 # .github/workflows/gh-pages.yml runs hugo with the same flags; keep them in sync.
 public:

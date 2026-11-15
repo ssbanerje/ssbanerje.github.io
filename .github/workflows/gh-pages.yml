@@ -24,16 +24,28 @@ jobs:
           filter: blob:none
           lfs: false
 
+      - name: Typecheck
+        run: make typecheck
+
+      - name: Cache Hugo modules
+        uses: actions/cache@v6
+        with:
+          path: ${{ runner.temp }}/hugo_cache
+          key: hugo-mods-${{ hashFiles('go.sum') }}
+
       # Same Hugo image as the Dockerfile; keep the hugo flags in sync with Makefile `public`.
       - name: Build
-        run: >-
-          docker run --rm
-          --user "$(id -u):$(id -g)"
-          -e HUGO_CACHEDIR=/tmp/hugo_cache
-          -e TZ=America/Los_Angeles
-          -v "$GITHUB_WORKSPACE:/project"
-          ghcr.io/gohugoio/hugo:v0.169.0
-          build --gc --minify --cleanDestinationDir --printPathWarnings
+        run: |
+          mkdir -p "$RUNNER_TEMP/hugo_cache"
+          docker run --rm \
+            --user "$(id -u):$(id -g)" \
+            -e HUGO_CACHEDIR=/tmp/hugo_cache \
+            -e GOFLAGS=-modcacherw \
+            -e TZ=America/Los_Angeles \
+            -v "$RUNNER_TEMP/hugo_cache:/tmp/hugo_cache" \
+            -v "$GITHUB_WORKSPACE:/project" \
+            ghcr.io/gohugoio/hugo:v0.169.0 \
+            build --gc --minify --cleanDestinationDir --printPathWarnings
 
       - name: Upload Pages artifact
         if: github.ref == 'refs/heads/master'
