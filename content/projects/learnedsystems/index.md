@@ -5,6 +5,7 @@ period = "2014–2021"
 institution = "University of Illinois at Urbana-Champaign"
 institution_key = "uiuc"
 description = "Hybrid Bayesian–deep learning controllers and custom accelerators for managing heterogeneous computer systems."
+projects_script = "ts/projects/learnedsystems.ts"
 +++
 
 Modern computer systems combine heterogeneous processors, accelerators, high-speed interconnects, and disaggregated storage, yet their resource managers still rely on handcrafted, average-case heuristics. Retuning those heuristics across platforms requires recurring expert effort. Purely black-box learning and optimization methods fit poorly here as well: they demand large training datasets, hide root causes when service-level objectives fail, and falter once control moves from coarse cluster schedulers into fast OS and hardware mechanisms. At microsecond-to-millisecond timescales, continuous fine-grained monitoring costs too much chip area and runtime overhead, so controllers must act on uncertain measurements and finish execution before workload phases shift. My [dissertation research][thesis2022] addressed system *complexity* and runtime *dynamics* through *architecture-guided* control: hybrid Bayesian–neural controllers encoded architectural domain knowledge as an inductive bias, and algorithm–hardware co-design met strict actuation deadlines through approximate software sampling and custom FPGA accelerators.
@@ -17,8 +18,11 @@ Coarse cluster schedulers allocate static core counts and memory capacities with
 
 Model-free learning and optimization methods struggle in this setting because they must infer hardware hierarchy and filter measurement noise directly from raw counters; consequently, they require long training trajectories and thrash across workload phase shifts. [Symphony][symphony] instead introduced an architecture-guided hybrid controller that wired platform topology directly into state estimation. A Bayesian graphical model mirrored the node's compute, memory, and interconnect hierarchy to fuse sparse telemetry through resource backpressure, and a compact neural policy scheduled tasks from the resulting posterior belief over latent bottlenecks.
 
-PCIe interconnect contention in [Symphony][symphony] demonstrated why posterior uncertainty mattered. Because software cannot read internal PCIe switch load directly, the graphical model fused multiplexed endpoint telemetry into a posterior credible interval around the estimated load. Conditioning decisions on the full interval instead of the point mean solved two operational problems: structural consensus across neighboring monitors damped isolated counter spikes, and an elevated upper credible bound deferred DMA transfers before interconnect queues saturated. Because the state estimator already encoded system topology, the learned policy avoided rediscovering hardware structure online and used uncertainty bounds directly for admission control.
+PCIe interconnect contention in [Symphony][symphony] demonstrated why posterior uncertainty mattered (Figure 1). Because software cannot read internal PCIe switch load directly, the graphical model fused multiplexed endpoint telemetry into a posterior credible interval around the estimated load. Conditioning decisions on the full interval instead of the point mean solved two operational problems: structural consensus across neighboring monitors damped isolated counter spikes, and an elevated upper credible bound deferred DMA transfers before interconnect queues saturated. Because the state estimator already encoded system topology, the learned policy avoided rediscovering hardware structure online and used uncertainty bounds directly for admission control.
 
+{{< viz id="ls-loop" >}}
+Switch between control policies on a CPU/GPU/FPGA node sharing a PCIe interconnect. Under bursty DMA traffic, the upper credible bound crosses the DMA saturation threshold ahead of the posterior mean to trigger brief `No-Op` deferrals, whereas *Point Est.* admits transfers into queue stalls and *Black-Box* thrashes on counter noise.
+{{< /viz >}}
 
 ## Other Examples
 
