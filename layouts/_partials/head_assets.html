@@ -2,18 +2,7 @@
 <link rel="icon" href="{{ "img/favicon.ico" | relURL }}" sizes="32x32">
 <link rel="apple-touch-icon" href="{{ "img/apple-touch-icon.png" | relURL }}">
 
-{{ $theme := hugo.Data.theme }}
-{{ $vars := dict
-  "sidebar" $theme.colors.sidebar
-  "content" $theme.colors.content
-  "layout" $theme.layout
-  "fonts" (dict
-    "content" $theme.fonts.content.name
-    "sidebar" $theme.fonts.sidebar.name
-    "mono" $theme.fonts.mono.name
-  )
-}}
-{{ $opts := dict "transpiler" "dartsass" "vars" $vars "targetPath" "css/style.css" "enableSourceMap" hugo.IsDevelopment }}
+{{ $opts := dict "transpiler" "dartsass" "targetPath" "css/style.css" "enableSourceMap" hugo.IsDevelopment }}
 {{ $style := resources.Get "scss/main.scss" | css.Sass $opts }}
 {{ if hugo.IsDevelopment }}
   <link rel="stylesheet" href="{{ $style.RelPermalink }}">
@@ -24,11 +13,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://unpkg.com" crossorigin>
-{{ $families := slice }}
-{{ range hugo.Data.theme.fonts }}
-  {{ $families = $families | append (printf "family=%s:%s" (replace .name " " "+") (.axes | default "wght@400")) }}
-{{ end }}
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?{{ delimit $families "&" | safeURL }}&display=swap" crossorigin="anonymous" referrerpolicy="no-referrer">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400;1,700&family=Inconsolata:wght@400;700&family=Eczar:wght@700;800&display=swap" crossorigin="anonymous" referrerpolicy="no-referrer">
 <link rel="stylesheet" href="https://unpkg.com/academicons@1.9.5/css/academicons.min.css" integrity="sha384-IAnhEDrYZnLsYcVzowpizdxXTHFovW5/CkZObGfY2QuaCKaQpvLCjj45LGb4Q/yE" crossorigin="anonymous" referrerpolicy="no-referrer">
 <link rel="stylesheet" href="https://unpkg.com/@fortawesome/fontawesome-free@7.2.0/css/all.min.css" integrity="sha384-EXatlQyrOJgDaM9/a74ArMzy7/2bTMSrZj8ID1IPeVmc3GncfCugefCFWSLj8JL/" crossorigin="anonymous" referrerpolicy="no-referrer">
 

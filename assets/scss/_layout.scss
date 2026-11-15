@@ -1,5 +1,4 @@
 @use "sass:list";
-@use "hugo:vars/content";
 @use "bulma_theme" as bt;
 @use "mixins" as mx;
 
@@ -19,7 +18,7 @@
 }
 
 #content {
-  background-color: content.$background;
+  background-color: bt.$background;
   flex: 1;
   inline-size: 100%;
   padding-block: 1rem;
@@ -81,7 +80,7 @@ body {
 h1, h2, h3, h4, h5, h6,
 strong, b, em, i,
 .title, .subtitle,
-.venue, .paper-venue,
+.venue,
 .paper-awards li,
 .paper-type-key div {
   font-size-adjust: from-font;
@@ -117,16 +116,9 @@ p {
 // De-emphasized text, e.g. the ":(" on the 404 page
 .text-faint { color: #bbb; }
 
-hr {
-  block-size: 1px;
-  background-color: #d3d3d3;
-  margin: 0;
-  margin-block-end: 1em;
-}
-
 /* Footer */
 footer {
-  background-color: content.$background;
+  background-color: bt.$background;
   font-size: 70%;
   min-block-size: 4.375rem;
   padding: 0.25rem;

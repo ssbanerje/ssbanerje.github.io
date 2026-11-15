@@ -25,7 +25,8 @@
       {{ partial "highwire.html" . }}
     {{ end }}
   {{ end }}
-  <meta name="theme-color" content="{{ hugo.Data.theme.colors.sidebar.background }}"/>
+  {{- /* Keep synced with $sidebar-bg in assets/scss/_bulma_config.scss */ -}}
+  <meta name="theme-color" content="#141f33"/>
 
   <title>{{ if not .IsHome }}{{ .Title | plainify }} | {{ end }}{{ site.Title }}</title>
 

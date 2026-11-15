@@ -1,9 +1,24 @@
 @use "sass:math";
-@use "hugo:vars/content";
-@use "hugo:vars/fonts";
-@use "hugo:vars/layout";
 
-$_root-px: 16;
+// Palette: Sidebar & Content
+$sidebar-bg: #141f33; // keep synced with <meta name="theme-color"> in layouts/_partials/header.html
+$sidebar-text: #fff;
+$sidebar-link: #fff;
+$sidebar-link-hover: #feb24c;
+
+$background: #fff;
+$body-background-color: $background;
+$text: #333;
+$link: #274798;
+$link-hover: #f16421;
+$award: #812717;
+
+// Fonts
+$family-sidebar: Eczar, sans-serif;
+$family-sans-serif: Lato, sans-serif;
+$family-monospace: Inconsolata, monospace;
+$family-primary: $family-sans-serif;
+$family-code: $family-monospace;
 
 // Text size
 $size-1: 2.5rem;
@@ -19,26 +34,13 @@ $size-normal: $size-4;
 $mobile-heading-scale: math.div($size-2, $size-1);     // 0.8 (steps display headings down 1 tier on mobile)
 $mobile-body-scale: 0.5 * (1 + $mobile-heading-scale); // 0.9 (midpoint scale for mobile body copy)
 
-// Grid & sidebar geometry derived from data/theme.toml [layout]
-$_desktop-shell-cols: layout.$grid_columns - layout.$page_end_gutter_cols;
-$sidebar-tablet-width: math.percentage(math.div(layout.$sidebar_tablet_cols, layout.$grid_columns));
-$sidebar-desktop-width: math.percentage(math.div(layout.$sidebar_desktop_cols, $_desktop-shell-cols));
-$page-end-gutter: math.percentage(math.div(layout.$page_end_gutter_cols, layout.$grid_columns));
+// 12-column grid & sidebar geometry (3/12 tablet, 4/11 desktop inside 11/12 shell, 1/12 end gutter)
+$sidebar-tablet-width: math.percentage(math.div(3, 12));
+$sidebar-desktop-width: math.percentage(math.div(4, 11));
+$page-end-gutter: math.percentage(math.div(1, 12));
 
-$avatar-size: math.div(layout.$avatar_size, $_root-px) * 1rem;
+$avatar-size: 16rem; // matches 256x resize in layouts/_partials/avatar.html
 $sidebar-padding: $size-2;
 $sidebar-max-width: 2 * $avatar-size;
 $sidebar-ref-width: $avatar-size + $sidebar-padding;
 $sidebar-icon-scale: math.div($size-2, $size-4);
-
-// Fonts
-$family-sans-serif: fonts.$content, sans-serif;
-$family-monospace: fonts.$mono, monospace;
-$family-primary: fonts.$content, sans-serif;
-$family-code: fonts.$mono, monospace;
-
-// Text and Background Colors
-$text: content.$text;
-$background: content.$background;
-$body-background-color: content.$background;
-$link: content.$link;

@@ -1,4 +1,3 @@
-@use "hugo:vars/content";
 @use "bulma_theme" as bt;
 @use "mixins" as mx;
 
@@ -27,7 +26,7 @@ $_card-accent-width: 0.75rem;
 
   p { margin: 0; }
 
-  .venue, .paper-venue { font-style: italic; }
+  .venue { font-style: italic; }
 
   .project-description {
     display: block;
@@ -35,81 +34,36 @@ $_card-accent-width: 0.75rem;
   }
 }
 
+$_paper-tones: (
+  "pubtype-conference": rgba(126, 156, 244, 0.5),
+  "pubtype-journal":    rgba(244, 126, 156, 0.5),
+  "pubtype-workshop":   rgba(255, 221, 87, 0.5),
+  "pubtype-abstract":   rgba(72, 199, 116, 0.5),
+  "pubtype-preprint":   rgba(0, 0, 0, 0.1),
+  "inst-google":        rgba(126, 156, 244, 0.5),
+  "inst-uiuc":          rgba(244, 126, 156, 0.5),
+  "inst-cern":          rgba(72, 199, 116, 0.5),
+);
+
 .paper-type-key {
   display: inline-flex;
   flex-wrap: wrap;
 
   div {
+    background-color: var(--paper-tone);
     font-size: 75%;
     padding: 2px 10px;
-    border: solid rgba(0, 0, 0, 0.3);
-    border-width: 0.5px;
+    border: 0.5px solid rgba(0, 0, 0, 0.3);
     font-weight: bold;
-
-    &.pubtype-conference {
-      background-color: rgba(126, 156, 244, 0.5);
-    }
-
-    &.pubtype-journal {
-      background-color: rgba(244, 126, 156, 0.5);
-    }
-
-    &.pubtype-workshop {
-      background-color: rgba(255, 221, 87, 0.5);
-    }
-
-    &.pubtype-abstract {
-      background-color: rgba(72, 199, 116, 0.5);
-    }
-
-    &.pubtype-preprint {
-      background-color: rgba(0, 0, 0, 0.1);
-    }
-
-    &.inst-google {
-      background-color: rgba(126, 156, 244, 0.5);
-    }
-
-    &.inst-uiuc {
-      background-color: rgba(244, 126, 156, 0.5);
-    }
-
-    &.inst-cern {
-      background-color: rgba(72, 199, 116, 0.5);
-    }
   }
 }
 
-.color-paper-types {
-  li.paper {
-    &.pubtype-conference {
-      border-inline-start-color: rgba(126, 156, 244, 0.5);
-    }
+.color-paper-types li.paper {
+  border-inline-start-color: var(--paper-tone, rgba(0, 0, 0, 0.1));
+}
 
-    &.pubtype-journal {
-      border-inline-start-color: rgba(244, 126, 156, 0.5);
-    }
-
-    &.pubtype-workshop {
-      border-inline-start-color: rgba(255, 221, 87, 0.5);
-    }
-
-    &.pubtype-abstract {
-      border-inline-start-color: rgba(72, 199, 116, 0.5);
-    }
-
-    &.inst-google {
-      border-inline-start-color: rgba(126, 156, 244, 0.5);
-    }
-
-    &.inst-uiuc {
-      border-inline-start-color: rgba(244, 126, 156, 0.5);
-    }
-
-    &.inst-cern {
-      border-inline-start-color: rgba(72, 199, 116, 0.5);
-    }
-  }
+@each $cls, $bg in $_paper-tones {
+  .#{$cls} { --paper-tone: #{$bg}; }
 }
 
 @media (forced-colors: active) {
@@ -137,7 +91,7 @@ $_card-accent-width: 0.75rem;
   @include mx.comma-separated-list;
 
   li {
-    color: content.$award;
+    color: bt.$award;
     font-weight: bold;
     padding: 0;
     margin: 0;
@@ -150,15 +104,15 @@ $_card-accent-width: 0.75rem;
   font-size: 80%;
 
   li {
-    border: 1px dotted content.$text;
+    border: 1px dotted bt.$text;
     padding: 0.1rem 0.25rem;
     margin: 0;
     border-radius: 4px;
 
     &:hover {
-      border-color: content.$linkhover;
+      border-color: bt.$link-hover;
 
-      a { color: content.$linkhover; }
+      a { color: bt.$link-hover; }
     }
   }
 }

@@ -1,6 +1,4 @@
 @use "sass:math";
-@use "hugo:vars/sidebar";
-@use "hugo:vars/fonts";
 @use "bulma_theme" as bt;
 @use "mixins" as mx;
 
@@ -12,8 +10,8 @@ $_fluid-font: math.div(bt.$size-normal, bt.$sidebar-ref-width) * 100cqi;
 $_fluid-pad: math.div(bt.$sidebar-padding, bt.$sidebar-max-width) * 100cqi;
 
 #sidebar {
-  color: sidebar.$text;
-  background-color: sidebar.$background;
+  color: bt.$sidebar-text;
+  background-color: bt.$sidebar-bg;
   font-size: bt.$size-normal * bt.$mobile-heading-scale;
   hyphens: none;
 
@@ -27,11 +25,11 @@ $_fluid-pad: math.div(bt.$sidebar-padding, bt.$sidebar-max-width) * 100cqi;
     inline-size: min(bt.$sidebar-desktop-width, bt.$sidebar-max-width);
   }
 
-  a { @include mx.link_style(sidebar.$link, sidebar.$linkhover); }
+  a { @include mx.link_style(bt.$sidebar-link, bt.$sidebar-link-hover); }
 
   .sidebar-title {
     color: inherit;
-    font-family: fonts.$sidebar, sans-serif;
+    font-family: bt.$family-sidebar;
     font-size: $_title-em;
     font-size-adjust: from-font;
     overflow-wrap: normal;
@@ -73,8 +71,8 @@ $_fluid-pad: math.div(bt.$sidebar-padding, bt.$sidebar-max-width) * 100cqi;
 
   img {
     padding: 0.1rem;
-    background-color: sidebar.$background;
-    border: 1px solid sidebar.$text;
+    background-color: bt.$sidebar-bg;
+    border: 1px solid bt.$sidebar-text;
   }
 }
 

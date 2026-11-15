@@ -1,5 +1,4 @@
 @use "sass:list";
-@use "hugo:vars/content" as content-vars;
 @use "bulma_config" as bc;
 @use 'bulma_theme';
 @use "bulma/sass/utilities/css-variables" as cv;
@@ -64,7 +63,10 @@ $text-shades-in-use: ("grey", "white-ter");
   color-scheme: light;
   --bulma-text-l: 20%;
   --bulma-text-strong-l: 10%;
-  --bulma-link-text-hover: #{content-vars.$linkhover};
+  --bulma-link-text-hover: #{bc.$link-hover};
+  --bulma-hr-background-color: #d3d3d3;
+  --bulma-hr-height: 1px;
+  --bulma-hr-margin: 0 0 1em;
 }
 
 @media (prefers-reduced-motion: reduce) {

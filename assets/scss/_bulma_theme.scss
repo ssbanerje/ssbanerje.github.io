@@ -19,16 +19,9 @@
   $link: bc.$link
 );
 
-// Forward Bulma mixins and our derived layout/scale tokens
+// Forward Bulma mixins and our derived palette/layout/scale tokens
 @forward "bulma/sass/utilities/mixins";
-@forward "bulma_config" show
-  $mobile-heading-scale,
-  $mobile-body-scale,
-  $sidebar-tablet-width,
-  $sidebar-desktop-width,
-  $page-end-gutter,
-  $avatar-size,
-  $sidebar-padding,
-  $sidebar-max-width,
-  $sidebar-ref-width,
-  $sidebar-icon-scale;
+@forward "bulma_config" hide
+  $size-1, $size-2, $size-3, $size-4, $size-5, $size-6, $size-7, $size-normal,
+  $family-sans-serif, $family-monospace, $family-primary, $family-code,
+  $text, $background, $link;

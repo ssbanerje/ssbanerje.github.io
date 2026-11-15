@@ -1,4 +1,4 @@
-@use "hugo:vars/content";
+@use "bulma_theme" as bt;
 
 // Subset of bulma/sass/helpers/{spacing,typography,visibility}: only the classes the templates use.
 
@@ -23,10 +23,10 @@
 }
 
 .skip-link:is(:focus, :active) {
-  background-color: content.$background;
-  border: 2px solid content.$link;
+  background-color: bt.$background;
+  border: 2px solid bt.$link;
   border-radius: 0.25rem;
-  color: content.$link;
+  color: bt.$link;
   font-weight: bold;
   inset-block-start: 0.5rem;
   inset-inline-start: 0.5rem;
