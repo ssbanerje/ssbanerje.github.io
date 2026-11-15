@@ -3,8 +3,11 @@
  * Systems project page (`learnedsystems`).
  */
 
-import { clamp, createRng, h, iterate, lerp, maxIndex, mountFigure, patchAttrs, pushRing, range, setText, sum, toRecord, type FigureSpec, type MountHandle, type Rng } from '../lib/engine';
-import { createChart, rayEdge, renderTopo, type TopoConfig, type TopoPatch } from '../lib/layers';
+import d3Area from 'd3-shape/area';
+import d3Line from 'd3-shape/line';
+import { monotoneX } from 'd3-shape/monotone';
+import { clamp, createRng, h, iterate, lerp, matchRule, maxIndex, memoBy, mountFigure, patchAttrs, pushRing, range, setText, sum, svgEl, toRecord, type FigureSpec, type MountHandle, type Rng } from '../lib/engine';
+import { createChart, rayEdge, renderTopo, type EdgePatch, type TopoConfig, type TopoEdgeDef, type TopoPatch } from '../lib/layers';
 
 // Figure 1: Heterogeneous Accelerator Scheduling (Symphony)
 type LoopMode = 'greybox' | 'point' | 'blackbox';
@@ -396,6 +399,255 @@ mountFigure('ls-firm', FIRM_SPEC, (ctx) => {
     },
     render: () => {
       renderFirmView(ctx, simState, { isoDom, patchTopo, drawP99 });
+    },
+  };
+});
+
+// Figure 3: Disaggregated Storage Systems (Kaleidoscope)
+type StNodeId = 'LNET1' | 'LNET2' | 'DS1' | 'DS2' | 'OSD1';
+type StAllNodeId = 'C1' | 'C2' | StNodeId;
+type StFaults = Readonly<Record<StNodeId, boolean>>;
+type StEdgeState = 'active' | 'probe' | 'standby' | 'fault';
+
+interface BetaRowSpec { readonly a: number; readonly b: number; readonly note: string; readonly amb: boolean }
+interface BetaRowDom { readonly rowEl: HTMLDivElement; readonly stat: HTMLSpanElement; readonly areaPath: SVGPathElement; readonly linePath: SVGPathElement }
+interface StDiagCtx {
+  readonly lnetFault: boolean; readonly lnetUp: boolean; readonly haUp: boolean;
+  readonly effProbes: boolean; readonly haMasked: boolean; readonly unmasked: boolean; readonly pings: number;
+}
+
+const ST_CLICK_IDS: readonly StNodeId[] = ['LNET1', 'LNET2', 'DS1', 'DS2', 'OSD1'];
+const DEFAULT_ST_FAULTS: StFaults = { LNET1: false, LNET2: false, DS1: true, DS2: false, OSD1: false };
+const ST_PRESETS = new Map<string, StFaults>([
+  ['ha', DEFAULT_ST_FAULTS],
+  ['lnet', { LNET1: true, LNET2: false, DS1: false, DS2: false, OSD1: false }],
+  ['raid', { LNET1: false, LNET2: false, DS1: false, DS2: false, OSD1: true }],
+  ['dual', { LNET1: false, LNET2: false, DS1: true, DS2: false, OSD1: true }],
+]);
+const ST_EDGE_PATCH: Record<StEdgeState, EdgePatch> = {
+  fault: { cls: 'is-crimson is-dashed is-faint' }, standby: { cls: 'is-muted is-dashed' },
+  probe: { cls: 'is-teal is-flowing' }, active: { cls: 'is-blue is-flowing' },
+};
+const ST_NODES = [
+  { id: 'C1' as const, x: 36, y: 50, sub: 'Client C₁', click: false, tip: undefined },
+  { id: 'C2' as const, x: 36, y: 142, sub: 'Client C₂', click: false, tip: undefined },
+  { id: 'LNET1' as const, x: 114, y: 50, sub: 'LNET₁', click: true, tip: '**LNET₁ Router**\nClick to toggle fail-stop router drop.' },
+  { id: 'LNET2' as const, x: 114, y: 142, sub: 'LNET₂', click: true, tip: '**LNET₂ Router**\nClick to toggle fail-stop router drop.' },
+  { id: 'DS1' as const, x: 196, y: 50, sub: 'DS₁ (Primary)', click: true, tip: '**DS₁ (Primary Server)**\nClick to toggle silent HA fail-stop crash.' },
+  { id: 'DS2' as const, x: 196, y: 142, sub: 'DS₂ (HA Peer)', click: true, tip: '**DS₂ (HA Peer Server)**\nClick to toggle silent HA fail-stop crash.' },
+  { id: 'OSD1' as const, x: 274, y: 96, sub: 'OSD₁ (RAID)', click: true, tip: '**OSD₁ (RAID Array)**\nClick to toggle fail-slow RAID rebuild.' },
+] as const;
+const ST_NODE_BY_ID: Record<StAllNodeId, (typeof ST_NODES)[number]> = {
+  C1: ST_NODES[0], C2: ST_NODES[1], LNET1: ST_NODES[2], LNET2: ST_NODES[3], DS1: ST_NODES[4], DS2: ST_NODES[5], OSD1: ST_NODES[6],
+};
+const ST_LINKS: ReadonlyArray<readonly [StAllNodeId, StAllNodeId]> = [
+  ['C1', 'LNET1'], ['C2', 'LNET2'], ['C1', 'LNET2'], ['C2', 'LNET1'],
+  ['LNET1', 'DS1'], ['LNET1', 'DS2'], ['LNET2', 'DS2'], ['LNET2', 'DS1'],
+  ['DS1', 'OSD1'], ['DS2', 'OSD1'],
+];
+const ST_TOPO_EDGES: readonly TopoEdgeDef[] = [
+  ...ST_LINKS.map(([src, dst]): TopoEdgeDef => ({ id: `${src}-${dst}`, d: rayEdge(ST_NODE_BY_ID[src], ST_NODE_BY_ID[dst], 19, 20), cls: 'is-blue is-flowing' })),
+  { id: 'ha-12', d: 'M196,69 L196,122', cls: 'is-amber is-dashed', lx: 203, ly: 99, anchor: 'start', label: 'HA FAILOVER', show: false },
+  { id: 'ha-21', d: 'M196,123 L196,70', cls: 'is-amber is-dashed', lx: 203, ly: 99, anchor: 'start', label: 'HA FAILOVER', show: false },
+];
+const ST_ROW_NAMES: readonly string[] = ['DS₁ (Primary)', 'DS₂ (HA Peer)', 'LNET Fabric', 'OSD₁ (RAID)'];
+const U_GRID: readonly number[] = range(49).map((idx) => idx / 48);
+const BETA_AREA_GEN = d3Area<readonly [number, number]>().x((pt) => pt[0]).y0(23).y1((pt) => pt[1]).curve(monotoneX);
+const BETA_LINE_GEN = d3Line<readonly [number, number]>().x((pt) => pt[0]).y((pt) => pt[1]).curve(monotoneX);
+
+const ST_SPEC: FigureSpec = {
+  kicker: 'Figure 3 · Disaggregated Storage Systems (Kaleidoscope) · Active Route-Pinned Probing and HA Storage Tomography',
+  presets: { label: 'Fault Scenarios', items: [{ id: 'ha', label: 'Silent HA Crash', active: true }, { id: 'lnet', label: 'LNET Drop' }, { id: 'raid', label: 'RAID Rebuild' }, { id: 'dual', label: 'Dual Fault' }] },
+  toggles: [{ key: 'probes', label: 'Pinned Probes', on: true }],
+  actions: ['play'],
+  legend: [
+    { kind: 'swatch', tone: 'blue', label: 'Passive client I/O' },
+    { kind: 'swatch', tone: 'teal', label: 'Route-pinned active probe' },
+    { kind: 'swatch', tone: 'amber', label: 'Active-active HA failover' },
+    { kind: 'swatch', tone: 'crimson', label: 'Injected fault (click node)' },
+  ],
+  grid: 'is-2col',
+  panels: [
+    { kind: 'plot', title: 'DISAGGREGATED STORAGE TOPOLOGY (CLICK TO FAULT)', svgId: 'svg-ls-storage-a' },
+    { kind: 'plot', cls: 'is-stack', subpanels: [{ title: 'STAGE 1 · FACTOR-GRAPH HEALTH POSTERIORS (N = 25 PINGS)', titleKey: 'st-p-title', mountId: 'st-posteriors', mountCls: 'beta-list' }, { title: 'STAGE 2 · PEER LOG & LATENCY FORENSICS', mountId: 'st-forensic', mountCls: 'viz-card' }] },
+  ],
+  sliders: [
+    { key: 'pings', label: 'Active I/O probe batch N', min: 5, max: 35, step: 2, value: 25, fmt: (v) => `${Math.round(v)} pings` },
+    { key: 'congest', label: 'Background RAID / I/O congestion', min: 0.1, max: 0.95, step: 0.05, value: 0.35, fmt: (v) => v.toFixed(2) },
+  ],
+  metrics: [{ key: 'clientIo', label: 'Client I/O' }, { key: 'activeProbes', label: 'Active probes' }, { key: 'verdict', label: 'Forensic verdict' }],
+};
+
+function isStNodeId(id: string): id is StNodeId {
+  return ST_CLICK_IDS.some((candidate) => candidate === id);
+}
+
+function matchStPreset(faults: StFaults): string | null {
+  for (const [presetId, presetFaults] of ST_PRESETS) {
+    if (ST_CLICK_IDS.every((key) => presetFaults[key] === faults[key])) {
+      return presetId;
+    }
+  }
+  return null;
+}
+
+const calcBetaPaths = memoBy((alpha: number, beta: number): { readonly areaD: string; readonly lineD: string } => {
+  const mode = clamp(alpha > 1 && beta > 1 ? (alpha - 1) / (alpha + beta - 2) : alpha >= beta ? 0.96 : 0.04, 0.005, 0.995);
+  const pts: Array<readonly [number, number]> = U_GRID.map((uVal) => {
+    const x = clamp(uVal, 0.005, 0.995);
+    const pdf = Math.exp(clamp((alpha - 1) * Math.log(x / mode) + (beta - 1) * Math.log((1 - x) / (1 - mode)), -20, 0));
+    return [uVal * 260, 23 - pdf * 20];
+  });
+  return { areaD: BETA_AREA_GEN(pts) ?? '', lineD: BETA_LINE_GEN(pts) ?? '' };
+}, 16);
+
+function dsPosterior(hit: boolean, peer: boolean, dctx: StDiagCtx): BetaRowSpec {
+  return matchRule<BetaRowSpec>([
+    [!dctx.lnetUp, { a: 2.0, b: 2.0, note: 'Unreachable (LNET Outage)', amb: true }],
+    [!dctx.effProbes && hit && peer, { a: 1.2, b: 2 + dctx.pings * 0.45, note: 'Dual HA Outage', amb: false }],
+    [!dctx.effProbes && hit !== peer, { a: 2.4, b: 2.0, note: 'HA-Masked (Ambiguous!)', amb: true }],
+    [!dctx.effProbes, { a: 2 + dctx.pings * 0.4, b: 1.3, note: 'Healthy', amb: false }],
+    [hit, { a: 1.2, b: 2 + dctx.pings * 0.55, note: 'Isolated by Pinned Probes!', amb: false }],
+  ], { a: 2 + dctx.pings * 0.55, b: 1.3, note: peer ? 'Healthy (Serving HA)' : 'Healthy', amb: false });
+}
+
+function computeStorageRows(faults: StFaults, dctx: StDiagCtx): readonly BetaRowSpec[] {
+  const lnetRow = matchRule<BetaRowSpec>([
+    [!dctx.lnetUp, { a: 1.2, b: 2 + dctx.pings * 0.5, note: 'Dual LNET Outage', amb: false }],
+    [!dctx.lnetFault, { a: 2 + dctx.pings * 0.5, b: 1.3, note: 'Healthy', amb: false }],
+    [!dctx.effProbes, { a: 2.3, b: 2.0, note: 'Multipath-Masked (Ambiguous!)', amb: true }],
+  ], { a: 1.3, b: 2 + dctx.pings * 0.5, note: 'Isolated by Pinned Probes!', amb: false });
+  const osdRow = matchRule<BetaRowSpec>([
+    [!dctx.lnetUp, { a: 2.0, b: 2.0, note: 'Unreachable (LNET Outage)', amb: true }],
+    [!dctx.haUp, { a: 2.0, b: 2.0, note: 'Unreachable (Dual HA Outage)', amb: true }],
+    [faults.OSD1, { a: 2 + dctx.pings * 0.14, b: 2 + dctx.pings * 0.28, note: 'Degraded Timeout', amb: false }],
+  ], { a: 2 + dctx.pings * 0.5, b: 1.3, note: 'Healthy', amb: false });
+  return [dsPosterior(faults.DS1, faults.DS2, dctx), dsPosterior(faults.DS2, faults.DS1, dctx), lnetRow, osdRow];
+}
+
+function buildBetaRowsDom(mountEl: HTMLElement): BetaRowDom[] {
+  const rows = ST_ROW_NAMES.map((name): BetaRowDom => {
+    const stat = h('span', { cls: 'viz-mono viz-ellipsis' });
+    const areaPath = svgEl('path');
+    const linePath = svgEl('path');
+    const svg = svgEl('svg', { viewBox: '0 0 260 24', preserveAspectRatio: 'none', 'aria-hidden': 'true', cls: 'beta-svg' }, svgEl('line', { x1: 0, x2: 260, y1: 23, y2: 23, cls: 'viz-rule is-muted' }), areaPath, linePath);
+    return { rowEl: h('div', { cls: 'beta-row' }, h('div', { cls: 'viz-row-hd' }, h('strong', null, name), stat), svg), stat, areaPath, linePath };
+  });
+  mountEl.replaceChildren(...rows.map((row) => row.rowEl));
+  return rows;
+}
+
+function updateBetaRowsDom(betaRows: readonly BetaRowDom[], specs: readonly BetaRowSpec[]): void {
+  for (const [idx, spec] of specs.entries()) {
+    const row = betaRows[idx];
+    const meanHealth = spec.a / (spec.a + spec.b);
+    const tone = spec.amb ? 'amber' : meanHealth < 0.48 ? 'crimson' : 'teal';
+    const { areaD, lineD } = calcBetaPaths(spec.a, spec.b);
+    patchAttrs(row.stat, { cls: `viz-mono viz-ellipsis is-${tone}` });
+    setText(row.stat, `E[X]=${meanHealth.toFixed(2)} · ${spec.note}`);
+    patchAttrs(row.areaPath, { cls: `viz-area is-${tone}`, d: areaD });
+    patchAttrs(row.linePath, { cls: `viz-line is-${tone}`, d: lineD });
+  }
+}
+
+function buildStorageTopoPatch(faults: StFaults, dctx: StDiagCtx): TopoPatch {
+  return {
+    nodes: toRecord(ST_CLICK_IDS, (id) => {
+      const isFaulted = faults[id];
+      const spec = ST_NODE_BY_ID[id];
+      return [id, { sub: isFaulted ? (id === 'OSD1' ? 'Rebuild Slow' : 'Faulted') : spec.sub, cls: isFaulted ? 'is-fault' : 'is-blue-ring', pressed: isFaulted, ariaLabel: `${spec.sub} (${isFaulted ? 'faulted' : 'healthy'}) — toggle fault` }];
+    }),
+    edges: {
+      'C1-LNET1': ST_EDGE_PATCH[faults.LNET1 ? 'fault' : 'active'],
+      'C2-LNET2': ST_EDGE_PATCH[faults.LNET2 ? 'fault' : 'active'],
+      'C1-LNET2': ST_EDGE_PATCH[faults.LNET2 ? 'fault' : faults.LNET1 ? 'active' : 'standby'],
+      'C2-LNET1': ST_EDGE_PATCH[faults.LNET1 ? 'fault' : faults.LNET2 ? 'active' : 'standby'],
+      'LNET1-DS1': ST_EDGE_PATCH[faults.LNET1 || faults.DS1 ? 'fault' : dctx.effProbes ? 'probe' : 'active'],
+      'LNET2-DS2': ST_EDGE_PATCH[faults.LNET2 || faults.DS2 ? 'fault' : dctx.effProbes ? 'probe' : 'active'],
+      'LNET1-DS2': ST_EDGE_PATCH[faults.LNET1 || faults.DS2 ? 'fault' : dctx.effProbes ? 'probe' : faults.DS1 ? 'active' : 'standby'],
+      'LNET2-DS1': ST_EDGE_PATCH[faults.LNET2 || faults.DS1 ? 'fault' : dctx.effProbes ? 'probe' : faults.DS2 ? 'active' : 'standby'],
+      'DS1-OSD1': ST_EDGE_PATCH[faults.DS1 || faults.OSD1 ? 'fault' : !dctx.lnetUp ? 'standby' : dctx.effProbes ? 'probe' : 'active'],
+      'DS2-OSD1': ST_EDGE_PATCH[faults.DS2 || faults.OSD1 ? 'fault' : !dctx.lnetUp ? 'standby' : dctx.effProbes ? 'probe' : 'active'],
+      'ha-12': { show: dctx.haMasked && faults.DS1 },
+      'ha-21': { show: dctx.haMasked && faults.DS2 },
+    },
+  };
+}
+
+function computeStorageVerdict(faults: StFaults, congest: number, dctx: StDiagCtx): { readonly verdict: string; readonly hwFault: boolean; readonly passIo: boolean; readonly outage: boolean; readonly logText: string } {
+  const hwFault = faults.DS1 || faults.DS2 || dctx.lnetFault;
+  const slow = faults.OSD1 || congest > 0.55;
+  const passIo = dctx.lnetUp && dctx.haUp && !faults.OSD1;
+  const outage = !dctx.lnetUp || !dctx.haUp;
+  const verdict = matchRule([
+    [!dctx.lnetUp, 'Dual LNET Fabric Outage'],
+    [!dctx.haUp, 'Dual HA Server Outage'],
+    [!dctx.unmasked, dctx.haMasked ? 'HA Masked (Turn Probes ON)' : 'Multipath Masked (Turn Probes ON)'],
+    [hwFault && slow, 'HW Fault + Slow I/O Separated'],
+    [hwFault, 'Fail-Stop HW Fault Isolated'],
+    [slow, 'I/O Congestion (No HW Fault)'],
+  ], 'All Targets Nominal');
+  const tokens = [...(faults.DS1 || faults.DS2 ? ['Lustre_Evict', 'HB_Timeout'] : []), ...(dctx.lnetFault ? ['IB_PortDown'] : [])];
+  const lofDisp = (1.05 + (faults.OSD1 ? 1.25 : 0) + congest * 0.95).toFixed(2);
+  const logText = outage
+    ? `Peer log diff: Target OSD unreachable (${!dctx.lnetUp ? 'fabric' : 'dual HA'} outage)`
+    : !dctx.unmasked
+    ? `Peer log diff: Undetermined (${dctx.haMasked ? 'HA' : 'multipath'} target unisolated)`
+    : `Peer log diff = ${tokens.length ? `{${tokens.join(', ')}}` : '∅'}  |  Peer LOF = ${lofDisp}×`;
+  return { verdict, hwFault, passIo, outage, logText };
+}
+
+function renderStorageView(
+  ctx: MountHandle, faults: StFaults,
+  dom: { readonly betaRows: readonly BetaRowDom[]; readonly logEl: HTMLDivElement; readonly verdictEl: HTMLDivElement; readonly patchTopo: (patch: TopoPatch) => void },
+): void {
+  const pings = Math.round(ctx.num('pings'));
+  const probesOn = ctx.flag('probes');
+  const lnetFault = faults.LNET1 || faults.LNET2;
+  const lnetUp = !(faults.LNET1 && faults.LNET2);
+  const haUp = !(faults.DS1 && faults.DS2);
+  const effProbes = probesOn && lnetUp;
+  const haMasked = faults.DS1 !== faults.DS2 && lnetUp;
+  const unmasked = !((haMasked || (lnetFault && lnetUp && haUp)) && !effProbes);
+  const dctx: StDiagCtx = { lnetFault, lnetUp, haUp, effProbes, haMasked, unmasked, pings };
+  const diag = computeStorageVerdict(faults, ctx.num('congest'), dctx);
+
+  ctx.setTitle('st-p-title', `STAGE 1 · FACTOR-GRAPH HEALTH POSTERIORS (N = ${pings} PINGS)`);
+  ctx.setMetric('clientIo', !diag.passIo ? 'Passive I/O: FAIL' : haMasked ? 'Passive I/O: PASS (HA Masked)' : lnetFault ? 'Passive I/O: PASS (LNET Multipath)' : 'Passive I/O: PASS (Nominal)', !diag.passIo ? 'is-crimson' : haMasked || lnetFault ? 'is-blue' : 'is-teal');
+  ctx.setMetric('activeProbes', !probesOn ? 'Passive I/O Only' : !lnetUp ? 'Probes Blocked (LNET Down)' : `Pinned Probes (${pings} pings)`);
+  ctx.setMetric('verdict', diag.verdict, !unmasked || diag.outage ? 'is-crimson' : 'is-teal');
+  updateBetaRowsDom(dom.betaRows, computeStorageRows(faults, dctx));
+  patchAttrs(dom.logEl, { cls: `viz-mono viz-ellipsis${diag.hwFault && effProbes ? ' is-crimson' : ''}` });
+  setText(dom.logEl, diag.logText);
+  patchAttrs(dom.verdictEl, { cls: `viz-card-title viz-ellipsis is-${!unmasked || diag.outage ? 'crimson' : diag.hwFault ? 'blue' : 'teal'}` });
+  setText(dom.verdictEl, unmasked && !diag.outage ? `Verdict: ${diag.verdict}` : diag.verdict);
+  dom.patchTopo(buildStorageTopoPatch(faults, dctx));
+}
+
+mountFigure('ls-storage', ST_SPEC, (ctx) => {
+  let faults: StFaults = DEFAULT_ST_FAULTS;
+  const betaRows = buildBetaRowsDom(ctx.el('st-posteriors'));
+  const logEl = h('div', { cls: 'viz-mono viz-ellipsis' });
+  const verdictEl = h('div', { cls: 'viz-card-title viz-ellipsis' });
+  ctx.el('st-forensic').replaceChildren(logEl, verdictEl);
+  const patchTopo = renderTopo(ctx.svg('svg-ls-storage-a'), {
+    box: [312, 192],
+    nodes: ST_NODES.map((n) => ({ id: n.id, kind: 'circle', x: n.x, y: n.y, r: 17, label: n.id, sub: n.sub, click: n.click, cls: n.click ? 'is-blue-ring' : 'is-slate', tip: n.tip })),
+    edges: ST_TOPO_EDGES,
+    onNodeClick: (id) => {
+      if (isStNodeId(id)) {
+        faults = { ...faults, [id]: !faults[id] };
+        ctx.setPreset(matchStPreset(faults));
+        renderStorageView(ctx, faults, { betaRows, logEl, verdictEl, patchTopo });
+      }
+    },
+  });
+  return {
+    onPreset: (id) => {
+      faults = ST_PRESETS.get(id) ?? faults;
+    },
+    render: () => {
+      renderStorageView(ctx, faults, { betaRows, logEl, verdictEl, patchTopo });
     },
   };
 });

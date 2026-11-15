@@ -507,6 +507,17 @@ figure.viz.is-paused .viz-edge.is-flowing {
   &:where(#{$_tone-is}) { background: var(--c); }
 }
 
+.beta-list { display: flex; flex-direction: column; gap: 0.26rem; }
+.beta-row { background: #fbfcfe; border: 1px solid #eef2f7; border-radius: 6px; padding: 0.2rem 0.42rem; }
+.beta-svg {
+  block-size: 22px;
+  display: block;
+  inline-size: 100%;
+
+  line,
+  path { vector-effect: non-scaling-stroke; }
+}
+
 // Floating Hover & Focus Tooltip (positioned via GPU translate3d)
 .fx-tip {
   background: rgba(bt.$background, 0.97);
@@ -698,6 +709,7 @@ figcaption.viz-cap {
   .leg-swatch,
   .leg-line,
   .way-cell,
+  .beta-svg,
   .viz-svg {
     forced-color-adjust: none;
   }
