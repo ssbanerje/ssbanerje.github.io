@@ -681,6 +681,38 @@ figure.viz.is-paused :is(.viz-edge.is-flowing, .viz-pulse-ring, .viz-impact-ring
   .road-ghost-note { font-size: 8.3px; }
 }
 
+// Figure 3 (av-robotack) Grid-Centered Bridge Pill & Kalman Gate Overlays
+.viz-bridge-pill {
+  align-self: center;
+  background: #f1f5f9;
+  border: 1px solid $_border-strong;
+  border-radius: 999px;
+  color: $_text-muted;
+  font-family: bt.$family-code;
+  font-size: 0.66rem;
+  font-weight: 700;
+  inline-size: 4.6rem;
+  justify-self: center;
+  line-height: 1.5;
+  padding: 0.15rem 0.5rem;
+  text-align: center;
+
+  &.is-orange {
+    background: #fff7ed;
+    border-color: $viz-orange;
+    color: $viz-orange-text;
+  }
+
+  &.is-bad {
+    background: $viz-crimson;
+    border-color: #7f1d1d;
+    color: bt.$background;
+  }
+}
+
+.rt-gate-ring { fill: rgba($viz-teal, 0.08); stroke: $viz-teal; stroke-dasharray: 3 2; stroke-width: 1.3; }
+.rt-jit-ring { fill: rgba($viz-amber, 0.14); stroke: $viz-amber; stroke-width: 1.1; }
+
 // Floating Hover & Focus Tooltip (positioned via GPU translate3d)
 .fx-tip {
   background: rgba(bt.$background, 0.97);

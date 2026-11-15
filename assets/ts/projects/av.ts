@@ -6,7 +6,7 @@
 
 import d3Line, { type LineGen } from 'd3-shape/line';
 import { monotoneX } from 'd3-shape/monotone';
-import { assertNever, clamp, createRng, fmtSigned, h, lerp, linearScale, matchRule, memoBy, mountFigure, patchAttrs, range, setShow, setText, svgEl, type FigureSpec, type LinearScale, type MountHandle, type Rng } from '../lib/engine';
+import { assertNever, clamp, createRng, fmtSigned, h, lerp, linearScale, matchRule, memoBy, mountFigure, patchAttrs, range, setShow, setText, svgEl, type FigureSpec, type LinearScale, type MetricTone, type MountHandle, type Rng } from '../lib/engine';
 import { addArrowMarker, bindDrag, createChart, mountBadge, renderTopo, type BadgeUpdater, type ChartHandle, type EdgePatch, type NodePatch, type TopoConfig, type TopoEdgeDef, type TopoHeaderDef, type TopoNodeDef, type TopoPatch } from '../lib/layers';
 
 // Abramowitz & Stegun 26.2.17 normal tail P(Z > z) with negative-z symmetry guard.
@@ -646,6 +646,259 @@ mountFigure('av-drivefi', DFI_SPEC, (ctx) => {
     },
     render: () => {
       renderDriveFiView(ctx, sel, { matrixDom, patchTopo, drawRoadway });
+    },
+  };
+});
+
+// Figure 3: Two-Stage Online Perception Attack (RoboTack)
+type FrameValPt = readonly [number, number];
+interface KalmanSpec { readonly tMax: number; readonly dt: number; readonly sigmaDet: number; readonly lambdaGate: number; readonly tTrig: number | null; readonly tEnd: number }
+interface KalmanAcc {
+  readonly y: number; readonly vy: number; readonly pY: number; readonly pVy: number;
+  readonly kfLat: readonly number[]; readonly predLat: readonly number[]; readonly obsLat: readonly number[]; readonly gateLat: readonly number[];
+}
+interface EncounterSim {
+  readonly tTrig: number | null; readonly kStar: number | null; readonly tEnd: number; readonly sigmaDet: number;
+  readonly kfLat: readonly number[]; readonly predLat: readonly number[]; readonly obsLat: readonly number[]; readonly gateLat: readonly number[];
+  readonly atkDelta: readonly number[]; readonly egoAtkX: readonly number[];
+  readonly hijackPts: readonly FrameValPt[]; readonly atkPts: readonly FrameValPt[]; readonly kfPts: readonly FrameValPt[];
+}
+interface RobotackTriggerPanel {
+  readonly chart: ChartHandle;
+  readonly waitBand: (xA: number, xB: number, show?: boolean, label?: string) => void;
+  readonly atkBand: (xA: number, xB: number, show?: boolean, label?: string) => void;
+  readonly hijackLine: (data: readonly FrameValPt[], cls?: string, show?: boolean) => void;
+  readonly atkLine: (data: readonly FrameValPt[], cls?: string, show?: boolean) => void;
+  readonly trigDot: (data: readonly number[], cls?: string, show?: boolean) => void;
+  readonly frameRule: (xVal: number, show?: boolean) => void;
+  readonly curDot: (data: readonly FrameValPt[], cls?: string, show?: boolean) => void;
+}
+interface RobotackTrackerPanel {
+  readonly chart: ChartHandle;
+  readonly naiveLine: (data: readonly number[], cls?: string, show?: boolean) => void;
+  readonly futLine: (data: readonly FrameValPt[], cls?: string, show?: boolean) => void;
+  readonly pastLine: (data: readonly FrameValPt[], cls?: string, show?: boolean) => void;
+  readonly frameRule: (xVal: number, show?: boolean) => void;
+  readonly rejWrap: SVGGElement; readonly rejLine: SVGLineElement; readonly rejX: SVGTextElement; readonly setRejBadge: BadgeUpdater;
+  readonly gateEl: SVGEllipseElement; readonly jitEl: SVGEllipseElement; readonly obsDot: SVGCircleElement; readonly kfDot: SVGCircleElement;
+}
+
+const RT_CFG = { tMax: 30, xTv: 28, dt: 0.12, sigmaDet: 0.22, lambdaGate: 2.4 } as const;
+const TS: readonly number[] = range(RT_CFG.tMax + 1);
+
+const RT_SPEC: FigureSpec = {
+  kicker: 'Figure 3 · Two-Stage Online Perception Attack (RoboTack) · Trigger Timing, Gradual Tracker Spoofing, and Crash Outcome',
+  actions: ['step', 'play'], stepLabel: 'Step Frame', stepMs: 360,
+  legend: [
+    { kind: 'line', tone: 'teal', label: 'Unattacked / Rejected-jump safe stop' },
+    { kind: 'swatch', tone: 'orange', label: 'Stage-1 attack trigger window' },
+    { kind: 'line', tone: 'blue', label: 'RoboTack gradual spoofed track' },
+    { kind: 'swatch', tone: 'crimson', label: 'Rejected large jump & CRASH zone' },
+  ],
+  grid: 'is-bridged',
+  panels: [
+    { kind: 'plot', title: 'STAGE 1 (WHEN): STOPPING-MARGIN TRIGGER', svgId: 'svg-av-robotack-1' },
+    { kind: 'bridge', bridgeId: 'rt-bridge', bridgeText: 'WAIT' },
+    { kind: 'plot', title: 'STAGE 2 (HOW): BOUNDED TRACKER SPOOFING', svgId: 'svg-av-robotack-2' },
+    { kind: 'plot', cls: 'is-span-all', title: 'PHYSICAL ROADWAY ENCOUNTER & CRASH ZONE', svgId: 'svg-av-robotack-3' },
+  ],
+  sliders: [
+    { key: 'frame', label: 'Driving timeline', min: 0, max: 30, step: 1, value: 27, fmt: (v) => `Frame ${Math.round(v)} / 30` },
+    { key: 'kmax', label: 'Max stealth attack window', min: 8, max: 24, step: 2, value: 16, fmt: (v) => `${Math.round(v)} frames` },
+  ],
+  metrics: [{ key: 'when', label: 'Stage 1 (When)' }, { key: 'how', label: 'Stage 2 (How)' }, { key: 'outcome', label: 'Roadway outcome' }],
+};
+
+function stepKalmanFrame(acc: KalmanAcc, frame: number, spec: KalmanSpec, rMeas: number): KalmanAcc {
+  const py = clamp(acc.y + acc.vy * spec.dt, 0, 1.82);
+  const pYPred = Math.min(0.18, acc.pY + spec.dt * spec.dt * acc.pVy + 0.015);
+  const pVy = Math.min(0.35, acc.pVy + 0.04);
+  const sInnov = Math.sqrt(pYPred + rMeas);
+  const oy = spec.tTrig !== null && frame >= spec.tTrig && frame <= spec.tEnd ? Math.min(1.8, py + 0.88 * spec.sigmaDet) : 0;
+  const accepted = Math.abs(oy - py) / sInnov <= spec.lambdaGate;
+  const kGain = pYPred / (pYPred + rMeas);
+  const y = accepted ? clamp(py + kGain * (oy - py), 0, 1.82) : py;
+  const vy = accepted ? (y >= 1.76 ? 0 : acc.vy + 0.32 * kGain * (oy - py)) : acc.vy * 0.5;
+  const pY = accepted ? pYPred * (1 - kGain) : pYPred;
+  return { y, vy, pY, pVy, kfLat: [...acc.kfLat, y], predLat: [...acc.predLat, py], obsLat: [...acc.obsLat, oy], gateLat: [...acc.gateLat, spec.lambdaGate * sInnov] };
+}
+
+function scanKalmanLateral(spec: KalmanSpec): Pick<KalmanAcc, 'kfLat' | 'predLat' | 'obsLat' | 'gateLat'> {
+  const rMeas = spec.sigmaDet * spec.sigmaDet;
+  const seed: KalmanAcc = { y: 0, vy: 0, pY: 0.14, pVy: 0.25, kfLat: [0], predLat: [0], obsLat: [0], gateLat: [spec.lambdaGate * Math.sqrt(0.14 + rMeas)] };
+  return range(spec.tMax).reduce((acc, idx) => stepKalmanFrame(acc, idx + 1, spec, rMeas), seed);
+}
+
+function nomDelta(frame: number): number {
+  return 3.4 + 9.2 * Math.exp(-0.145 * frame);
+}
+
+function hijackDelta(dNow: number, kFrames: number): number {
+  return dNow - 0.36 * kFrames - 0.0055 * kFrames * kFrames;
+}
+
+function egoSafeX(frame: number): number {
+  return 24.6 * (1 - (1 - clamp(frame / 24, 0, 1)) ** 2.15);
+}
+
+const memoEncounter = memoBy((kMax: number): EncounterSim => {
+  const tTrig = TS.find((frame) => hijackDelta(nomDelta(frame), kMax) <= 0) ?? null;
+  const ks = TS.slice(1, kMax + 1);
+  const kStar = tTrig !== null ? (ks.find((k) => hijackDelta(nomDelta(tTrig), k) <= 0) ?? kMax) : null;
+  const tEnd = tTrig !== null && kStar !== null ? Math.min(RT_CFG.tMax, tTrig + kStar) : -1;
+  const { kfLat, predLat, obsLat, gateLat } = scanKalmanLateral({ tMax: RT_CFG.tMax, dt: RT_CFG.dt, sigmaDet: RT_CFG.sigmaDet, lambdaGate: RT_CFG.lambdaGate, tTrig, tEnd });
+  const vTrig = tTrig !== null ? Math.max(egoSafeX(tTrig) - egoSafeX(Math.max(0, tTrig - 1)), 0.55) : 0;
+  const egoAtkX = TS.map((frame) => (tTrig === null || frame <= tTrig ? egoSafeX(frame) : Math.min(RT_CFG.xTv + 3.4, egoSafeX(tTrig) + vTrig * (frame - tTrig))));
+  const atkDelta = TS.map((frame) => (tTrig === null || frame <= tTrig ? nomDelta(frame) : clamp(nomDelta(tTrig) - vTrig * (frame - tTrig), -3.4, 13)));
+  return {
+    tTrig, kStar, tEnd, sigmaDet: RT_CFG.sigmaDet, kfLat, predLat, obsLat, gateLat, atkDelta, egoAtkX,
+    hijackPts: TS.map((frame): FrameValPt => [frame, hijackDelta(nomDelta(frame), kMax)]),
+    atkPts: tTrig !== null ? TS.slice(tTrig).map((frame): FrameValPt => [frame, atkDelta[frame]]) : [],
+    kfPts: TS.map((frame): FrameValPt => [frame, kfLat[frame]]),
+  };
+});
+
+function describeOutcome(st: { readonly hasTrig: boolean; readonly postTrig: boolean; readonly marginBreached: boolean; readonly impact: boolean; readonly overrun: number; readonly margin: number }): readonly [string, MetricTone, string, string] {
+  const mStr = fmtSigned(st.margin, 1, ' m');
+  const ov = st.overrun.toFixed(1);
+  return matchRule<readonly [string, MetricTone, string, string]>([
+    [st.impact, [`CRASH! (${ov} m overrun, unbraked)`, 'is-crimson', `CRASH! (${ov} m overrun)`, 'is-bad-solid']],
+    [st.marginBreached, [`No-return breached (${mStr} margin)`, 'is-crimson', `NO-RETURN BREACHED (${mStr})`, 'is-bad']],
+    [st.postTrig, [`Braking suppressed (${mStr} margin)`, '', `BRAKING SUPPRESSED (${mStr})`, 'is-orange']],
+    [!st.hasTrig, [`Safe stop (${mStr} margin)`, 'is-teal', `SAFE STOP (${mStr})`, 'is-good']],
+  ], [`Approaching (${mStr} margin)`, '', `SAFE STOP (${mStr})`, 'is-good']);
+}
+
+function buildRobotackTriggerPanel(svgNode: SVGSVGElement): RobotackTriggerPanel {
+  const chart = createChart(svgNode, {
+    box: [312, 186], pad: [10, 12, 28, 44], x: [0, RT_CFG.tMax], y: [-4.5, 13.5],
+    ticksX: [0, 10, 20, 30], ticksY: [-4, 0, 4, 8, 12], fmtY: (n) => `${n > 0 ? '+' : ''}${n}m`,
+    labelY: 'Stopping Margin (m)', labelX: 'Frame 27 / 30',
+  });
+  const waitBand = chart.vband({ cls: 'is-slate', label: 'WAIT', yTop: 13.5, yBot: 0 });
+  const atkBand = chart.vband({ cls: 'is-orange', label: 'ATTACK' });
+  chart.hband(-4.5, 0, 'is-crimson');
+  chart.hrule({ y: 0, cls: 'is-crimson is-dashed', label: 'CRASH ZONE (0 m margin)', align: 'start', dy: 31 });
+  chart.line<number>((t) => t, (t) => nomDelta(t), 'is-teal')(TS);
+  const hijackLine = chart.line<FrameValPt>((d) => d[0], (d) => d[1], 'is-orange is-dashed');
+  const atkLine = chart.line<FrameValPt>((d) => d[0], (d) => d[1], 'is-crimson');
+  const trigDot = chart.dots<number>({ radius: 4.2, x: (x) => x, y: () => 0, cls: 'is-crimson' });
+  const frameRule = chart.vrule('is-blue');
+  const curDot = chart.dots<FrameValPt>({ radius: 4.0, x: (d) => d[0], y: (d) => d[1], cls: 'is-blue' });
+  return { chart, waitBand, atkBand, hijackLine, atkLine, trigDot, frameRule, curDot };
+}
+
+function buildRobotackTrackerPanel(svgNode: SVGSVGElement): RobotackTrackerPanel {
+  const chart = createChart(svgNode, {
+    box: [312, 186], pad: [10, 12, 28, 46], x: [0, RT_CFG.tMax], y: [-0.26, 2.42],
+    ticksX: [0, 10, 20, 30], ticksY: [0, 0.9, 1.8], fmtY: (n) => `${n > 0 ? '+' : ''}${n.toFixed(1)}m`,
+    labelY: 'Tracked Lateral Offset (m)', labelX: 'Tracker Gate (Green) & Sensor Jitter (Amber)',
+  });
+  chart.hband(0.9, 2.42, 'is-blue');
+  chart.hrule({ y: 0.9, cls: 'is-muted is-dashed' });
+  chart.line<number>((t) => t, () => 0, 'is-navy')(TS);
+  const naiveLine = chart.line<number>((t) => t, () => 0.05, 'is-teal is-dashed');
+  const futLine = chart.line<FrameValPt>((d) => d[0], (d) => d[1], 'is-blue is-dashed is-faint');
+  const pastLine = chart.line<FrameValPt>((d) => d[0], (d) => d[1], 'is-blue');
+  const frameRule = chart.vrule('is-blue is-faint');
+  const rejLine = svgEl('line', { cls: 'viz-rule is-crimson is-dashed' });
+  const rejX = svgEl('text', { cls: 'viz-rule-lbl is-crimson', 'text-anchor': 'middle' }, '✕');
+  const rejWrap = svgEl('g', null, rejLine, rejX);
+  const setRejBadge = mountBadge(rejWrap);
+  chart.overlayEl.append(svgEl('text', { cls: 'viz-rule-lbl is-blue', x: chart.x0 + 5, y: chart.y0 + 11 }, 'ADJACENT LANE (+1.8m)'), svgEl('text', { cls: 'viz-rule-lbl is-navy', x: chart.x1 - 5, y: chart.y1 - 4, 'text-anchor': 'end' }, 'EGO LANE (Target Car = 0m)'), rejWrap);
+  const gateEl = svgEl('ellipse', { cls: 'rt-gate-ring', rx: 9 });
+  const jitEl = svgEl('ellipse', { cls: 'rt-jit-ring', rx: 5.5 });
+  const obsDot = svgEl('circle', { cls: 'viz-dot is-orange', r: 3.5 });
+  const kfDot = svgEl('circle', { cls: 'viz-dot is-blue', r: 4 });
+  chart.bodyEl.append(gateEl, jitEl, obsDot, kfDot);
+  return { chart, naiveLine, futLine, pastLine, frameRule, rejWrap, rejLine, rejX, setRejBadge, gateEl, jitEl, obsDot, kfDot };
+}
+
+function updateRobotackTrackerPanel(panel: RobotackTrackerPanel, sim: EncounterSim, frame: number, active: boolean): void {
+  const { tTrig } = sim;
+  const hasTrig = tTrig !== null;
+  panel.naiveLine(tTrig !== null ? TS.slice(tTrig) : [], 'is-teal is-dashed', hasTrig);
+  panel.futLine(sim.kfPts.slice(frame), 'is-blue is-dashed is-faint', frame < RT_CFG.tMax);
+  panel.pastLine(sim.kfPts.slice(0, frame + 1));
+  panel.frameRule(frame);
+  setShow(panel.rejWrap, hasTrig);
+  const yZero = panel.chart.sy(0);
+  if (tTrig !== null) {
+    const xn = panel.chart.sx(tTrig);
+    const yn = panel.chart.sy(1.78);
+    patchAttrs(panel.rejLine, { x1: xn, x2: xn, y1: yZero, y2: yn + 4 });
+    patchAttrs(panel.rejX, { x: xn, y: yn + 4 });
+    panel.setRejBadge('Jump: rejected', 'is-bad', { minW: 96, maxW: 140, x: (bw) => (xn + 6 + bw <= panel.chart.x1 - 2 ? xn + 6 : Math.max(panel.chart.x0 + 2, xn - 6 - bw)), y: yn - 10 });
+  }
+  const px = panel.chart.sx(frame);
+  const pyPred = panel.chart.sy(sim.predLat[frame]);
+  patchAttrs(panel.gateEl, { cx: px, cy: pyPred, ry: Math.max(10, Math.abs(yZero - panel.chart.sy(sim.gateLat[frame]))) });
+  patchAttrs(panel.jitEl, { cx: px, cy: pyPred, ry: Math.max(5, Math.abs(yZero - panel.chart.sy(sim.sigmaDet))) });
+  setShow(panel.obsDot, active);
+  patchAttrs(panel.obsDot, { cx: px, cy: panel.chart.sy(sim.obsLat[frame]) });
+  patchAttrs(panel.kfDot, { cx: px, cy: panel.chart.sy(sim.kfLat[frame]) });
+}
+
+function updateRobotackTriggerPanel(panel: RobotackTriggerPanel, sim: EncounterSim, frame: number, marginNow: number): void {
+  const hasTrig = sim.tTrig !== null;
+  panel.chart.setLabelX(`Frame ${frame} / ${RT_CFG.tMax}`);
+  panel.waitBand(0, sim.tTrig ?? 0, hasTrig);
+  panel.atkBand(sim.tTrig ?? 0, sim.tEnd, hasTrig, `ATTACK (${sim.kStar} frames)`);
+  panel.hijackLine(sim.hijackPts);
+  panel.atkLine(sim.atkPts, 'is-crimson', hasTrig);
+  panel.trigDot(sim.tTrig !== null ? [sim.tTrig] : [], 'is-crimson', hasTrig);
+  panel.frameRule(frame);
+  panel.curDot([[frame, marginNow]], marginNow <= 0 ? 'is-crimson' : 'is-blue');
+}
+
+function buildRobotackRoadwayView(sim: EncounterSim, frame: number, impact: boolean, badge: readonly [string, string]): EncounterRoadwayView {
+  const postAtk = sim.tTrig !== null && frame > sim.tTrig;
+  return {
+    kind: 'encounter', obsM: RT_CFG.xTv, obsLabel: 'CAR', crashed: impact, badgeText: badge[0], badgeCls: badge[1],
+    ghostFrac: clamp(sim.kfLat[frame] / 1.8, 0, 1), safeStopM: egoSafeX(frame),
+    atkStartM: postAtk && sim.tTrig !== null ? egoSafeX(sim.tTrig) : undefined,
+    egoM: postAtk ? sim.egoAtkX[frame] : undefined,
+    egoTone: impact ? 'crimson' : sim.tTrig === null ? 'teal' : 'navy',
+  };
+}
+
+function renderRobotackView(
+  ctx: MountHandle,
+  views: { readonly bridge: HTMLElement; readonly trigPanel: RobotackTriggerPanel; readonly trackPanel: RobotackTrackerPanel; readonly drawRoadway: (rd: RoadwayView) => void },
+): void {
+  const frame = Math.round(ctx.num('frame'));
+  const kMax = Math.round(ctx.num('kmax'));
+  const sim = memoEncounter(kMax);
+  const { tTrig } = sim;
+  const active = tTrig !== null && frame >= tTrig && frame <= sim.tEnd;
+  const post = tTrig !== null && frame > sim.tEnd;
+  const postTrig = tTrig !== null && frame >= tTrig;
+  const marginNow = tTrig !== null ? sim.atkDelta[frame] : nomDelta(frame);
+  const impact = postTrig && sim.egoAtkX[frame] >= RT_CFG.xTv;
+  const [outTxt, outTone, badgeTxt, badgeCls] = describeOutcome({ hasTrig: tTrig !== null, postTrig, marginBreached: postTrig && marginNow <= 0, impact, overrun: Math.max(0.1, sim.egoAtkX[frame] - RT_CFG.xTv), margin: marginNow });
+  ctx.setMetric('when', tTrig === null ? `Dormant (>${kMax}-frame window)` : frame < tTrig ? `Waiting (frame ${frame}, triggers at ${tTrig})` : `Triggered at frame ${tTrig} (${sim.kStar}f window)`, 'is-blue');
+  ctx.setMetric('how', !postTrig ? 'Dormant (Target Car at 0.0 m)' : `Nudge +${sim.kfLat[frame].toFixed(2)} m · Jump rejected`);
+  ctx.setMetric('outcome', outTxt, outTone);
+  setText(views.bridge, active ? 'SPOOF →' : post ? 'SPOOFED' : 'WAIT');
+  patchAttrs(views.bridge, { cls: `viz-bridge-pill${active ? ' is-orange' : post ? ' is-bad' : ''}` });
+  updateRobotackTriggerPanel(views.trigPanel, sim, frame, marginNow);
+  updateRobotackTrackerPanel(views.trackPanel, sim, frame, active);
+  views.drawRoadway(buildRobotackRoadwayView(sim, frame, impact, [badgeTxt, badgeCls]));
+}
+
+mountFigure('av-robotack', RT_SPEC, (ctx) => {
+  const views = {
+    bridge: ctx.el('rt-bridge'),
+    trigPanel: buildRobotackTriggerPanel(ctx.svg('svg-av-robotack-1')),
+    trackPanel: buildRobotackTrackerPanel(ctx.svg('svg-av-robotack-2')),
+    drawRoadway: createRoadway(ctx.svg('svg-av-robotack-3'), { box: [648, 122], maxM: 34, ticksM: [0, 10, 20, 28, 34] }),
+  };
+  return {
+    step: () => {
+      ctx.setSlider('frame', (Math.round(ctx.num('frame')) + 1) % (RT_CFG.tMax + 1));
+    },
+    render: () => {
+      renderRobotackView(ctx, views);
     },
   };
 });
